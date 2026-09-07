@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V10.3 - Вечные Коты 🐱</title>
+    <title>Тренажёр | V10.5 - Реальные Коты с Защитой 🐱</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
@@ -228,7 +228,7 @@
         <p style="text-align: center; color: #7f8c8d;">Здесь можно бесконечно тискать рандомных котов. Кликай по коту!</p>
         <div class="clicker-box">
             <div class="click-stats">Поглажено котов: <span id="clicker-count">0</span></div>
-            <img id="clicker-img" class="clicker-img" src="" onclick="doCatClick(event)">
+            <img id="clicker-img" class="clicker-img" src="" onclick="doCatClick(event)" onerror="this.src='https://placecats.com/millie/400/400'">
         </div>
     </div>
 
@@ -259,11 +259,11 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (Настоящие живые коты Unsplash) -->
+    <!-- ПОПАП СТРАЙКА (С защитой от сбоев и авто-заменой) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
         <div class="meme-generator">
-            <img id="streak-cat-img" src="" alt="Реальный кот">
+            <img id="streak-cat-img" src="" alt="Реальный кот" onerror="this.src='https://placecats.com/neo/400/400'">
             <div id="streak-cat-text" class="meme-text"></div>
         </div>
     </div>
@@ -278,20 +278,20 @@
 </div>
 
 <script>
-    // === НАСТОЯЩИЕ ФОТОГРАФИИ НОРМАЛЬНЫХ КОТОВ (UNSPLASH) ===
-    const realCatPhotos = [
+    // === НАСТОЯЩИЕ КОТЫ С НЕСКОЛЬКИМИ СЕРВЕРАМИ-ДУБЛЁРАМИ ===
+    const catPools = [
         "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1561948955-570b270e7c36?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1561530514-63d1e1951167?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500&auto=format&fit=crop&q=80"
+        "https://placecats.com/millie/400/400",
+        "https://placecats.com/neo/400/400",
+        "https://placecats.com/bella/400/400",
+        "https://placecats.com/poppy/400/400",
+        "https://cataas.com/cat"
     ];
-    function getRandomCat() { return realCatPhotos[Math.floor(Math.random() * realCatPhotos.length)]; }
+    function getRandomCat() { 
+        return catPools[Math.floor(Math.random() * catPools.length)] + "&t=" + Date.now(); 
+    }
 
     // === АУДИО ===
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -429,7 +429,7 @@
                     {q:"ХОК..ЕЙ",o:["к","кк","г","гг"],a:1,h1:"Спорт.",h2:"Две К.",e:"Хоккей."},
                     {q:"БАС..ЕЙН",o:["с","сс","з","зз"],a:1,h1:"Плавание.",h2:"Две С.",e:"Бассейн."},
                     {q:"ПАС..АЖИР",o:["с","сс","з","зз"],a:1,h1:"Транспорт.",h2:"Две С.",e:"Пассажир."},
-                    {q:"ИЛ..ЮСТРАЦИЯ",o:["л","лл","ль","lль"],a:1,h1:"Картинка.",h2:"Две Л.",e:"Иллюстрация."},
+                    {q:"ИЛ..ЮСТРАЦИЯ",o:["л","лл","ль","лль"],a:1,h1:"Картинка.",h2:"Две Л.",e:"Иллюстрация."},
                     {q:"ТЕН..ИС",o:["н","нн","м","мм"],a:1,h1:"Спорт.",h2:"Две Н.",e:"Теннис."}
                 ]},
                 t3: { title: "3. Разделительный Ь", qs: [
@@ -668,7 +668,7 @@
                     {q:"Они бор..тся",o:["ю","я","и","е"],a:0,h1:"На -ОТЬСЯ.",h2:"I спр.",e:"Бороться -> борЮТся." },
                     {q:"Исключение II спряжения?",o:["Гнать","Брить","Стелить","Писать"],a:0,h1:"гнать, держать...",h2:"Гнать.",e:"Гнать — искл. II спр." },
                     {q:"Они дыш..т",o:["а","у","я","ю"],a:0,h1:"Искл. на -АТЬ.",h2:"II спр.",e:"Дышать -> дышАТ." },
-                    {q:"Он бр..ет",o:["е","и","я","ю"],a:0,h1:"Искл. I спряжения.",h2:"I спр.",e:"Bрить -> бреЕТ." },
+                    {q:"Он бр..ет",o:["е","и","я","ю"],a:0,h1:"Искл. I спряжения.",h2:"I спр.",e:"Брить -> бреЕТ." },
                     {q:"Они стел..т",o:["ю","я","и","е"],a:0,h1:"Искл. I спряжения.",h2:"I спр.",e:"Стелить -> стелЮТ." },
                     {q:"Ученики смотр..т",o:["я","ю","у","е"],a:0,h1:"Искл. II спряжения.",h2:"II спр.",e:"Смотреть -> смотрЯТ." },
                     {q:"Спортсмены завис..т",o:["я","ю","у","е"],a:0,h1:"Искл. II спряжения.",h2:"II спр.",e:"Зависеть -> зависЯТ." },
@@ -721,7 +721,7 @@
     let currentStreak = 0; let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV10.2_RealCats');
+        const saved = localStorage.getItem('superQuizV10.3_RealCats');
         if (saved) { 
             currentUser = Object.assign(currentUser, JSON.parse(saved)); 
             if(!currentUser.ownedPacks.includes('pack_default')) currentUser.ownedPacks.push('pack_default');
@@ -736,8 +736,8 @@
         playSound('correct'); currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV10.2_RealCats'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV10.2_RealCats', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV10.3_RealCats'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV10.3_RealCats', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
