@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V6.0 - Лутбоксы и Мега-Справочник 📦</title>
+    <title>Тренажёр | V7.0 - Тайные Коты ❓</title>
     <!-- Салют -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
-        .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
+        .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
         h1, h2, h3, h4 { text-align: center; color: #1a252f; margin-top: 0;}
         
-        /* Анимация появления экранов */
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -20,9 +19,6 @@
         .user-info { font-size: 18px; font-weight: bold; }
         .xp-badge { background: #f1c40f; color: #8e44ad; padding: 8px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         
-        /* Мотивация */
-        .motivation-banner { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%); padding: 15px 20px; border-radius: 10px; font-style: italic; font-weight: bold; font-size: 17px; color: #b71540; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-
         .login-screen { text-align: center; padding: 40px 0; }
         .name-input { padding: 12px; font-size: 18px; border: 2px solid #bdc3c7; border-radius: 8px; width: 60%; margin-bottom: 20px; box-sizing: border-box; }
         
@@ -45,16 +41,19 @@
         
         .rule-card { background: #f9fbfd; padding: 20px; border-left: 6px solid #3498db; border-radius: 8px; margin-bottom: 15px; font-size: 16px; line-height: 1.6; }
         
-        /* Магазин Паков */
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .pack-item { border: 3px dashed #bdc3c7; border-radius: 12px; padding: 20px 10px; text-align: center; background: #fff; transition: 0.2s; position: relative;}
-        .pack-icon { font-size: 60px; margin-bottom: 10px; display: block; animation: floatXP 3s infinite alternate;}
-        .pack-name { font-weight: bold; font-size: 18px; color: #2c3e50; margin-bottom: 5px; }
-        .pack-desc { font-size: 13px; color: #7f8c8d; margin-bottom: 15px; }
-        .cat-price { font-weight: bold; color: #f39c12; margin-bottom: 10px; font-size: 18px;}
-        .btn-buy { background: #2ecc71; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
-        .btn-equip { background: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
-        .pack-item.active-pack { border: 3px solid #e67e22; background: #fef5e7; box-shadow: 0 0 15px rgba(230,126,34,0.4); }
+        /* НОВЫЙ ДИЗАЙН МАГАЗИНА (ТАЙНЫЕ КОТЫ) */
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .pack-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; transition: 0.3s; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05);}
+        .pack-name { font-weight: bold; font-size: 22px; color: #2c3e50; margin-bottom: 10px; text-transform: uppercase;}
+        
+        .mystery-cats { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap;}
+        .mystery-cat { width: 60px; height: 60px; background: #34495e; color: #f1c40f; font-size: 30px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 2px dashed #95a5a6; font-weight: bold; animation: pulse 2s infinite;}
+        
+        .pack-desc { font-size: 14px; color: #7f8c8d; margin-bottom: 15px; font-style: italic;}
+        .cat-price { font-weight: bold; color: #e67e22; margin-bottom: 15px; font-size: 20px;}
+        .btn-buy { background: #2ecc71; color: white; border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;}
+        .btn-equip { background: #3498db; color: white; border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;}
+        .pack-item.active-pack { border: 4px solid #f39c12; background: #fffdf5; box-shadow: 0 0 20px rgba(243,156,18,0.3); }
 
         .quiz-container, #menu-container, #rulebook-container, #shop-container { display: none; }
         
@@ -69,25 +68,25 @@
         .question { font-size: 22px; margin-bottom: 20px; font-weight: 600; }
         .hint-text { display: none; background: #fff3cd; color: #856404; padding: 12px; border-left: 4px solid #ffeeba; border-radius: 4px; margin-bottom: 20px; font-style: italic; }
         .options { display: grid; gap: 12px; position: relative;}
-        .option-btn { padding: 16px 20px; background-color: #f8f9f9; border: 2px solid #bdc3c7; border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s; }
+        .option-btn { padding: 16px 20px; background-color: #f8f9f9; border: 2px solid #bdc3c7; border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s; font-weight: 500;}
         .option-btn:hover:not(:disabled) { background-color: #ecf0f1; border-color: #95a5a6; }
         
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         @keyframes popPulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
-        @keyframes floatXP { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
         @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
 
         .correct { background-color: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; animation: popPulse 0.4s ease-in-out; }
         .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; animation: shake 0.4s ease-in-out; }
-        .next-btn { display: none; margin-top: 25px; width: 100%; background-color: #8e44ad; color: white; }
+        .next-btn { display: none; margin-top: 25px; width: 100%; background-color: #8e44ad; color: white; padding: 15px;}
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 0 8px 8px 0; }
 
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; text-shadow: 1px 1px 2px #000; z-index: 50;}
 
         /* ПОПАП СТРАЙКА */
-        .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; z-index: 1000; border: 4px solid #f39c12; width: 80%; max-width: 320px; animation: popPulse 0.5s ease-out; }
-        .streak-popup img { max-width: 100%; border-radius: 12px; margin-top: 10px; }
-        .streak-title { color: #f39c12; margin: 0; font-size: 28px; text-transform: uppercase; animation: popPulse 1s infinite; }
+        .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
+        .streak-popup img { max-width: 100%; border-radius: 12px; margin-top: 15px; border: 2px dashed #e67e22;}
+        .streak-title { color: #f39c12; margin: 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
 
         @media (max-width: 768px) {
             body { padding: 0; background-color: #ffffff; }
@@ -112,11 +111,11 @@
 <div class="container fade-in">
     <!-- Логин -->
     <div id="login-container" class="login-screen">
-        <h1>👋 Привет! Тренажёр V6.0</h1>
+        <h1>👋 Привет! Тренажёр V7.0</h1>
         <p>Только хардкорный русский язык. Введи ник:</p>
         <input type="text" id="username-input" class="name-input" placeholder="Твой ник..." maxlength="15">
         <br>
-        <button class="btn btn-primary" style="width: 100%; max-width: 300px;" onclick="login()">Залететь ➔</button>
+        <button class="btn btn-primary" style="width: 100%; max-width: 300px; padding: 15px;" onclick="login()">Залететь ➔</button>
     </div>
 
     <!-- Главное меню -->
@@ -128,7 +127,7 @@
 
         <div class="action-buttons">
             <button class="btn btn-rulebook" onclick="openRulebook()">📖 Мега-Справочник</button>
-            <button class="btn btn-shop" onclick="openShop()">🎁 Тайные Паки Котов</button>
+            <button class="btn btn-shop" onclick="openShop()">❓ Тайные Паки Котов</button>
         </div>
 
         <h2 style="color: #2980b9; margin-bottom: 20px;">📚 Тренировка (по 10 вопросов)</h2>
@@ -139,12 +138,12 @@
         </div>
     </div>
 
-    <!-- МАГАЗИН ЛУТБОКСОВ -->
+    <!-- МАГАЗИН ЛУТБОКСОВ С ВОПРОСИКАМИ -->
     <div id="shop-container" class="fade-in">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-        <h2 style="margin-top: 40px; color: #e67e22;">🎁 Тайные Паки</h2>
-        <p style="text-align: center;">Покупай паки, чтобы разблокировать спрятанных внутри котов! Они будут случайно вылетать при страйке.</p>
-        <div class="xp-badge" style="display: block; width: max-content; margin: 0 auto 20px auto;">Твой баланс: <span id="shop-balance">0</span> XP</div>
+        <h2 style="margin-top: 40px; color: #e67e22;">❓ Тайные Паки</h2>
+        <p style="text-align: center;">Покупай паки с неизвестными котами. Купленный пак выдаст случайного кота во время твоего страйка!</p>
+        <div class="xp-badge" style="display: block; width: max-content; margin: 0 auto 20px auto; font-size: 18px;">Твой баланс: <span id="shop-balance">0</span> XP</div>
         
         <div id="shop-grid" class="shop-grid"></div>
     </div>
@@ -180,10 +179,11 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА -->
+    <!-- ПОПАП СТРАЙКА (Открытие кота) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
-        <img id="streak-cat-img" src="" alt="Смешной кот">
+        <div style="font-size: 14px; color: #7f8c8d; margin-top: 5px;">Тайный кот разблокирован!</div>
+        <img id="streak-cat-img" src="" alt="Секретный кот">
     </div>
 
     <!-- Результат -->
@@ -232,16 +232,16 @@
         }
     }
 
-    // === ПАКИ КОТИКОВ (ЛУТБОКСЫ) ===
+    // === ТАЙНЫЕ ПАКИ (Новая логика с ? знаками) ===
     const shopPacks = [
         { 
-            id: 'pack_default', name: 'Базовый Пак', price: 0, icon: '📦',
-            desc: 'Внутри: 1 обычный мемный кот.',
+            id: 'pack_default', name: 'Базовый Пак', price: 0,
+            desc: 'Бесплатный пак для старта. Внутри 1 рандомный мемный кот.',
             cats: [ { url: 'https://cataas.com/cat/cute', text: '🔥 ХОРОШ! 🔥' } ]
         },
         { 
-            id: 'pack_sigma', name: 'Сигма Пак', price: 500, icon: '🗿',
-            desc: 'Внутри: 3 кота со скрытым Сигма-вайбом.',
+            id: 'pack_sigma', name: 'Сигма Пак', price: 500,
+            desc: 'Внутри 3 секретных кота со скрытым Сигма-вайбом.',
             cats: [ 
                 { url: 'https://cataas.com/cat/says/СИГМА?fontColor=white&fontSize=50', text: '🗿 СИГМА! 🗿' },
                 { url: 'https://cataas.com/cat/says/БАЗА?fontColor=white&fontSize=50', text: '🔥 БАЗА! 🔥' },
@@ -249,8 +249,8 @@
             ]
         },
         { 
-            id: 'pack_brain', name: 'Брейн Пак', price: 1500, icon: '🧠',
-            desc: 'Внутри: 3 самых умных кота в интернете.',
+            id: 'pack_brain', name: 'Брейн Пак', price: 1500,
+            desc: 'Внутри 3 самых умных секретных кота в интернете.',
             cats: [ 
                 { url: 'https://cataas.com/cat/says/ГЕНИЙ?fontColor=yellow&fontSize=50', text: '🧠 ГЕНИЙ! 🧠' },
                 { url: 'https://cataas.com/cat/says/АЙНШТАЙН?fontColor=white&fontSize=40', text: '💡 МОЗГ! 💡' },
@@ -258,8 +258,8 @@
             ]
         },
         { 
-            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000, icon: '🤪',
-            desc: 'Внутри: 4 безбашенных кота.',
+            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000,
+            desc: 'Внутри 4 безбашенных секретных кота.',
             cats: [ 
                 { url: 'https://cataas.com/cat/says/ЧИНАЗЕС?fontColor=white&fontSize=50', text: '💸 ЧИНАЗЕС! 💸' },
                 { url: 'https://cataas.com/cat/says/ИМБА?fontColor=red&fontSize=60', text: '🚀 ИМБА! 🚀' },
@@ -287,7 +287,7 @@
         <div class="rule-card"><h3>🔢 6. Местоимения</h3><p><b>Дефис:</b> Приставка КОЕ- и суффиксы -ТО, -ЛИБО, -НИБУДЬ пишутся через дефис (кое-кто, что-нибудь). Если есть предлог, то в три слова (кое с кем).</p></div>
     `;
 
-    // === МЕГА-БАЗА ТЕСТОВ (60 ВОПРОСОВ) ===
+    // === БАЗА ТЕСТОВ (60 ВОПРОСОВ, ТОЛЬКО РУССКИЙ) ===
     const db = {
         verbs: {
             title: "Глаголы (Спряжения)",
@@ -381,6 +381,7 @@
         }
     };
 
+    // ОБРАТИТЕ ВНИМАНИЕ: Изменен ключ сохранения, чтобы у тебя 100% всё сбросилось и обновилось!
     let currentUser = { name: "", xp: 0, ownedPacks: ['pack_default'], activePack: 'pack_default' };
     let currentTopicId = "";
     let currentQuestionIndex = 0;
@@ -389,7 +390,7 @@
     let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV8');
+        const saved = localStorage.getItem('superQuizV7_mystery');
         if (saved) { currentUser = Object.assign(currentUser, JSON.parse(saved)); showMenu(); } 
         else { document.getElementById("login-container").style.display = "block"; }
     };
@@ -401,8 +402,8 @@
         currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV8'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV8', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV7_mystery'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV7_mystery', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
@@ -423,7 +424,7 @@
         document.getElementById("rulebook-content").innerHTML = rulebookContent;
     }
 
-    // === ЛОГИКА МАГАЗИНА ===
+    // === ЛОГИКА МАГАЗИНА С ВОПРОСАМИ ===
     function openShop() {
         playSound('correct'); hideAll(); document.getElementById("shop-container").style.display = "block";
         renderShop();
@@ -449,9 +450,16 @@
                 btnHtml = `<button class="btn-buy" onclick="buyPack('${pack.id}', ${pack.price})">Купить за ${pack.price} XP</button>`;
             }
 
+            // Генерируем знаки вопроса в зависимости от того, сколько котов в паке
+            let mysteryHtml = '<div class="mystery-cats">';
+            for(let i = 0; i < pack.cats.length; i++) {
+                mysteryHtml += `<div class="mystery-cat">❓</div>`;
+            }
+            mysteryHtml += '</div>';
+
             div.innerHTML = `
-                <div class="pack-icon">${pack.icon}</div>
                 <div class="pack-name">${pack.name}</div>
+                ${mysteryHtml}
                 <div class="pack-desc">${pack.desc}</div>
                 <div class="cat-price">${isOwned ? 'Куплено' : pack.price + ' XP'}</div>
                 ${btnHtml}
@@ -465,7 +473,7 @@
             playSound('buy');
             currentUser.xp -= price;
             currentUser.ownedPacks.push(id);
-            currentUser.activePack = id; // Автоэкипировка
+            currentUser.activePack = id;
             saveData();
             renderShop();
             confetti({ particleCount: 50, spread: 60 });
@@ -584,7 +592,6 @@
         const img = document.getElementById("streak-cat-img");
         const title = document.getElementById("streak-title-text");
         
-        // Находим активный пак и выбираем из него СЛУЧАЙНОГО кота
         const activePackData = shopPacks.find(p => p.id === currentUser.activePack) || shopPacks[0];
         const randomCat = activePackData.cats[Math.floor(Math.random() * activePackData.cats.length)];
         
@@ -594,7 +601,7 @@
         popup.style.display = "block";
         
         if(streakTimeout) clearTimeout(streakTimeout);
-        streakTimeout = setTimeout(() => { popup.style.display = "none"; }, 5000); // 5 секунд
+        streakTimeout = setTimeout(() => { popup.style.display = "none"; }, 5000); 
     }
 
     function nextQuestion() {
