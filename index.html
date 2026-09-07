@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | Магазин и Звуки 🐾</title>
+    <title>Тренажёр | V6.0 - Лутбоксы и Мега-Справочник 📦</title>
     <!-- Салют -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
         .container { max-width: 900px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); position: relative; overflow: hidden; }
-        h1, h2, h3 { text-align: center; color: #1a252f; }
+        h1, h2, h3, h4 { text-align: center; color: #1a252f; margin-top: 0;}
         
         /* Анимация появления экранов */
         .fade-in { animation: fadeIn 0.4s ease-out; }
@@ -39,28 +39,25 @@
         .btn-rulebook:hover, .btn-shop:hover { filter: brightness(1.1); transform: translateY(-2px); }
         .btn-hint { background-color: #f39c12; color: white; padding: 8px 15px; font-size: 14px; margin-bottom: 15px; display: inline-block; }
 
-        .subject-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; clear: both;}
-        .tab-btn { padding: 15px 30px; font-size: 18px; font-weight: bold; background-color: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 12px; cursor: pointer; transition: 0.3s; flex: 1; }
-        .tab-btn.active { background-color: #3498db; color: white; border-color: #2980b9; }
-
         .topics-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px;}
         .topic-btn { padding: 15px; background-color: #2ecc71; color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 15px; font-weight: 600; text-align: left; box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); transition: all 0.2s; display: flex; align-items: center; }
         .topic-btn:hover { background-color: #27ae60; transform: translateY(-2px); }
         
         .rule-card { background: #f9fbfd; padding: 20px; border-left: 6px solid #3498db; border-radius: 8px; margin-bottom: 15px; font-size: 16px; line-height: 1.6; }
         
-        /* Магазин */
+        /* Магазин Паков */
         .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .cat-item { border: 2px solid #bdc3c7; border-radius: 12px; padding: 15px; text-align: center; background: #fff; transition: 0.2s; }
-        .cat-item img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; height: 120px; object-fit: cover; width: 100%;}
-        .cat-price { font-weight: bold; color: #f39c12; margin-bottom: 10px; }
-        .btn-buy { background: #2ecc71; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
-        .btn-equip { background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
-        .cat-item.active-cat { border-color: #e67e22; background: #fef5e7; box-shadow: 0 0 10px rgba(230,126,34,0.5); }
+        .pack-item { border: 3px dashed #bdc3c7; border-radius: 12px; padding: 20px 10px; text-align: center; background: #fff; transition: 0.2s; position: relative;}
+        .pack-icon { font-size: 60px; margin-bottom: 10px; display: block; animation: floatXP 3s infinite alternate;}
+        .pack-name { font-weight: bold; font-size: 18px; color: #2c3e50; margin-bottom: 5px; }
+        .pack-desc { font-size: 13px; color: #7f8c8d; margin-bottom: 15px; }
+        .cat-price { font-weight: bold; color: #f39c12; margin-bottom: 10px; font-size: 18px;}
+        .btn-buy { background: #2ecc71; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
+        .btn-equip { background: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;}
+        .pack-item.active-pack { border: 3px solid #e67e22; background: #fef5e7; box-shadow: 0 0 15px rgba(230,126,34,0.4); }
 
         .quiz-container, #menu-container, #rulebook-container, #shop-container { display: none; }
         
-        /* Исправленный заголовок квиза */
         .quiz-header-wrapper { padding-top: 40px; margin-bottom: 20px; }
         .header-quiz { display: flex; justify-content: space-between; align-items: center; }
         .topic-title { margin: 0; font-size: 20px; text-align: left;}
@@ -77,53 +74,36 @@
         
         @keyframes popPulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
-        @keyframes floatXP { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
+        @keyframes floatXP { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
 
         .correct { background-color: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; animation: popPulse 0.4s ease-in-out; }
         .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; animation: shake 0.4s ease-in-out; }
         .next-btn { display: none; margin-top: 25px; width: 100%; background-color: #8e44ad; color: white; }
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 0 8px 8px 0; }
 
-        .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatXP 1s ease-out forwards; pointer-events: none; text-shadow: 1px 1px 2px #000; z-index: 50;}
+        .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; text-shadow: 1px 1px 2px #000; z-index: 50;}
 
         /* ПОПАП СТРАЙКА */
-        .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; z-index: 1000; border: 4px solid #f39c12; width: 80%; max-width: 320px; animation: popIn 0.3s ease-out; }
+        .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; z-index: 1000; border: 4px solid #f39c12; width: 80%; max-width: 320px; animation: popPulse 0.5s ease-out; }
         .streak-popup img { max-width: 100%; border-radius: 12px; margin-top: 10px; }
         .streak-title { color: #f39c12; margin: 0; font-size: 28px; text-transform: uppercase; animation: popPulse 1s infinite; }
-        @keyframes popIn { 0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
 
-        /* ======================================= */
-        /* АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (CSS) */
-        /* ======================================= */
         @media (max-width: 768px) {
             body { padding: 0; background-color: #ffffff; }
             .container { border-radius: 0; padding: 20px 15px; min-height: 100vh; box-shadow: none; }
-            
             .cabinet { flex-direction: column; gap: 12px; text-align: center; padding: 15px; }
             .name-input { width: 100%; }
-            
             .action-buttons { flex-direction: column; gap: 10px; }
             .btn-rulebook, .btn-shop { width: 100%; padding: 15px; }
-            
-            .subject-tabs { flex-direction: column; gap: 10px; }
-            .tab-btn { width: 100%; }
-            
             .topics-menu { grid-template-columns: 1fr; gap: 10px; }
-            
-            .shop-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .cat-item { padding: 10px; }
-            .cat-item img { height: 90px; }
-            
+            .shop-grid { grid-template-columns: 1fr; gap: 15px; }
             .quiz-header-wrapper { padding-top: 50px; }
             .header-quiz { flex-direction: column; align-items: flex-start; gap: 15px; }
             .progress-wrapper { justify-content: flex-start; width: 100%; }
             .topic-title { font-size: 18px; }
             .question { font-size: 19px; }
             .option-btn { font-size: 15px; padding: 14px; }
-            
-            h1 { font-size: 24px; }
-            h2 { font-size: 20px; }
-            h3 { font-size: 18px; }
         }
     </style>
 </head>
@@ -132,8 +112,8 @@
 <div class="container fade-in">
     <!-- Логин -->
     <div id="login-container" class="login-screen">
-        <h1>👋 Привет! Добро пожаловать в Тренажёр</h1>
-        <p>Введи свой никнейм, чтобы начать фармить XP:</p>
+        <h1>👋 Привет! Тренажёр V6.0</h1>
+        <p>Только хардкорный русский язык. Введи ник:</p>
         <input type="text" id="username-input" class="name-input" placeholder="Твой ник..." maxlength="15">
         <br>
         <button class="btn btn-primary" style="width: 100%; max-width: 300px;" onclick="login()">Залететь ➔</button>
@@ -147,50 +127,32 @@
         </div>
 
         <div class="action-buttons">
-            <button class="btn btn-rulebook" onclick="openRulebook()">📖 Справочник Правил</button>
-            <button class="btn btn-shop" onclick="openShop()">🛒 Магазин Котиков</button>
+            <button class="btn btn-rulebook" onclick="openRulebook()">📖 Мега-Справочник</button>
+            <button class="btn btn-shop" onclick="openShop()">🎁 Тайные Паки Котов</button>
         </div>
 
-        <div class="subject-tabs">
-            <button class="tab-btn active" id="tab-russian" onclick="switchSubject('russian')">📘 Русский язык</button>
-            <button class="tab-btn" id="tab-math" onclick="switchSubject('math')">📐 Математика</button>
-        </div>
-
-        <div id="subject-russian" class="subject-content">
-            <h3>Практика (по 10 вопросов)</h3>
-            <div id="menu-russian-topics" class="topics-menu"></div>
-        </div>
-
-        <div id="subject-math" class="subject-content" style="display: none;">
-            <h3>Практика (по 10 вопросов)</h3>
-            <div id="menu-math-topics" class="topics-menu"></div>
-        </div>
+        <h2 style="color: #2980b9; margin-bottom: 20px;">📚 Тренировка (по 10 вопросов)</h2>
+        <div id="menu-topics" class="topics-menu"></div>
 
         <div style="text-align: center; margin-top: 20px;">
             <button class="btn" style="background: #e74c3c; color: white; padding: 12px; width: 100%; max-width: 300px;" onclick="logout()">Выйти из профиля</button>
         </div>
     </div>
 
-    <!-- МАГАЗИН КОТИКОВ -->
+    <!-- МАГАЗИН ЛУТБОКСОВ -->
     <div id="shop-container" class="fade-in">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-        <h2 style="margin-top: 40px;">🛒 Магазин Котиков</h2>
-        <p style="text-align: center;">Трать XP на котов! Они будут вылетать при страйке (3 ответа подряд).</p>
+        <h2 style="margin-top: 40px; color: #e67e22;">🎁 Тайные Паки</h2>
+        <p style="text-align: center;">Покупай паки, чтобы разблокировать спрятанных внутри котов! Они будут случайно вылетать при страйке.</p>
         <div class="xp-badge" style="display: block; width: max-content; margin: 0 auto 20px auto;">Твой баланс: <span id="shop-balance">0</span> XP</div>
         
         <div id="shop-grid" class="shop-grid"></div>
     </div>
 
-    <!-- СПРАВОЧНИК ПРАВИЛ -->
+    <!-- МЕГА-СПРАВОЧНИК -->
     <div id="rulebook-container" class="fade-in">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-        <h2 style="margin-top: 40px;">📖 Справочник</h2>
-        
-        <div class="subject-tabs">
-            <button class="tab-btn active" id="rb-tab-russian" onclick="switchRbSubject('russian')">Русский язык</button>
-            <button class="tab-btn" id="rb-tab-math" onclick="switchRbSubject('math')">Математика</button>
-        </div>
-        
+        <h2 style="margin-top: 40px;">📖 Справочник Правил</h2>
         <div id="rulebook-content"></div>
     </div>
 
@@ -235,14 +197,13 @@
 </div>
 
 <script>
-    // === АУДИО СИНТЕЗАТОР (Без файлов) ===
+    // === АУДИО СИНТЕЗАТОР ===
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playSound(type) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        osc.connect(gain); gain.connect(audioCtx.destination);
         
         if (type === 'correct') {
             osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
@@ -264,7 +225,6 @@
             osc.start(); osc.stop(audioCtx.currentTime + 0.2);
         } else if (type === 'win') {
             osc.type = 'triangle'; osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(600, audioCtx.currentTime + 0.1);
             osc.frequency.setValueAtTime(800, audioCtx.currentTime + 0.2);
             gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
@@ -272,128 +232,156 @@
         }
     }
 
-    // === МАГАЗИН КОТИКОВ ===
-    const shopCats = [
-        { id: 'default', name: 'Рандомный Кот', price: 0, url: 'https://cataas.com/cat/cute', text: '🔥 СТРАЙК! 🔥' },
-        { id: 'cat_sigma', name: 'Кот Сигма', price: 200, url: 'https://cataas.com/cat/says/СИГМА?fontColor=white&fontSize=50', text: '🗿 СИГМА СТРАЙК! 🗿' },
-        { id: 'cat_genius', name: 'Кот Гений', price: 400, url: 'https://cataas.com/cat/says/ГЕНИЙ?fontColor=yellow&fontSize=50', text: '🧠 ГЕНИЙ! 🧠' },
-        { id: 'cat_chinazes', name: 'Кот Чиназес', price: 800, url: 'https://cataas.com/cat/says/ЧИНАЗЕС?fontColor=white&fontSize=50', text: '💸 ЧИНАЗЕС! 💸' },
-        { id: 'cat_imba', name: 'Имбовый Кот', price: 1500, url: 'https://cataas.com/cat/says/ИМБА?fontColor=red&fontSize=60', text: '🚀 ИМБА! 🚀' }
+    // === ПАКИ КОТИКОВ (ЛУТБОКСЫ) ===
+    const shopPacks = [
+        { 
+            id: 'pack_default', name: 'Базовый Пак', price: 0, icon: '📦',
+            desc: 'Внутри: 1 обычный мемный кот.',
+            cats: [ { url: 'https://cataas.com/cat/cute', text: '🔥 ХОРОШ! 🔥' } ]
+        },
+        { 
+            id: 'pack_sigma', name: 'Сигма Пак', price: 500, icon: '🗿',
+            desc: 'Внутри: 3 кота со скрытым Сигма-вайбом.',
+            cats: [ 
+                { url: 'https://cataas.com/cat/says/СИГМА?fontColor=white&fontSize=50', text: '🗿 СИГМА! 🗿' },
+                { url: 'https://cataas.com/cat/says/БАЗА?fontColor=white&fontSize=50', text: '🔥 БАЗА! 🔥' },
+                { url: 'https://cataas.com/cat/says/ГИГАЧАД?fontColor=white&fontSize=40', text: '💪 ГИГАЧАД! 💪' }
+            ]
+        },
+        { 
+            id: 'pack_brain', name: 'Брейн Пак', price: 1500, icon: '🧠',
+            desc: 'Внутри: 3 самых умных кота в интернете.',
+            cats: [ 
+                { url: 'https://cataas.com/cat/says/ГЕНИЙ?fontColor=yellow&fontSize=50', text: '🧠 ГЕНИЙ! 🧠' },
+                { url: 'https://cataas.com/cat/says/АЙНШТАЙН?fontColor=white&fontSize=40', text: '💡 МОЗГ! 💡' },
+                { url: 'https://cataas.com/cat/says/IQ_1000?fontColor=cyan&fontSize=50', text: '🌌 IQ 1000! 🌌' }
+            ]
+        },
+        { 
+            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000, icon: '🤪',
+            desc: 'Внутри: 4 безбашенных кота.',
+            cats: [ 
+                { url: 'https://cataas.com/cat/says/ЧИНАЗЕС?fontColor=white&fontSize=50', text: '💸 ЧИНАЗЕС! 💸' },
+                { url: 'https://cataas.com/cat/says/ИМБА?fontColor=red&fontSize=60', text: '🚀 ИМБА! 🚀' },
+                { url: 'https://cataas.com/cat/says/РАЗРЫВ?fontColor=orange&fontSize=50', text: '💥 РАЗРЫВ! 💥' },
+                { url: 'https://cataas.com/cat/says/СЮДААА?fontColor=magenta&fontSize=50', text: '🏆 СЮДААА! 🏆' }
+            ]
+        }
     ];
 
-    // === БАЗА ПРАВИЛ И ВОПРОСОВ ===
-    const rulebooks = {
-        russian: `
-            <div class="rule-card"><h3>🔥 Спряжения глаголов</h3><p>I спряжение: инфинитивы НЕ на -ИТЬ (на -ать, -еть, -оть). В 3 л. мн.ч.: -УТ, -ЮТ. Исключения: брить, стелить.</p><p>II спряжение: все на -ИТЬ. В 3 л. мн.ч.: -АТ, -ЯТ. Исключения: гнать, держать, смотреть и видеть, дышать, слышать, ненавидеть, и зависеть, и вертеть, и обидеть, и терпеть.</p></div>
-            <div class="rule-card"><h3>🌳 Корни с чередованием</h3><p><b>От суффикса -А-:</b> -БЕР-/-БИР-, -МЕР-/-МИР- и т.д. (Есть А — пишем И). -КАС-/-КОС- (Есть А — пишем А).</p><p><b>От ударения:</b> -ГАР-/-ГОР- (без ударения О).</p><p><b>От согласной:</b> -РАСТ-/-РАЩ-/-РОС- (Перед СТ и Щ пишем А. Искл: росток). -ЛАГ-/-ЛОЖ- (Перед Г - А, перед Ж - О).</p></div>
-            <div class="rule-card"><h3>🧩 Приставки ПРЕ- и ПРИ-</h3><p><b>ПРИ-:</b> Приближение, присоединение (пришить), близость (приморский), неполное действие (присесть).</p><p><b>ПРЕ-:</b> Равно слову "Очень" (премудрый) или приставке ПЕРЕ- (преградить).</p></div>
-        `,
-        math: `
-            <div class="rule-card"><h3>➖ Отрицательные числа</h3><p>Сложение: долг + долг = большой долг (-5 - 3 = -8). Умножение: минус на минус = плюс.</p></div>
-            <div class="rule-card"><h3>🍕 Дроби и Проценты</h3><p>Процент — это 1/100. 50% = половина. 25% = четверть.</p></div>
-            <div class="rule-card"><h3>⚖️ Решение уравнений</h3><p>Правило весов: если переносим число через знак "=", меняем его знак на противоположный! (x - 5 = 10 ➔ x = 10 + 5 ➔ x = 15). Если умножали, то делим (2x = 10 ➔ x = 10 / 2).</p></div>
-        `
-    };
+    // === ПОЛНЫЙ СПРАВОЧНИК ПО РУССКОМУ ===
+    const rulebookContent = `
+        <div class="rule-card"><h3>🔥 1. Спряжения глаголов</h3><p><b>I спряжение:</b> инфинитивы НЕ на -ИТЬ (на -ать, -еть, -оть). В 3 л. мн.ч. (они): <b>-УТ, -ЮТ</b>. <br>Исключения: <i>брить, стелить.</i></p><p><b>II спряжение:</b> все на -ИТЬ. В 3 л. мн.ч.: <b>-АТ, -ЯТ</b>. <br>Исключения: <i>гнать, держать, смотреть и видеть, дышать, слышать, ненавидеть, и зависеть, и вертеть, и обидеть, и терпеть.</i></p></div>
+        
+        <div class="rule-card"><h3>🌳 2. Корни с чередованием</h3>
+        <p><b>От суффикса -А-:</b><br>-БЕР-/-БИР-, -МЕР-/-МИР-, -ДЕР-/-ДИР-, -ПЕР-/-ПИР-, -ТЕР-/-ТИР-, -БЛЕСТ-/-БЛИСТ-, -ЖЕГ-/-ЖИГ-, -СТЕЛ-/-СТИЛ-, -ЧЕТ-/-ЧИТ-. (Есть А за корнем — пишем И. <i>СобИрАть, но собЕру</i>).<br>-КАС-/-КОС- (Есть А — пишем А).</p>
+        <p><b>От ударения:</b><br>-ГАР-/-ГОР- (Без ударения О: <i>загорАть</i>). -ЗАР-/-ЗОР- (Без ударения А: <i>зарЯ</i>).</p>
+        <p><b>От согласной:</b><br>-РАСТ-/-РАЩ-/-РОС- (Перед СТ и Щ — А. Искл: <i>росток, Ростов, ростовщик, отрасль</i>).<br>-ЛАГ-/-ЛОЖ- (Перед Г — А, перед Ж — О). -СКАК-/-СКОЧ- (Перед К — А, перед Ч — О. Искл: <i>скачок</i>).</p></div>
+        
+        <div class="rule-card"><h3>🧩 3. Приставки ПРЕ- и ПРИ-</h3><p><b>ПРИ-:</b> Приближение (приехать), присоединение (пришить), близость (приморский), неполное действие (присесть).</p><p><b>ПРЕ-:</b> Равно слову "Очень" (премудрый) или приставке ПЕРЕ- (преградить).</p></div>
 
+        <div class="rule-card"><h3>👤 4. Существительные: Суффиксы</h3><p><b>-ЕК- и -ИК-:</b> Ставим слово в Родительный падеж (нет чего?). Если гласная выпадает — пишем ЕК (замочек - замоЧКа). Если остается — ИК (ключик - ключИКа).</p><p><b>-ЧИК- и -ЩИК-:</b> ЧИК пишется после букв Д-Т, З-С, Ж (грузчик). В остальных случаях ЩИК (каменщик, барабанщик).</p></div>
+
+        <div class="rule-card"><h3>🎨 5. Прилагательные: Н и НН</h3><p><b>Одна Н:</b> в суффиксах -ИН-, -АН-, -ЯН- (гусиный, кожаный). <i>Исключения: стеклянный, оловянный, деревянный.</i></p><p><b>Две НН:</b> в суффиксах -ЕНН-, -ОНН- (соломенный). <i>Исключение: ветреный (но безветреННый).</i> И на стыке морфем (сон + н = сонный).</p></div>
+
+        <div class="rule-card"><h3>🔢 6. Местоимения</h3><p><b>Дефис:</b> Приставка КОЕ- и суффиксы -ТО, -ЛИБО, -НИБУДЬ пишутся через дефис (кое-кто, что-нибудь). Если есть предлог, то в три слова (кое с кем).</p></div>
+    `;
+
+    // === МЕГА-БАЗА ТЕСТОВ (60 ВОПРОСОВ) ===
     const db = {
-        russian: {
-            verbs: {
-                title: "Спряжения глаголов (10)",
-                questions: [
-                    { q: "Где пишется Ю (окончание -ЮТ)?", opts: ["Они стро..т", "Они бор..тся", "Они пил..т"], a: 1, hint: "Инфинитив на -ОТЬСЯ.", expl: "Бороться (I спр.) -> борЮТся." },
-                    { q: "Где пишется Я (-ЯТ)?", opts: ["Снежинки та..т", "Собаки ла..т", "Они кле..т"], a: 2, hint: "Инфинитив на -ИТЬ.", expl: "Клеить — II спряжение (клеЯТ)." },
-                    { q: "Исключение II спряжения?", opts: ["Брить", "Стелить", "Гнать"], a: 2, hint: "гнать, держать...", expl: "Гнать — искл. II спр." },
-                    { q: "Где пишется А (-АТ)?", opts: ["Пациенты дыш..т", "Они пряч..т", "Они плач..т"], a: 0, hint: "Исключение на -АТЬ.", expl: "Дышать (искл. II спр.) -> дышАТ." },
-                    { q: "«Он...»?", opts: ["бреет", "бреит", "гонют"], a: 0, hint: "Искл. I спряжения.", expl: "Брить — искл. I спр. (он бреЕТ)." },
-                    { q: "Они стел..т. Какая буква?", opts: ["ю", "я", "и"], a: 0, hint: "Искл. I спряжения.", expl: "Стелить (искл. I спр.) -> стелЮТ." },
-                    { q: "Ученики смотр..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Смотреть (искл. II спр.) -> смотрЯТ." },
-                    { q: "Спортсмены завис..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Зависеть (искл. II спр.) -> зависЯТ." },
-                    { q: "Они наде..тся.", opts: ["я", "ю", "и"], a: 1, hint: "надеЯТЬся (I спр.).", expl: "Надеяться (I спр.) -> надеЮТся." },
-                    { q: "Малыши плач..т.", opts: ["а", "я", "у"], a: 2, hint: "Плакать (I спр.).", expl: "Плакать (I спр.) -> плачУТ." }
-                ]
-            },
-            roots: {
-                title: "Корни с чередованием (10)",
-                questions: [
-                    { q: "Пишется А?", opts: ["К..снуться", "Прик..сновение", "К..саться"], a: 2, hint: "Есть суффикс А?", expl: "КасАться (есть суффикс -А-)." },
-                    { q: "Пишется О?", opts: ["К..сание", "К..сательная", "Прик..снуться"], a: 2, hint: "Нет суффикса А.", expl: "ПрикОснуться." },
-                    { q: "Пишется О?", opts: ["З..гар", "Заг..рать", "Уг..р"], a: 1, hint: "Без ударения.", expl: "ЗагорАть (без ударения пишем О)." },
-                    { q: "Пишется И?", opts: ["Заб..ру", "Зам..реть", "Заб..рать"], a: 2, hint: "Правило ИА.", expl: "ЗабИрАть." },
-                    { q: "Пишется А?", opts: ["Отр..сль", "Р..сток", "Выр..с"], a: 0, hint: "Исключение.", expl: "Отрасль — исключение (пишется с А)." },
-                    { q: "Слово с ошибкой:", opts: ["Вырастить", "Полагать", "Росток"], a: 2, hint: "Исключение РАСТ/РАЩ/РОС.", expl: "Р_о_сток — исключение." },
-                    { q: "Прил..жил усилия. Буква?", opts: ["а", "о", "и"], a: 1, hint: "Перед Ж.", expl: "ПрилОжить (перед Ж пишем О)." },
-                    { q: "Скакать на лошади. Правило?", opts: ["От ударения", "От суффикса А", "От согласной"], a: 2, hint: "СКАК/СКОЧ.", expl: "От согласной." },
-                    { q: "Соб..ру портфель.", opts: ["и", "е", "а"], a: 1, hint: "Нет суффикса А.", expl: "СобЕру." },
-                    { q: "Бескрайняя р..внина.", opts: ["о", "а", "и"], a: 1, hint: "Исключение РАВН/РОВН.", expl: "Равнина — исключение (А)." }
-                ]
-            },
-            prefixes: {
-                title: "Приставки ПРЕ и ПРИ (10)",
-                questions: [
-                    { q: "Пишется ПРИ-?", opts: ["Пр..рвать", "Пр..школьный", "Пр..красный"], a: 1, hint: "Близость к школе.", expl: "Пришкольный (близость)." },
-                    { q: "Пишется ПРЕ-?", opts: ["Пр..землиться", "Пр..открыть", "Пр..мудрый"], a: 2, hint: "ОЧЕНЬ мудрый.", expl: "Премудрый (=очень)." },
-                    { q: "Неполное действие?", opts: ["Пр..ехать", "Пр..сесть", "Пр..морский"], a: 1, hint: "Сесть ненадолго.", expl: "Присесть." },
-                    { q: "Равно приставке ПЕРЕ-?", opts: ["Пр..добрый", "Пр..градить", "Пр..увеличить"], a: 1, hint: "Перегородить.", expl: "Преградить (=пере)." },
-                    { q: "Пр..шить пуговицу. Значение?", opts: ["Близость", "Присоединение", "Неполное действие"], a: 1, hint: "Прикрепить.", expl: "Присоединение." },
-                    { q: "Слово с ошибкой:", opts: ["Презабавный", "Приоткрыть", "Приувеличить"], a: 2, hint: "ОЧЕНЬ увеличить.", expl: "ПрЕувеличить." },
-                    { q: "Пр..ехать в город.", opts: ["и", "е", "а"], a: 0, hint: "Приближение.", expl: "Приехать (приближение)." },
-                    { q: "Пр..скверный характер.", opts: ["и", "е", "а"], a: 1, hint: "ОЧЕНЬ скверный.", expl: "Прескверный." },
-                    { q: "Пр..гореть на плите.", opts: ["и", "е", "а"], a: 0, hint: "Слегка сгореть (неполное действие).", expl: "Пригореть." },
-                    { q: "Пр..одолеть препятствие.", opts: ["и", "е", "а"], a: 1, hint: "ПЕРЕступить через.", expl: "Преодолеть (=пере)." }
-                ]
-            }
+        verbs: {
+            title: "Глаголы (Спряжения)",
+            questions: [
+                { q: "Где пишется Ю (окончание -ЮТ)?", opts: ["Они стро..т", "Они бор..тся", "Они пил..т"], a: 1, hint: "Инфинитив на -ОТЬСЯ.", expl: "Бороться (I спр.) -> борЮТся." },
+                { q: "Где пишется Я (-ЯТ)?", opts: ["Снежинки та..т", "Они кле..т", "Ветры ве..т"], a: 1, hint: "Инфинитив на -ИТЬ.", expl: "Клеить — II спряжение." },
+                { q: "Исключение II спряжения?", opts: ["Брить", "Стелить", "Гнать"], a: 2, hint: "гнать, держать...", expl: "Гнать — искл. II спр." },
+                { q: "Где пишется А (-АТ)?", opts: ["Пациенты дыш..т", "Они пряч..т", "Они плач..т"], a: 0, hint: "Искл. на -АТЬ.", expl: "Дышать (искл. II спр.) -> дышАТ." },
+                { q: "«Он...»?", opts: ["бреет", "бреит", "гонют"], a: 0, hint: "Искл. I спряжения.", expl: "Брить — искл. I спр. (бреЕТ)." },
+                { q: "Они стел..т.", opts: ["ю", "я", "и"], a: 0, hint: "Искл. I спряжения.", expl: "Стелить (искл. I спр.) -> стелЮТ." },
+                { q: "Ученики смотр..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Смотреть (искл. II спр.) -> смотрЯТ." },
+                { q: "Спортсмены завис..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Зависеть (искл. II спр.) -> зависЯТ." },
+                { q: "Они наде..тся.", opts: ["я", "ю", "и"], a: 1, hint: "надеЯТЬся (I спр.).", expl: "Надеяться (I спр.) -> надеЮТся." },
+                { q: "Малыши плач..т.", opts: ["а", "я", "у"], a: 2, hint: "Плакать (I спр.).", expl: "Плакать (I спр.) -> плачУТ." }
+            ]
         },
-        math: {
-            fractions: {
-                title: "Дроби и проценты (10)",
-                questions: [
-                    { q: "1/2 + 1/2 = ?", opts: ["1/4", "1", "2/4"], a: 1, hint: "Половина + половина.", expl: "2/2 = 1." },
-                    { q: "25% от 200?", opts: ["25", "50", "100"], a: 1, hint: "Дели на 4.", expl: "200 / 4 = 50." },
-                    { q: "50% в дробь:", opts: ["1/4", "1/3", "1/2"], a: 2, hint: "Половина.", expl: "1/2." },
-                    { q: "1 - 3/7 = ?", opts: ["4/7", "3/7", "1/7"], a: 0, hint: "1 это 7/7.", expl: "7/7 - 3/7 = 4/7." },
-                    { q: "3/4 в процентах?", opts: ["34%", "50%", "75%"], a: 2, hint: "1/4 = 25%. Умножь на 3.", expl: "75%." },
-                    { q: "0.5 * 4 = ?", opts: ["0.20", "2", "20"], a: 1, hint: "Половина от 4.", expl: "2." },
-                    { q: "10% от 500?", opts: ["5", "10", "50"], a: 2, hint: "Дели на 10.", expl: "50." },
-                    { q: "2/5 + 1/5 = ?", opts: ["3/5", "3/10", "1/5"], a: 0, hint: "Сложи числители.", expl: "3/5." },
-                    { q: "Что больше, 0.2 или 1/5?", opts: ["0.2", "1/5", "Равны"], a: 2, hint: "1/5 = 2/10.", expl: "Равны." },
-                    { q: "1.2 + 0.8 = ?", opts: ["1.10", "2", "2.8"], a: 1, hint: "Сложи десятые.", expl: "2." }
-                ]
-            },
-            negatives: {
-                title: "Отрицательные числа (10)",
-                questions: [
-                    { q: "-5 + 3 = ?", opts: ["-8", "2", "-2"], a: 2, hint: "Долг 5, отдал 3.", expl: "-2." },
-                    { q: "-10 - 5 = ?", opts: ["-5", "-15", "5"], a: 1, hint: "Сложение долгов.", expl: "-15." },
-                    { q: "Что больше: -5 или -10?", opts: ["-5", "-10", "Равны"], a: 0, hint: "Ближе к нулю.", expl: "-5." },
-                    { q: "-4 * (-3) = ?", opts: ["-12", "12", "-7"], a: 1, hint: "Минус на минус.", expl: "12." },
-                    { q: "20 / (-4) = ?", opts: ["-5", "5", "-16"], a: 0, hint: "Плюс на минус.", expl: "-5." },
-                    { q: "|-8| = ?", opts: ["-8", "0", "8"], a: 2, hint: "Модуль всегда плюс.", expl: "8." },
-                    { q: "-7 + 7 = ?", opts: ["-14", "14", "0"], a: 2, hint: "Противоположные.", expl: "0." },
-                    { q: "-15 - (-5) = ?", opts: ["-20", "-10", "10"], a: 1, hint: "Два минуса дают плюс.", expl: "-15 + 5 = -10." },
-                    { q: "-1 * 0 = ?", opts: ["-1", "1", "0"], a: 2, hint: "Умножение на ноль.", expl: "0." },
-                    { q: "10 + (-15) = ?", opts: ["25", "-25", "-5"], a: 2, hint: "10 - 15.", expl: "-5." }
-                ]
-            },
-            equations: {
-                title: "Решение уравнений (10)",
-                questions: [
-                    { q: "x + 5 = 12. Найди x.", opts: ["7", "17", "6"], a: 0, hint: "Перенеси 5 с минусом.", expl: "12 - 5 = 7." },
-                    { q: "2x = 10. Найди x.", opts: ["5", "8", "20"], a: 0, hint: "Раздели 10 на 2.", expl: "10 / 2 = 5." },
-                    { q: "3x - 2 = 7. Найди x.", opts: ["5", "3", "9"], a: 1, hint: "Сначала перенеси -2 (будет +2).", expl: "3x = 9, x = 3." },
-                    { q: "15 - x = 8. Найди x.", opts: ["23", "7", "-7"], a: 1, hint: "15 минус что равно 8?", expl: "x = 15 - 8 = 7." },
-                    { q: "x / 4 = 3. Найди x.", opts: ["12", "7", "1"], a: 0, hint: "Умножь 3 на 4.", expl: "x = 3 * 4 = 12." },
-                    { q: "5x + 5 = 30. Найди x.", opts: ["5", "6", "25"], a: 0, hint: "5x = 30 - 5.", expl: "5x = 25, x = 5." },
-                    { q: "2 * (x + 1) = 6. Найди x.", opts: ["4", "2", "3"], a: 1, hint: "Раздели 6 на 2, потом вычти 1.", expl: "x + 1 = 3, x = 2." },
-                    { q: "-x = -4. Найди x.", opts: ["-4", "4", "0"], a: 1, hint: "Убери минусы с обеих сторон.", expl: "x = 4." },
-                    { q: "x + 10 = 5. Найди x.", opts: ["15", "5", "-5"], a: 2, hint: "5 минус 10.", expl: "x = -5." },
-                    { q: "4x = 0. Найди x.", opts: ["4", "0", "-4"], a: 1, hint: "На что умножить 4, чтобы был 0?", expl: "x = 0." }
-                ]
-            }
+        roots: {
+            title: "Корни с чередованием",
+            questions: [
+                { q: "Пишется А?", opts: ["К..снуться", "Прик..сновение", "К..саться"], a: 2, hint: "Есть суффикс А?", expl: "КасАться (есть суффикс -А-)." },
+                { q: "Пишется О?", opts: ["К..сание", "К..сательная", "Прик..снуться"], a: 2, hint: "Нет суффикса А.", expl: "ПрикОснуться." },
+                { q: "Пишется О?", opts: ["З..гар", "Заг..рать", "Уг..р"], a: 1, hint: "ГАР/ГОР без ударения.", expl: "ЗагорАть (без ударения пишем О)." },
+                { q: "Пишется И?", opts: ["Заб..ру", "Зам..реть", "Заб..рать"], a: 2, hint: "Правило ИА.", expl: "ЗабИрАть." },
+                { q: "Пишется А?", opts: ["Отр..сль", "Р..сток", "Выр..с"], a: 0, hint: "Исключение РАСТ.", expl: "Отрасль — исключение (А)." },
+                { q: "Слово с ошибкой:", opts: ["Вырастить", "Полагать", "Росток"], a: 2, hint: "Исключение.", expl: "Р_о_сток — пишется с О." },
+                { q: "Прил..жил усилия.", opts: ["а", "о", "и"], a: 1, hint: "ЛАГ/ЛОЖ перед Ж.", expl: "ПрилОжить (перед Ж пишем О)." },
+                { q: "Скакать на лошади. Какое правило?", opts: ["От ударения", "От суффикса А", "От согласной"], a: 2, hint: "СКАК/СКОЧ.", expl: "Зависит от согласной на конце." },
+                { q: "Соб..ру портфель.", opts: ["и", "е", "а"], a: 1, hint: "Нет суффикса А.", expl: "СобЕру." },
+                { q: "Бескрайняя р..внина.", opts: ["о", "а", "и"], a: 1, hint: "Исключение РАВН.", expl: "Равнина — исключение (А)." }
+            ]
+        },
+        prefixes: {
+            title: "Приставки ПРЕ- и ПРИ-",
+            questions: [
+                { q: "Пишется ПРИ-?", opts: ["Пр..рвать", "Пр..школьный", "Пр..красный"], a: 1, hint: "Близость.", expl: "Пришкольный (близость)." },
+                { q: "Пишется ПРЕ-?", opts: ["Пр..землиться", "Пр..открыть", "Пр..мудрый"], a: 2, hint: "= ОЧЕНЬ.", expl: "Премудрый (=очень)." },
+                { q: "Неполное действие?", opts: ["Пр..ехать", "Пр..сесть", "Пр..морский"], a: 1, hint: "Слегка.", expl: "Присесть." },
+                { q: "Равно приставке ПЕРЕ-?", opts: ["Пр..добрый", "Пр..градить", "Пр..увеличить"], a: 1, hint: "Перегородить.", expl: "Преградить (=пере)." },
+                { q: "Пр..шить пуговицу. Значение?", opts: ["Близость", "Присоединение", "Неполное"], a: 1, hint: "Прикрепить.", expl: "Присоединение." },
+                { q: "Слово с ошибкой:", opts: ["Презабавный", "Приоткрыть", "Приувеличить"], a: 2, hint: "ОЧЕНЬ.", expl: "ПрЕувеличить." },
+                { q: "Пр..ехать в город.", opts: ["и", "е", "а"], a: 0, hint: "Приближение.", expl: "Приехать." },
+                { q: "Пр..скверный характер.", opts: ["и", "е", "а"], a: 1, hint: "ОЧЕНЬ.", expl: "Прескверный." },
+                { q: "Пр..гореть на плите.", opts: ["и", "е", "а"], a: 0, hint: "Неполное действие.", expl: "Пригореть." },
+                { q: "Пр..одолеть препятствие.", opts: ["и", "е", "а"], a: 1, hint: "ПЕРЕступить.", expl: "Преодолеть." }
+            ]
+        },
+        nouns: {
+            title: "Существительные (Суффиксы)",
+            questions: [
+                { q: "Где пишется ЕК?", opts: ["Замоч..к", "Ключ..к", "Мяч..к"], a: 0, hint: "Нет замоЧКа - гласная выпала.", expl: "Гласная выпадает - пишем ЕК." },
+                { q: "Где пишется ИК?", opts: ["Сыноч..к", "Ореш..к", "Лучик..к"], a: 2, hint: "Нет лучикИКа - гласная осталась.", expl: "Гласная не выпадает - пишем ИК." },
+                { q: "Пишется ЧИК?", opts: ["Груз..ик", "Камен..ик", "Барабан..ик"], a: 0, hint: "После Д-Т, З-С, Ж.", expl: "Грузчик (после З)." },
+                { q: "Пишется ЩИК?", opts: ["Перевод..ик", "Спор..ик", "Обман..ик"], a: 2, hint: "После Н.", expl: "Обманщик (после Н пишем ЩИК)." },
+                { q: "Вкусный кусоч..к.", opts: ["ик", "ек", "ок"], a: 1, hint: "Нет кусоЧКа.", expl: "Кусочек (выпадает)." },
+                { q: "Сильный свар..ик.", opts: ["чик", "щик", "ник"], a: 1, hint: "После Р.", expl: "Сварщик (не входит в Д-Т, З-С, Ж)." },
+                { q: "Маленький карман..ик.", opts: ["ек", "ик", "чик"], a: 1, hint: "Нет карманчика.", expl: "Карманчик." },
+                { q: "Опытный перебеж..ик.", opts: ["чик", "щик", "ник"], a: 0, hint: "После Ж.", expl: "Перебежчик (после Ж)." },
+                { q: "Заботливый подаваль..ик.", opts: ["чик", "щик", "ник"], a: 1, hint: "После ЛЬ.", expl: "Подавальщик." },
+                { q: "Красивый цветоч..к.", opts: ["ик", "ек", "ок"], a: 1, hint: "Нет цветоЧКа.", expl: "Цветочек (выпадает)." }
+            ]
+        },
+        adjectives: {
+            title: "Прилагательные (Н и НН)",
+            questions: [
+                { q: "Где пишется НН?", opts: ["Кожа..ый", "Деревя..ый", "Гуси..ый"], a: 1, hint: "Исключение из -ЯН-.", expl: "Деревянный (исключение)." },
+                { q: "Где пишется Н?", opts: ["Соломе..ый", "Стекля..ый", "Песча..ый"], a: 2, hint: "Суффикс -АН-.", expl: "Песчаный (-АН-)." },
+                { q: "Слово с ошибкой:", opts: ["Ветренний", "Оловянный", "Сонный"], a: 0, hint: "Ветреный — исключение с одной Н.", expl: "Ветреный (исключение)." },
+                { q: "Клюкве..ый сок.", opts: ["н", "нн", "нь"], a: 1, hint: "Суффикс -ЕНН-.", expl: "Клюквенный (-ЕНН-)." },
+                { q: "Ути..ый нос.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ИН-.", expl: "Утиный (-ИН-)." },
+                { q: "Безветре..ый день.", opts: ["н", "нн", "нь"], a: 1, hint: "Есть приставка (не исключение).", expl: "БезветреННый (есть приставка БЕЗ-)." },
+                { q: "Карти..ая галерея.", opts: ["н", "нн", "нь"], a: 1, hint: "Стык морфем: картин + н.", expl: "Картинная (картин + н)." },
+                { q: "Серебря..ый век.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ЯН- (не исключение).", expl: "Серебряный (-ЯН-)." },
+                { q: "Торжестве..ый зал.", opts: ["н", "нн", "нь"], a: 1, hint: "Суффикс -ЕНН-.", expl: "Торжественный (-ЕНН-)." },
+                { q: "Масля..ая краска.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ЯН-.", expl: "Масляная." }
+            ]
+        },
+        pronouns: {
+            title: "Местоимения (Дефисы)",
+            questions: [
+                { q: "Как пишется КОЕ(КТО)?", opts: ["Слитно", "Раздельно", "Через дефис"], a: 2, hint: "Приставка кое-.", expl: "Кое-кто (через дефис)." },
+                { q: "Как пишется ЧТО(НИБУДЬ)?", opts: ["Слитно", "Раздельно", "Через дефис"], a: 2, hint: "Суффикс -нибудь.", expl: "Что-нибудь (через дефис)." },
+                { q: "Как пишется НИ(С)КЕМ?", opts: ["Слитно", "В два слова", "В три слова"], a: 2, hint: "Есть предлог.", expl: "Ни с кем (в три слова, т.к. есть предлог)." },
+                { q: "Слово с ошибкой:", opts: ["Никого", "Не к кому", "Кое с кем", "Кто либо"], a: 3, hint: "То, либо, нибудь - черточку не забудь.", expl: "Кто-либо (нужен дефис)." },
+                { q: "Кого(то) позвали.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 1, hint: "Суффикс -то.", expl: "Кого-то." },
+                { q: "(Ни)какой разницы.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Никакой." },
+                { q: "Мы (ни)чего не знали.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Ничего." },
+                { q: "Спроси (кое)у(кого).", opts: ["В три слова", "Через дефис", "Слитно"], a: 0, hint: "Есть предлог 'у'.", expl: "Кое у кого (в три слова)." },
+                { q: "(Не)кто постучал.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Некто." },
+                { q: "Пойдем куда(либо).", opts: ["Слитно", "Через дефис", "Раздельно"], a: 1, hint: "Суффикс -либо.", expl: "Куда-либо." }
+            ]
         }
     };
 
-    let currentUser = { name: "", xp: 0, ownedCats: ['default'], activeCat: 'default' };
-    let currentSubject = "russian";
+    let currentUser = { name: "", xp: 0, ownedPacks: ['pack_default'], activePack: 'pack_default' };
     let currentTopicId = "";
     let currentQuestionIndex = 0;
     let score = 0;
@@ -401,7 +389,7 @@
     let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV7_mobile');
+        const saved = localStorage.getItem('superQuizV8');
         if (saved) { currentUser = Object.assign(currentUser, JSON.parse(saved)); showMenu(); } 
         else { document.getElementById("login-container").style.display = "block"; }
     };
@@ -413,26 +401,14 @@
         currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV7_mobile'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV7_mobile', JSON.stringify(currentUser)); }
-
-    function switchSubject(subject) {
-        playSound('correct');
-        currentSubject = subject;
-        document.getElementById("tab-russian").classList.remove("active");
-        document.getElementById("tab-math").classList.remove("active");
-        document.getElementById(`tab-${subject}`).classList.add("active");
-        document.getElementById("subject-russian").style.display = "none";
-        document.getElementById("subject-math").style.display = "none";
-        document.getElementById(`subject-${subject}`).style.display = "block";
-    }
+    function logout() { localStorage.removeItem('superQuizV8'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV8', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
         document.getElementById("display-name").innerText = currentUser.name;
         document.getElementById("display-xp").innerText = currentUser.xp;
-        renderTopics("russian", "menu-russian-topics");
-        renderTopics("math", "menu-math-topics");
+        renderTopics();
     }
 
     function hideAll() {
@@ -444,14 +420,7 @@
     // === ЛОГИКА СПРАВОЧНИКА ===
     function openRulebook() {
         playSound('correct'); hideAll(); document.getElementById("rulebook-container").style.display = "block";
-        switchRbSubject('russian');
-    }
-    function switchRbSubject(subj) {
-        playSound('correct');
-        document.getElementById("rb-tab-russian").classList.remove("active");
-        document.getElementById("rb-tab-math").classList.remove("active");
-        document.getElementById(`rb-tab-${subj}`).classList.add("active");
-        document.getElementById("rulebook-content").innerHTML = rulebooks[subj];
+        document.getElementById("rulebook-content").innerHTML = rulebookContent;
     }
 
     // === ЛОГИКА МАГАЗИНА ===
@@ -459,82 +428,84 @@
         playSound('correct'); hideAll(); document.getElementById("shop-container").style.display = "block";
         renderShop();
     }
+    
     function renderShop() {
         document.getElementById("shop-balance").innerText = currentUser.xp;
         const grid = document.getElementById("shop-grid");
         grid.innerHTML = "";
         
-        shopCats.forEach(cat => {
+        shopPacks.forEach(pack => {
             const div = document.createElement("div");
-            div.className = "cat-item" + (currentUser.activeCat === cat.id ? " active-cat" : "");
+            div.className = "pack-item" + (currentUser.activePack === pack.id ? " active-pack" : "");
             
-            const isOwned = currentUser.ownedCats.includes(cat.id);
+            const isOwned = currentUser.ownedPacks.includes(pack.id);
             
             let btnHtml = "";
-            if (currentUser.activeCat === cat.id) {
-                btnHtml = `<button class="btn-equip" disabled style="background:#95a5a6;">✅ Выбран</button>`;
+            if (currentUser.activePack === pack.id) {
+                btnHtml = `<button class="btn-equip" disabled style="background:#95a5a6;">✅ Пак Активен</button>`;
             } else if (isOwned) {
-                btnHtml = `<button class="btn-equip" onclick="equipCat('${cat.id}')">Выбрать</button>`;
+                btnHtml = `<button class="btn-equip" onclick="equipPack('${pack.id}')">Включить этот Пак</button>`;
             } else {
-                btnHtml = `<button class="btn-buy" onclick="buyCat('${cat.id}', ${cat.price})">Купить за ${cat.price} XP</button>`;
+                btnHtml = `<button class="btn-buy" onclick="buyPack('${pack.id}', ${pack.price})">Купить за ${pack.price} XP</button>`;
             }
 
             div.innerHTML = `
-                <img src="${cat.url}" alt="${cat.name}">
-                <div style="font-weight:bold;">${cat.name}</div>
-                <div class="cat-price">${isOwned ? 'Куплено' : cat.price + ' XP'}</div>
+                <div class="pack-icon">${pack.icon}</div>
+                <div class="pack-name">${pack.name}</div>
+                <div class="pack-desc">${pack.desc}</div>
+                <div class="cat-price">${isOwned ? 'Куплено' : pack.price + ' XP'}</div>
                 ${btnHtml}
             `;
             grid.appendChild(div);
         });
     }
 
-    function buyCat(id, price) {
+    function buyPack(id, price) {
         if (currentUser.xp >= price) {
             playSound('buy');
             currentUser.xp -= price;
-            currentUser.ownedCats.push(id);
-            currentUser.activeCat = id;
+            currentUser.ownedPacks.push(id);
+            currentUser.activePack = id; // Автоэкипировка
             saveData();
             renderShop();
             confetti({ particleCount: 50, spread: 60 });
         } else {
             playSound('wrong');
-            alert("Не хватает XP! Пройди пару тестов.");
+            alert("Мало XP! Решай тесты, чтобы заработать больше.");
         }
     }
 
-    function equipCat(id) {
+    function equipPack(id) {
         playSound('correct');
-        currentUser.activeCat = id;
+        currentUser.activePack = id;
         saveData();
         renderShop();
     }
 
     function returnToMenu() { playSound('correct'); showMenu(); }
 
-    function renderTopics(subj, containerId) {
-        const container = document.getElementById(containerId);
+    function renderTopics() {
+        const container = document.getElementById("menu-topics");
         container.innerHTML = "";
-        for (const key in db[subj]) {
+        for (const key in db) {
             const btn = document.createElement("button");
-            btn.className = "topic-btn"; btn.innerHTML = db[subj][key].title;
-            btn.onclick = () => startQuiz(subj, key);
+            btn.className = "topic-btn"; btn.innerHTML = db[key].title;
+            btn.onclick = () => startQuiz(key);
             container.appendChild(btn);
         }
     }
 
-    function startQuiz(subj, topic) {
+    function startQuiz(topic) {
         playSound('correct');
-        currentSubject = subj; currentTopicId = topic; currentQuestionIndex = 0; score = 0; currentStreak = 0;
+        currentTopicId = topic; currentQuestionIndex = 0; score = 0; currentStreak = 0;
         hideAll(); document.getElementById("quiz-container").style.display = "block";
-        document.getElementById("topic-title").innerText = db[subj][topic].title;
+        document.getElementById("topic-title").innerText = db[topic].title;
         updateStreakUI(); loadQuestion();
     }
 
     function loadQuestion() {
-        const q = db[currentSubject][currentTopicId].questions[currentQuestionIndex];
-        const total = db[currentSubject][currentTopicId].questions.length;
+        const q = db[currentTopicId].questions[currentQuestionIndex];
+        const total = db[currentTopicId].questions.length;
         document.getElementById("progress").innerText = `Вопрос ${currentQuestionIndex + 1} из ${total}`;
         document.getElementById("question-text").innerText = q.q;
         
@@ -562,22 +533,18 @@
 
     function createFloatingXP(x, y) {
         const el = document.createElement('div');
-        el.className = 'floating-xp';
-        el.innerText = '+20 XP';
-        // Если это мобилка (маленький экран), делаем циферки поближе к центру
+        el.className = 'floating-xp'; el.innerText = '+20 XP';
         if (window.innerWidth < 768) {
-             el.style.left = (x - 30) + 'px';
-             el.style.top = (y - 50) + 'px';
+             el.style.left = (x - 30) + 'px'; el.style.top = (y - 50) + 'px';
         } else {
-             el.style.left = x + 'px';
-             el.style.top = y + 'px';
+             el.style.left = x + 'px'; el.style.top = y + 'px';
         }
         document.body.appendChild(el);
         setTimeout(() => el.remove(), 1000);
     }
 
     function checkAnswer(selectedIndex, btnElement, event) {
-        const q = db[currentSubject][currentTopicId].questions[currentQuestionIndex];
+        const q = db[currentTopicId].questions[currentQuestionIndex];
         const buttons = document.querySelectorAll(".option-btn");
         buttons.forEach(btn => btn.disabled = true);
         document.getElementById("hint-btn").style.display = "none";
@@ -617,30 +584,31 @@
         const img = document.getElementById("streak-cat-img");
         const title = document.getElementById("streak-title-text");
         
-        const activeCatData = shopCats.find(c => c.id === currentUser.activeCat) || shopCats[0];
+        // Находим активный пак и выбираем из него СЛУЧАЙНОГО кота
+        const activePackData = shopPacks.find(p => p.id === currentUser.activePack) || shopPacks[0];
+        const randomCat = activePackData.cats[Math.floor(Math.random() * activePackData.cats.length)];
         
-        // Добавляем параметр времени к ссылке на картинку, чтобы она точно обновилась (для рандомного)
-        img.src = activeCatData.url + (activeCatData.id === 'default' ? '?' + Date.now() : '');
-        title.innerText = activeCatData.text;
+        img.src = randomCat.url + (activePackData.id === 'pack_default' ? '?' + Date.now() : '');
+        title.innerText = randomCat.text;
         
         popup.style.display = "block";
         
         if(streakTimeout) clearTimeout(streakTimeout);
-        streakTimeout = setTimeout(() => { popup.style.display = "none"; }, 5000); // 5 секунд!
+        streakTimeout = setTimeout(() => { popup.style.display = "none"; }, 5000); // 5 секунд
     }
 
     function nextQuestion() {
         playSound('correct');
         document.getElementById("streak-popup").style.display = "none";
         currentQuestionIndex++;
-        if (currentQuestionIndex < db[currentSubject][currentTopicId].questions.length) loadQuestion();
+        if (currentQuestionIndex < db[currentTopicId].questions.length) loadQuestion();
         else showResults();
     }
 
     function showResults() {
         hideAll(); document.getElementById("result-container").style.display = "block";
         
-        const total = db[currentSubject][currentTopicId].questions.length;
+        const total = db[currentTopicId].questions.length;
         const percent = (score / total) * 100;
         let xpGained = score * 20; if (percent === 100) xpGained += 50; 
         
