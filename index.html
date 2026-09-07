@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V7.0 - Тайные Коты ❓</title>
+    <title>Тренажёр | V7.1 - Анти-VPN Коты ❓</title>
     <!-- Салют -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
@@ -41,7 +41,7 @@
         
         .rule-card { background: #f9fbfd; padding: 20px; border-left: 6px solid #3498db; border-radius: 8px; margin-bottom: 15px; font-size: 16px; line-height: 1.6; }
         
-        /* НОВЫЙ ДИЗАЙН МАГАЗИНА (ТАЙНЫЕ КОТЫ) */
+        /* МАГАЗИН ЛУТБОКСОВ */
         .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .pack-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; transition: 0.3s; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05);}
         .pack-name { font-weight: bold; font-size: 22px; color: #2c3e50; margin-bottom: 10px; text-transform: uppercase;}
@@ -83,10 +83,15 @@
 
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; text-shadow: 1px 1px 2px #000; z-index: 50;}
 
-        /* ПОПАП СТРАЙКА */
+        /* ПОПАП СТРАЙКА И CSS-ГЕНЕРАТОР МЕМОВ */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
-        .streak-popup img { max-width: 100%; border-radius: 12px; margin-top: 15px; border: 2px dashed #e67e22;}
         .streak-title { color: #f39c12; margin: 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
+        
+        .meme-generator { position: relative; display: inline-block; margin-top: 15px; width: 100%; }
+        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; display: block; width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;}
+        .meme-text { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-family: 'Impact', 'Arial Black', sans-serif; font-size: 36px; color: white; text-transform: uppercase; -webkit-text-stroke: 1.5px black; text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; width: 90%; text-align: center; line-height: 1.1; }
+
+        .motivation-banner { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%); padding: 15px 20px; border-radius: 10px; font-style: italic; font-weight: bold; font-size: 17px; color: #b71540; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
         @media (max-width: 768px) {
             body { padding: 0; background-color: #ffffff; }
@@ -103,6 +108,7 @@
             .topic-title { font-size: 18px; }
             .question { font-size: 19px; }
             .option-btn { font-size: 15px; padding: 14px; }
+            .meme-text { font-size: 28px; }
         }
     </style>
 </head>
@@ -111,7 +117,7 @@
 <div class="container fade-in">
     <!-- Логин -->
     <div id="login-container" class="login-screen">
-        <h1>👋 Привет! Тренажёр V7.0</h1>
+        <h1>👋 Привет! Тренажёр V7.1</h1>
         <p>Только хардкорный русский язык. Введи ник:</p>
         <input type="text" id="username-input" class="name-input" placeholder="Твой ник..." maxlength="15">
         <br>
@@ -179,11 +185,15 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (Открытие кота) -->
+    <!-- ПОПАП СТРАЙКА (Открытие кота через CSS) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
         <div style="font-size: 14px; color: #7f8c8d; margin-top: 5px;">Тайный кот разблокирован!</div>
-        <img id="streak-cat-img" src="" alt="Секретный кот">
+        <!-- ГЕНЕРАТОР МЕМОВ -->
+        <div class="meme-generator">
+            <img id="streak-cat-img" src="" alt="Секретный кот">
+            <div id="streak-cat-text" class="meme-text"></div>
+        </div>
     </div>
 
     <!-- Результат -->
@@ -232,40 +242,37 @@
         }
     }
 
-    // === ТАЙНЫЕ ПАКИ (Новая логика с ? знаками) ===
+    // === БАЗА ИЗОБРАЖЕНИЙ КОТОВ (РАБОТАЮТ БЕЗ VPN) ===
+    const safeCatImages = [
+        "https://placecats.com/millie/300/300",
+        "https://placecats.com/neo/300/300",
+        "https://placecats.com/bella/300/300",
+        "https://placecats.com/poppy/300/300",
+        "https://placecats.com/louie/300/300",
+        "https://placecats.com/millie_neo/300/300"
+    ];
+
+    // === ТАЙНЫЕ ПАКИ (Только генерация текста поверх фото) ===
     const shopPacks = [
         { 
-            id: 'pack_default', name: 'Базовый Пак', price: 0,
-            desc: 'Бесплатный пак для старта. Внутри 1 рандомный мемный кот.',
-            cats: [ { url: 'https://cataas.com/cat/cute', text: '🔥 ХОРОШ! 🔥' } ]
+            id: 'pack_default', name: 'Базовый Пак', price: 0, count: 1,
+            desc: 'Бесплатный пак для старта. Внутри 1 рандомный кот.',
+            texts: ['🔥 ХОРОШ! 🔥'], color: 'white'
         },
         { 
-            id: 'pack_sigma', name: 'Сигма Пак', price: 500,
+            id: 'pack_sigma', name: 'Сигма Пак', price: 500, count: 3,
             desc: 'Внутри 3 секретных кота со скрытым Сигма-вайбом.',
-            cats: [ 
-                { url: 'https://cataas.com/cat/says/СИГМА?fontColor=white&fontSize=50', text: '🗿 СИГМА! 🗿' },
-                { url: 'https://cataas.com/cat/says/БАЗА?fontColor=white&fontSize=50', text: '🔥 БАЗА! 🔥' },
-                { url: 'https://cataas.com/cat/says/ГИГАЧАД?fontColor=white&fontSize=40', text: '💪 ГИГАЧАД! 💪' }
-            ]
+            texts: ['🗿 СИГМА! 🗿', '🔥 БАЗА! 🔥', '💪 ГИГАЧАД! 💪'], color: '#f1c40f'
         },
         { 
-            id: 'pack_brain', name: 'Брейн Пак', price: 1500,
+            id: 'pack_brain', name: 'Брейн Пак', price: 1500, count: 3,
             desc: 'Внутри 3 самых умных секретных кота в интернете.',
-            cats: [ 
-                { url: 'https://cataas.com/cat/says/ГЕНИЙ?fontColor=yellow&fontSize=50', text: '🧠 ГЕНИЙ! 🧠' },
-                { url: 'https://cataas.com/cat/says/АЙНШТАЙН?fontColor=white&fontSize=40', text: '💡 МОЗГ! 💡' },
-                { url: 'https://cataas.com/cat/says/IQ_1000?fontColor=cyan&fontSize=50', text: '🌌 IQ 1000! 🌌' }
-            ]
+            texts: ['🧠 ГЕНИЙ! 🧠', '💡 МОЗГ! 💡', '🌌 IQ 1000! 🌌'], color: '#00d2d3'
         },
         { 
-            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000,
+            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000, count: 4,
             desc: 'Внутри 4 безбашенных секретных кота.',
-            cats: [ 
-                { url: 'https://cataas.com/cat/says/ЧИНАЗЕС?fontColor=white&fontSize=50', text: '💸 ЧИНАЗЕС! 💸' },
-                { url: 'https://cataas.com/cat/says/ИМБА?fontColor=red&fontSize=60', text: '🚀 ИМБА! 🚀' },
-                { url: 'https://cataas.com/cat/says/РАЗРЫВ?fontColor=orange&fontSize=50', text: '💥 РАЗРЫВ! 💥' },
-                { url: 'https://cataas.com/cat/says/СЮДААА?fontColor=magenta&fontSize=50', text: '🏆 СЮДААА! 🏆' }
-            ]
+            texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b'
         }
     ];
 
@@ -287,7 +294,7 @@
         <div class="rule-card"><h3>🔢 6. Местоимения</h3><p><b>Дефис:</b> Приставка КОЕ- и суффиксы -ТО, -ЛИБО, -НИБУДЬ пишутся через дефис (кое-кто, что-нибудь). Если есть предлог, то в три слова (кое с кем).</p></div>
     `;
 
-    // === БАЗА ТЕСТОВ (60 ВОПРОСОВ, ТОЛЬКО РУССКИЙ) ===
+    // === БАЗА ТЕСТОВ ===
     const db = {
         verbs: {
             title: "Глаголы (Спряжения)",
@@ -381,7 +388,7 @@
         }
     };
 
-    // ОБРАТИТЕ ВНИМАНИЕ: Изменен ключ сохранения, чтобы у тебя 100% всё сбросилось и обновилось!
+    // ОБРАТИТЕ ВНИМАНИЕ: Изменен ключ, чтобы кэш 100% сбросился у всех
     let currentUser = { name: "", xp: 0, ownedPacks: ['pack_default'], activePack: 'pack_default' };
     let currentTopicId = "";
     let currentQuestionIndex = 0;
@@ -390,7 +397,7 @@
     let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV7_mystery');
+        const saved = localStorage.getItem('superQuizV7_rf_fix');
         if (saved) { currentUser = Object.assign(currentUser, JSON.parse(saved)); showMenu(); } 
         else { document.getElementById("login-container").style.display = "block"; }
     };
@@ -402,8 +409,8 @@
         currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV7_mystery'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV7_mystery', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV7_rf_fix'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV7_rf_fix', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
@@ -450,9 +457,9 @@
                 btnHtml = `<button class="btn-buy" onclick="buyPack('${pack.id}', ${pack.price})">Купить за ${pack.price} XP</button>`;
             }
 
-            // Генерируем знаки вопроса в зависимости от того, сколько котов в паке
+            // Рисуем знаки вопроса
             let mysteryHtml = '<div class="mystery-cats">';
-            for(let i = 0; i < pack.cats.length; i++) {
+            for(let i = 0; i < pack.count; i++) {
                 mysteryHtml += `<div class="mystery-cat">❓</div>`;
             }
             mysteryHtml += '</div>';
@@ -586,17 +593,26 @@
         else { ind.style.display = "none"; }
     }
 
+    // === ГЕНЕРАТОР МЕМОВ ЧЕРЕЗ CSS ===
     function triggerStreakCat() {
         playSound('win');
         const popup = document.getElementById("streak-popup");
         const img = document.getElementById("streak-cat-img");
-        const title = document.getElementById("streak-title-text");
+        const textOverlay = document.getElementById("streak-cat-text");
         
+        // Находим активный пак и выбираем случайный текст из него
         const activePackData = shopPacks.find(p => p.id === currentUser.activePack) || shopPacks[0];
-        const randomCat = activePackData.cats[Math.floor(Math.random() * activePackData.cats.length)];
+        const randomText = activePackData.texts[Math.floor(Math.random() * activePackData.texts.length)];
         
-        img.src = randomCat.url + (activePackData.id === 'pack_default' ? '?' + Date.now() : '');
-        title.innerText = randomCat.text;
+        // Выбираем случайное фото кота из надежных источников (placecats)
+        const randomImgUrl = safeCatImages[Math.floor(Math.random() * safeCatImages.length)];
+        
+        // Обновляем картинку (добавляем таймстемп, чтобы она визуально мигнула, если совпала)
+        img.src = randomImgUrl + "?t=" + Date.now();
+        
+        // Вставляем мемный текст поверх картинки!
+        textOverlay.innerText = randomText;
+        textOverlay.style.color = activePackData.color;
         
         popup.style.display = "block";
         
