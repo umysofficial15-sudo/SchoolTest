@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V7.1 - Анти-VPN Коты ❓</title>
-    <!-- Салют -->
+    <title>Тренажёр | V8.0 - Академия 1-6 класс 🎓</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
@@ -14,11 +13,10 @@
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Личный кабинет */
+        /* Кабинет и Инпуты */
         .cabinet { background: #eaf2f8; padding: 20px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #3498db; }
         .user-info { font-size: 18px; font-weight: bold; }
         .xp-badge { background: #f1c40f; color: #8e44ad; padding: 8px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        
         .login-screen { text-align: center; padding: 40px 0; }
         .name-input { padding: 12px; font-size: 18px; border: 2px solid #bdc3c7; border-radius: 8px; width: 60%; margin-bottom: 20px; box-sizing: border-box; }
         
@@ -27,87 +25,76 @@
         .btn-primary { background-color: #3498db; color: white; }
         .btn-primary:hover { background-color: #2980b9; transform: translateY(-2px); }
         .btn-back { background-color: #7f8c8d; color: white; position: absolute; top: 20px; left: 20px; padding: 8px 15px; font-size: 14px; z-index: 10;}
-        .btn-back:hover { background-color: #95a5a6; }
-        
         .action-buttons { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
-        .btn-rulebook { background-color: #9b59b6; color: white; flex: 1; font-size: 16px; margin: 0;}
-        .btn-shop { background-color: #e67e22; color: white; flex: 1; font-size: 16px; margin: 0;}
-        .btn-rulebook:hover, .btn-shop:hover { filter: brightness(1.1); transform: translateY(-2px); }
-        .btn-hint { background-color: #f39c12; color: white; padding: 8px 15px; font-size: 14px; margin-bottom: 15px; display: inline-block; }
+        .btn-rulebook { background-color: #9b59b6; color: white; flex: 1; margin: 0;}
+        .btn-shop { background-color: #e67e22; color: white; flex: 1; margin: 0;}
+        
+        /* Подсказки */
+        .hints-container { display: flex; gap: 10px; margin-bottom: 15px; }
+        .btn-hint-mini { background-color: #f1c40f; color: #fff; padding: 8px 12px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; flex: 1;}
+        .btn-hint-big { background-color: #e74c3c; color: #fff; padding: 8px 12px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; flex: 1;}
+        .btn-hint-mini:disabled, .btn-hint-big:disabled { background-color: #bdc3c7; cursor: not-allowed; }
+        .hint-box { display: none; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-style: italic; font-weight: 500;}
+        .hint-mini-box { background: #fef9e7; color: #d35400; border-left: 4px solid #f1c40f; }
+        .hint-big-box { background: #fdedec; color: #c0392b; border-left: 4px solid #e74c3c; }
 
-        .topics-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px;}
-        .topic-btn { padding: 15px; background-color: #2ecc71; color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 15px; font-weight: 600; text-align: left; box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); transition: all 0.2s; display: flex; align-items: center; }
-        .topic-btn:hover { background-color: #27ae60; transform: translateY(-2px); }
+        .topics-menu { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 30px;}
+        .topic-btn { padding: 15px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 16px; font-weight: 600; text-align: left; box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); transition: all 0.2s;}
+        .topic-btn:hover { background-color: #27ae60; transform: translateX(5px); }
         
         .rule-card { background: #f9fbfd; padding: 20px; border-left: 6px solid #3498db; border-radius: 8px; margin-bottom: 15px; font-size: 16px; line-height: 1.6; }
         
-        /* МАГАЗИН ЛУТБОКСОВ */
+        /* Магазин */
         .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .pack-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; transition: 0.3s; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05);}
-        .pack-name { font-weight: bold; font-size: 22px; color: #2c3e50; margin-bottom: 10px; text-transform: uppercase;}
-        
+        .pack-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; position: relative;}
+        .pack-name { font-weight: bold; font-size: 22px; color: #2c3e50; margin-bottom: 10px;}
         .mystery-cats { display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap;}
-        .mystery-cat { width: 60px; height: 60px; background: #34495e; color: #f1c40f; font-size: 30px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 2px dashed #95a5a6; font-weight: bold; animation: pulse 2s infinite;}
-        
-        .pack-desc { font-size: 14px; color: #7f8c8d; margin-bottom: 15px; font-style: italic;}
-        .cat-price { font-weight: bold; color: #e67e22; margin-bottom: 15px; font-size: 20px;}
-        .btn-buy { background: #2ecc71; color: white; border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;}
-        .btn-equip { background: #3498db; color: white; border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;}
-        .pack-item.active-pack { border: 4px solid #f39c12; background: #fffdf5; box-shadow: 0 0 20px rgba(243,156,18,0.3); }
+        .mystery-cat { width: 50px; height: 50px; background: #34495e; color: #f1c40f; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-weight: bold; animation: pulse 2s infinite;}
+        .btn-buy { background: #2ecc71; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer;}
+        .btn-equip { background: #3498db; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer;}
+        .pack-item.active-pack { border-color: #f39c12; background: #fffdf5; }
 
         .quiz-container, #menu-container, #rulebook-container, #shop-container { display: none; }
         
-        .quiz-header-wrapper { padding-top: 40px; margin-bottom: 20px; }
-        .header-quiz { display: flex; justify-content: space-between; align-items: center; }
-        .topic-title { margin: 0; font-size: 20px; text-align: left;}
-        .progress-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end;}
+        /* Квиз */
+        .quiz-header-wrapper { padding-top: 40px; margin-bottom: 20px; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px;}
+        .header-quiz { display: flex; flex-direction: column; gap: 10px;}
+        .topic-title { margin: 0; font-size: 20px; text-align: left; color: #2980b9;}
         
-        .progress { font-weight: bold; color: #3498db; background: #ebf5fb; padding: 5px 12px; border-radius: 20px; }
+        /* LIVE SCORE */
+        .live-score-board { display: flex; justify-content: space-between; align-items: center; background: #f8f9f9; padding: 10px 15px; border-radius: 8px; border: 1px solid #bdc3c7;}
+        .live-stats { font-weight: bold; font-size: 16px; }
         .streak-indicator { font-weight: bold; color: #e67e22; background: #fdebd0; padding: 5px 12px; border-radius: 20px; display: none; }
         
-        .question { font-size: 22px; margin-bottom: 20px; font-weight: 600; }
-        .hint-text { display: none; background: #fff3cd; color: #856404; padding: 12px; border-left: 4px solid #ffeeba; border-radius: 4px; margin-bottom: 20px; font-style: italic; }
-        .options { display: grid; gap: 12px; position: relative;}
-        .option-btn { padding: 16px 20px; background-color: #f8f9f9; border: 2px solid #bdc3c7; border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s; font-weight: 500;}
-        .option-btn:hover:not(:disabled) { background-color: #ecf0f1; border-color: #95a5a6; }
+        .question { font-size: 22px; margin-bottom: 15px; font-weight: 600; }
+        .options { display: grid; gap: 12px; }
+        .option-btn { padding: 16px 20px; background-color: #f8f9f9; border: 2px solid #bdc3c7; border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; font-weight: 500; transition: 0.2s;}
         
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         @keyframes popPulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25%, 75% { transform: translateX(-5px); } 50% { transform: translateX(5px); } }
-        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
+        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-50px); } }
 
         .correct { background-color: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; animation: popPulse 0.4s ease-in-out; }
-        .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; animation: shake 0.4s ease-in-out; }
+        .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; }
         .next-btn { display: none; margin-top: 25px; width: 100%; background-color: #8e44ad; color: white; padding: 15px;}
-        .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 0 8px 8px 0; }
+        .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 8px; }
+        .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 50;}
 
-        .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; text-shadow: 1px 1px 2px #000; z-index: 50;}
-
-        /* ПОПАП СТРАЙКА И CSS-ГЕНЕРАТОР МЕМОВ */
+        /* ПОПАП СТРАЙКА С КОТОМ */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
-        .streak-title { color: #f39c12; margin: 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
-        
-        .meme-generator { position: relative; display: inline-block; margin-top: 15px; width: 100%; }
-        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; display: block; width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;}
-        .meme-text { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-family: 'Impact', 'Arial Black', sans-serif; font-size: 36px; color: white; text-transform: uppercase; -webkit-text-stroke: 1.5px black; text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; width: 90%; text-align: center; line-height: 1.1; }
-
-        .motivation-banner { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%); padding: 15px 20px; border-radius: 10px; font-style: italic; font-weight: bold; font-size: 17px; color: #b71540; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .streak-title { color: #f39c12; margin: 0 0 10px 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
+        .meme-generator { position: relative; display: inline-block; width: 100%; }
+        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; width: 100%; aspect-ratio: 1/1; object-fit: cover;}
+        .meme-text { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-family: 'Impact', sans-serif; font-size: 36px; color: white; text-transform: uppercase; -webkit-text-stroke: 1.5px black; text-shadow: 2px 2px 0 #000; width: 90%; line-height: 1.1; }
 
         @media (max-width: 768px) {
             body { padding: 0; background-color: #ffffff; }
             .container { border-radius: 0; padding: 20px 15px; min-height: 100vh; box-shadow: none; }
-            .cabinet { flex-direction: column; gap: 12px; text-align: center; padding: 15px; }
-            .name-input { width: 100%; }
-            .action-buttons { flex-direction: column; gap: 10px; }
+            .cabinet { flex-direction: column; gap: 12px; }
+            .action-buttons { flex-direction: column; }
             .btn-rulebook, .btn-shop { width: 100%; padding: 15px; }
-            .topics-menu { grid-template-columns: 1fr; gap: 10px; }
-            .shop-grid { grid-template-columns: 1fr; gap: 15px; }
             .quiz-header-wrapper { padding-top: 50px; }
-            .header-quiz { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .progress-wrapper { justify-content: flex-start; width: 100%; }
-            .topic-title { font-size: 18px; }
-            .question { font-size: 19px; }
-            .option-btn { font-size: 15px; padding: 14px; }
+            .live-score-board { flex-direction: column; gap: 10px; align-items: flex-start;}
             .meme-text { font-size: 28px; }
         }
     </style>
@@ -117,8 +104,8 @@
 <div class="container fade-in">
     <!-- Логин -->
     <div id="login-container" class="login-screen">
-        <h1>👋 Привет! Тренажёр V7.1</h1>
-        <p>Только хардкорный русский язык. Введи ник:</p>
+        <h1>🎓 Академия 1-6 Класс</h1>
+        <p>Введи свой никнейм, чтобы начать учиться:</p>
         <input type="text" id="username-input" class="name-input" placeholder="Твой ник..." maxlength="15">
         <br>
         <button class="btn btn-primary" style="width: 100%; max-width: 300px; padding: 15px;" onclick="login()">Залететь ➔</button>
@@ -132,32 +119,30 @@
         </div>
 
         <div class="action-buttons">
-            <button class="btn btn-rulebook" onclick="openRulebook()">📖 Мега-Справочник</button>
+            <button class="btn btn-rulebook" onclick="openRulebook()">📖 Справочник Правил (1-6 кл)</button>
             <button class="btn btn-shop" onclick="openShop()">❓ Тайные Паки Котов</button>
         </div>
 
-        <h2 style="color: #2980b9; margin-bottom: 20px;">📚 Тренировка (по 10 вопросов)</h2>
+        <h2 style="color: #2980b9; margin-bottom: 20px; text-align: left;">📚 Выбери тему для тренировки:</h2>
         <div id="menu-topics" class="topics-menu"></div>
 
         <div style="text-align: center; margin-top: 20px;">
-            <button class="btn" style="background: #e74c3c; color: white; padding: 12px; width: 100%; max-width: 300px;" onclick="logout()">Выйти из профиля</button>
+            <button class="btn" style="background: #e74c3c; color: white; padding: 12px; width: 100%; max-width: 300px;" onclick="logout()">Сменить профиль</button>
         </div>
     </div>
 
-    <!-- МАГАЗИН ЛУТБОКСОВ С ВОПРОСИКАМИ -->
+    <!-- МАГАЗИН ЛУТБОКСОВ -->
     <div id="shop-container" class="fade-in">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
         <h2 style="margin-top: 40px; color: #e67e22;">❓ Тайные Паки</h2>
-        <p style="text-align: center;">Покупай паки с неизвестными котами. Купленный пак выдаст случайного кота во время твоего страйка!</p>
         <div class="xp-badge" style="display: block; width: max-content; margin: 0 auto 20px auto; font-size: 18px;">Твой баланс: <span id="shop-balance">0</span> XP</div>
-        
         <div id="shop-grid" class="shop-grid"></div>
     </div>
 
-    <!-- МЕГА-СПРАВОЧНИК -->
+    <!-- СПРАВОЧНИК -->
     <div id="rulebook-container" class="fade-in">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-        <h2 style="margin-top: 40px;">📖 Справочник Правил</h2>
+        <h2 style="margin-top: 40px;">📖 Справочник (1-6 класс)</h2>
         <div id="rulebook-content"></div>
     </div>
 
@@ -167,29 +152,33 @@
         
         <div class="quiz-header-wrapper">
             <div class="header-quiz">
-                <h2 id="topic-title" class="topic-title"></h2>
-                <div class="progress-wrapper">
+                <h3 id="topic-title" class="topic-title"></h3>
+                <div class="live-score-board">
+                    <div class="live-stats">✅ Верно: <span id="score-correct" style="color:#27ae60;">0</span> | ❌ Ошибок: <span id="score-wrong" style="color:#c0392b;">0</span></div>
                     <span id="streak-indicator" class="streak-indicator">🔥 Страйк: 0</span>
-                    <span id="progress" class="progress"></span>
                 </div>
+                <div style="font-size: 14px; color: #7f8c8d; font-weight:bold;">Вопрос <span id="progress-num"></span> из 10</div>
             </div>
         </div>
 
         <div id="question-text" class="question"></div>
         
-        <button id="hint-btn" class="btn btn-hint" onclick="showHint()">💡 Дать подсказку</button>
-        <div id="hint-text" class="hint-text"></div>
+        <!-- ПОДСКАЗКИ -->
+        <div class="hints-container">
+            <button id="btn-mini-hint" class="btn-hint-mini" onclick="showHint('mini')">🟡 Мини-подсказка</button>
+            <button id="btn-big-hint" class="btn-hint-big" onclick="showHint('big')">🔴 Большая подсказка</button>
+        </div>
+        <div id="hint-mini-box" class="hint-box hint-mini-box"></div>
+        <div id="hint-big-box" class="hint-box hint-big-box"></div>
 
         <div id="options-container" class="options"></div>
         <div id="explanation" class="explanation"></div>
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (Открытие кота через CSS) -->
+    <!-- ПОПАП СТРАЙКА (Коты 100% грузятся!) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
-        <div style="font-size: 14px; color: #7f8c8d; margin-top: 5px;">Тайный кот разблокирован!</div>
-        <!-- ГЕНЕРАТОР МЕМОВ -->
         <div class="meme-generator">
             <img id="streak-cat-img" src="" alt="Секретный кот">
             <div id="streak-cat-text" class="meme-text"></div>
@@ -200,204 +189,141 @@
     <div id="result-container" class="quiz-container fade-in" style="text-align:center;">
         <h2 id="result-title" style="font-size: 32px;"></h2>
         <p id="result-text" style="font-size: 18px; color: #7f8c8d;"></p>
-        <div id="defeat-motivation" class="motivation-banner" style="display: none; margin: 20px auto; max-width: 100%;"></div>
         <div class="xp-badge" style="display: inline-block; font-size: 20px; margin: 20px 0;">+ <span id="earned-xp"></span> XP</div>
-        <button class="btn btn-primary" style="display:block; width: 100%; margin-top:20px; padding: 15px;" onclick="returnToMenu()">🏠 В меню</button>
+        <button class="btn btn-primary" style="display:block; width: 100%; margin-top:20px; padding: 15px;" onclick="returnToMenu()">🏠 Вернуться в меню</button>
     </div>
 </div>
 
 <script>
-    // === АУДИО СИНТЕЗАТОР ===
+    // === АУДИО ===
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playSound(type) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
+        const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
         osc.connect(gain); gain.connect(audioCtx.destination);
-        
         if (type === 'correct') {
-            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
             osc.start(); osc.stop(audioCtx.currentTime + 0.1);
         } else if (type === 'wrong') {
-            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.3);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
             osc.start(); osc.stop(audioCtx.currentTime + 0.3);
-        } else if (type === 'buy') {
-            osc.type = 'square'; osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(2000, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.2);
         } else if (type === 'win') {
-            osc.type = 'triangle'; osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(800, audioCtx.currentTime + 0.2);
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            osc.type = 'triangle'; osc.frequency.setValueAtTime(400, audioCtx.currentTime); osc.frequency.setValueAtTime(800, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
             osc.start(); osc.stop(audioCtx.currentTime + 0.4);
         }
     }
 
-    // === БАЗА ИЗОБРАЖЕНИЙ КОТОВ (РАБОТАЮТ БЕЗ VPN) ===
-    const safeCatImages = [
-        "https://placecats.com/millie/300/300",
-        "https://placecats.com/neo/300/300",
-        "https://placecats.com/bella/300/300",
-        "https://placecats.com/poppy/300/300",
-        "https://placecats.com/louie/300/300",
-        "https://placecats.com/millie_neo/300/300"
-    ];
-
-    // === ТАЙНЫЕ ПАКИ (Только генерация текста поверх фото) ===
+    // === ТАЙНЫЕ ПАКИ ===
     const shopPacks = [
-        { 
-            id: 'pack_default', name: 'Базовый Пак', price: 0, count: 1,
-            desc: 'Бесплатный пак для старта. Внутри 1 рандомный кот.',
-            texts: ['🔥 ХОРОШ! 🔥'], color: 'white'
-        },
-        { 
-            id: 'pack_sigma', name: 'Сигма Пак', price: 500, count: 3,
-            desc: 'Внутри 3 секретных кота со скрытым Сигма-вайбом.',
-            texts: ['🗿 СИГМА! 🗿', '🔥 БАЗА! 🔥', '💪 ГИГАЧАД! 💪'], color: '#f1c40f'
-        },
-        { 
-            id: 'pack_brain', name: 'Брейн Пак', price: 1500, count: 3,
-            desc: 'Внутри 3 самых умных секретных кота в интернете.',
-            texts: ['🧠 ГЕНИЙ! 🧠', '💡 МОЗГ! 💡', '🌌 IQ 1000! 🌌'], color: '#00d2d3'
-        },
-        { 
-            id: 'pack_crazy', name: 'Крейзи Пак', price: 3000, count: 4,
-            desc: 'Внутри 4 безбашенных секретных кота.',
-            texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b'
-        }
+        { id: 'pack_default', name: 'Базовый Пак', price: 0, count: 1, texts: ['🔥 ХОРОШ! 🔥'], color: 'white' },
+        { id: 'pack_sigma', name: 'Сигма Пак', price: 300, count: 3, texts: ['🗿 СИГМА! 🗿', '🔥 БАЗА! 🔥', '💪 ГИГАЧАД! 💪'], color: '#f1c40f' },
+        { id: 'pack_brain', name: 'Брейн Пак', price: 700, count: 3, texts: ['🧠 ГЕНИЙ! 🧠', '💡 МОЗГ! 💡', '🌌 IQ 1000! 🌌'], color: '#00d2d3' },
+        { id: 'pack_crazy', name: 'Крейзи Пак', price: 1500, count: 4, texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b' }
     ];
 
-    // === ПОЛНЫЙ СПРАВОЧНИК ПО РУССКОМУ ===
+    // === СПРАВОЧНИК 1-6 КЛАСС ===
     const rulebookContent = `
-        <div class="rule-card"><h3>🔥 1. Спряжения глаголов</h3><p><b>I спряжение:</b> инфинитивы НЕ на -ИТЬ (на -ать, -еть, -оть). В 3 л. мн.ч. (они): <b>-УТ, -ЮТ</b>. <br>Исключения: <i>брить, стелить.</i></p><p><b>II спряжение:</b> все на -ИТЬ. В 3 л. мн.ч.: <b>-АТ, -ЯТ</b>. <br>Исключения: <i>гнать, держать, смотреть и видеть, дышать, слышать, ненавидеть, и зависеть, и вертеть, и обидеть, и терпеть.</i></p></div>
-        
-        <div class="rule-card"><h3>🌳 2. Корни с чередованием</h3>
-        <p><b>От суффикса -А-:</b><br>-БЕР-/-БИР-, -МЕР-/-МИР-, -ДЕР-/-ДИР-, -ПЕР-/-ПИР-, -ТЕР-/-ТИР-, -БЛЕСТ-/-БЛИСТ-, -ЖЕГ-/-ЖИГ-, -СТЕЛ-/-СТИЛ-, -ЧЕТ-/-ЧИТ-. (Есть А за корнем — пишем И. <i>СобИрАть, но собЕру</i>).<br>-КАС-/-КОС- (Есть А — пишем А).</p>
-        <p><b>От ударения:</b><br>-ГАР-/-ГОР- (Без ударения О: <i>загорАть</i>). -ЗАР-/-ЗОР- (Без ударения А: <i>зарЯ</i>).</p>
-        <p><b>От согласной:</b><br>-РАСТ-/-РАЩ-/-РОС- (Перед СТ и Щ — А. Искл: <i>росток, Ростов, ростовщик, отрасль</i>).<br>-ЛАГ-/-ЛОЖ- (Перед Г — А, перед Ж — О). -СКАК-/-СКОЧ- (Перед К — А, перед Ч — О. Искл: <i>скачок</i>).</p></div>
-        
-        <div class="rule-card"><h3>🧩 3. Приставки ПРЕ- и ПРИ-</h3><p><b>ПРИ-:</b> Приближение (приехать), присоединение (пришить), близость (приморский), неполное действие (присесть).</p><p><b>ПРЕ-:</b> Равно слову "Очень" (премудрый) или приставке ПЕРЕ- (преградить).</p></div>
-
-        <div class="rule-card"><h3>👤 4. Существительные: Суффиксы</h3><p><b>-ЕК- и -ИК-:</b> Ставим слово в Родительный падеж (нет чего?). Если гласная выпадает — пишем ЕК (замочек - замоЧКа). Если остается — ИК (ключик - ключИКа).</p><p><b>-ЧИК- и -ЩИК-:</b> ЧИК пишется после букв Д-Т, З-С, Ж (грузчик). В остальных случаях ЩИК (каменщик, барабанщик).</p></div>
-
-        <div class="rule-card"><h3>🎨 5. Прилагательные: Н и НН</h3><p><b>Одна Н:</b> в суффиксах -ИН-, -АН-, -ЯН- (гусиный, кожаный). <i>Исключения: стеклянный, оловянный, деревянный.</i></p><p><b>Две НН:</b> в суффиксах -ЕНН-, -ОНН- (соломенный). <i>Исключение: ветреный (но безветреННый).</i> И на стыке морфем (сон + н = сонный).</p></div>
-
-        <div class="rule-card"><h3>🔢 6. Местоимения</h3><p><b>Дефис:</b> Приставка КОЕ- и суффиксы -ТО, -ЛИБО, -НИБУДЬ пишутся через дефис (кое-кто, что-нибудь). Если есть предлог, то в три слова (кое с кем).</p></div>
+        <div class="rule-card"><h3>👶 1-2 Класс: Буквосочетания</h3><p>ЖИ и ШИ — пиши с буквой <b>И</b>.<br>ЧА и ЩА — пиши с буквой <b>А</b>.<br>ЧУ и ЩУ — пиши с буквой <b>У</b>.<br>ЧК, ЧН, НЧ, ЩН — пишутся <b>БЕЗ мягкого знака</b> (ручка, ночной).</p></div>
+        <div class="rule-card"><h3>👦 3 Класс: Согласные в корне</h3><p><b>Безударные гласные:</b> подбери проверочное слово так, чтобы на эту гласную падало ударение (в<b>о</b>да - в<b>о</b>ды).<br><b>Непроизносимые согласные:</b> подбери слово, где этот звук чётко слышно (со<b>л</b>нце - со<b>л</b>нечный, ужа<b>сн</b>ый - ужа<b>сен</b>).</p></div>
+        <div class="rule-card"><h3>🎒 4 Класс: Ъ и Ь знаки</h3><p><b>Разделительный Ъ:</b> пишется ПОСЛЕ приставок на согласную ПЕРЕД буквами Е, Ё, Ю, Я (под<b>ъ</b>езд, объявление).<br><b>Разделительный Ь:</b> пишется В КОРНЕ или перед окончанием ПЕРЕД буквами Е, Ё, Ю, Я, И (в<b>ь</b>юга, вороб<b>ь</b>и).</p></div>
+        <div class="rule-card"><h3>📚 5 Класс: ТСЯ и ТЬСЯ, О/Ё после шипящих</h3><p><b>Глаголы:</b> Что дела<b>ть</b>? -> учи<b>ться</b> (есть Ь). Что дела<b>ет</b>? -> учи<b>тся</b> (нет Ь).<br><b>О/Ё после шипящих (Ж, Ш, Ч, Щ):</b> В корне под ударением пишем Ё, если можно подобрать слово с Е (ш<b>ё</b>пот - ш<b>е</b>птать). Если нельзя — пишем О (крыж<b>о</b>вник, ш<b>о</b>колад).</p></div>
+        <div class="rule-card"><h3>🎓 6 Класс: Корни, ПРЕ/ПРИ, Спряжения</h3><p><b>ПРЕ/ПРИ:</b> ПРИ- (приближение, неполнота), ПРЕ- (очень, пере-).<br><b>Корни -БЕР-/-БИР-:</b> Пишем И, если дальше суффикс А (заб<b>и</b>р<b>а</b>ть).<br><b>Спряжения:</b> На -ИТЬ = II спряжение (-ат/-ят). Остальные = I спряжение (-ут/-ют). Исключения: гнать, держать... брить, стелить.</p></div>
     `;
 
-    // === БАЗА ТЕСТОВ ===
+    // === БАЗА ТЕСТОВ (1-6 КЛАСС) ===
     const db = {
-        verbs: {
-            title: "Глаголы (Спряжения)",
+        grade1: {
+            title: "🟢 1-2 Класс: ЖИ-ШИ, ЧА-ЩА, ЧК-ЧН",
             questions: [
-                { q: "Где пишется Ю (окончание -ЮТ)?", opts: ["Они стро..т", "Они бор..тся", "Они пил..т"], a: 1, hint: "Инфинитив на -ОТЬСЯ.", expl: "Бороться (I спр.) -> борЮТся." },
-                { q: "Где пишется Я (-ЯТ)?", opts: ["Снежинки та..т", "Они кле..т", "Ветры ве..т"], a: 1, hint: "Инфинитив на -ИТЬ.", expl: "Клеить — II спряжение." },
-                { q: "Исключение II спряжения?", opts: ["Брить", "Стелить", "Гнать"], a: 2, hint: "гнать, держать...", expl: "Гнать — искл. II спр." },
-                { q: "Где пишется А (-АТ)?", opts: ["Пациенты дыш..т", "Они пряч..т", "Они плач..т"], a: 0, hint: "Искл. на -АТЬ.", expl: "Дышать (искл. II спр.) -> дышАТ." },
-                { q: "«Он...»?", opts: ["бреет", "бреит", "гонют"], a: 0, hint: "Искл. I спряжения.", expl: "Брить — искл. I спр. (бреЕТ)." },
-                { q: "Они стел..т.", opts: ["ю", "я", "и"], a: 0, hint: "Искл. I спряжения.", expl: "Стелить (искл. I спр.) -> стелЮТ." },
-                { q: "Ученики смотр..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Смотреть (искл. II спр.) -> смотрЯТ." },
-                { q: "Спортсмены завис..т.", opts: ["ю", "я", "у"], a: 1, hint: "Искл. II спряжения.", expl: "Зависеть (искл. II спр.) -> зависЯТ." },
-                { q: "Они наде..тся.", opts: ["я", "ю", "и"], a: 1, hint: "надеЯТЬся (I спр.).", expl: "Надеяться (I спр.) -> надеЮТся." },
-                { q: "Малыши плач..т.", opts: ["а", "я", "у"], a: 2, hint: "Плакать (I спр.).", expl: "Плакать (I спр.) -> плачУТ." }
+                { q: "Как пишется слово Ж..РАФ?", opts: ["Жираф", "Жыраф", "Жераф"], a: 0, h1: "ЖИ-ШИ", h2: "Пиши с буквой И.", expl: "ЖИ и ШИ пишутся с И." },
+                { q: "Ч..ЩА леса.", opts: ["Чаща", "Чящя", "Чащя"], a: 0, h1: "ЧА-ЩА", h2: "Пиши с буквой А.", expl: "ЧА и ЩА пишутся с А." },
+                { q: "Маленькое Ч..ДОВИЩЕ.", opts: ["Чюдовище", "Чудовище", "Чёдовище"], a: 1, h1: "ЧУ-ЩУ", h2: "Пиши с буквой У.", expl: "ЧУ и ЩУ пишутся с У." },
+                { q: "Мамина РУЧ..КА.", opts: ["Ручька", "Ручка", "Ручкя"], a: 1, h1: "ЧК-ЧН", h2: "Пишутся без мягкого знака.", expl: "ЧК пишется без Ь." },
+                { q: "Колючий Ш..ПОВНИК.", opts: ["Шиповник", "Шыповник", "Шеповник"], a: 0, h1: "ЖИ-ШИ", h2: "Пиши с буквой И.", expl: "ШИ пишется с И." },
+                { q: "Меткая ПРАЩ..", opts: ["Пращя", "Праща", "Пращу"], a: 1, h1: "ЧА-ЩА", h2: "Пиши с буквой А.", expl: "ЩА пишется с А." },
+                { q: "Хищная Щ..КА.", opts: ["Щука", "Щюка", "Щока"], a: 0, h1: "ЧУ-ЩУ", h2: "Пиши с буквой У.", expl: "ЩУ пишется с У." },
+                { q: "Верный ПОМОЩ..НИК.", opts: ["Помощьник", "Помощник", "Помошник"], a: 1, h1: "ЩН", h2: "Пишется без мягкого знака.", expl: "ЩН пишется без Ь." },
+                { q: "Спелая ГРУШ..", opts: ["Груша", "Грушя", "Грушу"], a: 0, h1: "ЧА-ЩА", h2: "После Ш пишем А (как и после Ч,Щ).", expl: "Слово груша пишется с А." },
+                { q: "Хитрая МЫШ..", opts: ["Мышы", "Мыши", "Мышши"], a: 1, h1: "ЖИ-ШИ", h2: "Пиши с буквой И.", expl: "ШИ пишется с И." }
             ]
         },
-        roots: {
-            title: "Корни с чередованием",
+        grade3: {
+            title: "🟡 3 Класс: Корни (безударные, непроизносимые)",
             questions: [
-                { q: "Пишется А?", opts: ["К..снуться", "Прик..сновение", "К..саться"], a: 2, hint: "Есть суффикс А?", expl: "КасАться (есть суффикс -А-)." },
-                { q: "Пишется О?", opts: ["К..сание", "К..сательная", "Прик..снуться"], a: 2, hint: "Нет суффикса А.", expl: "ПрикОснуться." },
-                { q: "Пишется О?", opts: ["З..гар", "Заг..рать", "Уг..р"], a: 1, hint: "ГАР/ГОР без ударения.", expl: "ЗагорАть (без ударения пишем О)." },
-                { q: "Пишется И?", opts: ["Заб..ру", "Зам..реть", "Заб..рать"], a: 2, hint: "Правило ИА.", expl: "ЗабИрАть." },
-                { q: "Пишется А?", opts: ["Отр..сль", "Р..сток", "Выр..с"], a: 0, hint: "Исключение РАСТ.", expl: "Отрасль — исключение (А)." },
-                { q: "Слово с ошибкой:", opts: ["Вырастить", "Полагать", "Росток"], a: 2, hint: "Исключение.", expl: "Р_о_сток — пишется с О." },
-                { q: "Прил..жил усилия.", opts: ["а", "о", "и"], a: 1, hint: "ЛАГ/ЛОЖ перед Ж.", expl: "ПрилОжить (перед Ж пишем О)." },
-                { q: "Скакать на лошади. Какое правило?", opts: ["От ударения", "От суффикса А", "От согласной"], a: 2, hint: "СКАК/СКОЧ.", expl: "Зависит от согласной на конце." },
-                { q: "Соб..ру портфель.", opts: ["и", "е", "а"], a: 1, hint: "Нет суффикса А.", expl: "СобЕру." },
-                { q: "Бескрайняя р..внина.", opts: ["о", "а", "и"], a: 1, hint: "Исключение РАВН.", expl: "Равнина — исключение (А)." }
+                { q: "Холодная В..ДА.", opts: ["Вада", "Вода", "Вуда"], a: 1, h1: "Проверь ударением.", h2: "Проверочное слово: вОды.", expl: "Проверочное слово — вОды." },
+                { q: "Светит СОЛ..НЦЕ.", opts: ["Солнце", "Сонце", "Солынце"], a: 0, h1: "Подбери слово, где звук слышно.", h2: "Проверочное слово: соЛнечный.", expl: "Слышим Л в слове соЛнечный." },
+                { q: "Ужа..ная погода.", opts: ["Ужасная", "Ужастная", "Ужастнная"], a: 0, h1: "Измени слово (ужас).", h2: "УжаСен — буквы Т нет.", expl: "Ужасен — значит пишем ужаСНый без Т." },
+                { q: "Кр..сивые ГЛ..ЗА.", opts: ["Глаза", "Глоза", "Глуза"], a: 0, h1: "Один — это...", h2: "Проверочное слово: глАз.", expl: "Проверочное слово — глАз." },
+                { q: "Радостный ПРАЗД..НИК.", opts: ["Празник", "Праздник", "Празденник"], a: 1, h1: "Подбери родственное.", h2: "ПразДен.", expl: "Слово-исключение/словарное, пишется с Д." },
+                { q: "Вкусная М..РКОВЬ.", opts: ["Марковь", "Морковь", "Мурковь"], a: 1, h1: "Словарное слово.", h2: "Пишется через О.", expl: "Словарное слово, нужно запомнить." },
+                { q: "Грус..ный щенок.", opts: ["Грустный", "Грусный", "Грустнный"], a: 0, h1: "От слова 'грусть'.", h2: "Проверочное слово: грусТь.", expl: "Грусть — значит грусТный." },
+                { q: "Зеленая ТР..ВА.", opts: ["Трава", "Трова", "Трува"], a: 0, h1: "Проверь ударением.", h2: "Проверочное слово: трАвы.", expl: "Проверочное слово — трАвы." },
+                { q: "Звездное НЕБ..СА (мн.ч).", opts: ["Небиса", "Небеса", "Небяса"], a: 1, h1: "Ед. число: нЕбо.", h2: "Проверочное слово: нЕбо.", expl: "Проверочное слово — нЕбо." },
+                { q: "Извес..ный писатель.", opts: ["Извесный", "Известный", "Известнный"], a: 1, h1: "Пришло из...", h2: "Проверочное слово: весТь.", expl: "Весть — значит извесТный." }
             ]
         },
-        prefixes: {
-            title: "Приставки ПРЕ- и ПРИ-",
+        grade4: {
+            title: "🟠 4 Класс: Разделительные Ъ и Ь",
             questions: [
-                { q: "Пишется ПРИ-?", opts: ["Пр..рвать", "Пр..школьный", "Пр..красный"], a: 1, hint: "Близость.", expl: "Пришкольный (близость)." },
-                { q: "Пишется ПРЕ-?", opts: ["Пр..землиться", "Пр..открыть", "Пр..мудрый"], a: 2, hint: "= ОЧЕНЬ.", expl: "Премудрый (=очень)." },
-                { q: "Неполное действие?", opts: ["Пр..ехать", "Пр..сесть", "Пр..морский"], a: 1, hint: "Слегка.", expl: "Присесть." },
-                { q: "Равно приставке ПЕРЕ-?", opts: ["Пр..добрый", "Пр..градить", "Пр..увеличить"], a: 1, hint: "Перегородить.", expl: "Преградить (=пере)." },
-                { q: "Пр..шить пуговицу. Значение?", opts: ["Близость", "Присоединение", "Неполное"], a: 1, hint: "Прикрепить.", expl: "Присоединение." },
-                { q: "Слово с ошибкой:", opts: ["Презабавный", "Приоткрыть", "Приувеличить"], a: 2, hint: "ОЧЕНЬ.", expl: "ПрЕувеличить." },
-                { q: "Пр..ехать в город.", opts: ["и", "е", "а"], a: 0, hint: "Приближение.", expl: "Приехать." },
-                { q: "Пр..скверный характер.", opts: ["и", "е", "а"], a: 1, hint: "ОЧЕНЬ.", expl: "Прескверный." },
-                { q: "Пр..гореть на плите.", opts: ["и", "е", "а"], a: 0, hint: "Неполное действие.", expl: "Пригореть." },
-                { q: "Пр..одолеть препятствие.", opts: ["и", "е", "а"], a: 1, hint: "ПЕРЕступить.", expl: "Преодолеть." }
+                { q: "Большой ПОД..ЕМ.", opts: ["Подъем", "Подьем", "Подем"], a: 0, h1: "После приставки.", h2: "ПОД- это приставка на согласную.", expl: "Ъ пишется после приставки перед Е, Ё, Ю, Я." },
+                { q: "Зимняя В..ЮГА.", opts: ["Въюга", "Вьюга", "Вюга"], a: 1, h1: "В корне слова.", h2: "В корне перед Ю пишем Ь.", expl: "Ь пишется в корне слова перед Е, Ё, Ю, Я, И." },
+                { q: "Громкое ОБ..ЯВЛЕНИЕ.", opts: ["Объявление", "Обьявление", "Обявление"], a: 0, h1: "ОБ- это приставка.", h2: "После приставки пишем Ъ.", expl: "Ъ пишется после приставки ОБ- перед Я." },
+                { q: "Колючие БУР..ЯНЫ.", opts: ["Буръяны", "Бурьяны", "Буряны"], a: 1, h1: "В корне слова.", h2: "В корне пишем Ь.", expl: "Ь пишется в корне слова." },
+                { q: "Необ..ятный простор.", opts: ["Необъятный", "Необьятный", "Необятный"], a: 0, h1: "Приставка ОБ-.", h2: "Пишем Ъ после ОБ-.", expl: "Ъ пишется после приставки." },
+                { q: "Вороб..и чирикают.", opts: ["Воробъи", "Воробьи", "Вороби"], a: 1, h1: "В корне перед И.", h2: "Только Ь пишется перед И.", expl: "Перед И всегда пишется только разделительный Ь." },
+                { q: "С..ел яблоко.", opts: ["Съел", "Сьел", "Сел"], a: 0, h1: "Приставка С-.", h2: "После приставки пишем Ъ.", expl: "Ъ после приставки С- перед Е." },
+                { q: "Сем..я дома.", opts: ["Семъя", "Семья", "Семя"], a: 1, h1: "В корне слова.", h2: "Пишем Ь.", expl: "В корне перед Я пишем Ь." },
+                { q: "Ш..ют платье.", opts: ["Шъют", "Шьют", "Шют"], a: 1, h1: "Корень.", h2: "В корне пишем Ь.", expl: "Разделительный Ь в корне." },
+                { q: "Под..езд закрыт.", opts: ["Подъезд", "Подьезд", "Подезд"], a: 0, h1: "Приставка ПОД-.", h2: "После приставки пишем Ъ.", expl: "Ъ после приставки ПОД-." }
             ]
         },
-        nouns: {
-            title: "Существительные (Суффиксы)",
+        grade5: {
+            title: "🔴 5 Класс: О/Ё после шипящих, ТСЯ/ТЬСЯ",
             questions: [
-                { q: "Где пишется ЕК?", opts: ["Замоч..к", "Ключ..к", "Мяч..к"], a: 0, hint: "Нет замоЧКа - гласная выпала.", expl: "Гласная выпадает - пишем ЕК." },
-                { q: "Где пишется ИК?", opts: ["Сыноч..к", "Ореш..к", "Лучик..к"], a: 2, hint: "Нет лучикИКа - гласная осталась.", expl: "Гласная не выпадает - пишем ИК." },
-                { q: "Пишется ЧИК?", opts: ["Груз..ик", "Камен..ик", "Барабан..ик"], a: 0, hint: "После Д-Т, З-С, Ж.", expl: "Грузчик (после З)." },
-                { q: "Пишется ЩИК?", opts: ["Перевод..ик", "Спор..ик", "Обман..ик"], a: 2, hint: "После Н.", expl: "Обманщик (после Н пишем ЩИК)." },
-                { q: "Вкусный кусоч..к.", opts: ["ик", "ек", "ок"], a: 1, hint: "Нет кусоЧКа.", expl: "Кусочек (выпадает)." },
-                { q: "Сильный свар..ик.", opts: ["чик", "щик", "ник"], a: 1, hint: "После Р.", expl: "Сварщик (не входит в Д-Т, З-С, Ж)." },
-                { q: "Маленький карман..ик.", opts: ["ек", "ик", "чик"], a: 1, hint: "Нет карманчика.", expl: "Карманчик." },
-                { q: "Опытный перебеж..ик.", opts: ["чик", "щик", "ник"], a: 0, hint: "После Ж.", expl: "Перебежчик (после Ж)." },
-                { q: "Заботливый подаваль..ик.", opts: ["чик", "щик", "ник"], a: 1, hint: "После ЛЬ.", expl: "Подавальщик." },
-                { q: "Красивый цветоч..к.", opts: ["ик", "ек", "ок"], a: 1, hint: "Нет цветоЧКа.", expl: "Цветочек (выпадает)." }
+                { q: "Учиться хорошо — это пригодит..ся.", opts: ["пригодится", "пригодиться"], a: 0, h1: "Задай вопрос.", h2: "Что сделаЕТ? (без Ь).", expl: "Вопрос без Ь, значит пригодится." },
+                { q: "Нужно хорошо готовит..ся.", opts: ["готовится", "готовиться"], a: 1, h1: "Задай вопрос.", h2: "Что делаТЬ? (с Ь).", expl: "Вопрос с Ь, значит готовиться." },
+                { q: "Громкий Ш..ПОТ.", opts: ["Шопот", "Шёпот"], a: 1, h1: "Проверь словом с Е.", h2: "Проверочное: шЕптать.", expl: "Можно проверить словом 'шептать', пишем Ё." },
+                { q: "Вкусный Ш..КОЛАД.", opts: ["Шоколад", "Шёколад"], a: 0, h1: "Словарное слово.", h2: "Это исключение/заимствованное.", expl: "Заимствованное слово, пишем О." },
+                { q: "Ч..РНЫЙ кот.", opts: ["Чорный", "Чёрный"], a: 1, h1: "Проверь словом с Е.", h2: "Проверочное: чЕрнеть.", expl: "Проверочное 'чернеть', пишем Ё." },
+                { q: "Колючий КРЫЖ..ВНИК.", opts: ["Крыжовник", "Крыжёвник"], a: 0, h1: "Слово-исключение.", h2: "Пишется через О.", expl: "Исключение, пишем О." },
+                { q: "Мальчик смеёт..ся.", opts: ["смеется", "смееться"], a: 0, h1: "Задай вопрос.", h2: "Что делаЕТ? (без Ь).", expl: "Смеется (без Ь)." },
+                { q: "Пора ложит..ся спать.", opts: ["ложится", "ложиться"], a: 1, h1: "Что делаТЬ?", h2: "Есть Ь в вопросе.", expl: "Ложиться (с Ь)." },
+                { q: "Ж..ЛТЫЙ цвет.", opts: ["Жолтый", "Жёлтый"], a: 1, h1: "Проверь словом с Е.", h2: "ЖЕлтеть.", expl: "Проверочное 'желтеть', пишем Ё." },
+                { q: "Ш..В на одежде.", opts: ["Шов", "Шёв"], a: 0, h1: "Слово-исключение.", h2: "Пишется через О.", expl: "Исключение, пишем О." }
             ]
         },
-        adjectives: {
-            title: "Прилагательные (Н и НН)",
+        grade6: {
+            title: "🟣 6 Класс: Корни, ПРЕ/ПРИ, Спряжения",
             questions: [
-                { q: "Где пишется НН?", opts: ["Кожа..ый", "Деревя..ый", "Гуси..ый"], a: 1, hint: "Исключение из -ЯН-.", expl: "Деревянный (исключение)." },
-                { q: "Где пишется Н?", opts: ["Соломе..ый", "Стекля..ый", "Песча..ый"], a: 2, hint: "Суффикс -АН-.", expl: "Песчаный (-АН-)." },
-                { q: "Слово с ошибкой:", opts: ["Ветренний", "Оловянный", "Сонный"], a: 0, hint: "Ветреный — исключение с одной Н.", expl: "Ветреный (исключение)." },
-                { q: "Клюкве..ый сок.", opts: ["н", "нн", "нь"], a: 1, hint: "Суффикс -ЕНН-.", expl: "Клюквенный (-ЕНН-)." },
-                { q: "Ути..ый нос.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ИН-.", expl: "Утиный (-ИН-)." },
-                { q: "Безветре..ый день.", opts: ["н", "нн", "нь"], a: 1, hint: "Есть приставка (не исключение).", expl: "БезветреННый (есть приставка БЕЗ-)." },
-                { q: "Карти..ая галерея.", opts: ["н", "нн", "нь"], a: 1, hint: "Стык морфем: картин + н.", expl: "Картинная (картин + н)." },
-                { q: "Серебря..ый век.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ЯН- (не исключение).", expl: "Серебряный (-ЯН-)." },
-                { q: "Торжестве..ый зал.", opts: ["н", "нн", "нь"], a: 1, hint: "Суффикс -ЕНН-.", expl: "Торжественный (-ЕНН-)." },
-                { q: "Масля..ая краска.", opts: ["н", "нн", "нь"], a: 0, hint: "Суффикс -ЯН-.", expl: "Масляная." }
-            ]
-        },
-        pronouns: {
-            title: "Местоимения (Дефисы)",
-            questions: [
-                { q: "Как пишется КОЕ(КТО)?", opts: ["Слитно", "Раздельно", "Через дефис"], a: 2, hint: "Приставка кое-.", expl: "Кое-кто (через дефис)." },
-                { q: "Как пишется ЧТО(НИБУДЬ)?", opts: ["Слитно", "Раздельно", "Через дефис"], a: 2, hint: "Суффикс -нибудь.", expl: "Что-нибудь (через дефис)." },
-                { q: "Как пишется НИ(С)КЕМ?", opts: ["Слитно", "В два слова", "В три слова"], a: 2, hint: "Есть предлог.", expl: "Ни с кем (в три слова, т.к. есть предлог)." },
-                { q: "Слово с ошибкой:", opts: ["Никого", "Не к кому", "Кое с кем", "Кто либо"], a: 3, hint: "То, либо, нибудь - черточку не забудь.", expl: "Кто-либо (нужен дефис)." },
-                { q: "Кого(то) позвали.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 1, hint: "Суффикс -то.", expl: "Кого-то." },
-                { q: "(Ни)какой разницы.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Никакой." },
-                { q: "Мы (ни)чего не знали.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Ничего." },
-                { q: "Спроси (кое)у(кого).", opts: ["В три слова", "Через дефис", "Слитно"], a: 0, hint: "Есть предлог 'у'.", expl: "Кое у кого (в три слова)." },
-                { q: "(Не)кто постучал.", opts: ["Слитно", "Через дефис", "Раздельно"], a: 0, hint: "Нет предлога.", expl: "Некто." },
-                { q: "Пойдем куда(либо).", opts: ["Слитно", "Через дефис", "Раздельно"], a: 1, hint: "Суффикс -либо.", expl: "Куда-либо." }
+                { q: "ПР..ШКОЛЬНЫЙ участок.", opts: ["Пришкольный", "Прешкольный"], a: 0, h1: "Значение: около.", h2: "Около школы = близость.", expl: "ПРИ- в значении пространственной близости." },
+                { q: "ПР..МУДРЫЙ старец.", opts: ["Примудрый", "Премудрый"], a: 1, h1: "Значение: очень.", h2: "Очень мудрый.", expl: "ПРЕ- = ОЧЕНЬ." },
+                { q: "Соб..ру игрушки.", opts: ["Соберу", "Собиру"], a: 0, h1: "Правило ИА.", h2: "После корня НЕТ суффикса А.", expl: "Нет суффикса А, пишем Е." },
+                { q: "Заб..рать брата.", opts: ["Заберать", "Забирать"], a: 1, h1: "Правило ИА.", h2: "После корня ЕСТЬ суффикс А.", expl: "Есть суффикс А, пишем И." },
+                { q: "Они пил..т дрова. (Пилить)", opts: ["пилют", "пилят", "пилут"], a: 1, h1: "Определи спряжение.", h2: "Пилить - на -ИТЬ (II спр).", expl: "II спряжение -> окончание -ЯТ." },
+                { q: "Они бор..тся. (Бороться)", opts: ["борются", "борятся", "борат"], a: 0, h1: "Спряжение?", h2: "Бороться - на -ОТЬ (I спр).", expl: "I спряжение -> окончание -ЮТ." },
+                { q: "ПР..ГРАДИТЬ путь.", opts: ["Приградить", "Преградить"], a: 1, h1: "Равно приставке ПЕРЕ-.", h2: "Перегородить.", expl: "ПРЕ- в значении ПЕРЕ-." },
+                { q: "ПР..СЕСТЬ на стул.", opts: ["Присесть", "Пресесть"], a: 0, h1: "Неполное действие.", h2: "Слегка сесть.", expl: "ПРИ- (неполное действие)." },
+                { q: "Они дыш..т. (Дышать)", opts: ["дышут", "дышат", "дышят"], a: 1, h1: "Исключение!", h2: "Дышать - искл. II спр.", expl: "Дышать (искл. II спр) -> дышАТ." },
+                { q: "К..сательная линия.", opts: ["Касательная", "Косательная"], a: 0, h1: "Правило КАС/КОС.", h2: "После корня ЕСТЬ суффикс А.", expl: "Пишем А, т.к. есть суффикс -А-." }
             ]
         }
     };
 
-    // ОБРАТИТЕ ВНИМАНИЕ: Изменен ключ, чтобы кэш 100% сбросился у всех
     let currentUser = { name: "", xp: 0, ownedPacks: ['pack_default'], activePack: 'pack_default' };
-    let currentTopicId = "";
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let currentStreak = 0;
-    let streakTimeout = null;
+    let currentTopicId = ""; let currentQuestionIndex = 0;
+    let scoreCorrect = 0; let scoreWrong = 0;
+    let currentStreak = 0; let streakTimeout = null;
+
+    // ГЕНЕРАЦИЯ КОТОВ (LoremFlickr - никаких VPN не нужно, всегда новые)
+    function getRandomCatUrl() {
+        return `https://loremflickr.com/320/320/cat?lock=${Math.floor(Math.random() * 10000)}`;
+    }
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV7_rf_fix');
+        const saved = localStorage.getItem('superQuizV8_Academy');
         if (saved) { currentUser = Object.assign(currentUser, JSON.parse(saved)); showMenu(); } 
         else { document.getElementById("login-container").style.display = "block"; }
     };
@@ -405,12 +331,11 @@
     function login() {
         const name = document.getElementById("username-input").value.trim();
         if (!name) return;
-        playSound('correct');
-        currentUser.name = name; saveData(); showMenu();
+        playSound('correct'); currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV7_rf_fix'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV7_rf_fix', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV8_Academy'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV8_Academy', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
@@ -425,240 +350,160 @@
         });
     }
 
-    // === ЛОГИКА СПРАВОЧНИКА ===
-    function openRulebook() {
-        playSound('correct'); hideAll(); document.getElementById("rulebook-container").style.display = "block";
-        document.getElementById("rulebook-content").innerHTML = rulebookContent;
-    }
-
-    // === ЛОГИКА МАГАЗИНА С ВОПРОСАМИ ===
-    function openShop() {
-        playSound('correct'); hideAll(); document.getElementById("shop-container").style.display = "block";
-        renderShop();
-    }
+    // === СПРАВОЧНИК И МАГАЗИН ===
+    function openRulebook() { playSound('correct'); hideAll(); document.getElementById("rulebook-container").style.display = "block"; document.getElementById("rulebook-content").innerHTML = rulebookContent; }
+    function openShop() { playSound('correct'); hideAll(); document.getElementById("shop-container").style.display = "block"; renderShop(); }
     
     function renderShop() {
         document.getElementById("shop-balance").innerText = currentUser.xp;
-        const grid = document.getElementById("shop-grid");
-        grid.innerHTML = "";
-        
+        const grid = document.getElementById("shop-grid"); grid.innerHTML = "";
         shopPacks.forEach(pack => {
-            const div = document.createElement("div");
-            div.className = "pack-item" + (currentUser.activePack === pack.id ? " active-pack" : "");
-            
+            const div = document.createElement("div"); div.className = "pack-item" + (currentUser.activePack === pack.id ? " active-pack" : "");
             const isOwned = currentUser.ownedPacks.includes(pack.id);
+            let btnHtml = currentUser.activePack === pack.id ? `<button class="btn-equip" disabled style="background:#95a5a6;">✅ Пак Активен</button>` : 
+                          isOwned ? `<button class="btn-equip" onclick="equipPack('${pack.id}')">Включить Пак</button>` : 
+                          `<button class="btn-buy" onclick="buyPack('${pack.id}', ${pack.price})">Купить за ${pack.price} XP</button>`;
             
-            let btnHtml = "";
-            if (currentUser.activePack === pack.id) {
-                btnHtml = `<button class="btn-equip" disabled style="background:#95a5a6;">✅ Пак Активен</button>`;
-            } else if (isOwned) {
-                btnHtml = `<button class="btn-equip" onclick="equipPack('${pack.id}')">Включить этот Пак</button>`;
-            } else {
-                btnHtml = `<button class="btn-buy" onclick="buyPack('${pack.id}', ${pack.price})">Купить за ${pack.price} XP</button>`;
-            }
-
-            // Рисуем знаки вопроса
             let mysteryHtml = '<div class="mystery-cats">';
-            for(let i = 0; i < pack.count; i++) {
-                mysteryHtml += `<div class="mystery-cat">❓</div>`;
-            }
+            for(let i=0; i<pack.count; i++) mysteryHtml += `<div class="mystery-cat">❓</div>`;
             mysteryHtml += '</div>';
 
-            div.innerHTML = `
-                <div class="pack-name">${pack.name}</div>
-                ${mysteryHtml}
-                <div class="pack-desc">${pack.desc}</div>
-                <div class="cat-price">${isOwned ? 'Куплено' : pack.price + ' XP'}</div>
-                ${btnHtml}
-            `;
+            div.innerHTML = `<div class="pack-name">${pack.name}</div>${mysteryHtml}<div class="cat-price">${isOwned ? 'Куплено' : pack.price + ' XP'}</div>${btnHtml}`;
             grid.appendChild(div);
         });
     }
 
     function buyPack(id, price) {
-        if (currentUser.xp >= price) {
-            playSound('buy');
-            currentUser.xp -= price;
-            currentUser.ownedPacks.push(id);
-            currentUser.activePack = id;
-            saveData();
-            renderShop();
-            confetti({ particleCount: 50, spread: 60 });
-        } else {
-            playSound('wrong');
-            alert("Мало XP! Решай тесты, чтобы заработать больше.");
-        }
+        if (currentUser.xp >= price) { playSound('buy'); currentUser.xp -= price; currentUser.ownedPacks.push(id); currentUser.activePack = id; saveData(); renderShop(); confetti(); } 
+        else { playSound('wrong'); alert("Мало XP! Проходи тесты."); }
     }
-
-    function equipPack(id) {
-        playSound('correct');
-        currentUser.activePack = id;
-        saveData();
-        renderShop();
-    }
-
+    function equipPack(id) { playSound('correct'); currentUser.activePack = id; saveData(); renderShop(); }
     function returnToMenu() { playSound('correct'); showMenu(); }
 
+    // === ЛОГИКА КВИЗА ===
     function renderTopics() {
-        const container = document.getElementById("menu-topics");
-        container.innerHTML = "";
+        const container = document.getElementById("menu-topics"); container.innerHTML = "";
         for (const key in db) {
-            const btn = document.createElement("button");
-            btn.className = "topic-btn"; btn.innerHTML = db[key].title;
-            btn.onclick = () => startQuiz(key);
-            container.appendChild(btn);
+            const btn = document.createElement("button"); btn.className = "topic-btn"; btn.innerHTML = db[key].title;
+            btn.onclick = () => startQuiz(key); container.appendChild(btn);
         }
     }
 
     function startQuiz(topic) {
-        playSound('correct');
-        currentTopicId = topic; currentQuestionIndex = 0; score = 0; currentStreak = 0;
+        playSound('correct'); currentTopicId = topic; currentQuestionIndex = 0; scoreCorrect = 0; scoreWrong = 0; currentStreak = 0;
         hideAll(); document.getElementById("quiz-container").style.display = "block";
         document.getElementById("topic-title").innerText = db[topic].title;
-        updateStreakUI(); loadQuestion();
+        updateLiveScore(); loadQuestion();
+    }
+
+    function updateLiveScore() {
+        document.getElementById("score-correct").innerText = scoreCorrect;
+        document.getElementById("score-wrong").innerText = scoreWrong;
+        const ind = document.getElementById("streak-indicator");
+        if (currentStreak > 0) { ind.style.display = "inline-block"; ind.innerText = `🔥 Страйк: ${currentStreak}`; } else { ind.style.display = "none"; }
     }
 
     function loadQuestion() {
         const q = db[currentTopicId].questions[currentQuestionIndex];
-        const total = db[currentTopicId].questions.length;
-        document.getElementById("progress").innerText = `Вопрос ${currentQuestionIndex + 1} из ${total}`;
+        document.getElementById("progress-num").innerText = currentQuestionIndex + 1;
         document.getElementById("question-text").innerText = q.q;
         
-        document.getElementById("hint-btn").style.display = "inline-block";
-        document.getElementById("hint-text").style.display = "none";
-        document.getElementById("hint-text").innerText = q.hint;
+        // Сброс подсказок
+        document.getElementById("btn-mini-hint").disabled = false; document.getElementById("btn-big-hint").disabled = false;
+        document.getElementById("hint-mini-box").style.display = "none"; document.getElementById("hint-big-box").style.display = "none";
         
-        const optsContainer = document.getElementById("options-container");
-        optsContainer.innerHTML = "";
+        const optsContainer = document.getElementById("options-container"); optsContainer.innerHTML = "";
         q.opts.forEach((opt, index) => {
-            const btn = document.createElement("button");
-            btn.className = "option-btn"; btn.innerText = opt;
-            btn.onclick = (e) => checkAnswer(index, btn, e);
-            optsContainer.appendChild(btn);
+            const btn = document.createElement("button"); btn.className = "option-btn"; btn.innerText = opt;
+            btn.onclick = (e) => checkAnswer(index, btn, e); optsContainer.appendChild(btn);
         });
-        document.getElementById("explanation").style.display = "none";
-        document.getElementById("next-btn").style.display = "none";
+        document.getElementById("explanation").style.display = "none"; document.getElementById("next-btn").style.display = "none";
     }
 
-    function showHint() {
+    function showHint(type) {
         playSound('correct');
-        document.getElementById("hint-btn").style.display = "none";
-        document.getElementById("hint-text").style.display = "block";
+        const q = db[currentTopicId].questions[currentQuestionIndex];
+        if (type === 'mini') {
+            document.getElementById("btn-mini-hint").disabled = true;
+            document.getElementById("hint-mini-box").innerText = "🟡 " + q.h1;
+            document.getElementById("hint-mini-box").style.display = "block";
+        } else {
+            document.getElementById("btn-big-hint").disabled = true;
+            document.getElementById("hint-big-box").innerText = "🔴 " + q.h2;
+            document.getElementById("hint-big-box").style.display = "block";
+        }
     }
 
     function createFloatingXP(x, y) {
-        const el = document.createElement('div');
-        el.className = 'floating-xp'; el.innerText = '+20 XP';
-        if (window.innerWidth < 768) {
-             el.style.left = (x - 30) + 'px'; el.style.top = (y - 50) + 'px';
-        } else {
-             el.style.left = x + 'px'; el.style.top = y + 'px';
-        }
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 1000);
+        const el = document.createElement('div'); el.className = 'floating-xp'; el.innerText = '+20 XP';
+        el.style.left = (window.innerWidth < 768 ? x - 30 : x) + 'px'; el.style.top = (window.innerWidth < 768 ? y - 50 : y) + 'px';
+        document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
     }
 
     function checkAnswer(selectedIndex, btnElement, event) {
         const q = db[currentTopicId].questions[currentQuestionIndex];
         const buttons = document.querySelectorAll(".option-btn");
         buttons.forEach(btn => btn.disabled = true);
-        document.getElementById("hint-btn").style.display = "none";
         
         if (selectedIndex === q.a) {
-            playSound('correct');
-            btnElement.classList.add("correct");
-            score++; currentStreak++;
-            createFloatingXP(event.clientX, event.clientY);
-            
-            if (currentStreak === 3) {
-                triggerStreakCat(); currentStreak = 0; 
-            }
+            playSound('correct'); btnElement.classList.add("correct");
+            scoreCorrect++; currentStreak++; createFloatingXP(event.clientX, event.clientY);
+            if (currentStreak === 3) { triggerStreakCat(); currentStreak = 0; }
         } else {
-            playSound('wrong');
-            btnElement.classList.add("wrong");
-            buttons[q.a].classList.add("correct");
-            currentStreak = 0;
+            playSound('wrong'); btnElement.classList.add("wrong"); buttons[q.a].classList.add("correct");
+            scoreWrong++; currentStreak = 0;
         }
 
-        updateStreakUI();
-        const expl = document.getElementById("explanation");
-        expl.innerHTML = `<b>Правило:</b> ${q.expl}`;
-        expl.style.display = "block";
+        updateLiveScore();
+        document.getElementById("explanation").innerHTML = `<b>Объяснение:</b> ${q.expl}`;
+        document.getElementById("explanation").style.display = "block";
         document.getElementById("next-btn").style.display = "block";
     }
 
-    function updateStreakUI() {
-        const ind = document.getElementById("streak-indicator");
-        if (currentStreak > 0) { ind.style.display = "inline-block"; ind.innerText = `🔥 Страйк: ${currentStreak}`; } 
-        else { ind.style.display = "none"; }
-    }
-
-    // === ГЕНЕРАТОР МЕМОВ ЧЕРЕЗ CSS ===
+    // === СУПЕР-ФИКС КОТОВ ===
     function triggerStreakCat() {
         playSound('win');
         const popup = document.getElementById("streak-popup");
         const img = document.getElementById("streak-cat-img");
         const textOverlay = document.getElementById("streak-cat-text");
         
-        // Находим активный пак и выбираем случайный текст из него
         const activePackData = shopPacks.find(p => p.id === currentUser.activePack) || shopPacks[0];
         const randomText = activePackData.texts[Math.floor(Math.random() * activePackData.texts.length)];
         
-        // Выбираем случайное фото кота из надежных источников (placecats)
-        const randomImgUrl = safeCatImages[Math.floor(Math.random() * safeCatImages.length)];
-        
-        // Обновляем картинку (добавляем таймстемп, чтобы она визуально мигнула, если совпала)
-        img.src = randomImgUrl + "?t=" + Date.now();
-        
-        // Вставляем мемный текст поверх картинки!
+        // 100% новый случайный кот!
+        img.src = getRandomCatUrl();
         textOverlay.innerText = randomText;
         textOverlay.style.color = activePackData.color;
         
         popup.style.display = "block";
-        
         if(streakTimeout) clearTimeout(streakTimeout);
         streakTimeout = setTimeout(() => { popup.style.display = "none"; }, 5000); 
     }
 
     function nextQuestion() {
-        playSound('correct');
-        document.getElementById("streak-popup").style.display = "none";
+        playSound('correct'); document.getElementById("streak-popup").style.display = "none";
         currentQuestionIndex++;
-        if (currentQuestionIndex < db[currentTopicId].questions.length) loadQuestion();
-        else showResults();
+        if (currentQuestionIndex < db[currentTopicId].questions.length) loadQuestion(); else showResults();
     }
 
     function showResults() {
         hideAll(); document.getElementById("result-container").style.display = "block";
-        
         const total = db[currentTopicId].questions.length;
-        const percent = (score / total) * 100;
-        let xpGained = score * 20; if (percent === 100) xpGained += 50; 
+        const percent = (scoreCorrect / total) * 100;
+        let xpGained = scoreCorrect * 20; if (percent === 100) xpGained += 50; 
         
         currentUser.xp += xpGained; saveData();
         document.getElementById("earned-xp").innerText = xpGained;
         
-        const motivators = ["Ошибки — это минус вайб, но мы это исправим! 😼", "Главное не тильтовать! 🐾", "Падение — это часть пути. Ещё раз! 💪"];
-        const defeatMotiv = document.getElementById("defeat-motivation");
-        
-        if (percent < 50) {
-            playSound('wrong');
-            defeatMotiv.innerText = motivators[Math.floor(Math.random() * motivators.length)];
-            defeatMotiv.style.display = "block";
-            document.getElementById("result-title").innerText = "😿 Тильт... Но мы не сдаёмся!";
-            document.getElementById("result-text").innerText = `Отвечено правильно: ${score} из ${total}. Читай теорию!`;
+        if (percent === 100) {
+            playSound('win'); document.getElementById("result-title").innerText = "🏆 Идеально! Ты просто Гигачад!";
+            document.getElementById("result-text").innerText = "10 из 10! Чиназес! 🗿😎"; confetti({ particleCount: 150, spread: 100 });
+        } else if (percent >= 50) {
+            playSound('win'); document.getElementById("result-title").innerText = "😎 Хорошая работа!";
+            document.getElementById("result-text").innerText = `Верно: ${scoreCorrect} из ${total}. Идём дальше! 😼`; confetti({ particleCount: 80, spread: 80 });
         } else {
-            playSound('win');
-            defeatMotiv.style.display = "none";
-            if (percent === 100) {
-                document.getElementById("result-title").innerText = "🏆 Идеально! Ты просто Гигачад!";
-                document.getElementById("result-text").innerText = "10 из 10! Чиназес! 🗿😎";
-                confetti({ particleCount: 150, spread: 100 });
-            } else {
-                document.getElementById("result-title").innerText = "😎 Хорошая работа! Норм вайб!";
-                document.getElementById("result-text").innerText = `Твой результат: ${score} из ${total}. Идём дальше! 😼`;
-                confetti({ particleCount: 80, spread: 80 });
-            }
+            playSound('wrong'); document.getElementById("result-title").innerText = "😿 Тильт...";
+            document.getElementById("result-text").innerText = `Ошибок: ${scoreWrong}. Читай теорию и пробуй снова! 💪`;
         }
     }
 </script>
