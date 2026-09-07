@@ -15,7 +15,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: #ffffff;
             padding: 30px;
@@ -47,55 +47,34 @@
         }
         .login-screen { text-align: center; padding: 40px 0; }
         .name-input {
-            padding: 12px;
-            font-size: 18px;
-            border: 2px solid #bdc3c7;
-            border-radius: 8px;
-            width: 60%;
-            margin-bottom: 20px;
+            padding: 12px; font-size: 18px; border: 2px solid #bdc3c7;
+            border-radius: 8px; width: 60%; margin-bottom: 20px;
         }
         
         /* Кнопки */
         .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.2s;
+            padding: 12px 25px; border: none; border-radius: 8px;
+            cursor: pointer; font-size: 16px; font-weight: bold; transition: all 0.2s;
         }
         .btn-primary { background-color: #3498db; color: white; }
         .btn-primary:hover { background-color: #2980b9; transform: translateY(-2px); }
         .btn-back {
-            background-color: #7f8c8d;
-            color: white;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 8px 15px;
-            font-size: 14px;
+            background-color: #7f8c8d; color: white; position: absolute;
+            top: 20px; left: 20px; padding: 8px 15px; font-size: 14px;
         }
         .btn-back:hover { background-color: #95a5a6; }
 
-        /* Стили меню и квиза */
+        /* Разделы меню */
+        .category-title { margin-top: 30px; margin-bottom: 15px; color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; }
         .topics-menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
         .topic-btn {
-            padding: 20px;
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            text-align: left;
-            box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);
-            transition: all 0.2s;
+            padding: 15px; background-color: #2ecc71; color: white; border: none;
+            border-radius: 12px; cursor: pointer; font-size: 15px; font-weight: 600;
+            text-align: left; box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2); transition: all 0.2s;
         }
         .topic-btn:hover { background-color: #27ae60; transform: translateY(-2px); }
         .topic-btn.completed { background-color: #95a5a6; }
@@ -106,59 +85,77 @@
         .progress { font-weight: bold; color: #3498db; background: #ebf5fb; padding: 5px 12px; border-radius: 20px; margin-left: 15px; }
         .question { font-size: 20px; margin-bottom: 25px; font-weight: 600; }
         .options { display: grid; gap: 12px; }
+        
+        /* Стили кнопок ответов и АНИМАЦИИ */
         .option-btn {
             padding: 16px 20px; background-color: #f8f9f9; border: 2px solid #bdc3c7; border-radius: 10px;
             cursor: pointer; text-align: left; font-size: 16px; transition: all 0.2s;
         }
         .option-btn:hover:not(:disabled) { background-color: #ecf0f1; border-color: #95a5a6; }
-        .correct { background-color: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; }
-        .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; }
+        
+        /* Анимация правильного ответа (пульсация) */
+        @keyframes popPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        /* Анимация неправильного ответа (тряска) */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .correct { background-color: #e8f8f5 !important; border-color: #2ecc71 !important; color: #27ae60; animation: popPulse 0.4s ease-in-out; }
+        .wrong { background-color: #fdedec !important; border-color: #e74c3c !important; color: #c0392b; animation: shake 0.4s ease-in-out; }
         
         .next-btn { display: none; margin-top: 25px; width: 100%; background-color: #f39c12; color: white; }
         .next-btn:hover { background-color: #d68910; }
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 0 8px 8px 0; }
-        
-        /* Анимация результата */
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .result-animated { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- Экран входа (Личный кабинет) -->
     <div id="login-container" class="login-screen">
         <h1>👋 Привет! Добро пожаловать в Тренажёр</h1>
-        <p>Введи своё имя, чтобы создать личный кабинет и сохранять прогресс:</p>
+        <p>Введи своё имя, чтобы начать и сохранять опыт:</p>
         <input type="text" id="username-input" class="name-input" placeholder="Твоё имя или никнейм..." maxlength="15">
         <br>
         <button class="btn btn-primary" onclick="login()">Начать обучение ➔</button>
     </div>
 
-    <!-- Главное меню -->
     <div id="menu-container">
         <div class="cabinet">
             <div class="user-info">👤 Ученик: <span id="display-name"></span></div>
             <div class="xp-badge">⭐ Опыт: <span id="display-xp">0</span> XP</div>
         </div>
         
-        <h2>Выбери тему для тренировки:</h2>
-        <div id="topics-menu" class="topics-menu"></div>
+        <h2>Выбери подтему для тренировки:</h2>
         
-        <div style="text-align: center; margin-top: 20px;">
+        <h3 class="category-title">📘 Глагол</h3>
+        <div id="menu-verbs" class="topics-menu"></div>
+
+        <h3 class="category-title">🌳 Корни с чередованием</h3>
+        <div id="menu-roots" class="topics-menu"></div>
+
+        <h3 class="category-title">🧩 Приставки</h3>
+        <div id="menu-prefixes" class="topics-menu"></div>
+        
+        <h3 class="category-title">👤 Существительное</h3>
+        <div id="menu-nouns" class="topics-menu"></div>
+
+        <div style="text-align: center; margin-top: 40px;">
             <button class="btn" style="background: #e74c3c; color: white; padding: 8px 15px;" onclick="logout()">Выйти из профиля</button>
         </div>
     </div>
 
-    <!-- Экран квиза -->
     <div id="quiz-container" class="quiz-container">
         <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
         <div class="header-quiz">
-            <h2 id="topic-title" style="margin:0;"></h2>
+            <h2 id="topic-title" style="margin:0; font-size:20px;"></h2>
             <div id="progress" class="progress"></div>
         </div>
         <div id="question-text" class="question"></div>
@@ -167,60 +164,106 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Следующий вопрос ➔</button>
     </div>
 
-    <!-- Экран результатов -->
-    <div id="result-container" class="quiz-container result-animated">
+    <div id="result-container" class="quiz-container" style="text-align:center;">
         <h2 id="result-title" style="font-size: 32px;"></h2>
         <p id="result-text" style="font-size: 18px; color: #7f8c8d;"></p>
         <div class="xp-badge" style="display: inline-block; font-size: 20px; margin: 20px 0;">+ <span id="earned-xp"></span> XP</div>
         <button class="btn btn-primary" style="display:block; width: 100%; margin-top:20px;" onclick="returnToMenu()">🏠 Вернуться в кабинет</button>
     </div>
-
 </div>
 
 <script>
-    // База данных тестов (старые + новые темы)
+    // Огромная база данных, разбитая на мелкие подтемы!
     const quizData = {
-        verbs: {
-            title: "🔥 Глагол: спряжения, суффиксы",
+        // --- ГЛАГОЛЫ ---
+        verbs_1: {
+            category: "menu-verbs", title: "Спряжения: окончания -ут/-ют, -ат/-ят",
             questions: [
-                { question: "В каком слове на месте пропуска пишется буква Ю (окончание -ЮТ)?", options: ["Они стро..т дом", "Они бор..тся", "Они завис..т", "Они пил..т"], correct: 1, explanation: "Бороться — на -оть, I спряжение. В 3-ем лице мн. ч. окончания -УТ/-ЮТ." },
-                { question: "В каком глаголе пишется буква Я (окончание -ЯТ)?", options: ["Они кле..т", "Снежинки та..т", "Собаки ла..т", "Крестьяне се..т"], correct: 0, explanation: "Клеить — II спряжение (они клеЯТ). Таять, лаять, сеять — I спряжение (таЮТ)." }
+                { question: "Где пишется Ю (окончание -ЮТ)?", options: ["Они стро..т", "Они бор..тся", "Они завис..т", "Они пил..т"], correct: 1, explanation: "Бороться (I спряжение) -> борЮТся. Строить, пилить (II спр.) -> строЯТ, пилЯТ." },
+                { question: "Где пишется А (окончание -АТ)?", options: ["Они пряч..т", "Они плач..т", "Пациенты дыш..т", "Они скач..т"], correct: 2, explanation: "Дышать — глагол-исключение II спряжения. Поэтому они дышАТ. Остальные (плакать, скакать, прятать) — I спряжение (УТ)." },
+                { question: "Где пишется Я (окончание -ЯТ)?", options: ["Снежинки та..т", "Собаки ла..т", "Они кле..т", "Ветры ве..т"], correct: 2, explanation: "Клеить — II спряжение (они клеЯТ). Таять, лаять, веять — на -ять, I спряжение (они таЮТ, лаЮТ, веЮТ)." }
             ]
         },
-        roots: {
-            title: "🌳 Чередующиеся корни",
+        verbs_2: {
+            category: "menu-verbs", title: "Глаголы-исключения",
             questions: [
-                { question: "В каком слове пишется буква А?", options: ["К..снуться", "Прик..сновение", "К..сательная", "Неук..снительно"], correct: 2, explanation: "В корне -кас-/-кос- пишется А, если после корня стоит суффикс -А-." },
-                { question: "В каком слове пишется И?", options: ["Заб..ру", "Зам..реть", "Заб..рать", "Соб..рут"], correct: 2, explanation: "В корнях -бер-/-бир- пишется И, если за корнем следует суффикс -А- (забИрАть)." }
+                { question: "Какой глагол относится ко II спряжению (исключение)?", options: ["Брить", "Стелить", "Гнать", "Сеять"], correct: 2, explanation: "Гнать — исключение II спряжения. Брить, стелить — исключения I спряжения." },
+                { question: "Как правильно: «Он...»?", options: ["бреет", "бреит", "стелит", "гонют"], correct: 0, explanation: "Брить — исключение I спряжения, поэтому он бреЕТ." },
+                { question: "Укажи ошибку:", options: ["Он видит", "Они зависят", "Он стелет", "Они смотрют"], correct: 3, explanation: "Смотреть — исключение II спряжения. Значит, они смотрЯТ." }
             ]
         },
-        phraseology: {
-            title: "🎭 Фразеологизмы (Новое)",
+        verbs_3: {
+            category: "menu-verbs", title: "Правописание -ТСЯ и -ТЬСЯ",
             questions: [
-                { question: "Что означает фразеологизм «бить баклуши»?", options: ["Громко стучать", "Тяжело работать", "Бездельничать", "Играть на барабане"], correct: 2, explanation: "Бить баклуши — значит проводить время в праздности, бездельничать." },
-                { question: "Найди фразеологизм-синоним к выражению «кот наплакал»:", options: ["Куры не клюют", "С гулькин нос", "Водить за нос", "Спустя рукава"], correct: 1, explanation: "«Кот наплакал» и «с гулькин нос» означают одно и то же — очень мало." },
-                { question: "Какое слово пропущено: «Делать из мухи ...»?", options: ["пчелу", "слона", "самолёт", "проблему"], correct: 1, explanation: "Делать из мухи слона — сильно преувеличивать мелкую проблему." }
+                { question: "Где нужен мягкий знак (Ь)?", options: ["Он учит..ся", "Нужно готовит..ся", "Солнце садит..ся", "Брат улыбает..ся"], correct: 1, explanation: "Задаем вопрос: нужно (что делаТЬ?) готовитьСЯ. Раз в вопросе есть Ь, то и в слове есть." },
+                { question: "Где мягкий знак НЕ нужен?", options: ["Мне нравит..ся зима", "Хочу отправит..ся в лес", "Она любит смеят..ся", "Пора ложит..ся"], correct: 0, explanation: "Зима (что делаЕТ?) нравиТСЯ. В вопросе нет мягкого знака." },
+                { question: "«Вам придёт..ся остат..ся». Какие буквы пропущены?", options: ["тся, тся", "ться, ться", "тся, ться", "ться, тся"], correct: 2, explanation: "(Что сделаЕТ?) придёТСЯ (что сделаТЬ?) остаТЬСЯ." }
             ]
         },
-        syntax: {
-            title: "📝 Синтаксис и пунктуация (Новое)",
+
+        // --- КОРНИ ---
+        roots_1: {
+            category: "menu-roots", title: "Корни -кас-/-кос-",
             questions: [
-                { question: "Нужна ли запятая перед союзом А? «Солнце светило( )а тепла не было.»", options: ["Да, всегда", "Нет, никогда", "Только если это сложное предложение", "Зависит от интонации"], correct: 0, explanation: "Перед противительными союзами (А, НО, ДА в значении НО) запятая ставится всегда." },
-                { question: "Найди грамматическую основу в предложении: «В лесу громко пели красивые птицы».", options: ["в лесу пели", "красивые птицы", "пели птицы", "громко пели"], correct: 2, explanation: "Кто? Птицы (подлежащее). Что делали? Пели (сказуемое)." },
-                { question: "Как называются члены предложения, отвечающие на один вопрос и относящиеся к одному слову?", options: ["Главные", "Второстепенные", "Однородные", "Сложные"], correct: 2, explanation: "Однородные члены предложения отвечают на один и тот же вопрос и зависят от одного и того же слова." }
+                { question: "Где пишется А?", options: ["К..снуться", "Прик..сновение", "К..саться", "Неук..снительно"], correct: 2, explanation: "Пишем А, потому что после корня стоит суффикс -А- (касАться)." },
+                { question: "Где пишется О?", options: ["К..сание", "К..сательная", "Прик..саться", "Прик..снуться"], correct: 3, explanation: "В слове прикоснуться нет суффикса -А- после корня, поэтому пишем О." }
+            ]
+        },
+        roots_2: {
+            category: "menu-roots", title: "Корни -гар-/-гор-",
+            questions: [
+                { question: "Где пишется О?", options: ["З..гар", "Заг..рать", "Уг..р", "Разг..р"], correct: 1, explanation: "Корень -гар-/-гор- зависит от ударения. Без ударения пишем О (загорАть)." },
+                { question: "Какое правило у слова «заг..р»?", options: ["О без ударения", "А под ударением", "Зависит от суффикса", "Это исключение"], correct: 1, explanation: "В этом корне под ударением пишется А." }
+            ]
+        },
+        roots_3: {
+            category: "menu-roots", title: "Корни с чередованием И/Е (-бер-/-бир-, -мер-/-мир-)",
+            questions: [
+                { question: "Где пишется И?", options: ["Заб..ру", "Зам..реть", "Заб..рать", "Соб..рут"], correct: 2, explanation: "Если после корня есть суффикс -А-, пишем И (забИрАть)." },
+                { question: "Где пишется Е?", options: ["Отм..рать", "Бл..стеть", "Выт..рать", "Расст..лать"], correct: 1, explanation: "В слове «блестеть» нет суффикса -А-, поэтому в корне пишем Е." }
+            ]
+        },
+
+        // --- ПРИСТАВКИ ---
+        prefixes_1: {
+            category: "menu-prefixes", title: "Приставка ПРЕ-",
+            questions: [
+                { question: "Где пишется ПРЕ- в значении «очень»?", options: ["Пр..землиться", "Пр..открыть", "Пр..мудрый", "Пр..шить"], correct: 2, explanation: "Премудрый = очень мудрый." },
+                { question: "Где ПРЕ- равна приставке ПЕРЕ-?", options: ["Пр..градить", "Пр..добрый", "Пр..морский", "Пр..ехать"], correct: 0, explanation: "Преградить = ПЕРЕгородить." }
+            ]
+        },
+        prefixes_2: {
+            category: "menu-prefixes", title: "Приставка ПРИ-",
+            questions: [
+                { question: "Какое слово обозначает неполное действие?", options: ["Пр..ехать", "Пр..клеить", "Пр..сесть", "Пр..морский"], correct: 2, explanation: "Присесть — значит сесть ненадолго (неполное действие)." },
+                { question: "Где ПРИ- обозначает присоединение?", options: ["Пр..увеличить", "Пр..шить", "Пр..рвать", "Пр..скверный"], correct: 1, explanation: "Пришить пуговицу = присоединить её к ткани." }
+            ]
+        },
+
+        // --- СУЩЕСТВИТЕЛЬНЫЕ ---
+        nouns_1: {
+            category: "menu-nouns", title: "Суффиксы -ЕК- и -ИК-",
+            questions: [
+                { question: "В каком слове пишется ИК?", options: ["Замоч..к", "Ключ..к", "Ореш..к", "Сыноч..к"], correct: 1, explanation: "Ставим в Родительный падеж (нет чего?). КлючИКа — буква И не выпадает, значит -ИК-." },
+                { question: "В каком слове пишется ЕК?", options: ["Мяч..к", "Карандаш..к", "Кусоч..к", "Лучик..к"], correct: 2, explanation: "Нет кусоЧКа — гласная выпала, значит пишем -ЕК-." }
+            ]
+        },
+        nouns_2: {
+            category: "menu-nouns", title: "Суффиксы -ЧИК- и -ЩИК-",
+            questions: [
+                { question: "Где пишется ЧИК?", options: ["Груз..ик", "Спор..ик", "Свар..ик", "Камен..ик"], correct: 0, explanation: "ЧИК пишется после согласных д-т, з-с, ж (груЗ - грузчик)." },
+                { question: "Где пишется ЩИК?", options: ["Перевод..ик", "Объезд..ик", "Разнос..ик", "Барабан..ик"], correct: 3, explanation: "После буквы Н (и других, кроме д,т,з,с,ж) пишется ЩИК (барабанщик)." }
             ]
         }
     };
 
-    // Переменные состояния
     let currentUser = { name: "", xp: 0, completed: [] };
     let currentTopic = "";
     let currentQuestionIndex = 0;
     let score = 0;
 
-    // Инициализация при загрузке страницы
     window.onload = () => {
-        const savedUser = localStorage.getItem('quizUser');
+        const savedUser = localStorage.getItem('quizUserPro');
         if (savedUser) {
             currentUser = JSON.parse(savedUser);
             showMenu();
@@ -229,31 +272,21 @@
         }
     };
 
-    // Логин (создание кабинета)
     function login() {
         const nameInput = document.getElementById("username-input").value.trim();
-        if (nameInput === "") {
-            alert("Пожалуйста, введи своё имя!");
-            return;
-        }
+        if (nameInput === "") return;
         currentUser = { name: nameInput, xp: 0, completed: [] };
         saveData();
         showMenu();
     }
 
-    // Выход
     function logout() {
-        localStorage.removeItem('quizUser');
-        location.reload(); // Перезагружаем страницу
+        localStorage.removeItem('quizUserPro');
+        location.reload();
     }
 
-    // Сохранение в LocalStorage
     function saveData() {
-        localStorage.setItem('quizUser', JSON.stringify(currentUser));
-        updateCabinetUI();
-    }
-
-    function updateCabinetUI() {
+        localStorage.setItem('quizUserPro', JSON.stringify(currentUser));
         document.getElementById("display-name").innerText = currentUser.name;
         document.getElementById("display-xp").innerText = currentUser.xp;
     }
@@ -264,19 +297,19 @@
         document.getElementById("result-container").style.display = "none";
         document.getElementById("menu-container").style.display = "block";
         
-        updateCabinetUI();
-        renderMenu();
-    }
-
-    function renderMenu() {
-        const menuContainer = document.getElementById("topics-menu");
-        menuContainer.innerHTML = "";
+        saveData(); // Обновляет UI кабинета
         
+        // Очищаем меню
+        document.getElementById("menu-verbs").innerHTML = "";
+        document.getElementById("menu-roots").innerHTML = "";
+        document.getElementById("menu-prefixes").innerHTML = "";
+        document.getElementById("menu-nouns").innerHTML = "";
+        
+        // Распределяем кнопки по категориям
         for (const key in quizData) {
             const btn = document.createElement("button");
             btn.className = "topic-btn";
             
-            // Если тема уже пройдена, меняем цвет и добавляем галочку
             if (currentUser.completed.includes(key)) {
                 btn.classList.add("completed");
                 btn.innerHTML = `✅ ${quizData[key].title}`;
@@ -285,7 +318,7 @@
             }
             
             btn.onclick = () => startQuiz(key);
-            menuContainer.appendChild(btn);
+            document.getElementById(quizData[key].category).appendChild(btn);
         }
     }
 
@@ -302,9 +335,7 @@
         loadQuestion();
     }
 
-    function returnToMenu() {
-        showMenu();
-    }
+    function returnToMenu() { showMenu(); }
 
     function loadQuestion() {
         const q = quizData[currentTopic].questions[currentQuestionIndex];
@@ -328,16 +359,40 @@
         document.getElementById("next-btn").style.display = "none";
     }
 
+    // МИНИ-САЛЮТ при правильном ответе
+    function shootMiniConfetti() {
+        confetti({
+            particleCount: 40,
+            spread: 60,
+            origin: { y: 0.7 },
+            colors: ['#2ecc71', '#3498db', '#f1c40f']
+        });
+    }
+
+    // БОЛЬШОЙ САЛЮТ при победе
+    function shootBigConfetti() {
+        var duration = 2 * 1000;
+        var end = Date.now() + duration;
+        (function frame() {
+            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+    }
+
     function checkAnswer(selectedIndex, btnElement) {
         const q = quizData[currentTopic].questions[currentQuestionIndex];
         const buttons = document.querySelectorAll(".option-btn");
         
-        buttons.forEach(btn => btn.disabled = true);
+        buttons.forEach(btn => btn.disabled = true); // Блокируем кнопки
         
         if (selectedIndex === q.correct) {
+            // ПРАВИЛЬНО: анимация пульсации и мини-салют
             btnElement.classList.add("correct");
+            shootMiniConfetti(); 
             score++;
         } else {
+            // НЕПРАВИЛЬНО: анимация тряски
             btnElement.classList.add("wrong");
             buttons[q.correct].classList.add("correct");
         }
@@ -358,33 +413,6 @@
         }
     }
 
-    // Запуск салюта (конфетти)
-    function shootConfetti() {
-        var duration = 3 * 1000;
-        var end = Date.now() + duration;
-
-        (function frame() {
-            confetti({
-                particleCount: 5,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: ['#2ecc71', '#3498db', '#f1c40f']
-            });
-            confetti({
-                particleCount: 5,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: ['#2ecc71', '#3498db', '#f1c40f']
-            });
-
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        }());
-    }
-
     function showResults() {
         document.getElementById("quiz-container").style.display = "none";
         document.getElementById("result-container").style.display = "block";
@@ -392,11 +420,9 @@
         const total = quizData[currentTopic].questions.length;
         const percent = (score / total) * 100;
         
-        // Начисление XP (Опыта)
         let xpGained = score * 50; 
-        if (percent === 100) xpGained += 100; // Бонус за идеальное прохождение
+        if (percent === 100) xpGained += 50; 
         
-        // Сохраняем прогресс
         currentUser.xp += xpGained;
         if (!currentUser.completed.includes(currentTopic) && percent >= 50) {
             currentUser.completed.push(currentTopic);
@@ -405,24 +431,18 @@
         
         document.getElementById("earned-xp").innerText = xpGained;
 
-        let title = "";
-        let message = "";
-
         if (percent === 100) {
-            title = "🏆 Идеально!";
-            message = `Ты ответил правильно на все ${total} вопросов. Великолепно!`;
-            shootConfetti(); // Запускаем конфетти!
+            document.getElementById("result-title").innerText = "🏆 Идеально!";
+            document.getElementById("result-text").innerText = "Ни одной ошибки. Супер!";
+            shootBigConfetti();
         } else if (percent >= 50) {
-            title = "😎 Отличная работа!";
-            message = `Твой результат: ${score} из ${total}. Продолжай в том же духе.`;
-            shootConfetti(); // Конфетти для хорошего результата
+            document.getElementById("result-title").innerText = "😎 Хорошая работа!";
+            document.getElementById("result-text").innerText = `Твой результат: ${score} из ${total}.`;
+            shootBigConfetti();
         } else {
-            title = "💪 Есть куда расти!";
-            message = `Твой результат: ${score} из ${total}. Почитай правила и попробуй ещё раз, у тебя всё получится!`;
+            document.getElementById("result-title").innerText = "💪 Попробуй ещё раз!";
+            document.getElementById("result-text").innerText = `Отвечено правильно: ${score} из ${total}.`;
         }
-
-        document.getElementById("result-title").innerText = title;
-        document.getElementById("result-text").innerText = message;
     }
 </script>
 
