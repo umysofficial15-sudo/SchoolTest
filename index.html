@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёр по русскому языку | 6 класс PRO</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #2c3e50;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #1a252f;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .topics-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .topic-btn {
+            padding: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+            transition: all 0.2s;
+        }
+        .topic-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+        .quiz-container {
+            display: none;
+        }
+        .header-quiz {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        .topic-title-active {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .progress {
+            font-weight: bold;
+            color: #3498db;
+            background: #ebf5fb;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+        .option-btn {
+            padding: 16px 20px;
+            background-color: #f8f9f9;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .option-btn:hover:not(:disabled) {
+            background-color: #ecf0f1;
+            border-color: #95a5a6;
+        }
+        .option-btn:disabled {
+            cursor: default;
+        }
+        .correct {
+            background-color: #e8f8f5 !important;
+            border-color: #2ecc71 !important;
+            color: #27ae60;
+        }
+        .wrong {
+            background-color: #fdedec !important;
+            border-color: #e74c3c !important;
+            color: #c0392b;
+        }
+        .next-btn {
+            display: none;
+            margin-top: 25px;
+            padding: 16px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .next-btn:hover {
+            background-color: #d68910;
+        }
+        .result {
+            text-align: center;
+        }
+        .result h2 {
+            font-size: 32px;
+            color: #2c3e50;
+        }
+        .result p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+        .explanation {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            background-color: #e8f8f5;
+            border-left: 5px solid #1abc9c;
+            border-radius: 0 8px 8px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .btn-home {
+            background-color: #34495e;
+            margin-top: 30px;
+        }
+        .btn-home:hover {
+            background-color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 Тренажёр по русскому языку</h1>
+    <div id="subtitle" class="subtitle">Полный курс 6 класса. Выбери тему для тренировки:</div>
+    
+    <div id="topics-menu" class="topics-menu"></div>
+
+    <div id="quiz-container" class="quiz-container">
+        <div class="header-quiz">
+            <h2 id="topic-title" class="topic-title-active"></h2>
+            <div id="progress" class="progress"></div>
+        </div>
+        <div id="question-text" class="question"></div>
+        <div id="options-container" class="options"></div>
+        <div id="explanation" class="explanation"></div>
+        <button id="next-btn" class="next-btn" onclick="nextQuestion()">Следующий вопрос ➔</button>
+    </div>
+
+    <div id="result-container" class="quiz-container result">
+        <div id="result-text"></div>
+        <button class="next-btn btn-home" style="display:block;" onclick="returnToMenu()">🏠 Вернуться к выбору тем</button>
+    </div>
+</div>
+
+<script>
+    const quizData = {
+        verbs: {
+            title: "🔥 Глагол: спряжения, суффиксы, -тся/-ться",
+            questions: [
+                {
+                    question: "В каком слове на месте пропуска пишется буква Ю (окончание -ЮТ)?",
+                    options: ["Они стро..т дом", "Они бор..тся за победу", "Они завис..т от погоды", "Они пил..т дрова"],
+                    correct: 1,
+                    explanation: "Бороться — глагол на -оть, I спряжение. В 3-ем лице мн. ч. имеют окончания -УТ/-ЮТ. Строить, зависеть (искл.), пилить — II спряжение (-АТ/-ЯТ)."
+                },
+                {
+                    question: "В каком глаголе пишется буква Я (окончание -ЯТ)?",
+                    options: ["Они кле..т обои", "Снежинки та..т", "Собаки ла..т", "Крестьяне се..т"],
+                    correct: 0,
+                    explanation: "Клеить — глагол на -ить, это II спряжение, поэтому пишем «они клеЯТ». Таять, лаять, сеять — глаголы на -ять, I спряжение (они таЮТ, лаЮТ, сеЮТ)."
+                },
+                {
+                    question: "Укажи глагол-исключение, который относится ко II спряжению.",
+                    options: ["Стелить", "Брить", "Гнать", "Сеять"],
+                    correct: 2,
+                    explanation: "Гнать, держать, смотреть и видеть, дышать, слышать, ненавидеть, и зависеть, и вертеть, и обидеть, и терпеть — это исключения II спряжения. Брить, стелить — исключения I спряжения."
+                },
+                {
+                    question: "Как правильно написать инфинитив глагола?",
+                    options: ["Веить", "Веять", "Вееть", "Веивать"],
+                    correct: 1,
+                    explanation: "Глаголы на -ять нужно запомнить: веять, сеять, реять, таять, лаять, кашлять, чуять, надеяться. Они относятся к I спряжению."
+                },
+                {
+                    question: "В каком предложении глагол пишется с мягким знаком (-ТЬСЯ)?",
+                    options: ["Он учит..ся на пятёрки.", "Солнце садит..ся за лес.", "Скоро он вернёт..ся.", "Нужно хорошо учит..ся."],
+                    correct: 3,
+                    explanation: "Задаём вопрос: Нужно (что делаТЬ?) учиТЬся. В вопросе есть Ь, значит и в глаголе он есть. В остальных: он (что делаЕТ?) учится, садится, вернётся."
+                },
+                {
+                    question: "Какая буква пишется перед суффиксом -л- в прошедшем времени: «он обид..л»?",
+                    options: ["и", "е", "я", "а"],
+                    correct: 1,
+                    explanation: "Перед -л- пишется та же гласная, что и в инфинитиве перед -ть. ОбидЕть — обидЕл."
+                }
+            ]
+        },
+        roots: {
+            title: "🌳 Чередующиеся корни",
+            questions: [
+                {
+                    question: "В каком слове пишется буква А?",
+                    options: ["К..снуться", "Прик..сновение", "К..сательная", "Неук..снительно"],
+                    correct: 2,
+                    explanation: "В корне -кас-/-кос- пишется А, если после корня стоит суффикс -А- (касАтельная). В остальных случаях пишем О."
+                },
+                {
+                    question: "В каком слове пишется буква О?",
+                    options: ["З..гар", "Заг..рать", "Уг..р", "Ог..рок"],
+                    correct: 1,
+                    explanation: "В корне -гар-/-гор- без ударения пишется О (загорАть). Под ударением пишется А (загАр)."
+                },
+                {
+                    question: "Найди слово с ошибкой:",
+                    options: ["Вырастить", "Подрастать", "Заросли", "Росток"],
+                    correct: 3,
+                    explanation: "Слово «росток» — это исключение, оно пишется с буквой О, несмотря на СТ. (Исключения: росток, Ростов, Ростислав, ростовщик, отрасль)."
+                },
+                {
+                    question: "В каком слове пишется И?",
+                    options: ["Заб..ру", "Зам..реть", "Заб..рать", "Соб..рут"],
+                    correct: 2,
+                    explanation: "В корнях -бер-/-бир-, -мер-/-мир- и др. пишется И, если за корнем следует суффикс -А- (забИрАть). Если суффикса нет, пишется Е (забЕру)."
+                }
+            ]
+        },
+        prefixes: {
+            title: "🧩 Приставки ПРЕ- и ПРИ-",
+            questions: [
+                {
+                    question: "В каком слове пишется приставка ПРИ-?",
+                    options: ["Пр..рвать", "Пр..школьный", "Пр..одолеть", "Пр..красный"],
+                    correct: 1,
+                    explanation: "ПРИ- пишется в значении 'пространственная близость' (около школы — пришкольный). Прервать, преодолеть = ПЕРЕ, прекрасный = ОЧЕНЬ."
+                },
+                {
+                    question: "Где пишется ПРЕ-?",
+                    options: ["Пр..землиться", "Пр..открыть", "Пр..шить", "Пр..мудрый"],
+                    correct: 3,
+                    explanation: "ПРЕ- пишется в значении 'очень' (очень мудрый = премудрый). Остальные слова имеют значения присоединения или неполноты действия (ПРИ-)."
+                },
+                {
+                    question: "Какое слово обозначает «неполное действие» (пишется с ПРИ-)?",
+                    options: ["Пр..ехать", "Пр..клеить", "Пр..сесть", "Пр..морский"],
+                    correct: 2,
+                    explanation: "Присесть — значит сесть ненадолго, совершить действие не до конца (неполное действие)."
+                },
+                {
+                    question: "В каком слове приставка ПРЕ- равна по смыслу приставке ПЕРЕ-?",
+                    options: ["Предобрый", "Преградить", "Пренеприятный", "Преувеличить"],
+                    correct: 1,
+                    explanation: "Преградить = перегородить. В остальных словах ПРЕ- равна слову «очень»."
+                }
+            ]
+        },
+        nouns: {
+            title: "👤 Имя существительное",
+            questions: [
+                {
+                    question: "В каком слове пишется суффикс -ИК?",
+                    options: ["Замоч..к", "Ореш..к", "Ключ..к", "Сыноч..к"],
+                    correct: 2,
+                    explanation: "Ставим слово в Родительный падеж (нет кого/чего?). Если гласная выпадает — пишем ЕК (замочка — замочек). Если остается — пишем ИК (ключика — ключик)."
+                },
+                {
+                    question: "В каком слове пишется суффикс -ЩИК?",
+                    options: ["Груз..ик", "Перевод..ик", "Свар..ик", "Объезд..ик"],
+                    correct: 2,
+                    explanation: "Суффикс -ЧИК- пишется после согласных Д-Т, З-С, Ж. После остальных согласных пишется -ЩИК- (сварщик, каменщик)."
+                },
+                {
+                    question: "Как пишется НЕ с существительным: «Он сказал (не)правду, а наглую ложь»?",
+                    options: ["Слитно", "Раздельно", "Через дефис", "Здесь нет правила"],
+                    correct: 1,
+                    explanation: "Раздельно, так как в предложении есть противопоставление с союзом А (не правду, а ложь)."
+                },
+                {
+                    question: "Какое из этих существительных — разносклоняемое?",
+                    options: ["Дерево", "Время", "История", "Путь"],
+                    correct: 1,
+                    explanation: "К разносклоняемым относятся 10 существительных на -мя (время, бремя, семя, пламя и т.д.) и слово «путь»."
+                }
+            ]
+        },
+        adjectives: {
+            title: "🎨 Имя прилагательное",
+            questions: [
+                {
+                    question: "В каком прилагательном пишется НН?",
+                    options: ["Гуси..ый", "Кожа..ый", "Соломе..ый", "Песча..ый"],
+                    correct: 2,
+                    explanation: "В суффиксах -ЕНН- и -ОНН- пишется две НН (соломенный, клюквенный). В суффиксах -ИН-, -АН-, -ЯН- пишется одна Н (кожаный, гусиный, исключения: стеклянный, оловянный, деревянный)."
+                },
+                {
+                    question: "В каком слове-исключении пишется НН?",
+                    options: ["Ветреный", "Стеклянный", "Серебряный", "Масляный"],
+                    correct: 1,
+                    explanation: "Стеклянный, оловянный, деревянный — исключения, пишутся с НН, хотя имеют суффикс -ЯН-."
+                },
+                {
+                    question: "Определи разряд прилагательного «лисья (нора)»:",
+                    options: ["Качественное", "Относительное", "Притяжательное", "Указательное"],
+                    correct: 2,
+                    explanation: "Притяжательные прилагательные обозначают принадлежность лицу или животному и отвечают на вопрос Чей? (чья нора? — лисья)."
+                },
+                {
+                    question: "Где О пишется после шипящей в окончании?",
+                    options: ["В больш..м доме", "Хорош..го друга", "В свеж..м воздухе", "Дремуч..м лесом"],
+                    correct: 0,
+                    explanation: "В окончаниях и суффиксах прилагательных после шипящих под ударением пишется О (в большОм), без ударения — Е (хорОшего)."
+                }
+            ]
+        },
+        numerals_pronouns: {
+            title: "🔢 Числительное и местоимение",
+            questions: [
+                {
+                    question: "Где мягкий знак (Ь) в числительном пишется В СЕРЕДИНЕ слова?",
+                    options: ["Семнадцат..", "Пят..десят", "Девят..", "Тридцат.."],
+                    correct: 1,
+                    explanation: "У числительных от 50 до 80 и от 500 до 900 мягкий знак пишется в середине (пятьдесят). У числительных от 5 до 20 и 30 — на конце (семнадцать)."
+                },
+                {
+                    question: "Какое местоимение пишется через дефис?",
+                    options: ["(Ни)кто", "(Кое)кто", "(Не)кого", "(Ни)какой"],
+                    correct: 1,
+                    explanation: "Неопределённые местоимения с приставкой КОЕ- и суффиксами -ТО, -ЛИБО, -НИБУДЬ пишутся через дефис (кое-кто, что-нибудь)."
+                },
+                {
+                    question: "В каком случае (НЕ) и (НИ) с местоимением пишутся РАЗДЕЛЬНО?",
+                    options: ["Н..кого", "Н..(с)кем", "Н..какой", "Н..что"],
+                    correct: 1,
+                    explanation: "Если между НЕ/НИ и местоимением есть предлог, то пишем в три слова: ни с кем, не у кого."
+                },
+                {
+                    question: "Определи разряд местоимения «СЕБЯ»:",
+                    options: ["Личное", "Возвратное", "Притяжательное", "Указательное"],
+                    correct: 1,
+                    explanation: "«Себя» — это единственное возвратное местоимение в русском языке."
+                }
+            ]
+        }
+    };
+
+    let currentTopic = "";
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Инициализация меню
+    const menuContainer = document.getElementById("topics-menu");
+    for (const key in quizData) {
+        const btn = document.createElement("button");
+        btn.className = "topic-btn";
+        btn.innerHTML = quizData[key].title;
+        btn.onclick = () => startQuiz(key);
+        menuContainer.appendChild(btn);
+    }
+
+    function startQuiz(topicKey) {
+        currentTopic = topicKey;
+        currentQuestionIndex = 0;
+        score = 0;
+        
+        document.getElementById("topics-menu").style.display = "none";
+        document.getElementById("subtitle").style.display = "none";
+        document.getElementById("result-container").style.display = "none";
+        document.getElementById("quiz-container").style.display = "block";
+        document.getElementById("topic-title").innerText = quizData[topicKey].title;
+        
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentTopic].questions[currentQuestionIndex];
+        const total = quizData[currentTopic].questions.length;
+        
+        document.getElementById("progress").innerText = `Вопрос ${currentQuestionIndex + 1} из ${total}`;
+        document.getElementById("question-text").innerText = q.question;
+        
+        const optionsContainer = document.getElementById("options-container");
+        optionsContainer.innerHTML = "";
+        
+        q.options.forEach((opt, index) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(index, btn);
+            optionsContainer.appendChild(btn);
+        });
+
+        document.getElementById("explanation").style.display = "none";
+        document.getElementById("next-btn").style.display = "none";
+    }
+
+    function checkAnswer(selectedIndex, btnElement) {
+        const q = quizData[currentTopic].questions[currentQuestionIndex];
+        const buttons = document.querySelectorAll(".option-btn");
+        
+        buttons.forEach(btn => btn.disabled = true);
+        
+        if (selectedIndex === q.correct) {
+            btnElement.classList.add("correct");
+            score++;
+        } else {
+            btnElement.classList.add("wrong");
+            buttons[q.correct].classList.add("correct");
+        }
+
+        const expl = document.getElementById("explanation");
+        expl.innerText = "💡 Правило: " + q.explanation;
+        expl.style.display = "block";
+        
+        document.getElementById("next-btn").style.display = "block";
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData[currentTopic].questions.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById("quiz-container").style.display = "none";
+        document.getElementById("result-container").style.display = "block";
+        
+        const total = quizData[currentTopic].questions.length;
+        const percent = (score / total) * 100;
+        
+        let message = "";
+        if (percent === 100) message = "🏆 Безупречно! Ты настоящий знаток русского языка!";
+        else if (percent >= 75) message = "😎 Отличный результат! Совсем немного до идеала.";
+        else if (percent >= 50) message = "👍 Неплохо, но правила стоит ещё раз повторить.";
+        else message = "💪 Ошибки — это точки роста. Прочитай объяснения и попробуй ещё раз!";
+
+        document.getElementById("result-text").innerHTML = `
+            <h2>Твой результат: ${score} из ${total}</h2>
+            <p>${message}</p>
+        `;
+    }
+
+    function returnToMenu() {
+        document.getElementById("result-container").style.display = "none";
+        document.getElementById("topics-menu").style.display = "grid";
+        document.getElementById("subtitle").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
