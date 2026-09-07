@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V10.1 - Промокоды и Анти-Блок 🎁</title>
+    <title>Тренажёр | V10.2 - Реальные Коты 🐱</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
@@ -90,16 +90,16 @@
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 8px; }
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 50; text-shadow: 1px 1px 0 #fff;}
 
-        /* ПОПАП СТРАЙКА (Векторные коты без интернета) */
+        /* ПОПАП СТРАЙКА (Реальные фото котов) */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
         .streak-title { color: #f39c12; margin: 0 0 10px 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
         .meme-generator { position: relative; display: inline-block; width: 100%; }
-        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #ffeaa7;}
+        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; width: 100%; aspect-ratio: 1/1; object-fit: cover;}
         .meme-text { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-family: 'Impact', sans-serif; font-size: 32px; color: white; text-transform: uppercase; -webkit-text-stroke: 1.5px black; text-shadow: 2px 2px 0 #000; width: 90%; line-height: 1.1; }
 
         /* КЛИКЕР */
         .clicker-box { text-align: center; margin-top: 30px; position: relative;}
-        .clicker-img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid #8e44ad; cursor: pointer; transition: 0.1s; box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4); user-select: none; background: #ffeaa7;}
+        .clicker-img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid #8e44ad; cursor: pointer; transition: 0.1s; box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4); user-select: none;}
         .clicker-img:active { transform: scale(0.95); }
         .click-stats { font-size: 24px; font-weight: bold; color: #8e44ad; margin-bottom: 20px;}
         .click-word { position: absolute; font-family: 'Impact', sans-serif; color: #fff; font-size: 30px; -webkit-text-stroke: 1px black; pointer-events: none; animation: floatUp 1s forwards;}
@@ -259,11 +259,11 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (Абсолютно стабильные SVG коты без интернета) -->
+    <!-- ПОПАП СТРАЙКА (Настоящие коты Unsplash) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
         <div class="meme-generator">
-            <img id="streak-cat-img" src="" alt="Секретный кот">
+            <img id="streak-cat-img" src="" alt="Реальный кот">
             <div id="streak-cat-text" class="meme-text"></div>
         </div>
     </div>
@@ -278,15 +278,20 @@
 </div>
 
 <script>
-    // === ВЕКТОРНЫЕ SVG КОТЫ (РАБОТАЮТ НА 100% БЕЗ СЕТИ И VPN) ===
-    const vectorCats = [
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23ff9f43'/><polygon points='40,70 20,20 80,50' fill='%23ff9f43'/><polygon points='160,70 180,20 120,50' fill='%23ff9f43'/><circle cx='100' cy='110' r='60' fill='%23ff9f43'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff6b6b'/><path d='M90,135 Q100,145 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>",
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%2354a0ff'/><polygon points='40,70 20,20 80,50' fill='%2354a0ff'/><polygon points='160,70 180,20 120,50' fill='%2354a0ff'/><circle cx='100' cy='110' r='60' fill='%2354a0ff'/><circle cx='80' cy='100' r='8' fill='%23fff'/><circle cx='120' cy='100' r='8' fill='%23fff'/><circle cx='80' cy='100' r='4' fill='%23000'/><circle cx='120' cy='100' r='4' fill='%23000'/><polygon points='100,115 90,125 110,125' fill='%23ff6b6b'/><path d='M90,135 Q100,145 110,135' stroke='%23fff' stroke-width='4' fill='none'/></svg>",
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23ee5253'/><polygon points='40,70 20,20 80,50' fill='%23ee5253'/><polygon points='160,70 180,20 120,50' fill='%23ee5253'/><circle cx='100' cy='110' r='60' fill='%23ee5253'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff9f43'/><path d='M90,135 Q100,125 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>",
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%2310ac84'/><polygon points='40,70 20,20 80,50' fill='%2310ac84'/><polygon points='160,70 180,20 120,50' fill='%2310ac84'/><circle cx='100' cy='110' r='60' fill='%2310ac84'/><circle cx='80' cy='100' r='8' fill='%23fff'/><circle cx='120' cy='100' r='8' fill='%23fff'/><circle cx='80' cy='100' r='4' fill='%23222'/><circle cx='120' cy='100' r='4' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff9f43'/><path d='M90,135 Q100,145 110,135' stroke='%23fff' stroke-width='4' fill='none'/></svg>",
-        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23f368e0'/><polygon points='40,70 20,20 80,50' fill='%23f368e0'/><polygon points='160,70 180,20 120,50' fill='%23f368e0'/><circle cx='100' cy='110' r='60' fill='%23f368e0'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23fff'/><path d='M90,135 Q100,145 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>"
+    // === НАСТОЯЩИЕ ФОТОГРАФИИ НОРМАЛЬНЫХ КОТОВ (UNSPLASH CDN) ===
+    const realCatPhotos = [
+        "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1561948955-570b270e7c36?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1561530514-63d1e1951167?w=500&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500&auto=format&fit=crop&q=80"
     ];
-    function getRandomCat() { return vectorCats[Math.floor(Math.random() * vectorCats.length)]; }
+    function getRandomCat() { return realCatPhotos[Math.floor(Math.random() * realCatPhotos.length)]; }
 
     // === АУДИО ===
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -321,7 +326,7 @@
         { type: 'pack', id: 'pack_crazy', name: 'Крейзи Пак', price: 600, count: 4, texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b' }
     ];
 
-    // === БАЗА ТЕСТОВ (30 ТЕМ * 10 ВОПРОСОВ С 4 ВАРИАНТАМИ) ===
+    // === БАЗА ТЕСТОВ (30 ТЕМ * 10 ВОПРОСОВ) ===
     const db = {
         g1: {
             title: "1-2 Класс",
@@ -521,7 +526,7 @@
                     {q:"К син..му морю",o:["и","е","у","ю"],a:1,h1:"К какОМУ?",h2:"К синЕМУ.",e:"Отвечает на вопрос какому? -> -ему."},
                     {q:"В летн..м лесу",o:["и","е","о","а"],a:1,h1:"В какОМ?",h2:"В летнЕМ.",e:"Отвечает на вопрос каком? -> -ем."},
                     {q:"С хорош..м другом",o:["и","е","о","а"],a:0,h1:"С какИМ?",h2:"С хорошИМ.",e:"Отвечает на вопрос каким? -> -им."},
-                    {q:"О весенн..й погоде",o:["и","е","о","а"],a:1,h1:"О какОЙ?",h2:"О весеннEЙ.",e:"Отвечает на вопрос какой? -> -ей."},
+                    {q:"О весенн..й погоде",o:["и","е","о","а"],a:1,h1:"О какОЙ?",h2:"О весеннЕЙ.",e:"Отвечает на вопрос какой? -> -ей."},
                     {q:"Зимн..м утром",o:["и","е","о","а"],a:0,h1:"КакИМ?",h2:"ЗимнИМ.",e:"Отвечает на вопрос каким? -> -им."},
                     {q:"Ранн..й весной",o:["и","е","о","а"],a:1,h1:"КакОЙ?",h2:"РаннЕЙ.",e:"Отвечает на вопрос какой? -> -ей."},
                     {q:"О дальн..м пути",o:["и","е","о","а"],a:1,h1:"О какОМ?",h2:"О дальнЕМ.",e:"Отвечает на вопрос каком? -> -ем."},
@@ -716,7 +721,7 @@
     let currentStreak = 0; let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV10_Promo');
+        const saved = localStorage.getItem('superQuizV10.1_Cats');
         if (saved) { 
             currentUser = Object.assign(currentUser, JSON.parse(saved)); 
             if(!currentUser.ownedPacks.includes('pack_default')) currentUser.ownedPacks.push('pack_default');
@@ -731,8 +736,8 @@
         playSound('correct'); currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV10_Promo'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV10_Promo', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV10.1_Cats'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV10.1_Cats', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
