@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V10.2 - Реальные Коты 🐱</title>
+    <title>Тренажёр | V10.0 - Энциклопедия 🎓</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
@@ -26,11 +26,9 @@
         .btn-primary:hover { background-color: #2980b9; transform: translateY(-2px); }
         .btn-back { background-color: #7f8c8d; color: white; position: absolute; top: 20px; left: 20px; padding: 8px 15px; font-size: 14px; z-index: 10;}
         .btn-back:hover { background-color: #95a5a6; }
-        .action-buttons { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 15px; }
+        .action-buttons { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
         .btn-rulebook { background-color: #9b59b6; color: white; flex: 1;}
         .btn-shop { background-color: #e67e22; color: white; flex: 1;}
-        .btn-promo { background-color: #27ae60; color: white; width: 100%; padding: 14px; margin-bottom: 20px; font-size: 16px;}
-        .btn-promo:hover { background-color: #219653; transform: translateY(-2px); }
         
         /* Группы классов */
         .grade-section { margin-bottom: 30px; background: #fdfefe; border: 2px solid #ecf0f1; border-radius: 12px; padding: 20px; }
@@ -90,7 +88,7 @@
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 8px; }
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 50; text-shadow: 1px 1px 0 #fff;}
 
-        /* ПОПАП СТРАЙКА (Реальные фото котов) */
+        /* ПОПАП СТРАЙКА */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
         .streak-title { color: #f39c12; margin: 0 0 10px 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
         .meme-generator { position: relative; display: inline-block; width: 100%; }
@@ -137,8 +135,6 @@
             <div class="user-info">👤 Ученик: <span id="display-name"></span></div>
             <div class="xp-badge">⭐ Опыт: <span id="display-xp">0</span> XP</div>
         </div>
-
-        <button class="btn btn-promo" onclick="openPromoCode()">🎁 Ввести промокод</button>
 
         <div class="action-buttons">
             <button class="btn btn-rulebook" onclick="openRulebook()">📖 Справочник Правил</button>
@@ -208,7 +204,7 @@
             <div class="rule-card"><h3>📚 3. И/Ы после Ц</h3><p>Пишем <b>И</b>: в корне (цирк, цифра) и словах на -ЦИЯ (акация).<br>Пишем <b>Ы</b>: в окончаниях (птицы, улицы), в суффиксах (сестрицын) и в исключениях: Цыган на цыпочках цыплёнку цыкнул: "Цыц!".</p></div>
             <div class="rule-card"><h3>📚 4. Приставки на З/С</h3><p>Приставки (без/бес, воз/вос, из/ис, раз/рас) пишутся с <b>З</b> перед звонкими согласными и гласными (беЗвкусный). С <b>С</b> — перед глухими согласными (беСшумный). Запомни: приставки З- не бывает! (сделать, сдать).</p></div>
             <div class="rule-card"><h3>📚 5. Чередование (РАСТ-РОС, ЛАГ-ЛОЖ)</h3><p><b>РАСТ / РАЩ / РОС:</b> Перед СТ и Щ пишем А (расти, выращивать). В остальных случаях О (вырос). Искл: росток, Ростов, ростовщик, отрасль.<br><b>ЛАГ / ЛОЖ:</b> Перед Г пишем А, перед Ж пишем О (прилагать, приложить). Искл: полог.</p></div>
-            <div class="rule-card"><h3>📚 6. Простые и сложные предложения</h3><p>Простое предложение: одна грамматическая основа (подлежащее + сказуемое). Сложное: две и более основы. Между частями сложного предложения всегда ставится запятая.</p></div>
+            <div class="rule-card"><h3>📚 6. Простые и сложные предложения</h3><p>Простое предложение: одна грамматическая основа (подлежащее + сказуемое). Сложное: две и более основ. Между частями сложного предложения всегда ставится запятая.</p></div>
         </div>
 
         <div id="rb-g6" class="rule-content">
@@ -259,11 +255,11 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (Настоящие коты Unsplash) -->
+    <!-- ПОПАП СТРАЙКА -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
         <div class="meme-generator">
-            <img id="streak-cat-img" src="" alt="Реальный кот">
+            <img id="streak-cat-img" src="" alt="Секретный кот">
             <div id="streak-cat-text" class="meme-text"></div>
         </div>
     </div>
@@ -278,47 +274,23 @@
 </div>
 
 <script>
-    // === НАСТОЯЩИЕ ФОТОГРАФИИ НОРМАЛЬНЫХ КОТОВ (UNSPLASH CDN) ===
-    const realCatPhotos = [
-        "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1561948955-570b270e7c36?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1561530514-63d1e1951167?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500&auto=format&fit=crop&q=80"
+    // КОТЫ WIKIMEDIA
+    const safeCatImages = [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cat_poster_1.jpg/400px-Cat_poster_1.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/400px-Cat_August_2010-4.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/June_odd-eyed-cat.jpg/400px-June_odd-eyed-cat.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cat_with_blue_eyes.jpg/400px-Cat_with_blue_eyes.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/A_black_cat_named_Tilly.jpg/400px-A_black_cat_named_Tilly.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Blackcat-Lilith.jpg/400px-Blackcat-Lilith.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Cat_March_2010-1.jpg/400px-Cat_March_2010-1.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Cute_grey_kitten.jpg/400px-Cute_grey_kitten.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Gustav_chocolate.jpg/400px-Gustav_chocolate.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Scottish_fold_cat.jpg/400px-Scottish_fold_cat.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Domestic_Cat_Face_Shot.jpg/400px-Domestic_Cat_Face_Shot.jpg"
     ];
-    function getRandomCat() { return realCatPhotos[Math.floor(Math.random() * realCatPhotos.length)]; }
+    function getRandomCat() { return safeCatImages[Math.floor(Math.random() * safeCatImages.length)]; }
 
-    // === АУДИО ===
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    function playSound(type) {
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        if (type === 'correct') {
-            osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
-        } else if (type === 'wrong') {
-            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.3);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.3);
-        } else if (type === 'win') {
-            osc.type = 'triangle'; osc.frequency.setValueAtTime(400, audioCtx.currentTime); osc.frequency.setValueAtTime(800, audioCtx.currentTime + 0.2);
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.4);
-        } else if (type === 'pop') {
-            osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(1500, audioCtx.currentTime + 0.05);
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-        }
-    }
-
-    // === ПАКИ И ПРЕДМЕТЫ ===
+    // ПАКИ
     const shopItems = [
         { type: 'feature', id: 'feat_clicker', name: 'Допуск в Тайную Комнату', price: 1000, desc: 'Открывает бесконечный кликер мемных котов в главном меню!' },
         { type: 'pack', id: 'pack_default', name: 'Базовый Пак', price: 0, count: 1, texts: ['🔥 ХОРОШ! 🔥', '🐾 МЯУ! 🐾'], color: 'white' },
@@ -326,7 +298,8 @@
         { type: 'pack', id: 'pack_crazy', name: 'Крейзи Пак', price: 600, count: 4, texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b' }
     ];
 
-    // === БАЗА ТЕСТОВ (30 ТЕМ * 10 ВОПРОСОВ) ===
+    // === БАЗА ТЕСТОВ (30 ТЕМ * 10 ВОПРОСОВ = 300 ВОПРОСОВ) ОПТИМИЗИРОВАНО ===
+    // Для экономии места в коде вопросы сгенерированы по паттернам. В реальной версии это 300 строк массива.
     const db = {
         g1: {
             title: "1-2 Класс",
@@ -444,7 +417,7 @@
                     {q:"Ш..ЮТ",o:["ъ","ь","нет","и"],a:1,h1:"В корне.",h2:"Ь знак.",e:"В корне Ь."},
                     {q:"КОП..Ё",o:["ъ","ь","нет","и"],a:1,h1:"В корне.",h2:"Ь знак.",e:"В корне Ь."}
                 ]},
-                t4: { title: "4. Состав слова", qs: [
+                t4: { title: "4. Состав слова (Корень, Приставка)", qs: [
                     {q:"Общая часть родственных слов - это...",o:["Окончание","Приставка","Корень","Суффикс"],a:2,h1:"Главная часть.",h2:"Корень.",e:"Корень - главная часть."},
                     {q:"Часть слова ПЕРЕД корнем - это...",o:["Окончание","Приставка","Корень","Суффикс"],a:1,h1:"Стоит перед.",h2:"Приставка.",e:"Приставка перед корнем."},
                     {q:"Часть слова ПОСЛЕ корня - это...",o:["Окончание","Приставка","Корень","Суффикс"],a:3,h1:"Стоит после.",h2:"Суффикс.",e:"Суффикс после корня."},
@@ -610,7 +583,7 @@
                     {q:"..ДЕЛАТЬ",o:["з","с","сс","зз"],a:1,h1:"Приставки З не бывает.",h2:"Пишем С.",e:"Приставки З- нет!"},
                     {q:"..ДАТЬ",o:["з","с","сс","зз"],a:1,h1:"Приставки З не бывает.",h2:"Пишем С.",e:"Приставки З- нет!"}
                 ]},
-                t5: { title: "5. Чередования РАСТ-РОС, ЛАГ-ЛОЖ", qs: [
+                t5: { title: "5. Чередования РАСТ/РОС, ЛАГ/ЛОЖ", qs: [
                     {q:"ВЫР..СТИ",o:["а","о","е","и"],a:0,h1:"Перед СТ.",h2:"Пишем А.",e:"Перед СТ пишем А."},
                     {q:"ВЫР..С",o:["а","о","е","и"],a:1,h1:"Нет СТ/Щ.",h2:"Пишем О.",e:"Без СТ и Щ пишем О."},
                     {q:"ВЫР..ЩИВАТЬ",o:["а","о","е","и"],a:0,h1:"Перед Щ.",h2:"Пишем А.",e:"Перед Щ пишем А."},
@@ -703,7 +676,7 @@
                     {q:"(Не)ряха",o:["Слитно","Раздельно","Через дефис","В кавычках"],a:0,h1:"Без НЕ не бывает.",h2:"Пишем слитно.",e:"Неряха (не употребляется без НЕ)."},
                     {q:"(Не)правда, а ложь",o:["Раздельно","Слитно","Через дефис","В кавычках"],a:0,h1:"Есть союз А.",h2:"Пишем раздельно.",e:"Не правда, а ложь (противопоставление)."},
                     {q:"(Не)взрачный",o:["Слитно","Раздельно","Через дефис","В кавычках"],a:0,h1:"Без НЕ не бывает.",h2:"Пишем слитно.",e:"Невзрачный (нет слова 'взрачный')."},
-                    {q:"(Не)плохой",o:["Слитно","Раздельно","Через дефис","В кавычках"],a:0,h1:"Можно заменить синонимом.",h2:"Пишем слитно.",e:"Неплохой = хороший (слитно)."},
+                    {q:"(Не)плохой",o:["Слитно","Раздельно","Через дефис","В кавычках"],a:0,h1:"Можно заменить: хороший.",h2:"Пишем слитно.",e:"Неплохой = хороший (слитно)."},
                     {q:"Вовсе (не)друг",o:["Раздельно","Слитно","Через дефис","В кавычках"],a:0,h1:"Слово 'вовсе не'.",h2:"Пишем раздельно.",e:"Раздельно из-за слова 'вовсе не'."},
                     {q:"(Не)друг, а враг",o:["Раздельно","Слитно","Через дефис","В кавычках"],a:0,h1:"Есть союз А.",h2:"Пишем раздельно.",e:"Противопоставление с А."},
                     {q:"(Не)настье",o:["Слитно","Раздельно","Через дефис","В кавычках"],a:0,h1:"Без НЕ не бывает.",h2:"Пишем слитно.",e:"Ненастье (нет слова 'настье')."},
@@ -715,13 +688,18 @@
         }
     };
 
-    let currentUser = { name: "", xp: 0, ownedPacks: [], activePack: 'pack_default', features: [], catsClicked: 0, promoUsed: false };
+    let currentUser = { name: "", xp: 0, ownedPacks: [], activePack: 'pack_default', features: [], catsClicked: 0 };
     let currentTopicId = ""; let currentGradeId = ""; let currentQuestionIndex = 0;
     let scoreCorrect = 0; let scoreWrong = 0;
     let currentStreak = 0; let streakTimeout = null;
 
+    // ГЕНЕРАТОР КОТОВ
+    function getRandomCatUrl() {
+        return `https://loremflickr.com/400/400/cat?lock=${Math.floor(Math.random() * 100000)}`;
+    }
+
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV10.1_Cats');
+        const saved = localStorage.getItem('superQuizV10_Encyclopedia');
         if (saved) { 
             currentUser = Object.assign(currentUser, JSON.parse(saved)); 
             if(!currentUser.ownedPacks.includes('pack_default')) currentUser.ownedPacks.push('pack_default');
@@ -736,8 +714,8 @@
         playSound('correct'); currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV10.1_Cats'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV10.1_Cats', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV10_Encyclopedia'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV10_Encyclopedia', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
@@ -753,38 +731,16 @@
         });
     }
 
-    // === ПРОМОКОДЫ ===
-    function openPromoCode() {
-        playSound('correct');
-        const code = prompt("🎁 Введи промокод:");
-        if (code === "67") {
-            if (!currentUser.promoUsed) {
-                currentUser.xp += 10000;
-                currentUser.promoUsed = true;
-                saveData();
-                showMenu();
-                playSound('win');
-                confetti({ particleCount: 200, spread: 120 });
-                alert("🎉 ПРОМОКОД АКТИВИРОВАН!\nТебе начислено +10 000 XP! 🚀");
-            } else {
-                alert("⚠️ Ты уже активировал этот промокод!");
-            }
-        } else if (code !== null && code.trim() !== "") {
-            playSound('wrong');
-            alert("❌ Неверный промокод!");
-        }
-    }
-
     // === КЛИКЕР ===
     function openClicker() {
         playSound('correct'); hideAll(); document.getElementById("clicker-container").style.display = "block";
         document.getElementById("clicker-count").innerText = currentUser.catsClicked;
-        document.getElementById("clicker-img").src = getRandomCat();
+        document.getElementById("clicker-img").src = getRandomCatUrl();
     }
     function doCatClick(e) {
         playSound('pop'); currentUser.catsClicked++;
         document.getElementById("clicker-count").innerText = currentUser.catsClicked;
-        document.getElementById("clicker-img").src = getRandomCat();
+        document.getElementById("clicker-img").src = getRandomCatUrl();
         const words = ['ВАЙБ!', 'МЯУ!', 'ИМБА!', '+АУРА', 'СИГМА', 'ЧИНАЗЕС!'];
         const word = words[Math.floor(Math.random() * words.length)];
         const el = document.createElement('div'); el.className = 'click-word'; el.innerText = word;
@@ -925,7 +881,7 @@
         const activePackData = shopItems.find(p => p.id === currentUser.activePack && p.type === 'pack') || shopItems[1];
         const randomText = activePackData.texts[Math.floor(Math.random() * activePackData.texts.length)];
         
-        img.src = getRandomCat();
+        img.src = getRandomCatUrl();
         textOverlay.innerText = randomText; textOverlay.style.color = activePackData.color;
         
         popup.style.display = "block";
