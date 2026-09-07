@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V10.5 - Реальные Коты с Защитой 🐱</title>
+    <title>Тренажёр | V11.0 - Ачивки и Вечные Коты 🏆</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #2c3e50; margin: 0; padding: 20px; user-select: none; }
@@ -29,6 +29,7 @@
         .action-buttons { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 15px; }
         .btn-rulebook { background-color: #9b59b6; color: white; flex: 1;}
         .btn-shop { background-color: #e67e22; color: white; flex: 1;}
+        .btn-achievements { background-color: #f39c12; color: white; width: 100%; padding: 12px; margin-bottom: 15px; font-size: 16px;}
         .btn-promo { background-color: #27ae60; color: white; width: 100%; padding: 14px; margin-bottom: 20px; font-size: 16px;}
         .btn-promo:hover { background-color: #219653; transform: translateY(-2px); }
         
@@ -48,19 +49,19 @@
         .rule-card { background: #f9fbfd; padding: 20px; border-left: 6px solid #3498db; border-radius: 8px; margin-bottom: 15px; font-size: 15px; line-height: 1.6; }
         .rule-card h3 { color: #2980b9; text-align: left; margin-top: 0;}
         
-        /* Магазин */
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .pack-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; position: relative;}
-        .pack-name { font-weight: bold; font-size: 22px; color: #2c3e50; margin-bottom: 10px;}
+        /* Магазин и Ачивки */
+        .shop-grid, .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .pack-item, .ach-item { border: 3px solid #bdc3c7; border-radius: 16px; padding: 20px; text-align: center; background: #fff; position: relative;}
+        .pack-name, .ach-name { font-weight: bold; font-size: 20px; color: #2c3e50; margin-bottom: 10px;}
         .mystery-cats { display: flex; justify-content: center; gap: 5px; margin: 15px 0; flex-wrap: wrap;}
         .mystery-cat { width: 45px; height: 45px; background: #34495e; color: #f1c40f; font-size: 20px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-weight: bold; animation: pulse 2s infinite;}
-        .btn-buy { background: #2ecc71; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer;}
+        .btn-buy, .btn-claim { background: #2ecc71; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer;}
         .btn-equip { background: #3498db; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer;}
-        .pack-item.active-pack { border-color: #f39c12; background: #fffdf5; }
+        .pack-item.active-pack, .ach-item.completed { border-color: #27ae60; background: #e8f8f5; }
         .feature-item { border: 3px dashed #8e44ad; background: #fdf7fe; }
         
         /* Квиз */
-        .quiz-container, #menu-container, #rulebook-container, #shop-container, #clicker-container { display: none; }
+        .quiz-container, #menu-container, #rulebook-container, #shop-container, #clicker-container, #achievements-container { display: none; }
         .quiz-header-wrapper { padding-top: 40px; margin-bottom: 20px; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px;}
         .topic-title { margin: 0 0 10px 0; font-size: 20px; text-align: left; color: #2980b9;}
         .live-score-board { display: flex; justify-content: space-between; align-items: center; background: #f8f9f9; padding: 10px 15px; border-radius: 8px; border: 1px solid #bdc3c7;}
@@ -90,16 +91,16 @@
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: #e8f8f5; border-left: 5px solid #1abc9c; border-radius: 8px; }
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 50; text-shadow: 1px 1px 0 #fff;}
 
-        /* ПОПАП СТРАЙКА */
+        /* ПОПАП СТРАЙКА (Надежные векторные SVG-коты без блокировок) */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.6); text-align: center; z-index: 1000; border: 5px solid #f39c12; width: 85%; max-width: 350px; animation: popPulse 0.5s ease-out; }
         .streak-title { color: #f39c12; margin: 0 0 10px 0; font-size: 30px; text-transform: uppercase; animation: popPulse 1s infinite; text-shadow: 2px 2px 0px #000;}
         .meme-generator { position: relative; display: inline-block; width: 100%; }
-        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; width: 100%; aspect-ratio: 1/1; object-fit: cover;}
+        .meme-generator img { max-width: 100%; border-radius: 12px; border: 3px dashed #e67e22; width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #ffeaa7;}
         .meme-text { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-family: 'Impact', sans-serif; font-size: 32px; color: white; text-transform: uppercase; -webkit-text-stroke: 1.5px black; text-shadow: 2px 2px 0 #000; width: 90%; line-height: 1.1; }
 
         /* КЛИКЕР */
         .clicker-box { text-align: center; margin-top: 30px; position: relative;}
-        .clicker-img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid #8e44ad; cursor: pointer; transition: 0.1s; box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4); user-select: none;}
+        .clicker-img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 8px solid #8e44ad; cursor: pointer; transition: 0.1s; box-shadow: 0 10px 30px rgba(142, 68, 173, 0.4); user-select: none; background: #ffeaa7;}
         .clicker-img:active { transform: scale(0.95); }
         .click-stats { font-size: 24px; font-weight: bold; color: #8e44ad; margin-bottom: 20px;}
         .click-word { position: absolute; font-family: 'Impact', sans-serif; color: #fff; font-size: 30px; -webkit-text-stroke: 1px black; pointer-events: none; animation: floatUp 1s forwards;}
@@ -139,6 +140,7 @@
         </div>
 
         <button class="btn btn-promo" onclick="openPromoCode()">🎁 Ввести промокод</button>
+        <button class="btn btn-achievements" onclick="openAchievements()">🏆 Достижения и Награды</button>
 
         <div class="action-buttons">
             <button class="btn btn-rulebook" onclick="openRulebook()">📖 Справочник Правил</button>
@@ -153,6 +155,14 @@
         <div style="text-align: center; margin-top: 30px;">
             <button class="btn" style="background: #e74c3c; color: white; padding: 12px; width: 100%; max-width: 300px;" onclick="logout()">Сменить профиль</button>
         </div>
+    </div>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <div id="achievements-container" class="fade-in">
+        <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
+        <h2 style="margin-top: 40px; color: #f39c12;">🏆 Достижения Академии</h2>
+        <p style="text-align: center; color: #7f8c8d; margin-bottom: 20px;">Выполняй задания и забирай бонусный XP!</p>
+        <div id="ach-grid" class="ach-grid"></div>
     </div>
 
     <!-- МАГАЗИН -->
@@ -228,7 +238,7 @@
         <p style="text-align: center; color: #7f8c8d;">Здесь можно бесконечно тискать рандомных котов. Кликай по коту!</p>
         <div class="clicker-box">
             <div class="click-stats">Поглажено котов: <span id="clicker-count">0</span></div>
-            <img id="clicker-img" class="clicker-img" src="" onclick="doCatClick(event)" onerror="this.src='https://placecats.com/millie/400/400'">
+            <img id="clicker-img" class="clicker-img" src="" onclick="doCatClick(event)">
         </div>
     </div>
 
@@ -259,11 +269,11 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (С защитой от сбоев и авто-заменой) -->
+    <!-- ПОПАП СТРАЙКА (Надёжные SVG-коты без внешних блокировок) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title" id="streak-title-text">🔥 СТРАЙК! 🔥</h3>
         <div class="meme-generator">
-            <img id="streak-cat-img" src="" alt="Реальный кот" onerror="this.src='https://placecats.com/neo/400/400'">
+            <img id="streak-cat-img" src="" alt="Кот">
             <div id="streak-cat-text" class="meme-text"></div>
         </div>
     </div>
@@ -278,20 +288,15 @@
 </div>
 
 <script>
-    // === НАСТОЯЩИЕ КОТЫ С НЕСКОЛЬКИМИ СЕРВЕРАМИ-ДУБЛЁРАМИ ===
-    const catPools = [
-        "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=500&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=500&auto=format&fit=crop&q=80",
-        "https://placecats.com/millie/400/400",
-        "https://placecats.com/neo/400/400",
-        "https://placecats.com/bella/400/400",
-        "https://placecats.com/poppy/400/400",
-        "https://cataas.com/cat"
+    // === ЖЕЛЕЗОБЕТОННЫЕ SVG-КОТЫ (ЗАЩИТА ОТ БЛОКИРОВОК НА 100%) ===
+    const vectorCats = [
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23ff9f43'/><polygon points='40,70 20,20 80,50' fill='%23ff9f43'/><polygon points='160,70 180,20 120,50' fill='%23ff9f43'/><circle cx='100' cy='110' r='60' fill='%23ff9f43'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff6b6b'/><path d='M90,135 Q100,145 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>",
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%2354a0ff'/><polygon points='40,70 20,20 80,50' fill='%2354a0ff'/><polygon points='160,70 180,20 120,50' fill='%2354a0ff'/><circle cx='100' cy='110' r='60' fill='%2354a0ff'/><circle cx='80' cy='100' r='8' fill='%23fff'/><circle cx='120' cy='100' r='8' fill='%23fff'/><circle cx='80' cy='100' r='4' fill='%23000'/><circle cx='120' cy='100' r='4' fill='%23000'/><polygon points='100,115 90,125 110,125' fill='%23ff6b6b'/><path d='M90,135 Q100,145 110,135' stroke='%23fff' stroke-width='4' fill='none'/></svg>",
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23ee5253'/><polygon points='40,70 20,20 80,50' fill='%23ee5253'/><polygon points='160,70 180,20 120,50' fill='%23ee5253'/><circle cx='100' cy='110' r='60' fill='%23ee5253'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff9f43'/><path d='M90,135 Q100,125 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>",
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%2310ac84'/><polygon points='40,70 20,20 80,50' fill='%2310ac84'/><polygon points='160,70 180,20 120,50' fill='%2310ac84'/><circle cx='100' cy='110' r='60' fill='%2310ac84'/><circle cx='80' cy='100' r='8' fill='%23fff'/><circle cx='120' cy='100' r='8' fill='%23fff'/><circle cx='80' cy='100' r='4' fill='%23222'/><circle cx='120' cy='100' r='4' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23ff9f43'/><path d='M90,135 Q100,145 110,135' stroke='%23fff' stroke-width='4' fill='none'/></svg>",
+        "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' width='100%' height='100%'><rect width='200' height='200' fill='%23f368e0'/><polygon points='40,70 20,20 80,50' fill='%23f368e0'/><polygon points='160,70 180,20 120,50' fill='%23f368e0'/><circle cx='100' cy='110' r='60' fill='%23f368e0'/><circle cx='80' cy='100' r='8' fill='%23222'/><circle cx='120' cy='100' r='8' fill='%23222'/><polygon points='100,115 90,125 110,125' fill='%23fff'/><path d='M90,135 Q100,145 110,135' stroke='%23222' stroke-width='4' fill='none'/></svg>"
     ];
-    function getRandomCat() { 
-        return catPools[Math.floor(Math.random() * catPools.length)] + "&t=" + Date.now(); 
-    }
+    function getRandomCat() { return vectorCats[Math.floor(Math.random() * vectorCats.length)]; }
 
     // === АУДИО ===
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -324,6 +329,14 @@
         { type: 'pack', id: 'pack_default', name: 'Базовый Пак', price: 0, count: 1, texts: ['🔥 ХОРОШ! 🔥', '🐾 МЯУ! 🐾'], color: 'white' },
         { type: 'pack', id: 'pack_sigma', name: 'Сигма Пак', price: 300, count: 3, texts: ['🗿 СИГМА! 🗿', '🔥 БАЗА! 🔥', '💪 ГИГАЧАД! 💪'], color: '#f1c40f' },
         { type: 'pack', id: 'pack_crazy', name: 'Крейзи Пак', price: 600, count: 4, texts: ['💸 ЧИНАЗЕС! 💸', '🚀 ИМБА! 🚀', '💥 РАЗРЫВ! 💥', '🏆 СЮДААА! 🏆'], color: '#ff6b6b' }
+    ];
+
+    // === СИСТЕМА ДОСТИЖЕНИЙ (АЧИВКИ) ===
+    const achievementsData = [
+        { id: 'ach_1', name: '👶 Первый шаг', desc: 'Пройди хотя бы 1 любой тест', reward: 150, check: (u) => u.testsPassed >= 1 },
+        { id: 'ach_2', name: '🧠 Знаток правил', desc: 'Пройди 5 разных тестов', reward: 500, check: (u) => u.testsPassed >= 5 },
+        { id: 'ach_3', name: '🐾 Котоман', desc: 'Погладь 25 котов в кликере', reward: 400, check: (u) => u.catsClicked >= 25 },
+        { id: 'ach_4', name: '💰 Богатей', desc: 'Накопи 2000 XP на балансе', reward: 1000, check: (u) => u.xp >= 2000 }
     ];
 
     // === БАЗА ТЕСТОВ (30 ТЕМ * 10 ВОПРОСОВ) ===
@@ -661,7 +674,7 @@
                     {q:"ПР..ЕХАТЬ",o:["и","е","а","я"],a:0,h1:"Приближение.",h2:"Движение к объекту.",e:"Приехать." },
                     {q:"ПР..СКВЕРНЫЙ",o:["е","и","а","я"],a:0,h1:"ОЧЕНЬ.",h2:"Очень скверный.",e:"Прескверный." },
                     {q:"ПР..ГОРЕТЬ",o:["и","е","а","я"],a:0,h1:"Слегка.",h2:"Неполное действие.",e:"Пригореть." },
-                    {q:"ПР..ОДОЛЕТЬ",o:["е","и","а","я"],a:0,h1:"ПЕРЕступить.",h2:"Смысл приставки ПЕРЕ-.",e:"Преодолеть." }
+                    {q:"ПР..ОДОЛЕТЬ",o:["и","е","а","я"],a:0,h1:"ПЕРЕступить.",h2:"Смысл приставки ПЕРЕ-.",e:"Преодолеть." }
                 ]},
                 t3: { title: "3. Спряжения глаголов", qs: [
                     {q:"Они стро..т",o:["я","ю","и","е"],a:0,h1:"На -ИТЬ.",h2:"II спр.",e:"Строить -> строЯТ." },
@@ -694,7 +707,7 @@
                     {q:"Слово с ошибкой:",o:["Кто либо","Никого","Не к кому","Кое с кем"],a:0,h1:"-либо.",h2:"Нужен дефис.",e:"Кто-либо (нужен дефис)." },
                     {q:"Кого(то)",o:["Через дефис","Слитно","Раздельно","В кавычках"],a:0,h1:"Суффикс -то.",h2:"Пишем через дефис.",e:"Кого-то." },
                     {q:"(Ни)какой",o:["Слитно","Через дефис","Раздельно","В три слова"],a:0,h1:"Нет предлога.",h2:"Пишем слитно.",e:"Никакой." },
-                    {q:"(Ни)чего",o:["Слитно","Через дефис","Раздельно","В три слова"],a:0,h1:"Нет предлога.",h2:"Пишем слитно.",e:"Ничего." },
+                    {q:"(Ни)чего",o:["Слитно","Раздельно","Раздельно","В три слова"],a:0,h1:"Нет предлога.",h2:"Пишем слитно.",e:"Ничего." },
                     {q:"(Кое)у(кого)",o:["В три слова","Через дефис","Слитно","В два слова"],a:0,h1:"Есть предлог 'у'.",h2:"Пишем раздельно.",e:"Кое у кого (в три слова)." },
                     {q:"(Не)кто",o:["Слитно","Через дефис","Раздельно","В три слова"],a:0,h1:"Нет предлога.",h2:"Пишем слитно.",e:"Некто." },
                     {q:"Куда(либо)",o:["Через дефис","Слитно","Раздельно","В кавычках"],a:0,h1:"Суффикс -либо.",h2:"Пишем через дефис.",e:"Куда-либо." }
@@ -715,16 +728,18 @@
         }
     };
 
-    let currentUser = { name: "", xp: 0, ownedPacks: [], activePack: 'pack_default', features: [], catsClicked: 0, promoUsed: false };
+    let currentUser = { name: "", xp: 0, ownedPacks: [], activePack: 'pack_default', features: [], catsClicked: 0, promoUsed: false, testsPassed: 0, claimedAchievements: [] };
     let currentTopicId = ""; let currentGradeId = ""; let currentQuestionIndex = 0;
     let scoreCorrect = 0; let scoreWrong = 0;
     let currentStreak = 0; let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV10.3_RealCats');
+        const saved = localStorage.getItem('superQuizV10.5_SafeCats');
         if (saved) { 
             currentUser = Object.assign(currentUser, JSON.parse(saved)); 
             if(!currentUser.ownedPacks.includes('pack_default')) currentUser.ownedPacks.push('pack_default');
+            if(!currentUser.testsPassed) currentUser.testsPassed = 0;
+            if(!currentUser.claimedAchievements) currentUser.claimedAchievements = [];
             showMenu(); 
         } 
         else { document.getElementById("login-container").style.display = "block"; }
@@ -736,8 +751,8 @@
         playSound('correct'); currentUser.name = name; saveData(); showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV10.3_RealCats'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV10.3_RealCats', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV10.5_SafeCats'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV10.5_SafeCats', JSON.stringify(currentUser)); }
 
     function showMenu() {
         hideAll(); document.getElementById("menu-container").style.display = "block";
@@ -748,7 +763,7 @@
     }
 
     function hideAll() {
-        ['login-container', 'menu-container', 'rulebook-container', 'quiz-container', 'result-container', 'shop-container', 'clicker-container'].forEach(id => {
+        ['login-container', 'menu-container', 'rulebook-container', 'quiz-container', 'result-container', 'shop-container', 'clicker-container', 'achievements-container'].forEach(id => {
             document.getElementById(id).style.display = 'none';
         });
     }
@@ -773,6 +788,41 @@
             playSound('wrong');
             alert("❌ Неверный промокод!");
         }
+    }
+
+    // === ДОСТИЖЕНИЯ ===
+    function openAchievements() {
+        playSound('correct'); hideAll(); document.getElementById("achievements-container").style.display = "block";
+        renderAchievements();
+    }
+    function renderAchievements() {
+        const grid = document.getElementById("ach-grid"); grid.innerHTML = "";
+        achievementsData.forEach(ach => {
+            const isCompleted = ach.check(currentUser);
+            const isClaimed = currentUser.claimedAchievements.includes(ach.id);
+            const div = document.createElement("div");
+            div.className = "ach-item" + (isClaimed ? " completed" : "");
+            
+            let btnHtml = "";
+            if (isClaimed) {
+                btnHtml = `<button class="btn-equip" disabled style="background:#95a5a6;">✅ Награда получена</button>`;
+            } else if (isCompleted) {
+                btnHtml = `<button class="btn-claim" onclick="claimAchievement('${ach.id}', ${ach.reward})">Забрать +${ach.reward} XP</button>`;
+            } else {
+                btnHtml = `<button class="btn-equip" disabled style="background:#bdc3c7;">🔒 Выполняется</button>`;
+            }
+
+            div.innerHTML = `<div class="ach-name">${ach.name}</div><p style="font-size:14px; color:#7f8c8d;">${ach.desc}</p><div style="font-weight:bold; color:#f39c12; margin-bottom:10px;">Награда: ${ach.reward} XP</div>${btnHtml}`;
+            grid.appendChild(div);
+        });
+    }
+    function claimAchievement(id, reward) {
+        playSound('win');
+        currentUser.xp += reward;
+        currentUser.claimedAchievements.push(id);
+        saveData();
+        renderAchievements();
+        confetti({ particleCount: 100, spread: 70 });
     }
 
     // === КЛИКЕР ===
@@ -945,7 +995,10 @@
         const percent = (scoreCorrect / total) * 100;
         let xpGained = scoreCorrect * 20; if (percent === 100) xpGained += 50; 
         
-        currentUser.xp += xpGained; saveData();
+        currentUser.xp += xpGained; 
+        currentUser.testsPassed = (currentUser.testsPassed || 0) + 1;
+        saveData();
+        
         document.getElementById("earned-xp").innerText = xpGained;
         
         if (percent === 100) {
