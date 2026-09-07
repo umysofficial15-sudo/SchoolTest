@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Тренажёр | V11.4 - Статистика и Входы 📊</title>
+    <title>Тренажёр | V11.5 - Метрика и Аналитика 📊</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112359013', 'ym');
+
+        ym(112359013, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112359013" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <style>
         :root {
             --bg-color: #f0f4f8;
@@ -119,7 +134,7 @@
         .explanation { display: none; margin-top: 20px; padding: 16px; background-color: var(--card-bg); border-left: 5px solid #1abc9c; border-radius: 8px; }
         .floating-xp { position: absolute; color: #f39c12; font-weight: bold; font-size: 24px; animation: floatUp 1s ease-out forwards; pointer-events: none; z-index: 50; text-shadow: 1px 1px 0 #000;}
 
-        /* ПОПАП СТРАЙКА */
+        /* ПОПАП СТРАЙКА (ЭПИЧЕСКИЙ НЕОНОВЫЙ АРКАДНЫЙ БЭДЖ БЕЗ КАРТИНОК) */
         .streak-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--container-bg); padding: 30px; border-radius: 20px; box-shadow: 0 10px 60px rgba(0,0,0,0.8); text-align: center; z-index: 1000; border: 4px solid #f1c40f; width: 85%; max-width: 340px; animation: popPulse 0.4s ease-out; color: var(--text-color);}
         .streak-title { color: #f1c40f; margin: 0 0 15px 0; font-size: 32px; text-transform: uppercase; text-shadow: 0 0 15px rgba(241,196,15,0.8); letter-spacing: 2px;}
         .arcade-badge { background: linear-gradient(135deg, #8e44ad, #3498db); border-radius: 16px; padding: 25px 15px; border: 3px solid #fff; box-shadow: inset 0 0 20px rgba(0,0,0,0.4); margin-bottom: 15px; position: relative; overflow: hidden;}
@@ -133,10 +148,6 @@
         .clicker-img:active { transform: scale(0.92); }
         .click-stats { font-size: 24px; font-weight: bold; color: #8e44ad; margin-bottom: 20px;}
         .click-word { position: absolute; font-family: 'Impact', sans-serif; color: #f1c40f; font-size: 30px; -webkit-text-stroke: 1px black; pointer-events: none; animation: floatUp 1s forwards; z-index: 50;}
-
-        /* ГЛОБАЛЬНАЯ СТАТИСТИКА */
-        .global-stats { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px dashed var(--btn-border); }
-        .global-stats p { color: var(--text-color); font-size: 14px; font-weight: bold; margin-bottom: 10px; opacity: 0.8;}
 
         @media (max-width: 768px) {
             body { padding: 0; }
@@ -191,12 +202,6 @@
 
         <div style="text-align: center; margin-top: 30px;">
             <button class="btn" style="background: #e74c3c; color: white; padding: 12px; width: 100%; max-width: 300px;" onclick="logout()">Сменить профиль</button>
-        </div>
-
-        <!-- Глобальный счетчик (бесплатный API без VPN) -->
-        <div class="global-stats">
-            <p>🌍 Всего просмотров сайта в мире:</p>
-            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fumysofficial15-sudo.github.io%2FSchoolTest&count_bg=%238E44AD&title_bg=%232C3E50&title=%D0%9F%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B9&edge_flat=false" alt="Счетчик">
         </div>
     </div>
 
@@ -301,7 +306,7 @@
         <button id="next-btn" class="btn next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
     </div>
 
-    <!-- ПОПАП СТРАЙКА (АРКАДНЫЙ БЭДЖ БЕЗ КАРТИНОК) -->
+    <!-- ПОПАП СТРАЙКА (ТЕПЕРЬ НА СТРОГО 5 ВОПРОСЕ) -->
     <div id="streak-popup" class="streak-popup">
         <h3 class="streak-title">🔥 СТРАЙК! 🔥</h3>
         <div class="arcade-badge">
@@ -320,7 +325,7 @@
     </div>
 </div>
 
-<!-- БЕСКОНЕЧНЫЙ КЛИКЕР ПЕРЕНЕСЕН ВНИЗ ДЛЯ СТРУКТУРЫ -->
+<!-- БЕСКОНЕЧНЫЙ КЛИКЕР -->
 <div id="clicker-container" class="container fade-in" style="display:none; max-width: 900px; margin: 0 auto; padding: 30px; text-align: center;">
     <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
     <h2 style="margin-top: 40px; color: #8e44ad;">Тайная Комната 😻</h2>
@@ -497,7 +502,7 @@
                     {q:"ПАС..АЖИР",o:["с","сс","з","зз"],a:1,h1:"Транспорт.",h2:"Две С.",e:"Пассажир."},
                     {q:"ИЛ..ЮСТРАЦИЯ",o:["л","лл","ль","лль"],a:1,h1:"Картинка.",h2:"Две Л.",e:"Иллюстрация."},
                     {q:"ТЕН..ИС",o:["н","нн","м","мм"],a:1,h1:"Спорт.",h2:"Две Н.",e:"Теннис."},
-                    {q:"⭐ МЕГА-ВОПРОС: В каком слове допущена ошибка в удвоенной согласной?",o:["Килограмм","Аллея","Коллектив","Программа","Троллейбус","Милион (ошибка: миллион)","Пассажир","Хоккей","Касса","Группа"],a:5,h1:"Слово миллион пишется иначе.",h2:"Милион пишется с двумя л.",e:"Милион — правильно миллион."}
+                    {q:"⭐ МЕГА-ВОПРОС: В каком слове допущена ошибка в удвоенной согласной?",o:["Килограмм","Аллея","Коллектив","Программа","Троллейбус","Милион","Пассажир","Хоккей","Касса","Группа"],a:5,h1:"Слово миллион пишется иначе.",h2:"Милион пишется с двумя л.",e:"Милион — правильно миллион."}
                 ]},
                 t3: { title: "3. Разделительный Ь", qs: [
                     {q:"В..ЮГА",o:["ъ","ь","нет","и"],a:1,h1:"В корне.",h2:"Ь знак.",e:"В корне Ь."},
@@ -810,7 +815,7 @@
     let currentStreak = 0; let streakTimeout = null;
 
     window.onload = () => {
-        const saved = localStorage.getItem('superQuizV11.4_Global');
+        const saved = localStorage.getItem('superQuizV11.5_Metrika');
         if (saved) { 
             currentUser = Object.assign(currentUser, JSON.parse(saved)); 
             if(!currentUser.ownedPacks.includes('pack_default')) currentUser.ownedPacks.push('pack_default');
@@ -818,8 +823,11 @@
             if(!currentUser.claimedAchievements) currentUser.claimedAchievements = [];
             if(!currentUser.visits) currentUser.visits = 0;
             
-            // Увеличиваем счетчик заходов в тренажер
-            currentUser.visits += 1;
+            // Если сессия новая (можно добавить проверку, но для простоты увеличиваем при каждом обновлении/входе)
+            if (!sessionStorage.getItem('visited')) {
+                currentUser.visits += 1;
+                sessionStorage.setItem('visited', 'true');
+            }
             saveData();
 
             if(currentUser.theme === 'dark') {
@@ -835,13 +843,14 @@
         if (!name) return;
         playSound('correct'); 
         currentUser.name = name; 
-        currentUser.visits = 1; // первый вход
+        currentUser.visits = 1; 
+        sessionStorage.setItem('visited', 'true');
         saveData(); 
         showMenu();
     }
     
-    function logout() { localStorage.removeItem('superQuizV11.4_Global'); location.reload(); }
-    function saveData() { localStorage.setItem('superQuizV11.4_Global', JSON.stringify(currentUser)); }
+    function logout() { localStorage.removeItem('superQuizV11.5_Metrika'); location.reload(); }
+    function saveData() { localStorage.setItem('superQuizV11.5_Metrika', JSON.stringify(currentUser)); }
 
     function toggleTheme() {
         playSound('correct');
