@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#8e44ad">
-<title>Тренажёр V17 · MEGA ⚡🤖</title>
+<title>Тренажёр V18 · MEGA PRO ⚡🤖</title>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="db.js"></script>
 <script src="db2.js"></script>
 <script type="text/javascript">
-try {(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112359013', 'ym');ym(112359013, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});} catch(e) {}
+try{(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r)return;}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=112359013','ym');ym(112359013,'init',{ssr:true,webvisor:true,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});}catch(e){}
 </script>
 <style>
-:root{--bg1:#e0c3fc;--bg2:#8ec5fc;--bg3:#ff9a9e;--container:rgba(255,255,255,.94);--text:#2c3e50;--cab:#fff;--card:#fdfefe;--btn:#f8f9f9;--btnb:#d5dbdb;--brd:#ecf0f1;--primary:#3498db;--primary2:#2980b9;--accent:#8e44ad;--accent2:#9b59b6;--success:#2ecc71;--danger:#e74c3c;--shadow:0 15px 35px rgba(0,0,0,.1);--radius:16px;}
+:root{--bg1:#e0c3fc;--bg2:#8ec5fc;--bg3:#ff9a9e;--container:rgba(255,255,255,.94);--text:#2c3e50;--cab:#fff;--card:#fdfefe;--btn:#f8f9f9;--btnb:#d5dbdb;--brd:#ecf0f1;--primary:#3498db;--primary2:#2980b9;--accent:#8e44ad;--accent2:#9b59b6;--success:#2ecc71;--danger:#e74c3c;--shadow:0 15px 35px rgba(0,0,0,.1);--radius:16px;--btn-radius:12px;}
 [data-theme="dark"]{--bg1:#1a0b2e;--bg2:#091321;--bg3:#2c0a3e;--container:rgba(25,25,30,.96);--text:#e0e6ed;--cab:#222831;--card:#2c3e50;--btn:#34495e;--btnb:#4a6278;--brd:#34495e;--shadow:0 15px 35px rgba(0,0,0,.5);}
 [data-palette="ocean"]{--primary:#00b894;--primary2:#00957a;--accent:#0984e3;--accent2:#0a6dbf;}
 [data-palette="sunset"]{--primary:#e17055;--primary2:#c2564a;--accent:#fdcb6e;--accent2:#e6a500;}
@@ -20,14 +20,16 @@ try {(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arg
 [data-palette="royal"]{--primary:#9b59b6;--primary2:#732d91;--accent:#8e44ad;--accent2:#663399;}
 [data-palette="crimson"]{--primary:#e74c3c;--primary2:#c0392b;--accent:#ff6b81;--accent2:#c44569;}
 [data-palette="neon"]{--primary:#00ffe5;--primary2:#00c9b7;--accent:#ff00e5;--accent2:#cc00b8;}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(-45deg,var(--bg1),var(--bg2),var(--bg3));background-size:400% 400%;animation:gradBg 18s ease infinite;color:var(--text);margin:0;padding:20px;transition:background .5s,color .5s;font-size:16px;-webkit-tap-highlight-color:transparent;}
+[data-btnstyle="flat"]{--btn-radius:0px;}
+[data-btnstyle="rounded"]{--btn-radius:24px;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(-45deg,var(--bg1),var(--bg2),var(--bg3));background-size:400% 400%;animation:gradBg 18s ease infinite;color:var(--text);margin:0;padding:20px;transition:background .5s,color .5s,font-size .2s;-webkit-tap-highlight-color:transparent;}
 @keyframes gradBg{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 [data-size="small"]{font-size:14px;}[data-size="large"]{font-size:18px;}
 .container{max-width:960px;margin:0 auto;background:var(--container);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:30px;border-radius:24px;box-shadow:var(--shadow);position:relative;}
 h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .fade-in{animation:fadeIn .4s ease-out;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-.btn{padding:13px 22px;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;transition:all .12s;font-family:inherit;color:var(--text);background:var(--btn);border-bottom:4px solid var(--btnb);margin-bottom:4px;}
+.btn{padding:13px 22px;border:none;border-radius:var(--btn-radius);cursor:pointer;font-size:15px;font-weight:700;transition:all .12s;font-family:inherit;color:var(--text);background:var(--btn);border-bottom:4px solid var(--btnb);margin-bottom:4px;}
 .btn:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px);}
 .btn:active:not(:disabled){transform:translateY(3px);border-bottom-width:1px;}
 .btn:disabled{opacity:.55;cursor:not-allowed;}
@@ -56,15 +58,18 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .daily-banner{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:16px 20px;border-radius:var(--radius);margin-bottom:18px;font-weight:700;text-align:center;}
 .daily-banner.done{background:linear-gradient(135deg,#f39c12,#e67e22);}
 .quote-box{background:linear-gradient(135deg,rgba(142,68,173,.1),rgba(52,152,219,.1));border-left:4px solid var(--accent);padding:14px 18px;border-radius:12px;margin-bottom:18px;font-style:italic;text-align:center;font-weight:600;}
+.word-of-day{background:linear-gradient(135deg,#f39c12,#e67e22);color:#fff;padding:14px 18px;border-radius:12px;margin-bottom:18px;text-align:center;}
+.word-of-day b{font-size:20px;display:block;margin-bottom:4px;}
 .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px;}
 .action-grid .btn{margin-bottom:0;width:100%;}
 .search-box{width:100%;padding:13px 18px;border:2px solid var(--btnb);background:var(--btn);color:var(--text);border-radius:12px;margin-bottom:18px;outline:none;font-family:inherit;font-size:15px;box-sizing:border-box;}
 .grade-section{margin-bottom:25px;background:var(--card);border:1px solid var(--brd);border-radius:var(--radius);padding:20px;}
 .grade-title{color:var(--accent);margin-bottom:15px;text-align:left;font-size:22px;border-bottom:2px dashed var(--btnb);padding-bottom:8px;}
 .topics-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
-.topic-btn{padding:14px 18px;background:var(--btn);color:var(--text);border:2px solid var(--brd);border-bottom:4px solid var(--btnb);border-radius:12px;font-size:14px;font-weight:600;text-align:left;cursor:pointer;font-family:inherit;transition:.15s;}
-.topic-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary2);transform:translateY(-2px);}
+.topic-btn{padding:14px 18px;background:var(--btn);color:var(--text);border:2px solid var(--brd);border-bottom:4px solid var(--btnb);border-radius:12px;font-size:14px;font-weight:600;text-align:left;cursor:pointer;font-family:inherit;transition:.15s;position:relative;}
+.topic-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary2);}
 .topic-stat{font-size:11px;opacity:.75;display:block;margin-top:4px;font-weight:500;}
+.fav-star{position:absolute;top:8px;right:10px;font-size:16px;cursor:pointer;}
 .shop-grid,.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
 .pack-item,.ach-item{border:2px solid var(--btnb);border-radius:var(--radius);padding:20px;text-align:center;background:var(--card);}
 .pack-item.active-pack,.ach-item.completed{border-color:var(--success);background:rgba(46,204,113,.08);}
@@ -74,7 +79,7 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .ach-bar{height:8px;background:var(--btn);border-radius:6px;overflow:hidden;margin:10px 0;}
 .ach-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--primary));transition:width .4s;}
 .quiz-header-wrapper{padding-top:30px;margin-bottom:20px;border-bottom:2px solid var(--brd);padding-bottom:12px;}
-.topic-title{margin:0 0 8px 0;font-size:20px;text-align:left;color:var(--primary);}
+.topic-title{margin:0 0 8px;font-size:20px;text-align:left;color:var(--primary);}
 .live-score-board{display:flex;justify-content:space-between;align-items:center;background:var(--btn);padding:10px 18px;border-radius:12px;flex-wrap:wrap;gap:10px;font-weight:700;}
 .streak-indicator{font-weight:800;color:#fff;background:linear-gradient(45deg,var(--accent),var(--accent2));padding:5px 14px;border-radius:20px;display:none;font-size:13px;}
 .timer-indicator{font-weight:800;color:#fff;background:linear-gradient(45deg,var(--danger),#c0392b);padding:5px 14px;border-radius:20px;font-size:13px;}
@@ -94,7 +99,8 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .wrong{background:rgba(231,76,60,.15) !important;border-color:var(--danger) !important;color:var(--danger) !important;}
 .next-btn{display:none;margin-top:20px;width:100%;padding:15px;font-size:16px;}
 .explanation{display:none;margin-top:16px;padding:16px;background:var(--card);border-left:5px solid var(--primary);border-radius:12px;line-height:1.6;border:1px solid var(--brd);}
-.explanation.ai-thinking{border-left-color:var(--accent);background:linear-gradient(90deg,rgba(142,68,173,.06),transparent);}
+.explanation.correct-exp{border-left-color:var(--success);background:linear-gradient(90deg,rgba(46,204,113,.06),transparent);}
+.explanation.wrong-exp{border-left-color:var(--danger);background:linear-gradient(90deg,rgba(231,76,60,.06),transparent);}
 .loading-dots{display:inline-block;animation:blink 1s infinite;}
 @keyframes blink{50%{opacity:.2}}
 .floating-xp{position:fixed;color:#f1c40f;font-weight:900;font-size:24px;animation:floatUp 1s ease-out forwards;pointer-events:none;z-index:50;text-shadow:2px 2px 0 #000;}
@@ -131,33 +137,41 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .certificate{background:linear-gradient(135deg,#fefefe,#f8f9fa);border:8px double #f39c12;padding:30px;border-radius:20px;color:#2c3e50;text-align:center;font-family:Georgia,serif;}
 .certificate h2{color:#d35400;font-size:26px;}
 .certificate .cert-name{font-size:26px;font-weight:900;color:#8e44ad;border-bottom:2px solid #8e44ad;display:inline-block;padding:0 20px 4px;margin:14px 0;}
-.certificate .cert-topic{font-size:18px;margin:12px 0;}
-.certificate .cert-score{font-size:22px;font-weight:800;color:#27ae60;margin:12px 0;}
 .certificate .cert-seal{font-size:50px;margin-top:12px;}
 .stats-row{display:flex;flex-direction:column;padding:10px 14px;background:var(--card);border-radius:10px;margin-bottom:8px;font-weight:600;}
 .stats-bar-wrap{background:var(--btn);border-radius:8px;overflow:hidden;height:10px;margin-top:6px;}
 .stats-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--primary));transition:width .4s;}
 .avatar-picker{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:15px 0;}
-.avatar-opt{font-size:28px;padding:12px;text-align:center;background:var(--btn);border-radius:10px;cursor:pointer;border:2px solid var(--btnb);transition:.15s;}
-.avatar-opt:hover,.avatar-opt.selected{background:var(--primary);transform:scale(1.1);border-color:var(--primary2);}
+.avatar-opt{font-size:28px;padding:12px;text-align:center;background:var(--btn);border-radius:10px;cursor:pointer;border:2px solid var(--btnb);}
+.avatar-opt.selected{background:var(--primary);transform:scale(1.1);}
 .palette-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:15px 0;}
-.palette-dot{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s;}
-.palette-dot:hover{transform:scale(1.15);}
+.palette-dot{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;}
 .palette-dot.selected{border-color:var(--text);transform:scale(1.15);}
 .tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;}
 .tab{padding:9px 16px;background:var(--btn);border:2px solid var(--btnb);color:var(--text);border-radius:10px;font-weight:700;cursor:pointer;font-family:inherit;font-size:13px;}
 .tab.active{background:var(--accent);color:#fff;border-color:var(--accent2);}
 .global-stats{text-align:center;margin-top:30px;padding-top:20px;border-top:2px dashed var(--btnb);}
-.global-stats p{font-size:13px;font-weight:800;margin-bottom:10px;opacity:.65;text-transform:uppercase;letter-spacing:1px;}
 .scores-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:14px;}
 .scores-table th,.scores-table td{padding:11px;text-align:left;border-bottom:1px solid var(--brd);}
 .scores-table th{background:var(--btn);font-weight:800;}
-/* НОВЫЕ ФИЧИ */
-.battle-box{background:var(--card);border:2px solid var(--danger);border-radius:16px;padding:20px;text-align:center;margin:15px 0;}
-.battle-hp{height:20px;background:var(--btn);border-radius:10px;overflow:hidden;margin:10px 0;position:relative;}
-.battle-hp-fill{height:100%;transition:width .3s;background:linear-gradient(90deg,#e74c3c,#c0392b);}
+/* ИИ-РАЗБОР */
+.ai-review-box{background:linear-gradient(135deg,rgba(142,68,173,.08),rgba(52,152,219,.08));border:2px solid var(--accent);border-radius:14px;padding:18px;margin-top:15px;text-align:left;line-height:1.6;font-size:14px;}
+.ai-review-box h4{color:var(--accent);text-align:left;margin-bottom:10px;font-size:16px;}
+.wrong-item{background:var(--card);border-left:3px solid var(--danger);padding:10px 14px;border-radius:8px;margin-bottom:10px;font-size:13px;}
+.wrong-item b{color:var(--danger);}
+.ai-analysis{background:rgba(142,68,173,.08);border-left:3px solid var(--accent);padding:12px 14px;border-radius:8px;margin-top:10px;font-size:13px;line-height:1.5;}
+/* ГРАФИК */
+.xp-chart{background:var(--card);border-radius:12px;padding:15px;margin-top:15px;}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:150px;padding:10px 0;}
+.chart-bar{flex:1;background:linear-gradient(180deg,var(--accent),var(--primary));border-radius:6px 6px 0 0;min-height:4px;position:relative;transition:height .4s;}
+.chart-bar-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:10px;opacity:.7;white-space:nowrap;}
+/* СУНДУК */
+.chest-box{text-align:center;padding:30px;background:var(--card);border-radius:20px;border:3px dashed #f39c12;margin-top:20px;}
+.chest{font-size:100px;cursor:pointer;transition:.2s;display:inline-block;}
+.chest:hover{transform:scale(1.1) rotate(-5deg);}
+.chest.opened{animation:chestOpen 1s ease-out;}
+@keyframes chestOpen{0%{transform:scale(1)}50%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1)}}
 .mission-item{display:flex;align-items:center;gap:12px;background:var(--card);padding:12px 16px;border-radius:12px;margin-bottom:10px;border-left:4px solid var(--primary);}
-.mission-check{font-size:24px;}
 .mission-done{opacity:.5;text-decoration:line-through;}
 .league-badge{display:inline-block;padding:6px 14px;border-radius:14px;font-weight:800;color:#fff;font-size:14px;}
 .league-bronze{background:linear-gradient(45deg,#cd7f32,#8b4513);}
@@ -165,24 +179,29 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 .league-gold{background:linear-gradient(45deg,#ffd700,#daa520);}
 .league-platinum{background:linear-gradient(45deg,#00d2ff,#3a7bd5);}
 .league-diamond{background:linear-gradient(45deg,#b9f2ff,#00bcd4);}
-.quest-timer{font-size:13px;color:var(--danger);font-weight:800;}
-.voice-btn{background:linear-gradient(45deg,#ff6b81,#e74c3c);color:#fff;}
-.tag{display:inline-block;padding:3px 8px;background:var(--btn);border-radius:8px;font-size:11px;font-weight:700;margin:2px;}
+/* ПРЕСЕТЫ ИИ */
+.ai-presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.ai-preset{padding:8px 12px;background:var(--btn);border:1px solid var(--btnb);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;color:var(--text);}
+.ai-preset:hover{background:var(--primary);color:#fff;}
+.pomodoro-box{text-align:center;padding:30px;}
+.pomodoro-time{font-size:70px;font-weight:900;color:var(--accent);margin:20px 0;font-family:'Courier New',monospace;}
 @media(max-width:768px){body{padding:0;font-size:15px;}.container{border-radius:0;padding:20px 14px;min-height:100vh;}.options{grid-template-columns:1fr;}.avatar-picker{grid-template-columns:repeat(5,1fr);}}
 </style>
 </head>
 <body>
 
 <div class="container fade-in">
+<!-- ЛОГИН -->
 <div id="login-container" class="login-screen">
 <h1 style="font-size:34px;margin-bottom:6px;">🎓 Тренажёр 1-11 Класс</h1>
-<div style="margin:8px 0;"><span class="level-badge" style="font-size:13px;padding:6px 14px;">🚀 V17 MEGA · 40+ фишек</span></div>
-<p style="font-size:16px;color:#7f8c8d;margin:18px 0 24px;">Введи никнейм, чтобы начать:</p>
-<input type="text" id="username-input" class="name-input" placeholder="Твой крутой ник..." maxlength="15"><br>
-<button class="btn btn-p" style="width:100%;max-width:300px;padding:16px;font-size:17px;" onclick="login()">🚀 Начать игру</button>
-<p style="margin-top:20px;font-size:12px;opacity:.6;">Работает на ИИ · Оптимизировано для телефона</p>
+<div style="margin:8px 0;"><span class="level-badge" style="font-size:13px;padding:6px 14px;">🚀 V18 PRO · Мгновенные ответы + ИИ в конце</span></div>
+<p style="font-size:16px;color:#7f8c8d;margin:18px 0 24px;">Введи никнейм:</p>
+<input type="text" id="username-input" class="name-input" placeholder="Твой ник..." maxlength="15"><br>
+<button class="btn btn-p" style="width:100%;max-width:300px;padding:16px;font-size:17px;" onclick="login()">🚀 Начать</button>
+<p style="margin-top:20px;font-size:12px;opacity:.6;">Работает на ИИ · Все ответы мгновенные</p>
 </div>
 
+<!-- МЕНЮ -->
 <div id="menu-container" class="fade-in" style="display:none;">
 <div class="cabinet">
 <div class="cab-header">
@@ -197,17 +216,18 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 </div>
 <div style="text-align:center;">
 <div class="xp-badge">⭐ <span id="display-xp">0</span> XP</div>
-<div style="font-size:12px;font-weight:800;margin-top:6px;">Уровень <span id="display-level">1</span>/50</div>
+<div style="font-size:12px;font-weight:800;margin-top:6px;">Ур. <span id="display-level">1</span>/50</div>
 </div>
 </div>
 <div class="progress-wrapper"><div id="rank-progress-fill" class="progress-fill"></div><div id="rank-progress-text" class="progress-text">0 / 500 XP</div></div>
 </div>
 
-<div id="daily-goal-banner" class="daily-banner">🎯 Ежедневная цель: <span id="daily-goal-text">0/3 теста</span></div>
+<div id="daily-goal-banner" class="daily-banner">🎯 Цель дня: <span id="daily-goal-text">0/3</span></div>
 <div class="quote-box" id="quote-of-day"></div>
+<div class="word-of-day" id="word-of-day"></div>
 
 <div class="top-controls">
-<button class="btn btn-d" onclick="claimDailyBonus()">🎁 Ежедневный (+300)</button>
+<button class="btn btn-d" onclick="claimDailyBonus()">🎁 Дейли (+300)</button>
 <button class="btn btn-s" onclick="openSpinWheel()">🎰 Спиннер</button>
 <button class="btn btn-a" onclick="openPromoCode()">🎟️ Промокод</button>
 </div>
@@ -217,7 +237,7 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <button class="btn" onclick="openStatistics()">📊 Статистика</button>
 </div>
 <div class="top-controls">
-<button class="btn" onclick="toggleSound()" id="btn-sound-toggle">🔊 Звук: Вкл</button>
+<button class="btn" onclick="toggleSound()" id="btn-sound-toggle">🔊 Звук</button>
 <button class="btn" onclick="toggleTheme()">🌓 Тема</button>
 <button class="btn" onclick="openActivityCalendar()">📅 Активность</button>
 </div>
@@ -226,28 +246,29 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <button class="btn btn-a" onclick="openAchievements()">🏆 Достижения</button>
 <button class="btn btn-p" onclick="openRulebook()">📖 Справочник</button>
 <button class="btn btn-s" onclick="openShop()">🛒 Магазин</button>
-<button class="btn btn-p" onclick="openAiChat()">🤖 Спроси у ИИ</button>
+<button class="btn btn-p" onclick="openAiChat()">🤖 ИИ-Репетитор</button>
 <button class="btn" style="background:linear-gradient(45deg,#16a085,#1abc9c);color:#fff;" onclick="openTopScores()">📊 Рекорды</button>
 <button class="btn" style="background:linear-gradient(45deg,#34495e,#2c3e50);color:#fff;" onclick="openNotes()">📝 Заметки</button>
-<button class="btn" style="background:linear-gradient(45deg,#e67e22,#d35400);color:#fff;" onclick="openMissions()">🎯 Задания дня</button>
-<button class="btn" style="background:linear-gradient(45deg,#e74c3c,#c0392b);color:#fff;" onclick="openBattle()">⚔️ Дуэль с ИИ</button>
+<button class="btn" style="background:linear-gradient(45deg,#e67e22,#d35400);color:#fff;" onclick="openMissions()">🎯 Задания</button>
+<button class="btn" style="background:linear-gradient(45deg,#9b59b6,#8e44ad);color:#fff;" onclick="openFavorites()">⭐ Избранные</button>
+<button class="btn" style="background:linear-gradient(45deg,#f39c12,#e67e22);color:#fff;" onclick="openChest()">🎁 Сундук</button>
+<button class="btn" style="background:linear-gradient(45deg,#e74c3c,#c0392b);color:#fff;" onclick="openPomodoro()">⏰ Помодоро</button>
+<button class="btn" style="background:linear-gradient(45deg,#2980b9,#1c5980);color:#fff;" onclick="openXpChart()">📈 График XP</button>
+<button class="btn" style="background:linear-gradient(45deg,#27ae60,#1e8449);color:#fff;" onclick="openWordCollection()">📚 Коллекция слов</button>
 </div>
 
-<button id="btn-open-clicker" class="btn btn-a" style="width:100%;padding:14px;margin-bottom:20px;display:none;font-size:16px;" onclick="openClicker()">🐾 Тайная Комната Котов</button>
+<button id="btn-open-clicker" class="btn btn-a" style="width:100%;padding:14px;margin-bottom:20px;display:none;font-size:16px;" onclick="openClicker()">🐾 Тайная Комната</button>
 
-<input type="text" class="search-box" id="search-input" placeholder="🔍 Поиск по темам (например: 'падежи' или 'причастие')" oninput="renderTopics()">
+<input type="text" class="search-box" id="search-input" placeholder="🔍 Поиск по темам..." oninput="renderTopics()">
 
 <h2 style="margin-bottom:14px;font-size:22px;">📚 Выбери класс и тему:</h2>
 <div id="menu-topics"></div>
 
 <div style="text-align:center;margin-top:30px;">
-<button class="btn" style="background:transparent;border:2px solid var(--danger);color:var(--danger);padding:11px;width:100%;max-width:280px;" onclick="logout()">🚪 Сменить профиль</button>
+<button class="btn" style="background:transparent;border:2px solid var(--danger);color:var(--danger);width:100%;max-width:280px;" onclick="logout()">🚪 Сменить профиль</button>
 </div>
 
-<div class="global-stats">
-<p>🌍 Просмотров:</p>
-<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fumysofficial15-sudo.github.io%2FSchoolTest&count_bg=%238E44AD&title_bg=%232C3E50&title=%D0%9F%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B9&edge_flat=false" alt="">
-</div>
+<div class="global-stats"><p>🌍 Просмотров:</p><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fumysofficial15-sudo.github.io%2FSchoolTest&count_bg=%238E44AD&title_bg=%232C3E50&title=%D0%9F%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B9&edge_flat=false" alt=""></div>
 </div>
 
 <!-- КВИЗ -->
@@ -267,7 +288,7 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
 <button class="btn" style="flex:1;min-width:100px;font-size:13px;" onclick="speakQuestion()">🔊 Прочитать</button>
 <button class="btn" style="flex:1;min-width:100px;font-size:13px;" onclick="addNoteToCurrent()">📝 Заметка</button>
-<button class="btn voice-btn" style="flex:1;min-width:100px;font-size:13px;" onclick="startVoiceAnswer()">🎤 Голос</button>
+<button class="btn" style="flex:1;min-width:100px;font-size:13px;" onclick="favoriteCurrent()">⭐ В избранное</button>
 </div>
 <div class="hints-container">
 <button id="btn-mini-hint" class="btn" style="background:#f1c40f;color:#fff;" onclick="showHint('mini')">🟡 Мини</button>
@@ -277,7 +298,7 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <div id="hint-big-box" class="hint-box hint-big-box"></div>
 <div id="options-container" class="options"></div>
 <div id="explanation" class="explanation"></div>
-<button id="next-btn" class="btn btn-a next-btn" onclick="nextQuestion()">Некст вопрос ➔</button>
+<button id="next-btn" class="btn btn-a next-btn" onclick="nextQuestion()">Некст ➔</button>
 </div>
 
 <!-- РЕЗУЛЬТАТ -->
@@ -286,6 +307,7 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <p id="result-text" style="font-size:18px;font-weight:600;"></p>
 <div class="xp-badge" style="display:inline-block;font-size:20px;margin:20px 0;">+ <span id="earned-xp"></span> XP</div>
 <div id="retry-wrong-btn-container"></div>
+<div id="ai-review-container"></div>
 <div id="cert-container" style="margin-top:15px;"></div>
 <button class="btn btn-p" style="display:block;width:100%;margin-top:15px;padding:15px;" onclick="returnToMenu()">🏠 В меню</button>
 <button class="btn btn-s" style="display:block;width:100%;margin-top:8px;" onclick="shareResult()">📤 Поделиться</button>
@@ -306,11 +328,10 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <div id="shop-grid" class="shop-grid"></div>
 </div>
 
-<!-- РАСШИРЕННЫЙ СПРАВОЧНИК -->
+<!-- СПРАВОЧНИК -->
 <div id="rulebook-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-<h2 style="margin-top:40px;font-size:26px;">📖 МЕГА-СПРАВОЧНИК</h2>
-<p style="text-align:center;opacity:.7;">Полное собрание правил 1-11 класса</p>
+<h2 style="margin-top:40px;font-size:26px;">📖 Справочник</h2>
 <div class="tabs" style="margin-top:15px;">
 <button class="tab active" onclick="showRbTab('rb-g1',event)">1-2</button>
 <button class="tab" onclick="showRbTab('rb-g3',event)">3</button>
@@ -323,133 +344,27 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <button class="tab" onclick="showRbTab('rb-g10',event)">10</button>
 <button class="tab" onclick="showRbTab('rb-g11',event)">11</button>
 </div>
-
-<div id="rb-g1" class="rule-content active">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Алфавит и звуки</h3><p><b>33 буквы:</b> 10 гласных (а, о, у, ы, э, и, я, ё, ю, е), 21 согласная, Ь и Ъ без звуков. <b>Гласные звуки (6):</b> [а],[о],[у],[ы],[э],[и]. Я, Е, Ё, Ю могут давать 2 звука.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 ЖИ-ШИ, ЧА-ЩА, ЧУ-ЩУ</h3><p>ЖИ, ШИ — <b>И</b>. ЧА, ЩА — <b>А</b>. ЧУ, ЩУ — <b>У</b>. Исключения: брошюра, жюри, парашют.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 ЧК, ЧН, НЧ, ЩН, НЩ</h3><p>Пишутся <b>БЕЗ Ь</b>: ручка, ночной, птенчик, помощник, каменщик.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Парные согласные</h3><p>Б-П, В-Ф, Г-К, Д-Т, Ж-Ш, З-С. Проверяй: <i>дуб → дубы, снег → снега, мороз → морозы</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Безударные гласные</h3><p>Проверяй ударением: <i>вода → во́ды, река → ре́ки, зима → зи́мы</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Заглавная буква</h3><p>Имена, фамилии, города, страны, реки, клички, названия планет — с большой буквы.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Перенос слов</h3><p>По слогам. Одну букву нельзя. Й, Ь, Ъ не отрывают от предыдущей. Двойные делят: <i>ван-на</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Части речи</h3><p>Сущ. (кто? что?), глаг. (что делать?), прил. (какой?), числ. (сколько?), мест. (я, ты).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Предложение</h3><p>Выражает законченную мысль. В конце: <b>.</b> <b>?</b> <b>!</b> <b>...</b></p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>👶 Одушевлённые/неодушевлённые</h3><p>Одушевлённые: <b>кто?</b> (кошка, мама). Неодушевлённые: <b>что?</b> (стол, окно).</p></div>
+<div id="rb-g1" class="rule-content active"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 Алфавит</h3><p>33 буквы. 10 гласных, 21 согласная, Ь и Ъ без звуков.</p></div><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👶 ЖИ-ШИ, ЧА-ЩА, ЧУ-ЩУ</h3><p>ЖИ/ШИ с И. ЧА/ЩА с А. ЧУ/ЩУ с У.</p></div><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>👶 ЧК, ЧН, НЧ, ЩН</h3><p>Пишутся без Ь: ручка, ночной, птенчик, помощник.</p></div></div>
+<div id="rb-g3" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>👦 3 класс</h3><p>Непроизносимые согласные, удвоенные, состав слова, род, число, части речи, падежи, времена глагола.</p></div></div>
+<div id="rb-g4" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>🎒 4 класс</h3><p>Разделительный Ъ, Ь после шипящих, склонения, спряжения, однородные, прямая речь, числительное, наречие.</p></div></div>
+<div id="rb-g5" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📚 5 класс</h3><p>ТСЯ/ТЬСЯ, О/Ё после шипящих, И/Ы после Ц, З-/С-, РАСТ/РОС, ЛАГ/ЛОЖ, КАС/КОС, двойные согласные.</p></div></div>
+<div id="rb-g6" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>🎓 6 класс</h3><p>Корни с чередованием, ПРЕ/ПРИ, спряжения, Н/НН, дефис в местоимениях, разряды, ССП/СПП.</p></div></div>
+<div id="rb-g7" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📕 7 класс</h3><p>Причастие, деепричастие, наречие, служебные части, междометия, НЕ/НИ, правописание наречий, категория состояния.</p></div></div>
+<div id="rb-g8" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📗 8 класс</h3><p>Словосочетание, односоставные, однородные, обособленные, вводные, обращения, уточнения, прямая речь.</p></div></div>
+<div id="rb-g9" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📘 9 класс</h3><p>ССП, СПП, БСП, смешанная связь, придаточные, знаки в БСП, стили речи.</p></div></div>
+<div id="rb-g10" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📙 10 класс</h3><p>Орфоэпия, лексика, фразеология, словообразование, стили, тропы.</p></div></div>
+<div id="rb-g11" class="rule-content" style="display:none;"><div class="rule-card" style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📓 11 класс</h3><p>Пунктуация, художественные средства, анализ текста, сложные случаи орфографии.</p></div></div>
 </div>
 
-<div id="rb-g3" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Непроизносимые согласные</h3><p>Проверяй словом, где звук слышен: <i>солнце → солнышко, сердце → сердечный, честный → честь</i>. Слова-исключения: <b>праздник, чувство, лестница</b>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Удвоенные согласные</h3><p>Класс, аллея, суббота, хоккей, бассейн, пассажир, группа, теннис, аккуратный, телеграмма, иллюстрация. При переносе: <i>мас-са, ал-лея</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Разделительный Ь</h3><p>В корне/суффиксе перед <b>Е, Ё, Ю, Я, И</b>: <i>вьюга, воробьи, деревья, семья, копьё, муравьи</i>. НЕ после приставок!</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Состав слова</h3><p>Корень — главная. Приставка — перед корнем. Суффикс — после. Окончание — изменяемая часть. Основа — всё без окончания.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Род существительных</h3><p>М.р. — он мой (стол, папа). Ж.р. — она моя (книга, мама). С.р. — оно моё (окно, солнце).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Части речи</h3><p>Сущ., глаг., прил., числ., мест., нареч., предлог, союз, частица, междометие.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Предлоги и приставки</h3><p>Приставка — часть слова, слитно. Предлог — отдельно. Между предлогом и словом можно вставить слово: <i>за (высоким) домом</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Падежи</h3><p>И, Р, Д, В, Т, П — шесть. Иван Родил Девчонку Велел Тащить Пелёнку.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>👦 Времена глагола</h3><p>Настоящее (сейчас), прошедшее (вчера), будущее (завтра).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>👦 Простое и сложное</h3><p>Одна основа — простое. Две и более — сложное. Части сложного разделяют запятой.</p></div>
-</div>
-
-<div id="rb-g4" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Разделительный Ъ</h3><p>После приставок на согласную перед <b>Е, Ё, Ю, Я</b>: подъезд, объявление, съёмка, отъезд, изъян, объём.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Ь после шипящих</h3><p>Ж.р. — с Ь: <b>рожь, мышь, ночь, дочь, вещь</b>. М.р. — без Ь: <b>врач, шалаш, нож, товарищ, луч, плащ</b>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Склонения существительных</h3><p><b>1 скл:</b> м. и ж.р. на -а/-я. <b>2 скл:</b> м.р. без оконч. и с.р. на -о/-е. <b>3 скл:</b> ж.р. с Ь на конце.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Окончания прилагательных</h3><p>Задай вопрос от существительного: какой? → синий, какого? → синего, каким? → синим.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Однородные члены</h3><p>Перед И — нет запятой. Перед А, НО — есть. При перечислении — запятые.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Местоимения с предлогами</h3><p>3 лицо после предлога — буква <b>Н</b>: у него, к ней, с ними.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Спряжение глаголов</h3><p><b>I спр:</b> -ешь, -ем, -ут/-ют. <b>II спр:</b> -ишь, -им, -ат/-ят. Искл: гнать, держать, смотреть, видеть, дышать, слышать, ненавидеть, зависеть, вертеть, обидеть, терпеть (II); брить, стелить (I).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Числительное</h3><p>Сколько? — количественное. Который? — порядковое. Трое — собирательное. Полтора — дробное.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎒 Наречие</h3><p>Признак действия. Как? Где? Когда? Куда? Не изменяется.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>🎒 Прямая речь</h3><p>Слова автора → <b>:</b> → «Прямая речь». Прямая речь → <b>—</b> слова автора.</p></div>
-</div>
-
-<div id="rb-g5" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 ТСЯ и ТЬСЯ</h3><p>Задай вопрос: <i>Что делатЬ?</i> — ТЬСЯ. <i>Что делаеТ?</i> — ТСЯ.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 О/Ё после шипящих</h3><p>Ё — если есть проверка с Е (шёпот → шептать). О — в заимствованных и словах-исключениях (шов, шоколад, крыжовник, шоссе).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 И/Ы после Ц</h3><p>В корне — И (цирк). В окончаниях/суффиксах — Ы (птицы, сестрицын). Искл: цыган, цыплёнок, цыпочки, цыц.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 Приставки З-/С-</h3><p>Перед звонкой — З (безбрежный). Перед глухой — С (бесшумный). Приставки З- не существует: сделать, сдать.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 РАСТ/РАЩ/РОС</h3><p>Перед СТ, Щ — А (расти, выращенный). Остальное — О (вырос). Искл: росток, Ростов, отрасль, ростовщик.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 ЛАГ/ЛОЖ</h3><p>Перед Г — А (прилагать). Перед Ж — О (приложить). Искл: полог.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 КАС/КОС, ГАР/ГОР</h3><p>КАС — есть суффикс А. КОС — нет. ГАР — под ударением, ГОР — без (загорать).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 Синтаксис</h3><p>Подлежащее — одна черта. Сказуемое — две. Определение — волнистая. Дополнение — пунктир. Обстоятельство — точка-тире.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📚 Прямое/переносное значение</h3><p>Прямое — основное (золотое кольцо). Переносное — по сходству (золотой характер).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📚 Двойные согласные</h3><p>Класс, аллея, суббота, хоккей, бассейн, пассажир, группа, теннис.</p></div>
-</div>
-
-<div id="rb-g6" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Корни с чередованием</h3><p><b>От суффикса А:</b> -бер-/-бир-, -мер-/-мир-, -тер-/-тир-. <b>От ударения:</b> -гар-/-гор-, -клан-/-клон-, -твар-/-твор-.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 ПРЕ- и ПРИ-</h3><p>ПРИ-: близость, присоединение, неполное действие. ПРЕ-: = очень или = пере-.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Спряжения глаголов</h3><p>II: -ить + 11 искл. I: остальные + брить, стелить.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Н/НН в прилагательных</h3><p>НН: -онн-, -енн-, на стыке. Н: -ин-, -ан-, -ян-. Искл: стеклянный, оловянный, деревянный, ветреный.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Дефис в местоимениях</h3><p>кое-, -то, -либо, -нибудь — через дефис. С предлогом — раздельно: кое с кем.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 НЕ с сущ/прил</h3><p>Слитно: без НЕ не употребляется, можно заменить синонимом. Раздельно: противопоставление с А, слова вовсе не / далеко не / отнюдь не.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Причастие</h3><p>Признак по действию. Действительные (-ущ-/-ющ-, -ащ-/-ящ-, -вш-), страдательные (-ем-/-им-, -нн-, -енн-, -т-).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 Разряды местоимений</h3><p>Личные, возвратное (себя), притяжательные, указательные, определительные, вопросительные, относительные, отрицательные, неопределённые.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>🎓 ССП / СПП / БСП</h3><p>ССП — сочинит. союз. СПП — подчит. союз. БСП — без союза.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>🎓 Ь в числительных</h3><p>На конце — Ь: пять, шесть, семь, восемь, девять, десять, двадцать, тридцать.</p></div>
-</div>
-
-<div id="rb-g7" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Причастие</h3><p>Обозначает признак по действию. Отвечает на вопросы какой? что делающий? Совмещает признаки глагола и прилагательного.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Причастный оборот</h3><p>Причастие + зависимые слова. Если стоит ПОСЛЕ главного — выделяется запятыми.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Деепричастие</h3><p>Добавочное действие. Что делая? Что сделав? Не изменяется. Несов. вид: -а, -я. Сов. вид: -в, -вши.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Деепричастный оборот</h3><p>Всегда выделяется запятыми.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Наречие</h3><p>Признак действия или признак признака. Не изменяется. -о/-е, -ски, -цки.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Служебные части</h3><p>Предлог, союз, частица. Не члены предложения. Не изменяются.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Междометие</h3><p>Выражает эмоции. Не член предложения. Выделяется запятой или !.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 НЕ и НИ</h3><p>НЕ — отрицание. НИ — усиление. С глаголами и деепричастиями — раздельно.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📕 Правописание наречий</h3><p>ПО- + -ому/-ему/-ски — дефис. В-, на-, за- + -о/-е — слитно. КОЕ-, -то, -либо, -нибудь — дефис.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📕 Категория состояния</h3><p>Состояние: как? каково? Сказуемое в односоставном. Например: мне холодно, ему весело.</p></div>
-</div>
-
-<div id="rb-g8" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Словосочетание</h3><p>Согласование — согласуются в роде, числе, падеже. Управление — зависимое в падеже. Примыкание — неизменяемое.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Односоставные</h3><p>Определённо-личное (я, ты, мы, вы), неопределённо-личное (они), безличное (нет подлежащего), назывное (только подлежащее).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Однородные члены</h3><p>Один вопрос, одно слово. Запятые при перечислении. Перед одиночным И — нет. Перед А, НО — есть.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Обособленные члены</h3><p>Причастный оборот после — выделяется. Деепричастный оборот — всегда. Уточнения — всегда.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Вводные слова</h3><p>Конечно, кажется, вероятно, по-моему, может быть, итак. Выделяются запятыми.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Обращения</h3><p>Называет того, к кому обращаются. Не член предложения. Выделяется запятыми.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📗 Уточняющие члены</h3><p>Сужают понятие. Выделяются запятыми: <i>внизу, в долине, шумела река</i>.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📗 Прямая речь и цитаты</h3><p>Слова автора → : → «...». Прямая речь → — → слова автора. Цитата в кавычках.</p></div>
-</div>
-
-<div id="rb-g9" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 ССП</h3><p>Равноправные части с сочинит. союзами (и, а, но, или, тоже, также). Запятая между частями — всегда.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 СПП</h3><p>Главное + придаточное. Подчит. союзы (что, чтобы, если, когда, потому что). Придаточные: определительные, изъяснительные, обстоятельственные.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 БСП</h3><p>Без союзов. Знаки: запятая (перечисление), двоеточие (причина, пояснение), тире (противопоставление, следствие, быстрая смена).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 Смешанная связь</h3><p>Сочинит. + подчит. + бессоюзная. Запятые на стыке союзов.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 СПП с несколькими придаточными</h3><p>Однородное (от одного главного, один тип). Последовательное (цепочка). Параллельное (разные типы от одного главного).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📘 Знаки в БСП</h3><p>Запятая — перечисление. Двоеточие — причина, пояснение. Тире — противопоставление, следствие, смена.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📘 Стили речи</h3><p>Научный (термины), официально-деловой (клише), публицистический (СМИ, призыв), художественный (образность), разговорный (непринуждённость).</p></div>
-</div>
-
-<div id="rb-g10" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📙 Орфоэпия</h3><p>Ударение: звонИт, каталОг, договОр, тОрты, бАнты, красИвее, щавЕль, срЕдства, столЯр, цЕнтнер.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📙 Лексика</h3><p>Синонимы, антонимы, омонимы, паронимы, неологизмы, архаизмы, историзмы, диалектизмы, профессионализмы.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📙 Фразеология</h3><p>Устойчивые сочетания: бить баклуши (бездельничать), зарубить на носу (запомнить), кот наплакал (мало).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📙 Словообразование</h3><p>Приставочный, суффиксальный, приставочно-суффиксальный, бессуффиксный, сложение, переход, морфолого-синтаксический.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📙 Функциональные стили</h3><p>5 стилей: научный, официально-деловой, публицистический, художественный, разговорный.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📙 Тропы</h3><p>Эпитет, метафора, метонимия, синекдоха, гипербола, литота, олицетворение, сравнение. Фигуры: анафора, эпифора, антитеза, градация, инверсия, оксюморон, парцелляция.</p></div>
-</div>
-
-<div id="rb-g11" class="rule-content" style="display:none;">
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📓 Пунктуация (обобщение)</h3><p>Знаки во всех конструкциях: ССП, СПП, БСП, однородные, обособления, вводные, обращения, прямая речь.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📓 Художественные средства</h3><p>Тропы: эпитет, метафора, метонимия, синекдоха, гипербола, литота, олицетворение. Фигуры: анафора, эпифора, антитеза, градация, оксюморон, парцелляция, инверсия, риторический вопрос.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📓 Анализ текста</h3><p>Тема (о чём), идея (главная мысль), тип речи (повествование/описание/рассуждение), стиль, ключевые слова.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📓 Орфография: сложные случаи</h3><p>НН в -онн-, -енн-. Н в -ин-, -ан-, -ян-. Искл: оловянный, стеклянный, деревянный, ветреный.</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);margin-bottom:12px;"><h3>📓 Типы текста</h3><p>Повествование (события), описание (признаки), рассуждение (ТДВ: тезис-доказательство-вывод).</p></div>
-<div style="background:var(--card);padding:18px;border-radius:12px;border-left:5px solid var(--primary);"><h3>📓 Средства выразительности</h3><p>Сравнение (как, будто), эпитет (образное определение), антитеза (противопоставление), оксюморон (умный дурак), риторический вопрос, инверсия, парцелляция, градация, ассонанс.</p></div>
-</div>
-</div>
-
-<!-- ИИ ЧАТ -->
+<!-- ИИ-ЧАТ -->
 <div id="ai-chat-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
 <h2 style="margin-top:40px;color:var(--success);font-size:26px;">🤖 ИИ-Репетитор</h2>
-<div style="display:flex;flex-direction:column;height:480px;background:var(--card);border-radius:16px;border:2px solid var(--brd);overflow:hidden;">
+<div class="ai-presets" id="ai-presets"></div>
+<div style="display:flex;flex-direction:column;height:440px;background:var(--card);border-radius:16px;border:2px solid var(--brd);overflow:hidden;">
 <div id="ai-messages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;"></div>
 <div style="display:flex;gap:8px;padding:10px;border-top:2px solid var(--brd);background:var(--cab);">
-<input type="text" id="ai-input" placeholder="Что объяснить?" style="flex:1;padding:12px 14px;border:2px solid var(--btnb);background:var(--btn);color:var(--text);border-radius:10px;font-family:inherit;font-size:14px;outline:none;" onkeypress="if(event.key==='Enter') sendAiMessage()">
+<input type="text" id="ai-input" placeholder="Что объяснить?" style="flex:1;padding:12px;border:2px solid var(--btnb);background:var(--btn);color:var(--text);border-radius:10px;font-family:inherit;font-size:14px;outline:none;" onkeypress="if(event.key==='Enter') sendAiMessage()">
 <button class="btn btn-p" style="margin:0;" onclick="sendAiMessage()">📤</button>
 </div>
 </div>
@@ -458,23 +373,30 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <!-- РЕКОРДЫ -->
 <div id="top-scores-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-<h2 style="margin-top:40px;color:var(--success);font-size:26px;">📊 Мои рекорды</h2>
+<h2 style="margin-top:40px;color:var(--success);font-size:26px;">📊 Рекорды</h2>
 <div id="top-scores-content" style="margin-top:20px;"></div>
-<button class="btn btn-s" style="width:100%;margin-top:15px;" onclick="exportCSV()">📥 Скачать CSV</button>
+<button class="btn btn-s" style="width:100%;margin-top:15px;" onclick="exportCSV()">📥 CSV</button>
 </div>
 
 <!-- СТАТИСТИКА -->
 <div id="statistics-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-<h2 style="margin-top:40px;font-size:26px;">📊 Статистика по темам</h2>
+<h2 style="margin-top:40px;font-size:26px;">📊 Статистика</h2>
 <div id="statistics-content" style="margin-top:20px;"></div>
 </div>
 
 <!-- ЗАМЕТКИ -->
 <div id="notes-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-<h2 style="margin-top:40px;font-size:26px;">📝 Мои заметки</h2>
+<h2 style="margin-top:40px;font-size:26px;">📝 Заметки</h2>
 <div id="notes-content" class="notes-list" style="margin-top:20px;"></div>
+</div>
+
+<!-- ИЗБРАННЫЕ -->
+<div id="favorites-container" class="fade-in" style="display:none;">
+<button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
+<h2 style="margin-top:40px;color:#f39c12;font-size:26px;">⭐ Избранные темы</h2>
+<div id="favorites-content" style="margin-top:20px;"></div>
 </div>
 
 <!-- КАЛЕНДАРЬ -->
@@ -494,32 +416,66 @@ h1,h2,h3,h4{text-align:center;color:var(--text);margin-top:0;}
 <div id="spinner-wheel" class="spinner-wheel"></div>
 <div class="spinner-center">🎁</div>
 </div>
-<button id="spin-btn" class="btn btn-a" style="width:100%;max-width:280px;padding:16px;font-size:17px;margin:10px auto;" onclick="spinWheel()">🎰 Крутить!</button>
+<button id="spin-btn" class="btn btn-a" style="width:100%;max-width:280px;padding:16px;margin:10px auto;" onclick="spinWheel()">🎰 Крутить!</button>
 <p id="spin-result" style="font-weight:800;font-size:18px;min-height:30px;"></p>
 </div>
 
-<!-- ЗАДАНИЯ ДНЯ -->
+<!-- ЗАДАНИЯ -->
 <div id="missions-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
 <h2 style="margin-top:40px;color:#e67e22;font-size:26px;">🎯 Задания дня</h2>
-<p style="text-align:center;opacity:.7;">Выполни все 3 — получи бонус!</p>
 <div id="missions-content" style="margin-top:20px;"></div>
 </div>
 
-<!-- ДУЭЛЬ С ИИ -->
-<div id="battle-container" class="fade-in" style="display:none;">
+<!-- СУНДУК -->
+<div id="chest-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
-<h2 style="margin-top:40px;color:var(--danger);font-size:26px;">⚔️ Дуэль с ИИ</h2>
-<div id="battle-content" style="margin-top:20px;"></div>
+<h2 style="margin-top:40px;color:#f39c12;font-size:26px;">🎁 Сундук наград</h2>
+<p style="text-align:center;opacity:.7;">Открывается каждые 5 тестов</p>
+<div class="chest-box">
+<div class="chest" id="chest-img" onclick="openChestNow()">📦</div>
+<p id="chest-status" style="font-weight:800;margin-top:15px;"></p>
+</div>
+</div>
+
+<!-- ПОМОДОРО -->
+<div id="pomodoro-container" class="fade-in" style="display:none;">
+<button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
+<h2 style="margin-top:40px;font-size:26px;">⏰ Помодоро</h2>
+<div class="pomodoro-box">
+<div class="pomodoro-time" id="pomodoro-time">25:00</div>
+<p style="opacity:.7;">25 минут учёбы → 5 минут отдыха</p>
+<button id="pomodoro-btn" class="btn btn-p" style="width:200px;padding:15px;font-size:16px;margin-top:15px;" onclick="togglePomodoro()">▶️ Старт</button>
+<p style="margin-top:20px;opacity:.7;">Сессий завершено: <b id="pomodoro-count">0</b></p>
+</div>
+</div>
+
+<!-- ГРАФИК XP -->
+<div id="xp-chart-container" class="fade-in" style="display:none;">
+<button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
+<h2 style="margin-top:40px;font-size:26px;">📈 График XP</h2>
+<p style="text-align:center;opacity:.7;">Последние 7 дней</p>
+<div class="xp-chart">
+<div class="chart-bars" id="chart-bars"></div>
+</div>
+<p style="text-align:center;margin-top:30px;">Всего заработано: <b id="total-xp-chart">0</b> XP</p>
+</div>
+
+<!-- КОЛЛЕКЦИЯ СЛОВ -->
+<div id="words-container" class="fade-in" style="display:none;">
+<button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
+<h2 style="margin-top:40px;color:#27ae60;font-size:26px;">📚 Коллекция слов</h2>
+<p style="text-align:center;opacity:.7;">Собери все словарные слова</p>
+<div id="words-content" style="margin-top:20px;"></div>
 </div>
 
 <!-- КЛИКЕР -->
 <div id="clicker-container" class="fade-in" style="display:none;">
 <button class="btn btn-back" onclick="returnToMenu()">⬅ Назад</button>
 <h2 style="margin-top:40px;color:var(--accent);font-size:26px;">🐾 Тайная Комната</h2>
-<div id="auto-click-status" style="color:var(--success);font-weight:bold;text-align:center;display:none;">🤖 Авто-Мяукалка работает!</div>
+<div id="auto-click-status" style="color:var(--success);font-weight:bold;text-align:center;display:none;">🤖 Авто работает!</div>
 <div class="clicker-box">
-<div style="font-weight:800;margin-bottom:15px;">Поглажено: <span id="clicker-count">0</span></div>
+<div style="font-weight:800;margin-bottom:15px;">Котов: <span id="clicker-count">0</span></div>
 <div id="clicker-img" class="clicker-img" onclick="doCatClick(event)">🐱</div>
 </div>
 </div>
@@ -557,16 +513,15 @@ st.textContent = '@keyframes sparkAnim{to{transform:translate(-50%,-150%) scale(
 document.head.appendChild(st);
 
 /* ЗВУК */
-let audioCtx = null, soundEnabled = true, vibrationEnabled = true;
-function initAudio(){ if(!audioCtx){ try{ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(audioCtx && audioCtx.state==='suspended') audioCtx.resume(); }
-function vibrate(p){ if(vibrationEnabled && navigator.vibrate) navigator.vibrate(p); }
+let audioCtx=null,soundEnabled=true,vibrationEnabled=true;
+function initAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();}
+function vibrate(p){if(vibrationEnabled&&navigator.vibrate)navigator.vibrate(p);}
 function playSound(type){
-    if(!soundEnabled) return;
-    initAudio(); if(!audioCtx) return;
-    const osc = audioCtx.createOscillator(), g = audioCtx.createGain();
-    osc.connect(g); g.connect(audioCtx.destination);
-    const t = audioCtx.currentTime;
-    const S = (w,f1,f2,d,v=0.2)=>{osc.type=w;osc.frequency.setValueAtTime(f1,t);if(f2)osc.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.001,t+d);osc.start();osc.stop(t+d);};
+    if(!soundEnabled)return;initAudio();if(!audioCtx)return;
+    const osc=audioCtx.createOscillator(),g=audioCtx.createGain();
+    osc.connect(g);g.connect(audioCtx.destination);
+    const t=audioCtx.currentTime;
+    const S=(w,f1,f2,d,v=0.2)=>{osc.type=w;osc.frequency.setValueAtTime(f1,t);if(f2)osc.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(0.001,t+d);osc.start();osc.stop(t+d);};
     if(type==='correct'){S('sine',600,1200,.1);vibrate(30);}
     else if(type==='wrong'){S('sawtooth',150,80,.3);vibrate([50,30,50]);}
     else if(type==='win'){S('triangle',400,1200,.4,.3);vibrate([50,30,50,30,80]);}
@@ -576,7 +531,7 @@ function playSound(type){
     else if(type==='spin'){S('triangle',200,800,.2,.3);}
     else if(type==='levelup'){S('triangle',300,2000,.6,.3);vibrate([50,30,50,30,50,30,100]);}
 }
-function toggleSound(){ soundEnabled=!soundEnabled; document.getElementById('btn-sound-toggle').innerText=soundEnabled?'🔊 Звук: Вкл':'🔇 Звук: Выкл'; if(soundEnabled){initAudio();playSound('correct');} }
+function toggleSound(){soundEnabled=!soundEnabled;document.getElementById('btn-sound-toggle').innerText=soundEnabled?'🔊 Звук':'🔇 Выкл';if(soundEnabled){initAudio();playSound('correct');}}
 
 /* МОДАЛКИ */
 let modalResolve=null;
@@ -588,9 +543,9 @@ function showModal({title='',text='',input=false,placeholder='',okText='OK',canc
         document.getElementById('modal-text').innerText=text;
         document.getElementById('modal-extra').innerHTML=extraHTML;
         const inp=document.getElementById('modal-input');
-        inp.style.display=input?'block':'none'; inp.value=''; inp.placeholder=placeholder;
+        inp.style.display=input?'block':'none';inp.value='';inp.placeholder=placeholder;
         const cb=document.getElementById('modal-cancel');
-        cb.style.display=showCancel?'block':'none'; cb.innerText=cancelText;
+        cb.style.display=showCancel?'block':'none';cb.innerText=cancelText;
         document.getElementById('modal-ok').innerText=okText;
         if(input) setTimeout(()=>inp.focus(),100);
     });
@@ -603,17 +558,39 @@ function closeModal(c){
 
 /* ДАННЫЕ */
 const cats=['🐱','😸','😻','😼','😽','🙀','😿','😾','🐈','🐯','🦁','🦊','🐻','🐼','🐨','🦝','🐰'];
-const avatars=['🐱','🦊','🐯','🦁','🐻','🐼','🐨','🐸','🐵','🐧','🦉','🦄','🐲','👽','🤖','🎓','😎','🥷','🦸','🧙','👨‍🎓','👩‍🎓','🧑‍🚀','🥷'];
+const avatars=['🐱','🦊','🐯','🦁','🐻','🐼','🐨','🐸','🐵','🐧','🦉','🦄','🐲','👽','🤖','🎓','😎','🥷','🦸','🧙','👨‍🎓','👩‍🎓','🧑‍🚀','🐉'];
 const rndCat=()=>cats[Math.floor(Math.random()*cats.length)];
-const QUOTES=["«Знание — сила!» — Фрэнсис Бэкон","«Ученье — свет, а неученье — тьма»","«Без труда не выловишь и рыбку из пруда»","«Повторенье — мать ученья»","«Тяжело в учении — легко в бою»","«Кто много читает — тот много знает»","«Не стыдно не знать, стыдно не учиться»","«Ум без книги, как птица без крыльев»","«Корень ученья горек, да плод его сладок»","«Век живи — век учись»","«Сделал дело — гуляй смело»","«Учиться — всегда пригодится»","«С книгой поведёшься — ума наберёшься»","«Знание — лучшее богатство»"];
+const QUOTES=["«Знание — сила!»","«Ученье — свет»","«Без труда не выловишь и рыбку из пруда»","«Повторенье — мать ученья»","«Тяжело в учении — легко в бою»","«Кто много читает — тот много знает»","«Не стыдно не знать, стыдно не учиться»","«Ум без книги, как птица без крыльев»","«Век живи — век учись»","«Сделал дело — гуляй смело»"];
+
+const WORDS_OF_DAY=[
+    {w:"АБОНЕМЕНТ",d:"Документ на право пользования чем-либо"},
+    {w:"АКВАРЕЛЬ",d:"Краска, разводимая водой"},
+    {w:"ВЕЛИКОЛЕПНЫЙ",d:"Очень красивый, роскошный"},
+    {w:"ГАРМОНИЯ",d:"Согласованность, стройность"},
+    {w:"ДИАЛОГ",d:"Разговор двух лиц"},
+    {w:"ЕДИНСТВЕННЫЙ",d:"Только один"},
+    {w:"ЖЕЛАНИЕ",d:"Стремление к чему-либо"},
+    {w:"ИЛЛЮСТРАЦИЯ",d:"Рисунок в книге"},
+    {w:"КАРНАВАЛ",d:"Праздник с шествием"},
+    {w:"ЛАНДШАФТ",d:"Общий вид местности"},
+    {w:"МЕЛОДИЯ",d:"Последовательность звуков"},
+    {w:"НАСЛЕДСТВО",d:"Имущество, переходящее по наследству"},
+    {w:"ОРИГИНАЛЬНЫЙ",d:"Своеобразный, необычный"},
+    {w:"ПАНОРАМА",d:"Широкий вид местности"},
+    {w:"РАВНОВЕСИЕ",d:"Состояние покоя"},
+    {w:"СИМВОЛ",d:"Условный знак"},
+    {w:"ТРАДИЦИЯ",d:"Обычай, передающийся из поколения в поколение"},
+    {w:"УНИКАЛЬНЫЙ",d:"Неповторимый, единственный"},
+    {w:"ФАНТАЗИЯ",d:"Воображение"},
+    {w:"ХАРАКТЕР",d:"Совокупность качеств человека"}
+];
 
 const shopItems=[
     {type:'feature',id:'feat_clicker',name:'🐾 Тайная Комната',price:1500,desc:'Кликер котов'},
     {type:'feature',id:'feat_autoclicker',name:'🤖 Авто-Мяукалка',price:3000,desc:'+1 кот/сек'},
-    {type:'feature',id:'feat_doubleXp',name:'⚡ Двойной XP',price:5000,desc:'x2 XP навсегда!'},
-    {type:'feature',id:'feat_noTimer',name:'⏱️ Без таймера',price:2000,desc:'Играй без ограничения времени'},
-    {type:'feature',id:'feat_hints',name:'💡 Бесплатные подсказки',price:2500,desc:'Все подсказки без ограничений'},
-    {type:'feature',id:'feat_cert',name:'🎓 Золотой сертификат',price:4000,desc:'Красивый сертификат для печати'},
+    {type:'feature',id:'feat_doubleXp',name:'⚡ Двойной XP',price:5000,desc:'x2 XP'},
+    {type:'feature',id:'feat_noTimer',name:'⏱️ Без таймера',price:2000,desc:'Без ограничений времени'},
+    {type:'feature',id:'feat_extraHints',name:'💡 Больше подсказок',price:2500,desc:'+2 большие подсказки'},
     {type:'pack',id:'pack_default',name:'🎁 Базовый',price:0,count:1,texts:['🔥 ХОРОШ! 🔥','🐾 МЯУ! 🐾']},
     {type:'pack',id:'pack_sigma',name:'🗿 Сигма',price:500,count:3,texts:['🗿 СИГМА! 🗿','🔥 БАЗА! 🔥','💪 ГИГАЧАД! 💪']},
     {type:'pack',id:'pack_crazy',name:'💸 Крейзи',price:1000,count:4,texts:['💸 ЧИНАЗЕС! 💸','🚀 ИМБА! 🚀','💥 РАЗРЫВ! 💥','🏆 СЮДА! 🏆']},
@@ -622,10 +599,10 @@ const shopItems=[
 ];
 
 const achievementsData=[
-    {id:'ach_1',tier:'bronze',name:'👶 Первый шаг',desc:'Пройди 1 тест',reward:150,check:u=>u.testsPassed>=1,target:1,get:u=>u.testsPassed},
-    {id:'ach_2',tier:'silver',name:'🧠 Знаток',desc:'Пройди 10 тестов',reward:600,check:u=>u.testsPassed>=10,target:10,get:u=>u.testsPassed},
-    {id:'ach_3',tier:'gold',name:'🏆 Мастер',desc:'Пройди 50 тестов',reward:3000,check:u=>u.testsPassed>=50,target:50,get:u=>u.testsPassed},
-    {id:'ach_4',tier:'platinum',name:'💎 Гуру',desc:'Пройди 100 тестов',reward:8000,check:u=>u.testsPassed>=100,target:100,get:u=>u.testsPassed},
+    {id:'ach_1',tier:'bronze',name:'👶 Первый шаг',desc:'1 тест',reward:150,check:u=>u.testsPassed>=1,target:1,get:u=>u.testsPassed},
+    {id:'ach_2',tier:'silver',name:'🧠 Знаток',desc:'10 тестов',reward:600,check:u=>u.testsPassed>=10,target:10,get:u=>u.testsPassed},
+    {id:'ach_3',tier:'gold',name:'🏆 Мастер',desc:'50 тестов',reward:3000,check:u=>u.testsPassed>=50,target:50,get:u=>u.testsPassed},
+    {id:'ach_4',tier:'platinum',name:'💎 Гуру',desc:'100 тестов',reward:8000,check:u=>u.testsPassed>=100,target:100,get:u=>u.testsPassed},
     {id:'ach_5',tier:'bronze',name:'🐾 Котолюб',desc:'25 котов',reward:300,check:u=>u.catsClicked>=25,target:25,get:u=>u.catsClicked},
     {id:'ach_6',tier:'silver',name:'🐈 Котоман',desc:'100 котов',reward:800,check:u=>u.catsClicked>=100,target:100,get:u=>u.catsClicked},
     {id:'ach_7',tier:'gold',name:'👑 Котокороль',desc:'500 котов',reward:2500,check:u=>u.catsClicked>=500,target:500,get:u=>u.catsClicked},
@@ -636,7 +613,8 @@ const achievementsData=[
     {id:'ach_12',tier:'silver',name:'🔥 Верный',desc:'30 входов',reward:1200,check:u=>u.visits>=30,target:30,get:u=>u.visits},
     {id:'ach_13',tier:'gold',name:'🌋 Постоянство',desc:'Стрик 7 дней',reward:2000,check:u=>u.fireStreak>=7,target:7,get:u=>u.fireStreak},
     {id:'ach_14',tier:'platinum',name:'⭐ Бесконечность',desc:'Стрик 30 дней',reward:10000,check:u=>u.fireStreak>=30,target:30,get:u=>u.fireStreak},
-    {id:'ach_15',tier:'bronze',name:'📝 Летописец',desc:'10 заметок',reward:300,check:u=>u.notes.length>=10,target:10,get:u=>u.notes.length}
+    {id:'ach_15',tier:'bronze',name:'📝 Летописец',desc:'10 заметок',reward:300,check:u=>u.notes.length>=10,target:10,get:u=>u.notes.length},
+    {id:'ach_16',tier:'silver',name:'📚 Коллекционер',desc:'10 слов в коллекции',reward:600,check:u=>u.wordCollection&&u.wordCollection.length>=10,target:10,get:u=>u.wordCollection?u.wordCollection.length:0}
 ];
 
 const LEVELS=Array.from({length:50},(_,i)=>({lvl:i+1,xp:i===0?0:Math.round(500*Math.pow(1.15,i-1))}));
@@ -656,15 +634,27 @@ function getLeague(xp){
     if(xp>=500) return {name:'🥉 Бронза',cls:'league-bronze'};
     return null;
 }
+function getRankTitle(xp){
+    if(xp>=100000) return '🌟 БОГ ЗНАНИЙ';
+    if(xp>=50000) return '💎 Алмазный мастер';
+    if(xp>=25000) return '👑 Император';
+    if(xp>=10000) return '🗿 Сигма-Профессор';
+    if(xp>=5000) return '🏅 Отличник';
+    if(xp>=2000) return '⭐ Хорошист';
+    if(xp>=500) return '🎒 Школьник';
+    return '🍼 Новичок';
+}
 
 /* СОСТОЯНИЕ */
 let user={
     name:"",xp:0,avatar:'🐱',ownedPacks:['pack_default'],activePack:'pack_default',
-    features:[],catsClicked:0,promoUsed:false,promoGamerUsed:false,hackathonUsed:false,
-    testsPassed:0,claimedAchievements:[],theme:'light',palette:'default',size:'normal',
+    features:[],catsClicked:0,promoUsed:false,promoGamerUsed:false,hackathonUsed:false,sferumUsed:false,
+    testsPassed:0,claimedAchievements:[],theme:'light',palette:'default',size:'normal',btnStyle:'normal',
     lastDailyDate:"",visits:0,fireStreak:0,lastVisitDate:"",
-    dailyGoal:{date:"",count:0},topScores:[],topicStats:{},activity:{},
-    notes:[],lastSpinDate:'',lastMissionDate:'',missionsDone:[],battleWins:0,
+    dailyGoal:{date:"",count:0},topScores:[],topicStats:{},activity:{},xpHistory:{},
+    notes:[],favorites:[],wordCollection:[],lastWordDate:"",
+    lastSpinDate:'',lastMissionDate:'',missionsDone:[],
+    chestProgress:0,chestOpened:0,pomodoroCount:0,
     soundEnabled:true,vibrationEnabled:true
 };
 
@@ -672,15 +662,19 @@ let currentGradeId="",currentTopicId="",currentIndex=0;
 let scoreCorrect=0,scoreWrong=0,currentStreak=0,streakTimeout=null;
 let autoClickerInterval=null,timerInterval=null,timeLeft=30;
 let currentCorrect=0,questionOrder=[],wrongLog=[],currentMode='normal';
+let lastWrongData=[]; // для ИИ-разбора в конце
 
 window.onload=()=>{
-    const saved=localStorage.getItem('superQuizV17');
+    const saved=localStorage.getItem('superQuizV18');
     if(saved){
         try{user=Object.assign(user,JSON.parse(saved));}catch(e){}
         if(!user.ownedPacks.includes('pack_default')) user.ownedPacks.push('pack_default');
         if(!user.topicStats) user.topicStats={};
         if(!user.activity) user.activity={};
+        if(!user.xpHistory) user.xpHistory={};
         if(!user.notes) user.notes=[];
+        if(!user.favorites) user.favorites=[];
+        if(!user.wordCollection) user.wordCollection=[];
         if(!user.dailyGoal) user.dailyGoal={date:'',count:0};
         if(!user.topScores) user.topScores=[];
         if(!user.missionsDone) user.missionsDone=[];
@@ -688,6 +682,7 @@ window.onload=()=>{
         vibrationEnabled=user.vibrationEnabled!==false;
         handleVisitStreak();
         updateDailyGoalDate();
+        updateWordOfDay();
         saveData();
         applyTheme();
         showMenu();
@@ -700,52 +695,67 @@ window.onload=()=>{
 function handleVisitStreak(){
     const today=new Date().toDateString();
     const yesterday=new Date(Date.now()-86400000).toDateString();
-    if(!sessionStorage.getItem('visited_v17')){
+    if(!sessionStorage.getItem('visited_v18')){
         user.visits+=1;
-        sessionStorage.setItem('visited_v17','true');
+        sessionStorage.setItem('visited_v18','true');
         if(user.lastVisitDate===yesterday){
             user.fireStreak=(user.fireStreak||0)+1;
             if(user.fireStreak===3){user.xp+=500;setTimeout(()=>showModal({title:'🔥 Стрик 3 дня!',text:'+500 XP!',okText:'Круто!',showCancel:false}),500);}
-            if(user.fireStreak===7){user.xp+=1500;setTimeout(()=>showModal({title:'🌋 Стрик 7 дней!',text:'+1500 XP!',okText:'Огонь!',showCancel:false}),500);}
-            if(user.fireStreak===30){user.xp+=10000;setTimeout(()=>showModal({title:'⭐ Стрик 30 дней!',text:'+10000 XP! НЕВЕРОЯТНО!',okText:'Легенда!',showCancel:false}),500);}
-        } else if(user.lastVisitDate!==today){
-            user.fireStreak=1;
-        }
+            if(user.fireStreak===7){user.xp+=1500;setTimeout(()=>showModal({title:'🌋 Стрик 7!',text:'+1500 XP!',okText:'Огонь!',showCancel:false}),500);}
+            if(user.fireStreak===30){user.xp+=10000;setTimeout(()=>showModal({title:'⭐ Стрик 30!',text:'+10000 XP!',okText:'Легенда!',showCancel:false}),500);}
+        } else if(user.lastVisitDate!==today){user.fireStreak=1;}
         user.lastVisitDate=today;
     }
 }
 function updateDailyGoalDate(){
     const today=new Date().toDateString();
-    if(user.dailyGoal.date!==today){
-        user.dailyGoal={date:today,count:0};
-        user.missionsDone=[];
+    if(user.dailyGoal.date!==today){user.dailyGoal={date:today,count:0};user.missionsDone=[];}
+}
+function updateWordOfDay(){
+    const today=new Date().toDateString();
+    if(user.lastWordDate!==today){
+        user.lastWordDate=today;
+        const idx=Math.floor(Date.now()/86400000)%WORDS_OF_DAY.length;
+        const w=WORDS_OF_DAY[idx];
+        // Проверяем, есть ли слово в коллекции
+        if(!user.wordCollection.find(x=>x.w===w.w)){
+            user.wordCollection.push(w);
+            saveData();
+        }
     }
+}
+function renderWordOfDay(){
+    const today=new Date().toDateString();
+    const idx=Math.floor(Date.now()/86400000)%WORDS_OF_DAY.length;
+    const w=WORDS_OF_DAY[idx];
+    document.getElementById('word-of-day').innerHTML=`<b>📖 Слово дня: ${w.w}</b><span style="font-size:14px;opacity:.95;">${w.d}</span>`;
 }
 function login(){
     const n=document.getElementById('username-input').value.trim();
     if(!n) return;
-    playSound('correct'); user.name=n; user.visits=1;
-    user.lastVisitDate=new Date().toDateString(); user.fireStreak=1;
-    sessionStorage.setItem('visited_v17','true');
-    saveData(); showMenu();
+    playSound('correct');user.name=n;user.visits=1;user.lastVisitDate=new Date().toDateString();user.fireStreak=1;
+    sessionStorage.setItem('visited_v18','true');
+    saveData();showMenu();
 }
 async function logout(){
-    const ok=await showModal({title:'Сменить профиль?',text:'Весь прогресс будет утерян!',okText:'Да, удалить'});
-    if(ok){localStorage.removeItem('superQuizV17');location.reload();}
+    const ok=await showModal({title:'Сменить профиль?',text:'Прогресс будет утерян!',okText:'Да, удалить'});
+    if(ok){localStorage.removeItem('superQuizV18');location.reload();}
 }
 function saveData(){
-    user.soundEnabled=soundEnabled; user.vibrationEnabled=vibrationEnabled;
-    localStorage.setItem('superQuizV17',JSON.stringify(user));
+    user.soundEnabled=soundEnabled;user.vibrationEnabled=vibrationEnabled;
+    localStorage.setItem('superQuizV18',JSON.stringify(user));
 }
 function applyTheme(){
     if(user.theme==='dark') document.documentElement.setAttribute('data-theme','dark');
     else document.documentElement.removeAttribute('data-theme');
-    if(user.palette && user.palette!=='default') document.documentElement.setAttribute('data-palette',user.palette);
+    if(user.palette&&user.palette!=='default') document.documentElement.setAttribute('data-palette',user.palette);
     else document.documentElement.removeAttribute('data-palette');
-    if(user.size && user.size!=='normal') document.documentElement.setAttribute('data-size',user.size);
+    if(user.size&&user.size!=='normal') document.documentElement.setAttribute('data-size',user.size);
     else document.documentElement.removeAttribute('data-size');
+    if(user.btnStyle&&user.btnStyle!=='normal') document.documentElement.setAttribute('data-btnstyle',user.btnStyle);
+    else document.documentElement.removeAttribute('data-btnstyle');
 }
-function toggleTheme(){ playSound('correct'); user.theme=user.theme==='dark'?'light':'dark'; applyTheme(); saveData(); }
+function toggleTheme(){playSound('correct');user.theme=user.theme==='dark'?'light':'dark';applyTheme();saveData();}
 
 function showMenu(){
     hideAll();
@@ -755,7 +765,7 @@ function showMenu(){
     document.getElementById('display-visits').innerText=user.visits;
     document.getElementById('display-rank').innerText=getRankTitle(user.xp);
     document.getElementById('avatar-display').innerText=user.avatar||'🐱';
-    document.getElementById('btn-sound-toggle').innerText=soundEnabled?'🔊 Звук: Вкл':'🔇 Звук: Выкл';
+    document.getElementById('btn-sound-toggle').innerText=soundEnabled?'🔊 Звук':'🔇 Выкл';
     const fs=document.getElementById('fire-streak-badge');
     if(fs) fs.innerHTML=user.fireStreak>=2?`<span class="level-badge" style="background:linear-gradient(45deg,#ff6b35,#f7b731);">🔥 ${user.fireStreak} дн.</span>`:'';
     const lg=getLeague(user.xp);
@@ -768,13 +778,14 @@ function showMenu(){
     if(user.features.includes('feat_clicker')) document.getElementById('btn-open-clicker').style.display='block';
     const dayIdx=Math.floor(Date.now()/86400000)%QUOTES.length;
     document.getElementById('quote-of-day').innerText=QUOTES[dayIdx];
+    renderWordOfDay();
     updateDailyGoalUI();
     renderTopics();
     saveData();
 }
 function hideAll(){
-    ['login-container','menu-container','rulebook-container','quiz-container','result-container','shop-container','clicker-container','achievements-container','ai-chat-container','top-scores-container','statistics-container','notes-container','activity-container','spinner-container','missions-container','battle-container'].forEach(id=>{
-        const el=document.getElementById(id); if(el) el.style.display='none';
+    ['login-container','menu-container','rulebook-container','quiz-container','result-container','shop-container','clicker-container','achievements-container','ai-chat-container','top-scores-container','statistics-container','notes-container','favorites-container','activity-container','spinner-container','missions-container','chest-container','pomodoro-container','xp-chart-container','words-container'].forEach(id=>{
+        const el=document.getElementById(id);if(el)el.style.display='none';
     });
 }
 function updateDailyGoalUI(){
@@ -782,17 +793,7 @@ function updateDailyGoalUI(){
     const t=document.getElementById('daily-goal-text');
     const c=user.dailyGoal.count;
     if(c>=3){b.classList.add('done');t.innerText='✅ Выполнено! +200 XP';}
-    else{b.classList.remove('done');t.innerText=`${c}/3 теста`;}
-}
-function getRankTitle(xp){
-    if(xp>=100000) return '🌟 БОГ ЗНАНИЙ';
-    if(xp>=50000) return '💎 Алмазный мастер';
-    if(xp>=25000) return '👑 Император';
-    if(xp>=10000) return '🗿 Сигма-Профессор';
-    if(xp>=5000) return '🏅 Отличник';
-    if(xp>=2000) return '⭐ Хорошист';
-    if(xp>=500) return '🎒 Школьник';
-    return '🍼 Новичок';
+    else{b.classList.remove('done');t.innerText=`${c}/3`;}
 }
 function returnToMenu(){
     playSound('correct');
@@ -805,33 +806,30 @@ function returnToMenu(){
 /* ДЕЙЛИ */
 async function claimDailyBonus(){
     const today=new Date().toDateString();
-    if(user.lastDailyDate===today){
-        playSound('wrong');
-        await showModal({title:'⏳ Уже получено',text:'Приходи завтра!',okText:'Ок',showCancel:false});
-    } else {
-        playSound('win'); user.xp+=300; user.lastDailyDate=today; saveData();
+    if(user.lastDailyDate===today){playSound('wrong');await showModal({title:'⏳ Уже получено',text:'Приходи завтра!',okText:'Ок',showCancel:false});}
+    else {
+        playSound('win');user.xp+=300;user.lastDailyDate=today;saveData();
         confetti({particleCount:150,spread:90});
-        await showModal({title:'🎁 Бонус!',text:'+300 XP!',okText:'Круто!',showCancel:false});
-        showMenu();
+        await showModal({title:'🎁 Бонус!',text:'+300 XP!',okText:'Круто!',showCancel:false});showMenu();
     }
 }
 
 /* СПИННЕР */
 let spinRot=0;
 function openSpinWheel(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('spinner-container').style.display='block';
     document.getElementById('spin-result').innerText='';
     const today=new Date().toDateString();
     const b=document.getElementById('spin-btn');
-    if(user.lastSpinDate===today){b.disabled=true;b.innerText='⏳ Сегодня уже крутил';}
+    if(user.lastSpinDate===today){b.disabled=true;b.innerText='⏳ Уже крутил';}
     else{b.disabled=false;b.innerText='🎰 Крутить!';}
 }
 function spinWheel(){
     const today=new Date().toDateString();
     if(user.lastSpinDate===today) return;
     playSound('spin');
-    const b=document.getElementById('spin-btn'); b.disabled=true;
+    const b=document.getElementById('spin-btn');b.disabled=true;
     const prizes=[{n:'💰 +100 XP',x:100},{n:'💰 +200 XP',x:200},{n:'💰 +300 XP',x:300},{n:'💎 +500 XP',x:500},{n:'🎁 +1000 XP!',x:1000},{n:'💥 +50 XP',x:50}];
     const idx=Math.floor(Math.random()*prizes.length);
     const r=360*5+(360/prizes.length)*idx;
@@ -839,33 +837,36 @@ function spinWheel(){
     document.getElementById('spinner-wheel').style.transform=`rotate(${spinRot}deg)`;
     setTimeout(async()=>{
         const p=prizes[idx];
-        user.xp+=p.x; user.lastSpinDate=today; saveData();
-        playSound('win'); confetti({particleCount:120,spread:100});
+        user.xp+=p.x;user.lastSpinDate=today;saveData();
+        playSound('win');confetti({particleCount:120,spread:100});
         document.getElementById('spin-result').innerText=`🎉 ${p.n}`;
         await showModal({title:'🎉 Победа!',text:p.n,okText:'Забрать!',showCancel:false});
         document.getElementById('spin-result').innerText='';
-        b.innerText='⏳ Сегодня уже крутил';
+        b.innerText='⏳ Уже крутил';
     },4200);
 }
 
 /* ПРОМОКОД */
 async function openPromoCode(){
     playSound('correct');
-    const code=await showModal({title:'🎟️ Промокод',text:'Введи свой код:',input:true,placeholder:'Например: 67',okText:'Активировать'});
+    const code=await showModal({title:'🎟️ Промокод',text:'Введи код:',input:true,placeholder:'Например: 67',okText:'Активировать'});
     if(!code||code===true) return;
-    const c=String(code).trim();
-    if(c==="67"){
-        if(!user.promoUsed){user.xp+=10000;user.promoUsed=true;saveData();playSound('win');confetti({particleCount:200,spread:120});await showModal({title:'🎉 Активирован!',text:'+10 000 XP!',okText:'Огонь!',showCancel:false});showMenu();}
-        else await showModal({title:'⚠️ Уже использован',okText:'Ок',showCancel:false});
-    } else if(c.toUpperCase()==="GAMER"){
-        if(!user.promoGamerUsed){user.xp+=5000;user.promoGamerUsed=true;saveData();playSound('win');confetti({particleCount:300,spread:150});await showModal({title:'🎮 Секретный код!',text:'+5000 XP!',okText:'Погнали!',showCancel:false});showMenu();}
-        else await showModal({title:'⚠️ Уже использован',okText:'Ок',showCancel:false});
-    } else if(c.toUpperCase()==='ХАКАТОН'||c.toUpperCase()==='HAKATON'){
-        if(!user.hackathonUsed){user.xp+=3000;user.hackathonUsed=true;saveData();playSound('win');await showModal({title:'🚀 Хакатон-код!',text:'+3000 XP!',okText:'Погнали!',showCancel:false});showMenu();}
-        else await showModal({title:'⚠️ Уже использован',okText:'Ок',showCancel:false});
-    } else if(c.toUpperCase()==='СФЕРУМ'||c.toUpperCase()==='SFERUM'){
-        if(!user.sferumUsed){user.xp+=2000;user.sferumUsed=true;saveData();playSound('win');await showModal({title:'📚 Сферум-код!',text:'+2000 XP!',okText:'Круто!',showCancel:false});showMenu();}
-        else await showModal({title:'⚠️ Уже использован',okText:'Ок',showCancel:false});
+    const c=String(code).trim().toUpperCase();
+    const promos={
+        '67':{xp:10000,flag:'promoUsed',title:'🎉 Активирован!',text:'+10 000 XP!'},
+        'GAMER':{xp:5000,flag:'promoGamerUsed',title:'🎮 Секретный!',text:'+5000 XP!'},
+        'ХАКАТОН':{xp:3000,flag:'hackathonUsed',title:'🚀 Хакатон!',text:'+3000 XP!'},
+        'HAKATON':{xp:3000,flag:'hackathonUsed',title:'🚀 Хакатон!',text:'+3000 XP!'},
+        'СФЕРУМ':{xp:2000,flag:'sferumUsed',title:'📚 Сферум!',text:'+2000 XP!'},
+        'SFERUM':{xp:2000,flag:'sferumUsed',title:'📚 Сферум!',text:'+2000 XP!'}
+    };
+    if(promos[c]){
+        const p=promos[c];
+        if(!user[p.flag]){
+            user.xp+=p.xp;user[p.flag]=true;saveData();playSound('win');
+            confetti({particleCount:200,spread:120});
+            await showModal({title:p.title,text:p.text,okText:'Огонь!',showCancel:false});showMenu();
+        } else await showModal({title:'⚠️ Уже использован',okText:'Ок',showCancel:false});
     } else {
         playSound('wrong');
         await showModal({title:'❌ Неверный код',text:'Попробуй ещё!',okText:'Ок',showCancel:false});
@@ -876,11 +877,11 @@ async function openPromoCode(){
 function openAvatarPicker(){
     playSound('correct');
     const grid=avatars.map(a=>`<div class="avatar-opt ${user.avatar===a?'selected':''}" onclick="setAvatar('${a}')">${a}</div>`).join('');
-    showModal({title:'👤 Аватар',text:'Выбери персонажа:',extraHTML:`<div class="avatar-picker">${grid}</div>`,okText:'Закрыть',showCancel:false});
+    showModal({title:'👤 Аватар',extraHTML:`<div class="avatar-picker">${grid}</div>`,okText:'Закрыть',showCancel:false});
 }
 function setAvatar(a){
-    user.avatar=a; document.getElementById('avatar-display').innerText=a;
-    saveData(); playSound('pop');
+    user.avatar=a;document.getElementById('avatar-display').innerText=a;
+    saveData();playSound('pop');
     document.querySelectorAll('.avatar-opt').forEach(el=>el.classList.toggle('selected',el.innerText===a));
 }
 
@@ -889,21 +890,22 @@ async function openProfile(){
     playSound('correct');
     const lvlInfo=getLevelInfo(user.xp);
     const lg=getLeague(user.xp);
-    const info=`
-    <div style="text-align:left;font-size:14px;line-height:1.8;">
-        <div>👤 Имя: <b>${user.name}</b></div>
-        <div>${user.avatar} Аватар</div>
-        <div>📊 Уровень: <b>${lvlInfo.lvl}</b> / 50</div>
-        <div>⭐ Опыт: <b>${user.xp} XP</b></div>
-        <div>🏆 Ранг: <b>${getRankTitle(user.xp)}</b></div>
+    const info=`<div style="text-align:left;font-size:14px;line-height:1.8;">
+        <div>👤 ${user.name} ${user.avatar}</div>
+        <div>📊 Уровень: <b>${lvlInfo.lvl}</b>/50</div>
+        <div>⭐ XP: <b>${user.xp}</b></div>
+        <div>🏆 ${getRankTitle(user.xp)}</div>
         ${lg?`<div>Лига: <span class="league-badge ${lg.cls}">${lg.name}</span></div>`:''}
         <div>📝 Тестов: <b>${user.testsPassed}</b></div>
         <div>🐱 Котов: <b>${user.catsClicked}</b></div>
         <div>🗓️ Входов: <b>${user.visits}</b></div>
         <div>🔥 Стрик: <b>${user.fireStreak}</b> дней</div>
-        <div>🎁 Достижений: <b>${user.claimedAchievements.length}</b> / ${achievementsData.length}</div>
+        <div>🎁 Достижений: <b>${user.claimedAchievements.length}</b>/${achievementsData.length}</div>
         <div>💬 Заметок: <b>${user.notes.length}</b></div>
-        <div>⚔️ Побед в дуэлях: <b>${user.battleWins||0}</b></div>
+        <div>⭐ Избранных: <b>${user.favorites.length}</b></div>
+        <div>📚 Слов: <b>${user.wordCollection.length}</b></div>
+        <div>🎁 Сундуков открыто: <b>${user.chestOpened}</b></div>
+        <div>⏰ Помодоро: <b>${user.pomodoroCount||0}</b> сессий</div>
     </div>`;
     await showModal({title:'👤 Профиль',extraHTML:info,okText:'Ок',showCancel:false});
 }
@@ -912,60 +914,89 @@ async function openProfile(){
 async function openSettings(){
     playSound('correct');
     const palettes=[
-        {id:'default',name:'Классика',color:'#8e44ad'},
-        {id:'ocean',name:'Океан',color:'#00b894'},
-        {id:'sunset',name:'Закат',color:'#e17055'},
-        {id:'forest',name:'Лес',color:'#27ae60'},
-        {id:'royal',name:'Королевский',color:'#9b59b6'},
-        {id:'crimson',name:'Алый',color:'#e74c3c'},
-        {id:'neon',name:'Неон',color:'#00ffe5'}
+        {id:'default',n:'Классика',c:'#8e44ad'},{id:'ocean',n:'Океан',c:'#00b894'},
+        {id:'sunset',n:'Закат',c:'#e17055'},{id:'forest',n:'Лес',c:'#27ae60'},
+        {id:'royal',n:'Королевский',c:'#9b59b6'},{id:'crimson',n:'Алый',c:'#e74c3c'},
+        {id:'neon',n:'Неон',c:'#00ffe5'}
     ];
-    const palHtml=palettes.map(p=>`<div class="palette-dot ${user.palette===p.id?'selected':''}" style="background:${p.color};" title="${p.name}" onclick="setPalette('${p.id}')"></div>`).join('');
-    const html=`
-    <div style="text-align:left;">
-        <h4 style="margin:10px 0 5px;">🎨 Цветовая схема</h4>
-        <div class="palette-row">${palHtml}</div>
-        <h4 style="margin:15px 0 5px;">📏 Размер текста</h4>
+    const palHtml=palettes.map(p=>`<div class="palette-dot ${user.palette===p.id?'selected':''}" style="background:${p.c};" title="${p.n}" onclick="setPalette('${p.id}')"></div>`).join('');
+    const html=`<div style="text-align:left;">
+        <h4>🎨 Палитра</h4><div class="palette-row">${palHtml}</div>
+        <h4>📏 Размер текста</h4>
         <div style="display:flex;gap:8px;">
             <button class="btn ${user.size==='small'?'btn-p':''}" style="flex:1;" onclick="setSize('small')">Мал.</button>
             <button class="btn ${user.size==='normal'||!user.size?'btn-p':''}" style="flex:1;" onclick="setSize('normal')">Обыч.</button>
             <button class="btn ${user.size==='large'?'btn-p':''}" style="flex:1;" onclick="setSize('large')">Бол.</button>
         </div>
-        <h4 style="margin:15px 0 5px;">🔊 Звук</h4>
-        <button class="btn" style="width:100%;" onclick="toggleSound(); closeModal(false); openSettings();">${soundEnabled?'🔊 Вкл':'🔇 Выкл'}</button>
-        <h4 style="margin:15px 0 5px;">📳 Вибрация</h4>
-        <button class="btn" style="width:100%;" onclick="vibrationEnabled=!vibrationEnabled; saveData(); closeModal(false); openSettings();">${vibrationEnabled?'📳 Вкл':'📴 Выкл'}</button>
+        <h4 style="margin-top:12px;">🔲 Форма кнопок</h4>
+        <div style="display:flex;gap:8px;">
+            <button class="btn ${user.btnStyle==='flat'?'btn-p':''}" style="flex:1;" onclick="setBtnStyle('flat')">Острые</button>
+            <button class="btn ${user.btnStyle==='normal'||!user.btnStyle?'btn-p':''}" style="flex:1;" onclick="setBtnStyle('normal')">Обычные</button>
+            <button class="btn ${user.btnStyle==='rounded'?'btn-p':''}" style="flex:1;" onclick="setBtnStyle('rounded')">Скруглённые</button>
+        </div>
+        <h4 style="margin-top:12px;">🔊 Звук</h4>
+        <button class="btn" style="width:100%;" onclick="toggleSound();closeModal(false);openSettings();">${soundEnabled?'🔊 Включён':'🔇 Выключен'}</button>
+        <h4 style="margin-top:12px;">📳 Вибрация</h4>
+        <button class="btn" style="width:100%;" onclick="vibrationEnabled=!vibrationEnabled;saveData();closeModal(false);openSettings();">${vibrationEnabled?'📳 Включена':'📴 Выключена'}</button>
     </div>`;
     await showModal({title:'⚙️ Настройки',extraHTML:html,okText:'Готово',showCancel:false});
 }
-function setPalette(id){user.palette=id;saveData();applyTheme();playSound('pop');document.querySelectorAll('.palette-dot').forEach(el=>el.classList.remove('selected'));event.target.classList.add('selected');}
+function setPalette(id){user.palette=id;saveData();applyTheme();playSound('pop');closeModal(false);openSettings();}
 function setSize(s){user.size=s;saveData();applyTheme();playSound('pop');closeModal(false);openSettings();}
+function setBtnStyle(s){user.btnStyle=s;saveData();applyTheme();playSound('pop');closeModal(false);openSettings();}
 
-/* ТЕМЫ + ПОИСК */
+/* ИЗБРАННЫЕ */
+function favoriteCurrent(){
+    if(!currentGradeId||!currentTopicId){playSound('wrong');return;}
+    const key=currentGradeId+':'+currentTopicId;
+    if(user.favorites.includes(key)){
+        user.favorites=user.favorites.filter(k=>k!==key);
+        playSound('wrong');
+        showModal({title:'⭐ Удалено',text:'Тема убрана из избранного',okText:'Ок',showCancel:false});
+    } else {
+        user.favorites.push(key);
+        playSound('win');
+        showModal({title:'⭐ Добавлено!',text:'Тема в избранном',okText:'Ок',showCancel:false});
+    }
+    saveData();
+}
+function openFavorites(){
+    playSound('correct');hideAll();
+    document.getElementById('favorites-container').style.display='block';
+    const c=document.getElementById('favorites-content');
+    if(!user.favorites.length){c.innerHTML='<p style="text-align:center;opacity:.6;">Нет избранных тем. Добавляй во время теста через ⭐.</p>';return;}
+    c.innerHTML=user.favorites.map(key=>{
+        const [g,t]=key.split(':');
+        if(!db[g]||!db[g].topics[t]) return '';
+        return `<button class="topic-btn btn" style="width:100%;margin-bottom:8px;text-align:left;" onclick="closeModal(false);openModeChooser('${g}','${t}')">⭐ ${db[g].title}: ${db[g].topics[t].title}</button>`;
+    }).join('');
+}
+
+/* ТЕМЫ */
 function renderTopics(){
     const c=document.getElementById('menu-topics');
     const search=(document.getElementById('search-input').value||'').toLowerCase().trim();
     c.innerHTML='';
-    if(typeof db==='undefined'){c.innerHTML='<p style="text-align:center;color:var(--danger);">Ошибка загрузки базы. Обнови страницу.</p>';return;}
-    let totalTopics=0;
+    if(typeof db==='undefined'){c.innerHTML='<p style="text-align:center;color:var(--danger);">Ошибка базы</p>';return;}
     for(const gk in db){
         const topics=Object.entries(db[gk].topics).filter(([tk,t])=>{
             if(!search) return true;
             return t.title.toLowerCase().includes(search)||db[gk].title.toLowerCase().includes(search);
         });
         if(!topics.length) continue;
-        totalTopics+=topics.length;
         const block=document.createElement('div');
         block.className='grade-section';
-        block.innerHTML=`<h3 class="grade-title">${db[gk].title} <span style="font-size:13px;opacity:.7;">(${topics.length} тем)</span></h3>`;
+        block.innerHTML=`<h3 class="grade-title">${db[gk].title} <span style="font-size:13px;opacity:.7;">(${topics.length})</span></h3>`;
         const grid=document.createElement('div');
         grid.className='topics-menu';
         topics.forEach(([tk,t])=>{
             const stat=user.topicStats[gk+':'+tk];
-            const statHtml=stat?`<span class="topic-stat">📊 ${stat.best}/${stat.total} · ${stat.runs} попыток</span>`:'<span class="topic-stat" style="opacity:.5;">Не пройдено</span>';
+            const favKey=gk+':'+tk;
+            const isFav=user.favorites.includes(favKey);
+            const statHtml=stat?`<span class="topic-stat">📊 ${stat.best}/${stat.total} · ${stat.runs} поп.</span>`:'<span class="topic-stat" style="opacity:.5;">Не пройдено</span>';
             const b=document.createElement('button');
             b.className='topic-btn';
-            b.innerHTML=t.title+statHtml;
+            b.innerHTML=(isFav?'⭐ ':'')+t.title+statHtml;
             b.onclick=()=>openModeChooser(gk,tk);
             grid.appendChild(b);
         });
@@ -975,27 +1006,26 @@ function renderTopics(){
     if(!c.innerHTML) c.innerHTML='<p style="text-align:center;opacity:.6;">Ничего не найдено</p>';
 }
 
-/* ВЫБОР РЕЖИМА */
+/* РЕЖИМЫ */
 async function openModeChooser(grade,topic){
     playSound('correct');
     const topicTitle=db[grade].topics[topic].title;
     const totalQ=db[grade].topics[topic].qs.length;
-    const html=`
-    <div style="text-align:left;line-height:1.6;">
-        <p style="text-align:center;font-weight:700;margin-bottom:15px;">Тема: ${topicTitle}<br><small style="opacity:.7;">Всего вопросов: ${totalQ}</small></p>
-        <button class="btn btn-p" style="width:100%;margin-bottom:8px;" onclick="closeModal(false); startQuiz('${grade}','${topic}','normal')">🎯 Обычный<br><small style="font-weight:500;opacity:.85;">10 вопросов · 30 сек · подсказки</small></button>
-        <button class="btn btn-d" style="width:100%;margin-bottom:8px;" onclick="closeModal(false); startQuiz('${grade}','${topic}','exam')">🎓 Экзамен<br><small style="font-weight:500;opacity:.85;">10 вопросов · 20 сек · x2 XP</small></button>
-        <button class="btn btn-a" style="width:100%;margin-bottom:8px;" onclick="closeModal(false); startQuiz('${grade}','${topic}','marathon')">🏃 Марафон<br><small style="font-weight:500;opacity:.85;">ВСЕ вопросы · без таймера</small></button>
-        <button class="btn btn-s" style="width:100%;" onclick="closeModal(false); startQuiz('${grade}','${topic}','speed')">⚡ Спидран<br><small style="font-weight:500;opacity:.85;">10 сек/вопрос · x3 XP</small></button>
+    const html=`<div style="text-align:left;line-height:1.6;">
+        <p style="text-align:center;font-weight:700;margin-bottom:15px;">${topicTitle}<br><small style="opacity:.7;">Вопросов: ${totalQ}</small></p>
+        <button class="btn btn-p" style="width:100%;margin-bottom:8px;" onclick="closeModal(false);startQuiz('${grade}','${topic}','normal')">🎯 Обычный<br><small style="font-weight:500;">10 вопросов · 30 сек · подсказки</small></button>
+        <button class="btn btn-d" style="width:100%;margin-bottom:8px;" onclick="closeModal(false);startQuiz('${grade}','${topic}','exam')">🎓 Экзамен<br><small style="font-weight:500;">10 вопросов · 20 сек · x2 XP</small></button>
+        <button class="btn btn-a" style="width:100%;margin-bottom:8px;" onclick="closeModal(false);startQuiz('${grade}','${topic}','marathon')">🏃 Марафон<br><small style="font-weight:500;">ВСЕ вопросы · без таймера</small></button>
+        <button class="btn btn-s" style="width:100%;" onclick="closeModal(false);startQuiz('${grade}','${topic}','speed')">⚡ Спидран<br><small style="font-weight:500;">10 сек · x3 XP</small></button>
     </div>`;
-    await showModal({title:'🎮 Выбери режим',extraHTML:html,okText:'Отмена',showCancel:false});
+    await showModal({title:'🎮 Режим',extraHTML:html,okText:'Отмена',showCancel:false});
 }
 
 /* КВИЗ */
 function startQuiz(grade,topic,mode,customQ){
     playSound('correct');
-    currentGradeId=grade; currentTopicId=topic; currentMode=mode||'normal';
-    currentIndex=0; scoreCorrect=0; scoreWrong=0; currentStreak=0; wrongLog=[];
+    currentGradeId=grade;currentTopicId=topic;currentMode=mode||'normal';
+    currentIndex=0;scoreCorrect=0;scoreWrong=0;currentStreak=0;wrongLog=[];lastWrongData=[];
     hideAll();
     document.getElementById('quiz-container').style.display='block';
     const td=db[grade].topics[topic];
@@ -1016,11 +1046,7 @@ function startQuiz(grade,topic,mode,customQ){
     updateLiveScore();
     loadQuestion();
 }
-function shuffleArray(a){
-    a=[...a];
-    for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
-    return a;
-}
+function shuffleArray(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function updateLiveScore(){
     document.getElementById('score-correct').innerText=scoreCorrect;
     document.getElementById('score-wrong').innerText=scoreWrong;
@@ -1035,27 +1061,28 @@ function startTimer(){
     timeLeft=currentMode==='speed'?10:currentMode==='exam'?20:30;
     el.style.display='inline-block';
     el.innerText='⏱️ '+timeLeft+'с';
+    el.style.background='linear-gradient(45deg,var(--danger),#c0392b)';
     timerInterval=setInterval(()=>{
-        timeLeft--; el.innerText='⏱️ '+timeLeft+'с';
+        timeLeft--;el.innerText='⏱️ '+timeLeft+'с';
         if(timeLeft<=5) el.style.background='linear-gradient(45deg,#8e0000,#c0392b)';
         if(timeLeft<=0){
-            clearInterval(timerInterval); timerInterval=null;
+            clearInterval(timerInterval);timerInterval=null;
             el.style.display='none';
             document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
-            scoreWrong++; currentStreak=0; playSound('wrong');
+            scoreWrong++;currentStreak=0;playSound('wrong');
             const q=window._currentQuestions[questionOrder[currentIndex]];
+            // Записываем в лог ошибок
+            lastWrongData.push({q:q.q,userAnswer:'(не ответил)',correct:q.o[q.a],explanation:q.e,topic:db[currentGradeId].topics[currentTopicId].title});
             const expEl=document.getElementById('explanation');
-            expEl.innerHTML='⏱️ <b>Время!</b> Правильный: <b>'+q.o[q.a]+'</b>.<br><br>📖 '+q.e;
+            expEl.className='explanation wrong-exp';
+            expEl.innerHTML='⏱️ <b>Время вышло!</b> Правильный ответ: <b>'+q.o[q.a]+'</b>.<br><br>📖 '+q.e;
             expEl.style.display='block';
             updateLiveScore();
             document.getElementById('next-btn').style.display='block';
         }
     },1000);
 }
-function stopTimer(){
-    if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
-    document.getElementById('timer-indicator').style.display='none';
-}
+function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}document.getElementById('timer-indicator').style.display='none';}
 function loadQuestion(){
     const q=window._currentQuestions[questionOrder[currentIndex]];
     document.getElementById('progress-num').innerText=currentIndex+1;
@@ -1068,7 +1095,7 @@ function loadQuestion(){
     document.getElementById('hint-mini-box').style.display='none';
     document.getElementById('hint-big-box').style.display='none';
     document.getElementById('explanation').style.display='none';
-    document.getElementById('explanation').classList.remove('ai-thinking');
+    document.getElementById('explanation').className='explanation';
     document.getElementById('next-btn').style.display='none';
     const idxs=q.o.map((_,i)=>i);
     const sh=shuffleArray(idxs);
@@ -1077,7 +1104,7 @@ function loadQuestion(){
     oc.innerHTML='';
     so.forEach((opt,i)=>{
         const b=document.createElement('button');
-        b.className='option-btn'; b.innerText=opt;
+        b.className='option-btn';b.innerText=opt;
         b.onclick=e=>checkAnswer(i,b,e);
         oc.appendChild(b);
     });
@@ -1090,14 +1117,13 @@ function showHint(type){
     else {document.getElementById('btn-big-hint').disabled=true;document.getElementById('hint-big-box').innerText='🔴 '+q.h2;document.getElementById('hint-big-box').style.display='block';}
 }
 function createFloatingXP(x,y,a){
-    const el=document.createElement('div');
-    el.className='floating-xp';
-    el.innerText='+'+a+' XP';
-    el.style.left=x+'px'; el.style.top=y+'px';
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(),1000);
+    const el=document.createElement('div');el.className='floating-xp';el.innerText='+'+a+' XP';
+    el.style.left=x+'px';el.style.top=y+'px';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),1000);
 }
-async function checkAnswer(selected,btn,ev){
+
+/* ⚡ ГЛАВНОЕ ИЗМЕНЕНИЕ: мгновенный ответ без ИИ */
+function checkAnswer(selected,btn,ev){
     stopTimer();
     const q=window._currentQuestions[questionOrder[currentIndex]];
     const btns=document.querySelectorAll('.option-btn');
@@ -1108,46 +1134,41 @@ async function checkAnswer(selected,btn,ev){
     if(currentMode==='speed') reward*=3;
     if(user.features.includes('feat_doubleXp')) reward*=2;
     if(currentStreak>=3) reward=Math.round(reward*1.5);
+
     const expEl=document.getElementById('explanation');
+
     if(selected===currentCorrect){
         playSound('correct');
         btn.classList.add('correct');
-        scoreCorrect++; currentStreak++;
+        scoreCorrect++;currentStreak++;
         createFloatingXP(ev.clientX-30,ev.clientY-30,reward);
         if(currentStreak===5){triggerStreak();currentStreak=0;}
+        expEl.className='explanation correct-exp';
         expEl.innerHTML='<b>✅ Верно!</b> '+q.e;
         expEl.style.display='block';
     } else {
         playSound('wrong');
         btn.classList.add('wrong');
         btns[currentCorrect].classList.add('correct');
-        scoreWrong++; currentStreak=0;
+        scoreWrong++;currentStreak=0;
         wrongLog.push(questionOrder[currentIndex]);
-        expEl.classList.add('ai-thinking');
-        expEl.innerHTML='<b>🤖 ИИ-репетитор думает<span class="loading-dots">...</span></b>';
+        // Запоминаем ошибку для ИИ-разбора в конце
+        lastWrongData.push({
+            q:q.q,
+            userAnswer:btn.innerText,
+            correct:q.o[q.a],
+            explanation:q.e,
+            topic:db[currentGradeId].topics[currentTopicId].title
+        });
+        // Мгновенный показ заготовленного объяснения
+        expEl.className='explanation wrong-exp';
+        expEl.innerHTML='<b>❌ Ошибка.</b> Правильно: <b>'+q.o[q.a]+'</b><br><br>📖 '+q.e;
         expEl.style.display='block';
-        const aiText=await getAIExplanation(currentGradeId,db[currentGradeId].topics[currentTopicId].title,q.q,btn.innerText,q.o[q.a],q.e);
-        expEl.classList.remove('ai-thinking');
-        expEl.innerHTML='<b>🤖 ИИ-репетитор:</b> '+aiText+'<br><br><small style="opacity:.75">📖 '+q.e+'</small>';
     }
     updateLiveScore();
     document.getElementById('next-btn').style.display='block';
 }
-async function getAIExplanation(gradeId,topicTitle,question,userAnswer,correctAnswer,fallback){
-    const gn=gradeId.replace('g','');
-    const prompt='Ты добрый учитель русского. Ученик '+gn+' класса ошибся.\nТема: '+topicTitle+'\nВопрос: '+question+'\nОн выбрал: "'+userAnswer+'"\nПравильно: "'+correctAnswer+'"\nОбъясни ОЧЕНЬ простыми словами. Максимум 3-4 предложения. Один пример. Без приветствий.';
-    try {
-        const ctrl=new AbortController();
-        const to=setTimeout(()=>ctrl.abort(),12000);
-        const res=await fetch('https://text.pollinations.ai/'+encodeURIComponent(prompt),{signal:ctrl.signal});
-        clearTimeout(to);
-        if(!res.ok) throw new Error();
-        const t=(await res.text()).trim();
-        if(!t||t.length<5) throw new Error();
-        playSound('ai');
-        return t;
-    } catch(e){ return fallback; }
-}
+
 function triggerStreak(){
     playSound('win');
     const popup=document.getElementById('streak-popup');
@@ -1166,7 +1187,7 @@ function nextQuestion(){
     else showResults();
 }
 
-/* РЕЗУЛЬТАТЫ */
+/* РЕЗУЛЬТАТЫ + ИИ-РАЗБОР В КОНЦЕ */
 function showResults(){
     stopTimer();
     hideAll();
@@ -1178,24 +1199,33 @@ function showResults(){
     if(currentMode==='exam') xpGain*=2;
     if(currentMode==='speed') xpGain*=3;
     if(user.features.includes('feat_doubleXp')) xpGain*=2;
+
     user.xp+=xpGain;
     user.testsPassed+=1;
+    user.chestProgress=(user.chestProgress||0)+1;
     updateDailyGoalDate();
     user.dailyGoal.count+=1;
     if(user.dailyGoal.count===3){user.xp+=200;setTimeout(()=>showModal({title:'🎯 Цель дня!',text:'+200 XP!',okText:'Круто!',showCancel:false}),500);}
+
     const tkey=currentGradeId+':'+currentTopicId;
     if(!user.topicStats[tkey]) user.topicStats[tkey]={best:0,total:total,runs:0};
     user.topicStats[tkey].runs++;
     if(scoreCorrect>user.topicStats[tkey].best) user.topicStats[tkey].best=scoreCorrect;
     user.topicStats[tkey].total=total;
+
     const topicName=db[currentGradeId].topics[currentTopicId].title;
     user.topScores.push({topic:topicName,correct:scoreCorrect,total,xp:xpGain,date:Date.now(),mode:currentMode});
     user.topScores.sort((a,b)=>(b.correct/b.total)-(a.correct/a.total));
     user.topScores=user.topScores.slice(0,30);
+
     const today=new Date().toDateString();
     user.activity[today]=(user.activity[today]||0)+1;
+    if(!user.xpHistory[today]) user.xpHistory[today]=0;
+    user.xpHistory[today]+=xpGain;
+
     saveData();
     document.getElementById('earned-xp').innerText=xpGain;
+
     if(pct===100){
         playSound('win');
         document.getElementById('result-title').innerText='🏆 Идеально!';
@@ -1209,8 +1239,10 @@ function showResults(){
     } else {
         playSound('wrong');
         document.getElementById('result-title').innerText='😿 Тильт...';
-        document.getElementById('result-text').innerText='Ошибок '+scoreWrong+'. Попробуй снова!';
+        document.getElementById('result-text').innerText='Ошибок '+scoreWrong+' из '+total;
     }
+
+    // Работа над ошибками
     const rc=document.getElementById('retry-wrong-btn-container');
     rc.innerHTML='';
     if(wrongLog.length>0&&wrongLog.length<total){
@@ -1224,28 +1256,118 @@ function showResults(){
         };
         rc.appendChild(b);
     }
+
+    // 🤖 ИИ-РАЗБОР В КОНЦЕ (только если есть ошибки)
+    const arc=document.getElementById('ai-review-container');
+    arc.innerHTML='';
+    if(lastWrongData.length>0){
+        const b=document.createElement('button');
+        b.className='btn btn-a';
+        b.style.cssText='width:100%;margin-top:10px;';
+        b.innerText='🤖 Разбор ошибок от ИИ ('+lastWrongData.length+')';
+        b.onclick=()=>showAIReview();
+        arc.appendChild(b);
+    }
+
+    // Сертификат
     const cc=document.getElementById('cert-container');
     cc.innerHTML='';
     if(pct===100){
         const b=document.createElement('button');
-        b.className='btn btn-a';
+        b.className='btn btn-s';
         b.style.cssText='width:100%;margin-top:10px;';
         b.innerText='🎓 Получить сертификат';
         b.onclick=showCertificate;
         cc.appendChild(b);
     }
+
+    // Проверка сундука
+    if(user.chestProgress>=5){
+        setTimeout(()=>showModal({title:'🎁 Сундук готов!',text:'Зайди в раздел "Сундук" и открой награду!',okText:'Погнали!',showCancel:false}),800);
+    }
 }
+
+/* 🤖 ИИ-РАЗБОР ПОСЛЕ ТЕСТА */
+async function showAIReview(){
+    playSound('correct');
+    // Готовим HTML со всеми ошибками
+    let listHtml=lastWrongData.map((w,i)=>`
+        <div class="wrong-item">
+            <b>${i+1}. ${w.q}</b><br>
+            <span style="color:var(--danger);">❌ Твой ответ: «${w.userAnswer}»</span><br>
+            <span style="color:var(--success);">✅ Правильно: «${w.correct}»</span><br>
+            <span style="opacity:.85;">📖 ${w.explanation}</span>
+        </div>
+    `).join('');
+
+    // Заготовленный текст анализа от нас (мгновенный)
+    const instantAnalysis = getInstantAnalysis(lastWrongData);
+
+    const html = `
+        <div style="text-align:left;">
+            <h4 style="color:var(--accent);margin-bottom:10px;">📋 Список ошибок:</h4>
+            ${listHtml}
+            <h4 style="color:var(--accent);margin-top:15px;">💡 Мгновенный анализ:</h4>
+            <div class="ai-analysis">${instantAnalysis}</div>
+            <div id="ai-detailed-analysis" style="margin-top:15px;"></div>
+            <button class="btn btn-p" style="width:100%;margin-top:15px;" onclick="loadAIDetailedAnalysis()">🤖 Получить детальный разбор от ИИ</button>
+        </div>
+    `;
+    await showModal({title:'🤖 Разбор ошибок',extraHTML:html,okText:'Закрыть',showCancel:false});
+}
+
+/* Мгновенный анализ на основе заготовок */
+function getInstantAnalysis(errors){
+    const n=errors.length;
+    if(n===0) return 'Отличная работа! Ошибок нет.';
+    if(n===1) return 'Всего одна ошибка! Рекомендую прочитать правило по теме и повторить через 10 минут — так запомнится лучше.';
+    if(n<=3) return 'Совет: перед следующим тестом прочитай справочник по этой теме. Также помогает проговаривать правило вслух своими словами.';
+    if(n<=5) return 'Много ошибок в одной теме. Рекомендую: 1) перечитать правила; 2) пройти тему в режиме «Марафон»; 3) сделать заметки к сложным вопросам.';
+    return '⚠️ Тема требует серьёзной работы. Начни со справочника, потом попробуй «Работу над ошибками», и только затем — полный тест заново.';
+}
+
+/* Детальный разбор от ИИ — по кнопке, не блокирует */
+async function loadAIDetailedAnalysis(){
+    const container=document.getElementById('ai-detailed-analysis');
+    container.innerHTML='<div class="ai-analysis"><span class="loading-dots">🤖 ИИ готовит разбор...</span></div>';
+    playSound('ai');
+
+    // Компактный запрос со всеми ошибками
+    const lines = lastWrongData.map((w,i)=>`${i+1}. Вопрос: "${w.q}" | Ответил: "${w.userAnswer}" | Правильно: "${w.correct}"`).join('\n');
+
+    const prompt = `Ты добрый учитель русского. Ученик сделал ${lastWrongData.length} ошибок в теме "${lastWrongData[0].topic}".
+Ошибки:
+${lines}
+
+Дай ОЧЕНЬ КОРОТКИЙ анализ (максимум 5-6 предложений, простыми словами). 
+Объясни: 1) какие правила он путает, 2) на что обратить внимание, 3) один общий совет.
+Без приветствий, без markdown, живым языком.`;
+
+    try {
+        const ctrl=new AbortController();
+        const to=setTimeout(()=>ctrl.abort(),20000);
+        const res=await fetch('https://text.pollinations.ai/'+encodeURIComponent(prompt),{signal:ctrl.signal});
+        clearTimeout(to);
+        if(!res.ok) throw new Error();
+        const text=(await res.text()).trim();
+        if(!text||text.length<5) throw new Error();
+        container.innerHTML=`<div class="ai-analysis"><b>🤖 ИИ-репетитор:</b><br>${text}</div>`;
+        playSound('win');
+    } catch(e){
+        container.innerHTML=`<div class="ai-analysis">😢 ИИ временно недоступен. Используй мгновенный анализ выше и справочник.</div>`;
+    }
+}
+
 function showCertificate(){
     const topicName=db[currentGradeId].topics[currentTopicId].title;
     const date=new Date().toLocaleDateString('ru-RU');
-    const html=`
-    <div class="certificate">
+    const html=`<div class="certificate">
         <div style="font-size:14px;letter-spacing:3px;opacity:.6;">СЕРТИФИКАТ</div>
         <h2>🎓 Об успешном прохождении</h2>
         <p style="margin:8px 0;">Настоящим подтверждается, что</p>
         <div class="cert-name">${user.name}</div>
-        <p class="cert-topic">успешно прошёл тему <b>«${topicName}»</b></p>
-        <p class="cert-score">Результат: 100% ✅</p>
+        <p style="font-size:18px;margin:12px 0;">успешно прошёл тему <b>«${topicName}»</b></p>
+        <p style="font-size:22px;font-weight:800;color:#27ae60;margin:12px 0;">Результат: 100% ✅</p>
         <p style="font-size:13px;opacity:.7;">Дата: ${date}</p>
         <div class="cert-seal">🏆</div>
         <p style="font-size:11px;margin-top:10px;opacity:.6;">Тренажёр 1-11 · ИИ-репетитор</p>
@@ -1259,46 +1381,19 @@ async function shareResult(){
     try {
         await navigator.clipboard.writeText(text);
         playSound('win');
-        await showModal({title:'📤 Скопировано!',text:'Вставь в чат с друзьями!',okText:'Ок',showCancel:false});
-    } catch(e){
-        await showModal({title:'Результат',text:text,okText:'Ок',showCancel:false});
-    }
+        await showModal({title:'📤 Скопировано!',text:'Вставь в чат!',okText:'Ок',showCancel:false});
+    } catch(e){await showModal({title:'Результат',text:text,okText:'Ок',showCancel:false});}
 }
 
 /* ГОЛОС */
 function speakQuestion(){
-    if(!('speechSynthesis' in window)){
-        showModal({title:'❌ Не поддерживается',okText:'Ок',showCancel:false});
-        return;
-    }
+    if(!('speechSynthesis' in window)){showModal({title:'❌ Не поддерживается',okText:'Ок',showCancel:false});return;}
     speechSynthesis.cancel();
     const q=window._currentQuestions[questionOrder[currentIndex]];
     const u=new SpeechSynthesisUtterance(q.q);
-    u.lang='ru-RU'; u.rate=0.9;
+    u.lang='ru-RU';u.rate=0.9;
     speechSynthesis.speak(u);
     playSound('ai');
-}
-function startVoiceAnswer(){
-    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-    if(!SR){
-        showModal({title:'❌ Голосовой ввод',text:'Браузер не поддерживает. Используй Chrome.',okText:'Ок',showCancel:false});
-        return;
-    }
-    const r=new SR();
-    r.lang='ru-RU'; r.interimResults=false;
-    playSound('ai');
-    showModal({title:'🎤 Говори!',text:'Скажи ответ чётко',okText:'Ждём...',showCancel:false});
-    r.onresult=(e)=>{
-        const said=e.results[0][0].transcript.toLowerCase().trim();
-        closeModal(false);
-        const btns=document.querySelectorAll('.option-btn');
-        let found=-1;
-        btns.forEach((b,i)=>{ if(b.innerText.toLowerCase().trim()===said||b.innerText.toLowerCase().includes(said)||said.includes(b.innerText.toLowerCase().trim())) found=i; });
-        if(found>=0){ checkAnswer(found,btns[found],{clientX:window.innerWidth/2,clientY:window.innerHeight/2}); }
-        else { showModal({title:'😕 Не расслышал',text:'Ты сказал: "'+said+'"',okText:'Ок',showCancel:false}); }
-    };
-    r.onerror=()=>{ closeModal(false); showModal({title:'❌ Ошибка',text:'Не удалось распознать',okText:'Ок',showCancel:false}); };
-    r.start();
 }
 
 /* ЗАМЕТКИ */
@@ -1307,17 +1402,14 @@ async function addNoteToCurrent(){
     const note=await showModal({title:'📝 Заметка',text:'К вопросу: «'+q.q+'»',input:true,placeholder:'Своя мысль...',okText:'Сохранить'});
     if(!note||note===true) return;
     user.notes.push({question:q.q,text:String(note),date:Date.now(),topic:db[currentGradeId].topics[currentTopicId].title});
-    saveData(); playSound('win');
+    saveData();playSound('win');
     await showModal({title:'✅ Сохранено',okText:'Ок',showCancel:false});
 }
 function openNotes(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('notes-container').style.display='block';
     const c=document.getElementById('notes-content');
-    if(!user.notes.length){
-        c.innerHTML='<p style="text-align:center;opacity:.6;">Пока нет заметок. Добавляй во время теста!</p>';
-        return;
-    }
+    if(!user.notes.length){c.innerHTML='<p style="text-align:center;opacity:.6;">Пока нет заметок.</p>';return;}
     c.innerHTML=user.notes.slice().reverse().map((n,i)=>`
         <div class="note-item">
             <div class="note-q">📖 ${n.question}</div>
@@ -1331,7 +1423,7 @@ function deleteNote(idx){user.notes.splice(idx,1);saveData();playSound('wrong');
 
 /* СТАТИСТИКА */
 function openStatistics(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('statistics-container').style.display='block';
     const c=document.getElementById('statistics-content');
     const entries=Object.entries(user.topicStats);
@@ -1342,32 +1434,27 @@ function openStatistics(){
         const title=db[g]&&db[g].topics[t]?db[g].topics[t].title:'Тема';
         const pct=Math.round((s.best/s.total)*100);
         const color=pct>=80?'var(--success)':pct>=50?'#f39c12':'var(--danger)';
-        return `
-            <div class="stats-row">
-                <div style="display:flex;justify-content:space-between;"><span>${title}</span><span style="color:${color};">${pct}%</span></div>
-                <div class="stats-bar-wrap"><div class="stats-bar-fill" style="width:${pct}%;"></div></div>
-                <div style="font-size:12px;opacity:.7;margin-top:4px;">Лучший: ${s.best}/${s.total} · Попыток: ${s.runs}</div>
-            </div>
-        `;
+        return `<div class="stats-row">
+            <div style="display:flex;justify-content:space-between;"><span>${title}</span><span style="color:${color};">${pct}%</span></div>
+            <div class="stats-bar-wrap"><div class="stats-bar-fill" style="width:${pct}%;"></div></div>
+            <div style="font-size:12px;opacity:.7;margin-top:4px;">Лучший: ${s.best}/${s.total} · Попыток: ${s.runs}</div>
+        </div>`;
     }).join('');
 }
 
 /* КАЛЕНДАРЬ */
 function openActivityCalendar(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('activity-container').style.display='block';
-    const map=document.getElementById('heatmap');
-    map.innerHTML='';
+    const map=document.getElementById('heatmap');map.innerHTML='';
     const max=Math.max(1,...Object.values(user.activity||{}));
     for(let i=29;i>=0;i--){
         const date=new Date(Date.now()-i*86400000);
         const key=date.toDateString();
         const count=user.activity[key]||0;
-        let lvl=0;
-        if(count>0) lvl=Math.min(4,Math.ceil((count/max)*4))||1;
+        let lvl=0;if(count>0) lvl=Math.min(4,Math.ceil((count/max)*4))||1;
         const cell=document.createElement('div');
-        cell.className='heat-cell';
-        cell.setAttribute('data-lvl',lvl);
+        cell.className='heat-cell';cell.setAttribute('data-lvl',lvl);
         cell.title=date.toLocaleDateString('ru-RU')+' — '+count;
         map.appendChild(cell);
     }
@@ -1375,7 +1462,7 @@ function openActivityCalendar(){
 
 /* ТОП + CSV */
 function openTopScores(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('top-scores-container').style.display='block';
     const c=document.getElementById('top-scores-content');
     if(!user.topScores||!user.topScores.length){c.innerHTML='<p style="text-align:center;opacity:.6;">Пока нет результатов</p>';return;}
@@ -1388,26 +1475,25 @@ function openTopScores(){
     c.innerHTML=html;
 }
 function exportCSV(){
-    if(!user.topScores.length){showModal({title:'📥 Пусто',text:'Нет данных',okText:'Ок',showCancel:false});return;}
+    if(!user.topScores.length){showModal({title:'📥 Пусто',okText:'Ок',showCancel:false});return;}
     let csv='Дата,Тема,Правильно,Всего,XP,Режим\n';
     user.topScores.forEach(s=>{csv+=new Date(s.date).toLocaleString('ru-RU')+',"'+s.topic+'",'+s.correct+','+s.total+','+s.xp+','+(s.mode||'normal')+'\n';});
     const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
-    a.href=url; a.download='stats_'+user.name+'.csv'; a.click();
+    a.href=url;a.download='stats_'+user.name+'.csv';a.click();
     URL.revokeObjectURL(url);
     playSound('win');
 }
 
 /* ДОСТИЖЕНИЯ */
 function openAchievements(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('achievements-container').style.display='block';
     renderAchievements();
 }
 function renderAchievements(){
-    const g=document.getElementById('ach-grid');
-    g.innerHTML='';
+    const g=document.getElementById('ach-grid');g.innerHTML='';
     achievementsData.forEach(ach=>{
         const cur=ach.get?ach.get(user):0;
         const done=ach.check(user);
@@ -1428,29 +1514,26 @@ function claimAch(id,reward){
     playSound('win');
     user.xp+=reward;
     user.claimedAchievements.push(id);
-    saveData(); renderAchievements();
+    saveData();renderAchievements();
     confetti({particleCount:100,spread:70});
 }
 
 /* МАГАЗИН */
 function openShop(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('shop-container').style.display='block';
     renderShop();
 }
 function renderShop(){
     document.getElementById('shop-balance').innerText=user.xp;
-    const g=document.getElementById('shop-grid');
-    g.innerHTML='';
+    const g=document.getElementById('shop-grid');g.innerHTML='';
     shopItems.forEach(item=>{
         const div=document.createElement('div');
         div.className='pack-item'+(user.activePack===item.id?' active-pack':'');
         if(item.type==='feature'){
             div.style.border='3px dashed var(--accent)';
             const owned=user.features.includes(item.id);
-            const b=owned
-                ?'<button class="btn" style="width:100%;background:#95a5a6;color:#fff;" disabled>✅ Куплено</button>'
-                :'<button class="btn btn-a" style="width:100%;" onclick="buyFeature(\''+item.id+'\','+item.price+')">Купить '+item.price+' XP</button>';
+            const b=owned?'<button class="btn" style="width:100%;background:#95a5a6;color:#fff;" disabled>✅ Куплено</button>':'<button class="btn btn-a" style="width:100%;" onclick="buyFeature(\''+item.id+'\','+item.price+')">Купить '+item.price+' XP</button>';
             div.innerHTML='<div class="pack-name" style="color:var(--accent);">'+item.name+'</div><p style="font-size:13px;">'+item.desc+'</p>'+b;
         } else {
             const owned=user.ownedPacks.includes(item.id);
@@ -1459,8 +1542,7 @@ function renderShop(){
             else if(user.activePack===item.id) b='<button class="btn" style="width:100%;" disabled>✅ Активен</button>';
             else if(owned) b='<button class="btn btn-p" style="width:100%;" onclick="equipPack(\''+item.id+'\')">Включить</button>';
             else b='<button class="btn btn-s" style="width:100%;" onclick="buyPack(\''+item.id+'\','+item.price+')">Купить '+item.price+'</button>';
-            let m='';
-            if(item.price>0) for(let i=0;i<item.count;i++) m+='❓';
+            let m='';if(item.price>0) for(let i=0;i<item.count;i++) m+='❓';
             div.innerHTML='<div class="pack-name">'+item.name+'</div><div style="font-size:20px;margin:10px 0;">'+m+'</div>'+b;
         }
         g.appendChild(div);
@@ -1483,23 +1565,35 @@ function showRbTab(id,ev){
     document.querySelectorAll('.rule-content').forEach(c=>c.style.display='none');
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     if(ev&&ev.target) ev.target.classList.add('active');
-    const el=document.getElementById(id); if(el) el.style.display='block';
+    const el=document.getElementById(id);if(el) el.style.display='block';
 }
 
-/* ИИ ЧАТ */
+/* ИИ ЧАТ с пресетами */
+const AI_PRESETS=[
+    "Объясни падежи",
+    "Что такое причастие?",
+    "Как проверить безударную гласную?",
+    "ЖИ-ШИ правило",
+    "Как определить спряжение?",
+    "Приведи примеры эпитетов"
+];
 function openAiChat(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('ai-chat-container').style.display='block';
     const m=document.getElementById('ai-messages');
-    if(!m.children.length) addAiMsg('bot','Привет! Я ИИ-репетитор. Спроси про любое правило: «Объясни падежи», «Что такое причастие?»...');
+    if(!m.children.length) addAiMsg('bot','Привет! Я ИИ-репетитор. Спроси про любое правило или используй быстрые кнопки ниже.');
+    const pc=document.getElementById('ai-presets');
+    pc.innerHTML=AI_PRESETS.map(p=>`<div class="ai-preset" onclick="quickAiAsk('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('');
+}
+function quickAiAsk(text){
+    document.getElementById('ai-input').value=text;
+    sendAiMessage();
 }
 function addAiMsg(role,text){
     const m=document.getElementById('ai-messages');
     const d=document.createElement('div');
     d.style.cssText='padding:10px 14px;border-radius:14px;max-width:80%;line-height:1.5;word-wrap:break-word;'+(role==='user'?'background:linear-gradient(45deg,var(--primary),var(--primary2));color:#fff;align-self:flex-end;':'background:var(--btn);color:var(--text);border:1px solid var(--brd);align-self:flex-start;');
-    d.innerText=text;
-    m.appendChild(d);
-    m.scrollTop=m.scrollHeight;
+    d.innerText=text;m.appendChild(d);m.scrollTop=m.scrollHeight;
 }
 async function sendAiMessage(){
     const inp=document.getElementById('ai-input');
@@ -1520,13 +1614,13 @@ async function sendAiMessage(){
         clearTimeout(to);
         const reply=(await res.text()).trim();
         think.innerText=reply||'Не получилось ответить.';
-    } catch(e){ think.innerText='😢 ИИ недоступен.'; }
+    } catch(e){think.innerText='😢 ИИ недоступен.';}
     document.getElementById('ai-messages').scrollTop=99999;
 }
 
-/* ЗАДАНИЯ ДНЯ */
+/* ЗАДАНИЯ */
 function openMissions(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('missions-container').style.display='block';
     const today=new Date().toDateString();
     if(user.lastMissionDate!==today){user.lastMissionDate=today;user.missionsDone=[];saveData();}
@@ -1538,22 +1632,15 @@ function openMissions(){
     const c=document.getElementById('missions-content');
     c.innerHTML=missions.map(m=>{
         const done=m.check();
-        return `<div class="mission-item ${done?'mission-done':''}"><span class="mission-check">${done?'✅':'⭕'}</span><span style="flex:1;font-weight:700;">${m.name}</span></div>`;
-    }).join('')+'<button class="btn btn-s" style="width:100%;margin-top:15px;" onclick="claimMissions()">🎁 Забрать награду (+500 XP)</button>';
+        return `<div class="mission-item ${done?'mission-done':''}"><span style="font-size:24px;">${done?'✅':'⭕'}</span><span style="flex:1;font-weight:700;">${m.name}</span></div>`;
+    }).join('')+'<button class="btn btn-s" style="width:100%;margin-top:15px;" onclick="claimMissions()">🎁 Забрать +500 XP</button>';
 }
 async function claimMissions(){
-    const missions=[
-        {check:()=>user.dailyGoal.count>=1},
-        {check:()=>user.catsClicked>=10},
-        {check:()=>user.xp>=100}
-    ];
+    const missions=[{check:()=>user.dailyGoal.count>=1},{check:()=>user.catsClicked>=10},{check:()=>user.xp>=100}];
     if(missions.every(m=>m.check())){
         if(!user.missionsDone.includes('day')){
-            user.xp+=500;
-            user.missionsDone.push('day');
-            saveData();
-            playSound('win');
-            confetti({particleCount:150,spread:100});
+            user.xp+=500;user.missionsDone.push('day');saveData();
+            playSound('win');confetti({particleCount:150,spread:100});
             await showModal({title:'🎉 Все задания!',text:'+500 XP!',okText:'Круто!',showCancel:false});
             openMissions();
         } else await showModal({title:'⏳ Уже получено',text:'Приходи завтра!',okText:'Ок',showCancel:false});
@@ -1563,69 +1650,131 @@ async function claimMissions(){
     }
 }
 
-/* ДУЭЛЬ С ИИ */
-function openBattle(){
-    playSound('correct'); hideAll();
-    document.getElementById('battle-container').style.display='block';
-    const c=document.getElementById('battle-content');
+/* СУНДУК */
+function openChest(){
+    playSound('correct');hideAll();
+    document.getElementById('chest-container').style.display='block';
+    updateChestUI();
+}
+function updateChestUI(){
+    const c=document.getElementById('chest-img');
+    const s=document.getElementById('chest-status');
+    const progress=user.chestProgress||0;
+    if(progress>=5){
+        c.innerText='📦';
+        s.innerHTML=`<span style="color:#f39c12;">🎁 Готов к открытию!</span>`;
+    } else {
+        c.innerText='🔒';
+        s.innerText=`Пройди ещё ${5-progress} тестов`;
+    }
+}
+async function openChestNow(){
+    const progress=user.chestProgress||0;
+    if(progress<5){playSound('wrong');await showModal({title:'🔒 Закрыт',text:'Пройди ещё '+(5-progress)+' тестов',okText:'Ок',showCancel:false});return;}
+    playSound('win');
+    document.getElementById('chest-img').classList.add('opened');
+    user.chestProgress=0;
+    user.chestOpened=(user.chestOpened||0)+1;
+    const rewards=[{n:'💰 500 XP',x:500,type:'xp'},{n:'💰 1000 XP',x:1000,type:'xp'},{n:'💎 2000 XP',x:2000,type:'xp'},{n:'⭐ +5 заметок бонус',x:300,type:'xp'},{n:'🎁 3000 XP!!',x:3000,type:'xp'}];
+    const r=rewards[Math.floor(Math.random()*rewards.length)];
+    user.xp+=r.x;
+    saveData();
+    confetti({particleCount:250,spread:150});
+    setTimeout(async()=>{
+        await showModal({title:'🎉 Сундук открыт!',text:r.n,okText:'Забрать!',showCancel:false});
+        updateChestUI();
+        document.getElementById('chest-img').classList.remove('opened');
+    },600);
+}
+
+/* ПОМОДОРО */
+let pomodoroInterval=null,pomodoroTime=1500,pomodoroRunning=false,pomodoroMode='work';
+function openPomodoro(){
+    playSound('correct');hideAll();
+    document.getElementById('pomodoro-container').style.display='block';
+    updatePomodoroUI();
+    document.getElementById('pomodoro-count').innerText=user.pomodoroCount||0;
+}
+function updatePomodoroUI(){
+    const m=Math.floor(pomodoroTime/60),s=pomodoroTime%60;
+    document.getElementById('pomodoro-time').innerText=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    const b=document.getElementById('pomodoro-btn');
+    b.innerText=pomodoroRunning?'⏸️ Пауза':'▶️ Старт';
+    b.className='btn '+(pomodoroRunning?'btn-d':'btn-p');
+}
+function togglePomodoro(){
+    if(pomodoroRunning){
+        clearInterval(pomodoroInterval);pomodoroRunning=false;
+    } else {
+        playSound('correct');
+        pomodoroRunning=true;
+        pomodoroInterval=setInterval(()=>{
+            pomodoroTime--;
+            if(pomodoroTime<=0){
+                clearInterval(pomodoroInterval);pomodoroRunning=false;
+                if(pomodoroMode==='work'){
+                    playSound('win');confetti();
+                    user.pomodoroCount=(user.pomodoroCount||0)+1;
+                    user.xp+=100;
+                    saveData();
+                    showModal({title:'✅ Сессия завершена!',text:'+100 XP! Сделай перерыв 5 мин.',okText:'Отдохнуть',showCancel:false});
+                    pomodoroMode='rest';pomodoroTime=300;
+                } else {
+                    playSound('win');
+                    showModal({title:'☕ Отдых окончен',text:'Возвращаемся к учёбе!',okText:'Погнали!',showCancel:false});
+                    pomodoroMode='work';pomodoroTime=1500;
+                }
+            }
+            updatePomodoroUI();
+        },1000);
+    }
+    updatePomodoroUI();
+}
+
+/* ГРАФИК XP */
+function openXpChart(){
+    playSound('correct');hideAll();
+    document.getElementById('xp-chart-container').style.display='block';
+    const bars=document.getElementById('chart-bars');
+    bars.innerHTML='';
+    const days=[];
+    for(let i=6;i>=0;i--){
+        const d=new Date(Date.now()-i*86400000);
+        const key=d.toDateString();
+        days.push({date:d,xp:user.xpHistory[key]||0});
+    }
+    const max=Math.max(1,...days.map(d=>d.xp));
+    const dayNames=['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+    let totalXp=0;
+    days.forEach(d=>{
+        totalXp+=d.xp;
+        const h=Math.max(4,(d.xp/max)*130);
+        const bar=document.createElement('div');
+        bar.className='chart-bar';
+        bar.style.height=h+'px';
+        bar.innerHTML=`<span class="chart-bar-label">${dayNames[d.date.getDay()]}</span>`;
+        bar.title=d.xp+' XP';
+        bars.appendChild(bar);
+    });
+    document.getElementById('total-xp-chart').innerText=totalXp;
+}
+
+/* КОЛЛЕКЦИЯ СЛОВ */
+function openWordCollection(){
+    playSound('correct');hideAll();
+    document.getElementById('words-container').style.display='block';
+    const c=document.getElementById('words-content');
     c.innerHTML=`
-    <div class="battle-box">
-        <h3>⚔️ Ты против ИИ</h3>
-        <p style="margin:15px 0;">5 вопросов. Кто ответит правильно — тот победил!</p>
-        <div style="display:flex;gap:15px;justify-content:center;margin:20px 0;">
-            <div style="flex:1;">
-                <div style="font-weight:800;">👤 Ты</div>
-                <div class="battle-hp"><div class="battle-hp-fill" id="player-hp" style="width:100%;"></div></div>
-                <div id="player-score">HP: 100</div>
-            </div>
-            <div style="flex:1;">
-                <div style="font-weight:800;">🤖 ИИ</div>
-                <div class="battle-hp"><div class="battle-hp-fill" id="ai-hp" style="width:100%;background:linear-gradient(90deg,#8e44ad,#9b59b6);"></div></div>
-                <div id="ai-score">HP: 100</div>
-            </div>
+        <p style="text-align:center;font-weight:700;">Собрано: ${user.wordCollection.length} слов</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:15px;">
+            ${user.wordCollection.map(w=>`<div style="background:var(--card);padding:12px;border-radius:10px;border-left:3px solid var(--success);"><b>${w.w}</b><br><small style="opacity:.75;">${w.d}</small></div>`).join('')}
         </div>
-        <p style="font-weight:800;">Побед: ${user.battleWins||0}</p>
-        <button class="btn btn-d" style="width:100%;margin-top:15px;" onclick="startBattle()">⚔️ Начать дуэль</button>
-    </div>`;
+    `;
 }
-async function startBattle(){
-    const allTopics=[];
-    for(const gk in db){
-        for(const tk in db[gk].topics){
-            if(db[gk].topics[tk].qs) allTopics.push(...db[gk].topics[tk].qs.map(q=>({...q,grade:gk,topic:db[gk].topics[tk].title})));
-        }
-    }
-    const sh=shuffleArray(allTopics).slice(0,5);
-    let playerHP=100, aiHP=100;
-    for(let i=0;i<5;i++){
-        const q=sh[i];
-        const correctIdx=Math.floor(Math.random()*q.o.length);
-        // ИИ отвечает правильно с вероятностью 60%
-        const aiCorrect=Math.random()<0.6;
-        const aiAnswer=aiCorrect?q.a:correctIdx===q.a?(correctIdx+1)%q.o.length:correctIdx;
-        // Показываем вопрос
-        const userAns=await showModal({
-            title:`⚔️ Раунд ${i+1}/5`,
-            text:q.q,
-            extraHTML:q.o.map((opt,idx)=>`<button class="btn" style="width:100%;margin-bottom:6px;text-align:left;" onclick="window._battleAns(${idx},${q.a},${aiCorrect})">${String.fromCharCode(65+idx)}. ${opt}</button>`).join(''),
-            okText:'Отмена',showCancel:true
-        });
-        if(userAns===false){return;}
-    }
-    // Упрощённый финал
-    await showModal({title:'⚔️ Дуэль завершена!',text:'Игра окончена. Побед: '+(user.battleWins||0),okText:'Ок',showCancel:false});
-}
-window._battleAns=(userIdx,correctIdx,aiCorrect)=>{
-    if(userIdx===correctIdx){
-        // Игрок правильный
-        if(!aiCorrect){ user.battleWins=(user.battleWins||0)+1; }
-    }
-    closeModal(false);
-};
 
 /* КЛИКЕР */
 function openClicker(){
-    playSound('correct'); hideAll();
+    playSound('correct');hideAll();
     document.getElementById('clicker-container').style.display='block';
     document.getElementById('clicker-count').innerText=user.catsClicked;
     document.getElementById('clicker-img').innerText=rndCat();
