@@ -40,31 +40,10 @@ small{color:var(--muted)}
 .btn.w{background:var(--warning);color:#fff;border-color:var(--warning)}
 .btn.full{width:100%}
 .btn.sm{padding:6px 10px;font-size:12px}
-
-/* ГЛАВНАЯ КНОПКА НАЗАД - ВСЕГДА СВЕРХУ СЛЕВА */
-#backBtn{
-    position:fixed;
-    top:12px;left:12px;
-    z-index:9000;
-    min-width:44px;height:44px;
-    padding:0 14px;
-    font-size:16px;
-    background:var(--bg);
-    border:1px solid var(--border);
-    border-radius:22px;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-    color:var(--fg);
-    font-weight:600;
-    font-family:inherit;
-    transition:.15s;
-}
+#backBtn{position:fixed;top:12px;left:12px;z-index:9000;min-width:44px;height:44px;padding:0 14px;font-size:16px;background:var(--bg);border:1px solid var(--border);border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);color:var(--fg);font-weight:600;font-family:inherit;transition:.15s}
 #backBtn:hover{background:var(--panel);transform:translateY(-1px)}
-#backBtn:active{transform:translateY(0)}
 #backBtn.hide{display:none!important}
-
-input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);color:var(--fg);border-radius:var(--radius);font-size:14px;font-family:inherit;outline:none;transition:.12s}
+input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);background:var(--bg);color:var(--fg);border-radius:var(--radius);font-size:14px;font-family:inherit;outline:none}
 input:focus{border-color:var(--primary)}
 .grid{display:grid;gap:8px}
 .grid.auto{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
@@ -114,13 +93,27 @@ input:focus{border-color:var(--primary)}
 .stat{padding:12px;border:1px solid var(--border);border-radius:var(--radius);text-align:center}
 .stat b{display:block;font-size:22px;font-weight:800;line-height:1;margin-bottom:4px}
 .stat small{font-size:11px;color:var(--muted)}
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
-.cat{padding:12px;border:1px solid var(--border);border-radius:var(--radius);text-align:center;cursor:pointer;transition:.15s}
-.cat:hover{transform:translateY(-2px);border-color:var(--primary)}
-.cat.lock{opacity:.35;filter:grayscale(1);cursor:not-allowed}
-.cat.lock:hover{transform:none}
-.cat b{display:block;font-size:13px;margin-top:6px}
-.cat em{font-size:34px;font-style:normal;line-height:1}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.cat{padding:8px;border:1px solid var(--border);border-radius:var(--radius);text-align:center;cursor:pointer;transition:.15s;background:var(--bg)}
+.cat:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.cat.lock{opacity:.4;cursor:not-allowed;filter:grayscale(1)}
+.cat.lock:hover{transform:none;box-shadow:none}
+.cat-photo{width:100%;aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--panel);margin-bottom:8px;display:flex;align-items:center;justify-content:center;position:relative}
+.cat-photo svg{width:100%;height:100%;display:block}
+.cat-photo .fallback{font-size:52px;line-height:1}
+.cat b{display:block;font-size:13px;margin-top:4px}
+.cat small{display:block;font-size:11px;margin-top:2px;color:var(--muted)}
+.clicker-zone{text-align:center;padding:20px 0}
+.clicker-photo{width:280px;height:280px;margin:0 auto 16px;border-radius:50%;overflow:hidden;position:relative;cursor:pointer;border:6px solid var(--accent);box-shadow:0 8px 30px rgba(124,58,237,.4);background:var(--panel);transition:.1s}
+.clicker-photo:active{transform:scale(.95)}
+.clicker-photo svg{width:100%;height:100%;display:block}
+.clicker-count{font-size:32px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.clicker-label{font-size:13px;color:var(--muted)}
+.clicker-fact{margin-top:14px;padding:12px;background:var(--panel);border-radius:10px;font-style:italic;font-size:13px;min-height:40px;display:flex;align-items:center;justify-content:center;text-align:center}
+.click-word{position:absolute;font-size:26px;font-weight:900;color:var(--warning);pointer-events:none;animation:floatUp 1s ease-out forwards;z-index:100;text-shadow:2px 2px 0 #000}
+@keyframes floatUp{to{opacity:0;transform:translateY(-60px) scale(1.3)}}
+.cat-modal-photo{width:220px;height:220px;margin:0 auto 12px;border-radius:50%;overflow:hidden;border:5px solid var(--accent);background:var(--panel)}
+.cat-modal-photo svg{width:100%;height:100%;display:block}
 .wheel-wrap{position:relative;width:260px;height:260px;margin:20px auto}
 .wheel{width:100%;height:100%;border-radius:50%;border:6px solid var(--fg);transition:transform 5s cubic-bezier(.15,.85,.4,1)}
 .wheel-arrow{position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:28px;z-index:5;color:var(--danger)}
@@ -131,17 +124,16 @@ input:focus{border-color:var(--primary)}
 .ai-msg.user{background:var(--primary);color:#fff;align-self:flex-end}
 .ai-msg.bot{background:var(--panel);align-self:flex-start;border:1px solid var(--border)}
 .exit-bar{display:flex;justify-content:center;margin:24px 0 8px}
-@media(max-width:520px){body{padding:12px}.opts{grid-template-columns:1fr}.wheel-wrap{width:220px;height:220px}}
+@media(max-width:520px){body{padding:12px}.opts{grid-template-columns:1fr}.wheel-wrap{width:220px;height:220px}.clicker-photo{width:240px;height:240px}}
 </style>
 </head>
 <body>
 
-<!-- ГЛАВНАЯ КНОПКА НАЗАД -->
 <button id="backBtn" class="hide" type="button">← Назад</button>
 
 <div class="wrap">
 
-<!-- ВХОД -->
+<!-- ЛОГИН -->
 <div id="s-login" class="fade">
     <div class="card" style="text-align:center;padding:32px 20px;margin-top:40px">
         <h1>🎓 Академия Знаний</h1>
@@ -171,6 +163,7 @@ input:focus{border-color:var(--primary)}
     </div>
     <div class="grid auto" style="margin-bottom:12px">
         <button class="btn" type="button" onclick="openCats()">🐾 Питомник</button>
+        <button class="btn" type="button" onclick="openClicker()">🐈 Комната котов</button>
         <button class="btn" type="button" onclick="openAch()">🏅 Достижения</button>
         <button class="btn" type="button" onclick="openBook()">📖 Правила</button>
         <button class="btn" type="button" onclick="openAI()">🤖 ИИ</button>
@@ -262,6 +255,22 @@ input:focus{border-color:var(--primary)}
     <div class="cats" id="cats-grid"></div>
 </div>
 
+<!-- КОМНАТА КОТОВ -->
+<div id="s-clicker" class="hide">
+    <h2>🐈 Комната котов</h2>
+    <div class="card">
+        <div class="clicker-zone">
+            <div class="clicker-count" id="cl-count">0</div>
+            <div class="clicker-label">котов поглажено</div>
+            <div class="clicker-photo" id="cl-photo" onclick="clickCat(event)"></div>
+            <div class="clicker-fact" id="cl-fact">Нажми на кота, чтобы погладить</div>
+        </div>
+    </div>
+    <div class="exit-bar">
+        <button class="btn p" type="button" onclick="goMenu()">← В меню</button>
+    </div>
+</div>
+
 <!-- ДОСТИЖЕНИЯ -->
 <div id="s-ach" class="hide">
     <h2>🏅 Достижения</h2>
@@ -302,7 +311,7 @@ input:focus{border-color:var(--primary)}
 <!-- ПРОМО -->
 <div id="s-promo" class="hide">
     <h2>🎟️ Промокоды</h2>
-    <p class="muted" style="margin-bottom:12px;font-size:13px">Коды спрятаны по всему сайту.</p>
+    <p class="muted" style="margin-bottom:12px;font-size:13px">Коды спрятаны по всему сайту. Есть ОДИН секретный на миллион.</p>
     <div id="promo-list"></div>
     <div class="card">
         <h3>Ввести код</h3>
@@ -313,20 +322,10 @@ input:focus{border-color:var(--primary)}
 
 <!-- ПРОФИЛЬ -->
 <div id="s-profile" class="hide"><h2>👤 Профиль</h2><div id="profile-body"></div></div>
-
-<!-- СТАТИСТИКА -->
 <div id="s-stats" class="hide"><h2>📊 Статистика</h2><div id="stats-body"></div></div>
-
-<!-- ТОП -->
 <div id="s-top" class="hide"><h2>🏆 Рекорды</h2><div id="top-body"></div></div>
-
-<!-- ЗАМЕТКИ -->
 <div id="s-notes" class="hide"><h2>📝 Заметки</h2><div id="notes-body"></div></div>
-
-<!-- ОШИБКИ -->
 <div id="s-mistakes" class="hide"><h2>📕 Тетрадь ошибок</h2><div id="mistakes-body"></div></div>
-
-<!-- ИЗБРАННОЕ -->
 <div id="s-fav" class="hide"><h2>⭐ Избранное</h2><div id="fav-body"></div></div>
 
 <!-- ИИ -->
@@ -355,13 +354,12 @@ input:focus{border-color:var(--primary)}
     </div></div>
     <div class="card">
         <h3>💾 Сохранение</h3>
-        <p class="muted" style="font-size:13px">Прогресс сохраняется автоматически и мигрирует при обновлениях.</p>
+        <p class="muted" style="font-size:13px">Прогресс сохраняется автоматически.</p>
         <button class="btn p full" type="button" onclick="exportData()" style="margin-bottom:6px">💾 Скачать копию</button>
         <button class="btn full" type="button" onclick="importData()" style="margin-bottom:6px">📥 Загрузить из файла</button>
         <button class="btn d full" type="button" onclick="confirmReset()">⚠️ Полный сброс</button>
         <div class="muted" style="text-align:center;margin-top:12px;font-size:12px" id="save-info"></div>
     </div>
-    <p class="muted" style="text-align:center;font-size:11px">Код: <b>STUDY2024</b></p>
 </div>
 
 <!-- БОСС -->
@@ -382,7 +380,6 @@ input:focus{border-color:var(--primary)}
 
 </div>
 
-<!-- МОДАЛКА -->
 <div class="overlay" id="modal">
     <div class="modal">
         <h3 id="m-title"></h3>
@@ -397,41 +394,122 @@ input:focus{border-color:var(--primary)}
 </div>
 
 <script>
-/* ============================================================
-   АКАДЕМИЯ v21.1 — со стабильными кнопками
-   ============================================================ */
 'use strict';
 
-/* --- СЕЙВЫ --- */
-const SAVE_V=21, SAVE_K='academy_save', SAVE_B='academy_save_backup';
-const LEGACY=['academy_v20','superQuizV19','superQuizV18','superQuizV17','superQuizV16','superQuizV15','superQuizV14','superQuizV13_Full'];
+/* ============================================================
+   🎨 SVG-КОТИКИ — рисуются в браузере, работают без интернета
+   ============================================================ */
+function catSvg(id){
+    // Настройки каждого кота
+    const styles = {
+        c1:  {body:'#f4a261',stripe:'#e76f51',eye:'#264653',nose:'#e76f51',mood:'happy'},
+        c2:  {body:'#f9c74f',stripe:'#f9844a',eye:'#264653',nose:'#e76f51',mood:'happy'},
+        c3:  {body:'#adb5bd',stripe:'#6c757d',eye:'#212529',nose:'#e76f51',mood:'surprise'},
+        c4:  {body:'#ffd166',stripe:'#ef476f',eye:'#073b4c',nose:'#ef476f',mood:'happy'},
+        c5:  {body:'#c8b6ff',stripe:'#7c3aed',eye:'#1e1b4b',nose:'#7c3aed',mood:'sleepy'},
+        c6:  {body:'#e0aaff',stripe:'#9d4edd',eye:'#240046',nose:'#9d4edd',mood:'wink'},
+        c7:  {body:'#f77f00',stripe:'#d62828',eye:'#003049',nose:'#d62828',mood:'happy'},
+        c8:  {body:'#fcbf49',stripe:'#e85d04',eye:'#03071e',nose:'#e85d04',mood:'happy'},
+        c9:  {body:'#ffffff',stripe:'#000000',eye:'#000000',nose:'#dc2626',mood:'sleepy'},
+        c10: {body:'#ff7b00',stripe:'#d97706',eye:'#431407',nose:'#d97706',mood:'wink'},
+        c11: {body:'#ffc8dd',stripe:'#bde0fe',eye:'#a06cd5',nose:'#ffafcc',mood:'happy'},
+        c12: {body:'#84d187',stripe:'#2d6a4f',eye:'#081c15',nose:'#2d6a4f',mood:'surprise'},
+        c13: {body:'#e63946',stripe:'#9d0208',eye:'#03071e',nose:'#9d0208',mood:'happy'},
+        c14: {body:'#4cc9f0',stripe:'#3a86ff',eye:'#023047',nose:'#3a86ff',mood:'happy'},
+        c15: {body:'#a78bfa',stripe:'#7c3aed',eye:'#1e1b4b',nose:'#7c3aed',mood:'wink'},
+        c16: {body:'#fbbf24',stripe:'#d97706',eye:'#451a03',nose:'#d97706',mood:'happy'},
+        c17: {body:'#fef08a',stripe:'#eab308',eye:'#422006',nose:'#eab308',mood:'happy'},
+        c18: {body:'#67e8f9',stripe:'#0891b2',eye:'#083344',nose:'#0891b2',mood:'surprise'},
+        c19: {body:'#fb923c',stripe:'#dc2626',eye:'#431407',nose:'#dc2626',mood:'happy'},
+        c20: {body:'#5eead4',stripe:'#0d9488',eye:'#042f2e',nose:'#0d9488',mood:'happy'},
+        c21: {body:'#94a3b8',stripe:'#475569',eye:'#020617',nose:'#475569',mood:'sleepy'},
+        c22: {body:'#f472b6',stripe:'#db2777',eye:'#500724',nose:'#db2777',mood:'happy'},
+        c23: {body:'#fcd34d',stripe:'#b45309',eye:'#451a03',nose:'#b45309',mood:'sleepy'},
+        c24: {body:'#c4b5fd',stripe:'#4c1d95',eye:'#1e1b4b',nose:'#4c1d95',mood:'happy'}
+    };
+    const s = styles[id] || styles.c1;
 
-/* --- КОТЫ --- */
+    // Глаза по настроению
+    let eyes = '';
+    if(s.mood === 'happy'){
+        eyes = '<ellipse cx="38" cy="55" rx="4" ry="5" fill="'+s.eye+'"/><ellipse cx="62" cy="55" rx="4" ry="5" fill="'+s.eye+'"/>'+
+               '<circle cx="39" cy="54" r="1.3" fill="#fff"/><circle cx="63" cy="54" r="1.3" fill="#fff"/>';
+    } else if(s.mood === 'sleepy'){
+        eyes = '<path d="M33 56 Q38 52 43 56" stroke="'+s.eye+'" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+               '<path d="M57 56 Q62 52 67 56" stroke="'+s.eye+'" stroke-width="2.5" fill="none" stroke-linecap="round"/>';
+    } else if(s.mood === 'surprise'){
+        eyes = '<circle cx="38" cy="55" r="6" fill="#fff" stroke="'+s.eye+'" stroke-width="1.5"/>'+
+               '<circle cx="62" cy="55" r="6" fill="#fff" stroke="'+s.eye+'" stroke-width="1.5"/>'+
+               '<circle cx="38" cy="55" r="2.5" fill="'+s.eye+'"/><circle cx="62" cy="55" r="2.5" fill="'+s.eye+'"/>';
+    } else if(s.mood === 'wink'){
+        eyes = '<ellipse cx="38" cy="55" rx="4" ry="5" fill="'+s.eye+'"/>'+
+               '<path d="M57 56 Q62 51 67 56" stroke="'+s.eye+'" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+               '<circle cx="39" cy="54" r="1.3" fill="#fff"/>';
+    }
+
+    return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">'+
+        '<rect width="100" height="100" fill="'+s.stripe+'" opacity="0.12"/>'+
+        // Уши
+        '<path d="M25 35 L20 15 L40 28 Z" fill="'+s.body+'" stroke="'+s.eye+'" stroke-width="1.2"/>'+
+        '<path d="M75 35 L80 15 L60 28 Z" fill="'+s.body+'" stroke="'+s.eye+'" stroke-width="1.2"/>'+
+        '<path d="M27 32 L24 22 L36 29 Z" fill="'+s.stripe+'"/>'+
+        '<path d="M73 32 L76 22 L64 29 Z" fill="'+s.stripe+'"/>'+
+        // Голова
+        '<ellipse cx="50" cy="58" rx="30" ry="28" fill="'+s.body+'" stroke="'+s.eye+'" stroke-width="1.2"/>'+
+        // Полоски на лбу
+        '<path d="M35 42 Q40 38 45 42" stroke="'+s.stripe+'" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+        '<path d="M55 40 Q60 36 65 40" stroke="'+s.stripe+'" stroke-width="2.5" fill="none" stroke-linecap="round"/>'+
+        // Глаза
+        eyes+
+        // Нос
+        '<path d="M48 66 L52 66 L50 70 Z" fill="'+s.nose+'"/>'+
+        // Рот
+        '<path d="M50 70 Q46 75 42 73" stroke="'+s.eye+'" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+        '<path d="M50 70 Q54 75 58 73" stroke="'+s.eye+'" stroke-width="1.5" fill="none" stroke-linecap="round"/>'+
+        // Усы
+        '<line x1="30" y1="63" x2="12" y2="60" stroke="'+s.eye+'" stroke-width="1" stroke-linecap="round"/>'+
+        '<line x1="30" y1="68" x2="12" y2="69" stroke="'+s.eye+'" stroke-width="1" stroke-linecap="round"/>'+
+        '<line x1="70" y1="63" x2="88" y2="60" stroke="'+s.eye+'" stroke-width="1" stroke-linecap="round"/>'+
+        '<line x1="70" y1="68" x2="88" y2="69" stroke="'+s.eye+'" stroke-width="1" stroke-linecap="round"/>'+
+    '</svg>';
+}
+
+/* --- КОНСТАНТЫ --- */
+const SAVE_V=22, SAVE_K='academy_save', SAVE_B='academy_save_backup';
+const LEGACY=['academy_v21','academy_v20','superQuizV19','superQuizV18','superQuizV17','superQuizV16','superQuizV15','superQuizV14','superQuizV13_Full'];
+
 const CATS=[
-    {id:'c1',need:3,e:'🐱',n:'Барсик',t:'Обычный',c:'#94a3b8',d:'Первоклассник, только учится читать.'},
-    {id:'c2',need:5,e:'😸',n:'Мурзик',t:'Обычный',c:'#94a3b8',d:'Всегда доволен жизнью.'},
-    {id:'c3',need:8,e:'🙀',n:'Паникёр',t:'Необычный',c:'#3b82f6',d:'Боится диктантов.'},
-    {id:'c4',need:12,e:'😹',n:'Хохотун',t:'Необычный',c:'#3b82f6',d:'Смеётся над ошибками.'},
-    {id:'c5',need:15,e:'🐈',n:'Дымка',t:'Редкий',c:'#8b5cf6',d:'Прочитала весь учебник.'},
-    {id:'c6',need:20,e:'😼',n:'Хитрец',t:'Редкий',c:'#8b5cf6',d:'Знает все ответы.'},
-    {id:'c7',need:25,e:'🐯',n:'Тигран',t:'Эпический',c:'#f59e0b',d:'Сильный и уверенный.'},
-    {id:'c8',need:30,e:'🦁',n:'Лев',t:'Эпический',c:'#f59e0b',d:'Помогает другим.'},
-    {id:'c9',need:40,e:'🐼',n:'Панда',t:'Эпический',c:'#f59e0b',d:'Знает всё про части речи.'},
-    {id:'c10',need:50,e:'🦊',n:'Лис',t:'Легендарный',c:'#dc2626',d:'Читает словари.'},
-    {id:'c11',need:70,e:'🦄',n:'Единорог',t:'Легендарный',c:'#dc2626',d:'Верит в ученика.'},
-    {id:'c12',need:100,e:'👽',n:'Космокот',t:'Мифический',c:'#ea580c',d:'С планеты русского.'},
-    {id:'c13',need:150,e:'🐉',n:'Дракон',t:'Мифический',c:'#ea580c',d:'Хранит правила.'},
-    {id:'c14',need:200,e:'🦸',n:'Супер-Кот',t:'Мифический',c:'#ea580c',d:'Спасает от двоек.'},
-    {id:'c15',need:300,e:'🧙',n:'Волшебник',t:'Божественный',c:'#7c3aed',d:'Правила — просто.'},
-    {id:'c16',need:365,e:'👑',n:'Император',t:'Божественный',c:'#7c3aed',d:'Правит котами.'},
-    {id:'c17',need:500,e:'🌟',n:'Звезда',t:'Божественный',c:'#7c3aed',d:'Сияет знаниями.'},
-    {id:'c18',need:750,e:'⚡',n:'Молния',t:'Небесный',c:'#0891b2',d:'Быстрее вопроса.'},
-    {id:'c19',need:1000,e:'🔥',n:'Феникс',t:'Небесный',c:'#0891b2',d:'Возрождается.'},
-    {id:'c20',need:1500,e:'💎',n:'Алмаз',t:'Абсолютный',c:'#0d9488',d:'Чистый ум.'},
-    {id:'c21',need:2000,e:'🗿',n:'Спокойствие',t:'Абсолютный',c:'#0d9488',d:'Не паникует.'},
-    {id:'c22',need:3000,e:'🌈',n:'Радуга',t:'Космический',c:'#db2777',d:'Все цвета.'},
-    {id:'c23',need:5000,e:'⏳',n:'Хранитель времени',t:'Космический',c:'#db2777',d:'Помнит всё.'},
-    {id:'c24',need:10000,e:'🌌',n:'Вселенная',t:'Легенда',c:'#1e1b4b',d:'Высший разум.'}
+    {id:'c1',need:3,e:'🐱',n:'Барсик',t:'Обычный',c:'#94a3b8',d:'Первоклассник. Учится читать вместе с тобой.'},
+    {id:'c2',need:5,e:'😸',n:'Мурзик',t:'Обычный',c:'#94a3b8',d:'Всегда доволен жизнью и уроками.'},
+    {id:'c3',need:8,e:'🙀',n:'Паникёр',t:'Необычный',c:'#3b82f6',d:'Боится диктантов, но приходит на каждый урок.'},
+    {id:'c4',need:12,e:'😹',n:'Хохотун',t:'Необычный',c:'#3b82f6',d:'Смеётся даже над своими ошибками.'},
+    {id:'c5',need:15,e:'🐈',n:'Дымка',t:'Редкий',c:'#8b5cf6',d:'Прочитала весь учебник от корки до корки.'},
+    {id:'c6',need:20,e:'😼',n:'Хитрец',t:'Редкий',c:'#8b5cf6',d:'Знает ответы на все вопросы, но молчит.'},
+    {id:'c7',need:25,e:'🐯',n:'Тигран',t:'Эпический',c:'#f59e0b',d:'Сильный и уверенный. Пятёрки — его конёк.'},
+    {id:'c8',need:30,e:'🦁',n:'Лев',t:'Эпический',c:'#f59e0b',d:'Помогает другим котятам с правилами.'},
+    {id:'c9',need:40,e:'🐼',n:'Панда-Загадка',t:'Эпический',c:'#f59e0b',d:'Никто не знает, откуда она. Но знает всё.'},
+    {id:'c10',need:50,e:'🦊',n:'Лис-Эрудит',t:'Легендарный',c:'#dc2626',d:'Читает словари ради удовольствия.'},
+    {id:'c11',need:70,e:'🦄',n:'Единорог',t:'Легендарный',c:'#dc2626',d:'Верит в каждого ученика. И не ошибается.'},
+    {id:'c12',need:100,e:'👽',n:'Космокот',t:'Мифический',c:'#ea580c',d:'Прилетел с планеты идеального русского.'},
+    {id:'c13',need:150,e:'🐉',n:'Дракон',t:'Мифический',c:'#ea580c',d:'Сторожит древние правила тысячу лет.'},
+    {id:'c14',need:200,e:'🦸',n:'Супер-Кот',t:'Мифический',c:'#ea580c',d:'Спасает школьников от двоек и лени.'},
+    {id:'c15',need:300,e:'🧙',n:'Волшебник',t:'Божественный',c:'#7c3aed',d:'Взмах хвостом — и правило запоминается.'},
+    {id:'c16',need:365,e:'👑',n:'Император',t:'Божественный',c:'#7c3aed',d:'Правит всеми котами и знает все правила.'},
+    {id:'c17',need:500,e:'🌟',n:'Сияющий',t:'Божественный',c:'#7c3aed',d:'Излучает свет знаний вокруг себя.'},
+    {id:'c18',need:750,e:'⚡',n:'Молния',t:'Небесный',c:'#0891b2',d:'Отвечает быстрее, чем задают вопрос.'},
+    {id:'c19',need:1000,e:'🔥',n:'Феникс',t:'Небесный',c:'#0891b2',d:'Возрождается из пепла любой ошибки.'},
+    {id:'c20',need:1500,e:'💎',n:'Алмаз',t:'Абсолютный',c:'#0d9488',d:'Твёрдый характер, чистый ум.'},
+    {id:'c21',need:2000,e:'🗿',n:'Спокойствие',t:'Абсолютный',c:'#0d9488',d:'Не паникует даже на экзамене.'},
+    {id:'c22',need:3000,e:'🌈',n:'Радуга',t:'Космический',c:'#db2777',d:'Все цвета русского языка в одном коте.'},
+    {id:'c23',need:5000,e:'⏳',n:'Хранитель времени',t:'Космический',c:'#db2777',d:'Помнит, как менялся язык за века.'},
+    {id:'c24',need:10000,e:'🌌',n:'Вселенная',t:'Легенда',c:'#1e1b4b',d:'Высший разум. Знает все правила.'}
+];
+
+const CAT_FACTS=[
+    'Мур-мяу! Ты умница!','Мяу! Так держать!','Кошки мурлычут на частоте 25 Гц — это лечит раны.',
+    'Мур! Продолжай!','Кошки спят по 16 часов в сутки.','Мяу-мяу! Ещё клик!',
+    'У кошки 32 мышцы в каждом ухе.','Мур-мур! Отлично!','Кошачий нос имеет уникальный отпечаток.',
+    'Мяу! Ты справляешься!','Коты не чувствуют сладкий вкус.','Мур-мяу! Продолжай так же!'
 ];
 
 const S_LV=[{min:0,n:'Начните серию',i:'💤'},{min:3,n:'Хорошее начало',i:'🔥'},{min:5,n:'Уверенный темп',i:'🔥'},{min:10,n:'Отличный результат',i:'💥'},{min:15,n:'Блестяще',i:'💥'},{min:20,n:'Выдающаяся серия',i:'⚡'},{min:30,n:'Невероятно',i:'🌋'}];
@@ -443,9 +521,9 @@ function catFor(n){let r=CATS[0];for(const c of CATS)if(n>=c.need)r=c;return r}
 function nextCat(n){for(const c of CATS)if(n<c.need)return c;return null}
 
 const AVATARS=['🐱','🐶','🦊','🐯','🦁','🐻','🐼','🐨','🐸','🐵','🦉','🦄','🐲','🐧','🐰','🦔','🐢','🐙','🦋','🐝','👦','👧','🧑','👩‍🎓'];
-const QUOTES=['Знание — самое лучшее приобретение.','Повторение — мать учения.','Терпение и труд всё перетрут.','Не стыдно не знать, стыдно не учиться.','Век живи — век учись.','Умный учится на своих ошибках.','Сделал дело — гуляй смело.','Учиться никогда не поздно.','Книга — лучший друг.','Утро вечера мудренее.'];
 const WORDS=[{w:'ВЕЛИКОДУШИЕ',d:'Щедрость души'},{w:'ДОСТОИНСТВО',d:'Уважение к себе'},{w:'ИСКРЕННОСТЬ',d:'Честность'},{w:'ЛЮБОЗНАТЕЛЬНОСТЬ',d:'Стремление к знаниям'},{w:'МИЛОСЕРДИЕ',d:'Готовность помочь'},{w:'ОТВЕТСТВЕННОСТЬ',d:'Умение отвечать'},{w:'ПОСЛЕДОВАТЕЛЬНОСТЬ',d:'Логичность'},{w:'САМООБЛАДАНИЕ',d:'Владеть собой'},{w:'ТРУДОЛЮБИЕ',d:'Любовь к труду'},{w:'ЦЕЛЕУСТРЕМЛЁННОСТЬ',d:'Настойчивость'},{w:'ЧЕСТНОСТЬ',d:'Правдивость'},{w:'ЩЕДРОСТЬ',d:'Готовность делиться'},{w:'ЭРУДИЦИЯ',d:'Широкие знания'},{w:'ЯСНОСТЬ',d:'Понятность'}];
 
+/* ПРОМОКОДЫ */
 const PROMOS=[
     {c:'ACADEMY',xp:500,h:'На экране входа'},
     {c:'STUDY2024',xp:1000,h:'В настройках'},
@@ -453,11 +531,13 @@ const PROMOS=[
     {c:'KNOWLEDGE',xp:2000,h:'В достижениях'},
     {c:'VICTORY',xp:2500,h:'В битве с боссом'},
     {c:'FORTUNE',xp:3000,h:'На колесе'},
-    {c:'WISDOM',xp:4000,h:'В цитате'},
+    {c:'WISDOM',xp:4000,h:'В слове дня'},
     {c:'UNIVERSE',xp:5000,h:'У Кота-Вселенной'},
-    {c:'MENTOR',xp:3000,h:'В ИИ'},
+    {c:'MENTOR',xp:3000,h:'В ИИ-помощнике'},
     {c:'LEGEND',xp:7000,h:'У сильнейшего кота'}
 ];
+/* ⭐ СЕКРЕТНЫЙ ПРОМОКОД НА МИЛЛИОН ⭐ */
+const SECRET_PROMO={c:'KOT1MILLION',xp:1000000,h:'СЕКРЕТНЫЙ · на 1 000 000 XP'};
 
 const ACHS=[
     {id:'a1',c:'Тесты',t:'b',n:'Первый шаг',d:'1 тест',r:100,f:u=>u.testsPassed>=1,g:u=>u.testsPassed,x:1},
@@ -477,22 +557,23 @@ const ACHS=[
     {id:'a15',c:'Опыт',t:'p',n:'Энциклопедия',d:'100000 XP',r:15000,f:u=>u.xp>=100000,g:u=>u.xp,x:100000},
     {id:'a16',c:'Активность',t:'b',n:'Постоянный',d:'10 входов',r:300,f:u=>u.visits>=10,g:u=>u.visits,x:10},
     {id:'a17',c:'Активность',t:'s',n:'Верный',d:'30 входов',r:1200,f:u=>u.visits>=30,g:u=>u.visits,x:30},
-    {id:'a18',c:'Активность',t:'b',n:'3 дня',d:'Серия 3',r:400,f:u=>(u.dayStreak||0)>=3,g:u=>u.dayStreak||0,x:3},
-    {id:'a19',c:'Активность',t:'g',n:'7 дней',d:'Серия 7',r:1500,f:u=>(u.dayStreak||0)>=7,g:u=>u.dayStreak||0,x:7},
+    {id:'a18',c:'Активность',t:'b',n:'3 дня',d:'Серия входов 3',r:400,f:u=>(u.dayStreak||0)>=3,g:u=>u.dayStreak||0,x:3},
+    {id:'a19',c:'Активность',t:'g',n:'7 дней',d:'Серия входов 7',r:1500,f:u=>(u.dayStreak||0)>=7,g:u=>u.dayStreak||0,x:7},
     {id:'a20',c:'Творчество',t:'b',n:'Заметки',d:'5 заметок',r:200,f:u=>u.notes.length>=5,g:u=>u.notes.length,x:5},
     {id:'a21',c:'Творчество',t:'s',n:'Летописец',d:'20 заметок',r:800,f:u=>u.notes.length>=20,g:u=>u.notes.length,x:20},
     {id:'a22',c:'Знания',t:'b',n:'Собиратель',d:'10 слов',r:250,f:u=>u.words.length>=10,g:u=>u.words.length,x:10},
     {id:'a23',c:'Знания',t:'s',n:'Лексикон',d:'30 слов',r:1000,f:u=>u.words.length>=30,g:u=>u.words.length,x:30},
-    {id:'a24',c:'Знания',t:'g',n:'Словарный запас',d:'100 слов',r:4000,f:u=>u.words.length>=100,g:u=>u.words.length,x:100}
+    {id:'a24',c:'Знания',t:'g',n:'Словарный запас',d:'100 слов',r:4000,f:u=>u.words.length>=100,g:u=>u.words.length,x:100},
+    {id:'a25',c:'Коты',t:'s',n:'Котолюб',d:'100 котов поглажено',r:600,f:u=>(u.catsClicks||0)>=100,g:u=>u.catsClicks||0,x:100},
+    {id:'a26',c:'Коты',t:'g',n:'Котокороль',d:'1000 котов поглажено',r:3000,f:u=>(u.catsClicks||0)>=1000,g:u=>u.catsClicks||0,x:1000}
 ];
 
 const SHOP=[
     {id:'s1',n:'Второй щит',p:2000,d:'Доп. защита серии'},
     {id:'s2',n:'Двойной опыт',p:5000,d:'×2 XP всегда'},
-    {id:'s3',n:'Комната котов',p:1200,d:'Открыть кликер'},
-    {id:'s4',n:'Авто-коты',p:2500,d:'+1 кот/сек'},
-    {id:'s5',n:'Без таймера',p:1500,d:'Играть без времени'},
-    {id:'s6',n:'Все подсказки',p:800,d:'Бесконечные подсказки'}
+    {id:'s3',n:'Авто-коты',p:2500,d:'+1 кот/сек в комнате'},
+    {id:'s4',n:'Без таймера',p:1500,d:'Играть без времени'},
+    {id:'s5',n:'Все подсказки',p:800,d:'Бесконечные подсказки'}
 ];
 
 const WHEEL=[
@@ -510,13 +591,34 @@ const WHEEL=[
     {id:'w12',l:'5 заметок',v:5,t:'note',e:'📝',w:4,c:'#0891b2'}
 ];
 
-const LEVELS=Array.from({length:50},(_,i)=>({lvl:i+1,xp:i===0?0:Math.round(500*Math.pow(1.15,i-1))}));
-function getLvl(xp){let l=1;for(const L of LEVELS)if(xp>=L.xp)l=L.lvl;return l}
-function getLvlInfo(xp){const lvl=getLvl(xp);const cur=LEVELS[lvl-1].xp;const next=lvl<50?LEVELS[lvl].xp:cur;const pct=lvl>=50?100:((xp-cur)/(next-cur))*100;return {lvl,cur,next,pct}}
-function getRank(xp){if(xp>=100000)return 'Знаток';if(xp>=50000)return 'Мастер';if(xp>=25000)return 'Отличник';if(xp>=10000)return 'Хорошист';if(xp>=5000)return 'Ученик';if(xp>=2000)return 'Школьник';if(xp>=500)return 'Новичок';return 'Начинающий'}
-function getLeague(xp){if(xp>=50000)return {n:'Алмазная',c:'#0d9488'};if(xp>=20000)return {n:'Платиновая',c:'#64748b'};if(xp>=10000)return {n:'Золотая',c:'#f59e0b'};if(xp>=3000)return {n:'Серебряная',c:'#94a3b8'};if(xp>=500)return {n:'Бронзовая',c:'#92400e'};return null}
+const LEVELS=Array.from({length:50},function(_,i){return {lvl:i+1,xp:i===0?0:Math.round(500*Math.pow(1.15,i-1))}});
+function getLvl(xp){let l=1;for(let i=0;i<LEVELS.length;i++) if(xp>=LEVELS[i].xp) l=LEVELS[i].lvl;return l}
+function getLvlInfo(xp){
+    const lvl=getLvl(xp);const cur=LEVELS[lvl-1].xp;
+    const next=lvl<50?LEVELS[lvl].xp:cur;
+    const pct=lvl>=50?100:((xp-cur)/(next-cur))*100;
+    return {lvl:lvl,cur:cur,next:next,pct:pct};
+}
+function getRank(xp){
+    if(xp>=1000000)return 'Легенда';
+    if(xp>=100000)return 'Знаток';
+    if(xp>=50000)return 'Мастер';
+    if(xp>=25000)return 'Отличник';
+    if(xp>=10000)return 'Хорошист';
+    if(xp>=5000)return 'Ученик';
+    if(xp>=2000)return 'Школьник';
+    if(xp>=500)return 'Новичок';
+    return 'Начинающий';
+}
+function getLeague(xp){
+    if(xp>=50000)return {n:'Алмазная',c:'#0d9488'};
+    if(xp>=20000)return {n:'Платиновая',c:'#64748b'};
+    if(xp>=10000)return {n:'Золотая',c:'#f59e0b'};
+    if(xp>=3000)return {n:'Серебряная',c:'#94a3b8'};
+    if(xp>=500)return {n:'Бронзовая',c:'#92400e'};
+    return null;
+}
 
-/* --- СОСТОЯНИЕ --- */
 let user={
     v:SAVE_V,lastSave:0,devId:'',name:'',xp:0,avatar:'🐱',
     features:[],testsPassed:0,visits:0,dayStreak:0,lastVisit:'',
@@ -530,21 +632,41 @@ let user={
 };
 
 let quiz={g:'',t:'',mode:'normal',i:0,qs:[],order:[],ok:0,err:0,streak:0,maxStreak:0,shield:1,shieldMax:1,wrongList:[],wrongData:[],timer:null,time:30};
-
-/* --- ТЕКУЩИЙ ЭКРАН --- */
 let currentScreen='login';
-const SCREEN_IDS = ['login','menu','quiz','res','cats','ach','shop','book','wheel','promo','profile','stats','top','notes','mistakes','fav','ai','settings','boss','daily'];
+const SCREEN_IDS=['login','menu','quiz','res','cats','clicker','ach','shop','book','wheel','promo','profile','stats','top','notes','mistakes','fav','ai','settings','boss','daily'];
 
 /* --- СЕЙВЫ --- */
 function save(){
     if(!user.devId) user.devId='d_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
-    user.v=SAVE_V; user.lastSave=Date.now();
-    user.soundOn=soundEnabled; user.vibrOn=vibrationEnabled;
-    try{const d=JSON.stringify(user);localStorage.setItem(SAVE_K,d);localStorage.setItem(SAVE_B,d)}
-    catch(e){try{localStorage.setItem(SAVE_B,JSON.stringify(user))}catch(e2){}}
+    user.v=SAVE_V;user.lastSave=Date.now();
+    user.soundOn=soundEnabled;user.vibrOn=vibrationEnabled;
+    try{
+        const d=JSON.stringify(user);
+        localStorage.setItem(SAVE_K,d);
+        localStorage.setItem(SAVE_B,d);
+    }catch(e){
+        try{localStorage.setItem(SAVE_B,JSON.stringify(user))}catch(e2){}
+    }
 }
-function tryLoad(k){try{const r=localStorage.getItem(k);if(!r)return null;const p=JSON.parse(r);return p&&typeof p==='object'?p:null}catch(e){return null}}
-function loadSave(){let d=tryLoad(SAVE_K)||tryLoad(SAVE_B);if(!d){for(const k of LEGACY){const l=tryLoad(k);if(l){d=l;break}}}if(!d)return null;return migrate(d)}
+function tryLoad(k){
+    try{
+        const r=localStorage.getItem(k);
+        if(!r) return null;
+        const p=JSON.parse(r);
+        return p&&typeof p==='object'?p:null;
+    }catch(e){return null}
+}
+function loadSave(){
+    let d=tryLoad(SAVE_K)||tryLoad(SAVE_B);
+    if(!d){
+        for(let i=0;i<LEGACY.length;i++){
+            const l=tryLoad(LEGACY[i]);
+            if(l){d=l;break}
+        }
+    }
+    if(!d) return null;
+    return migrate(d);
+}
 function migrate(o){
     if(!o||typeof o!=='object') return null;
     const f={};
@@ -555,8 +677,12 @@ function migrate(o){
     if(o.claimedAchievements && !o.claimed) f.claimed=o.claimedAchievements;
     if(o.wordCollection && !o.words) f.words=o.wordCollection;
     if(o.favorites && !o.favs) f.favs=o.favorites;
-    ['catsOwned','usedPromos','mistakeBook','notes','favs','words','tops','streakHist','spinHist','features','claimed'].forEach(k=>{if(!Array.isArray(f[k])) f[k]=[]});
-    ['topicStats','activity','xpHistory'].forEach(k=>{if(!f[k]||typeof f[k]!=='object') f[k]={}});
+    ['catsOwned','usedPromos','mistakeBook','notes','favs','words','tops','streakHist','spinHist','features','claimed'].forEach(function(k){
+        if(!Array.isArray(f[k])) f[k]=[];
+    });
+    ['topicStats','activity','xpHistory'].forEach(function(k){
+        if(!f[k]||typeof f[k]!=='object') f[k]={};
+    });
     if(typeof f.xp!=='number'||isNaN(f.xp)) f.xp=0;
     if(typeof f.bestStreak!=='number') f.bestStreak=0;
     f.v=SAVE_V;
@@ -569,15 +695,18 @@ function exportData(){
     const a=document.createElement('a');
     a.href=u;
     a.download='academy_'+(user.name||'user').replace(/\s+/g,'_')+'_'+new Date().toISOString().slice(0,10)+'.json';
-    a.click();URL.revokeObjectURL(u);toast('Файл сохранён');
+    a.click();
+    URL.revokeObjectURL(u);
+    toast('Файл сохранён');
 }
 function importData(){
     const inp=document.createElement('input');
     inp.type='file';inp.accept='.json';
-    inp.onchange=(e)=>{
-        const f=e.target.files[0];if(!f)return;
+    inp.onchange=function(e){
+        const f=e.target.files[0];
+        if(!f) return;
         const r=new FileReader();
-        r.onload=(ev)=>{
+        r.onload=function(ev){
             try{
                 const d=JSON.parse(ev.target.result);
                 const m=migrate(d);
@@ -585,7 +714,7 @@ function importData(){
                 user=Object.assign(user,m);
                 save();renderMenu();goMenu();
                 toast('Данные загружены');
-            }catch(e){toast('Ошибка файла')}
+            }catch(err){toast('Ошибка файла')}
         };
         r.readAsText(f);
     };
@@ -593,35 +722,45 @@ function importData(){
 }
 function confirmReset(){
     showM({
-        t:'Полный сброс?',x:'Весь прогресс будет удалён.',ok:'Удалить всё',
-        onOk:()=>{
-            localStorage.removeItem(SAVE_K);localStorage.removeItem(SAVE_B);
-            LEGACY.forEach(k=>localStorage.removeItem(k));
+        t:'Полный сброс?',
+        x:'Весь прогресс будет удалён.',
+        ok:'Удалить всё',
+        onOk:function(){
+            localStorage.removeItem(SAVE_K);
+            localStorage.removeItem(SAVE_B);
+            LEGACY.forEach(function(k){localStorage.removeItem(k)});
             location.reload();
         }
     });
 }
 
-/* --- ВИБРАЦИЯ / ЗВУК --- */
+/* --- ЗВУК/ВИБРАЦИЯ --- */
 let soundEnabled=true,vibrationEnabled=true,audioCtx=null,autoCatsId=null;
-function initAudio(){if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume()}
-function vibrate(p){if(vibrationEnabled&&navigator.vibrate)navigator.vibrate(p)}
+function initAudio(){
+    if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+    if(audioCtx&&audioCtx.state==='suspended') audioCtx.resume();
+}
+function vibrate(p){if(vibrationEnabled&&navigator.vibrate) navigator.vibrate(p)}
 function beep(t){
     if(!soundEnabled) return;
-    initAudio();if(!audioCtx)return;
+    initAudio();
+    if(!audioCtx) return;
     const o=audioCtx.createOscillator(),g=audioCtx.createGain();
     o.connect(g);g.connect(audioCtx.destination);
     const ct=audioCtx.currentTime;
-    const S=(w,f1,f2,d,vol)=>{
+    const S=function(w,f1,f2,d,vol){
         vol=vol||.15;
-        o.type=w;o.frequency.setValueAtTime(f1,ct);
-        if(f2)o.frequency.exponentialRampToValueAtTime(f2,ct+d);
-        g.gain.setValueAtTime(vol,ct);g.gain.exponentialRampToValueAtTime(.001,ct+d);
+        o.type=w;
+        o.frequency.setValueAtTime(f1,ct);
+        if(f2) o.frequency.exponentialRampToValueAtTime(f2,ct+d);
+        g.gain.setValueAtTime(vol,ct);
+        g.gain.exponentialRampToValueAtTime(.001,ct+d);
         o.start();o.stop(ct+d);
     };
     if(t==='ok'){S('sine',600,900,.1);vibrate(20)}
     else if(t==='bad'){S('sawtooth',200,100,.25);vibrate([30,20,30])}
     else if(t==='pop'){S('sine',800,1400,.05);vibrate(10)}
+    else if(t==='meow'){S('triangle',1200,600,.3,.2);vibrate(25)}
     else if(t==='level'){S('triangle',400,1600,.4,.25);vibrate([30,20,30,20,60])}
     else if(t==='shield'){S('sine',1200,500,.25,.2);vibrate([60,40,60])}
 }
@@ -629,7 +768,7 @@ function beep(t){
 /* --- ЭКРАНЫ --- */
 function show(id){
     currentScreen=id;
-    SCREEN_IDS.forEach(sid=>{
+    SCREEN_IDS.forEach(function(sid){
         const el=document.getElementById('s-'+sid);
         if(el) el.classList.add('hide');
     });
@@ -637,74 +776,58 @@ function show(id){
     if(el){el.classList.remove('hide');el.classList.add('fade')}
     const back=document.getElementById('backBtn');
     if(back){
-        if(id==='login' || id==='menu') back.classList.add('hide');
+        if(id==='login'||id==='menu') back.classList.add('hide');
         else back.classList.remove('hide');
     }
-    try{ window.scrollTo(0,0); }catch(e){}
+    try{window.scrollTo(0,0)}catch(e){}
 }
-
-/* --- ГЛАВНЫЙ ОБРАБОТЧИК КНОПКИ НАЗАД --- */
 function goBack(){
-    // Если открыта модалка — закрываем её
     const m=document.getElementById('modal');
-    if(m && m.classList.contains('on')){
-        closeM(false);
-        return;
-    }
-    // Обработка по экранам
-    if(currentScreen==='quiz'){
-        exitQuiz();
-        return;
-    }
-    if(currentScreen==='login'){
-        // Ничего не делаем — уже на входе
-        return;
-    }
-    // Всё остальное → в меню
+    if(m&&m.classList.contains('on')){closeM(false);return}
+    if(currentScreen==='quiz'){exitQuiz();return}
+    if(currentScreen==='login') return;
     goMenu();
 }
 function goMenu(){
     stopTimer();
     if(autoCatsId){clearInterval(autoCatsId);autoCatsId=null}
-    if(!user.name){
-        show('login');
-        return;
-    }
+    if(!user.name){show('login');return}
     show('menu');
     renderMenu();
 }
 function exitQuiz(){
     showM({
         t:'Выйти из теста?',
-        x:'Прогресс этого теста будет потерян. Продолжить?',
+        x:'Прогресс этого теста будет потерян.',
         ok:'Выйти',
         cancel:'Остаться',
-        onOk:()=>{ stopTimer(); goMenu(); }
+        onOk:function(){stopTimer();goMenu()}
     });
 }
-
-/* --- ЛОГИН --- */
 function doLogin(){
     const inp=document.getElementById('login-name');
     const n=(inp.value||'').trim();
     if(!n){toast('Введите имя');return}
     user.name=n;user.visits=1;
-    user.lastVisit=new Date().toDateString();user.dayStreak=1;
+    user.lastVisit=new Date().toDateString();
+    user.dayStreak=1;
     try{sessionStorage.setItem('acad_seen','1')}catch(e){}
     save();beep('ok');goMenu();
 }
 function doLogout(){
     showM({
-        t:'Сменить профиль?',x:'Прогресс будет удалён.',ok:'Удалить',
-        onOk:()=>{
-            localStorage.removeItem(SAVE_K);localStorage.removeItem(SAVE_B);
-            LEGACY.forEach(k=>localStorage.removeItem(k));
+        t:'Сменить профиль?',
+        x:'Прогресс будет удалён.',
+        ok:'Удалить',
+        onOk:function(){
+            localStorage.removeItem(SAVE_K);
+            localStorage.removeItem(SAVE_B);
+            LEGACY.forEach(function(k){localStorage.removeItem(k)});
             location.reload();
         }
     });
 }
 
-/* --- МЕНЮ --- */
 function renderMenu(){
     document.getElementById('avatar').innerText=user.avatar;
     document.getElementById('pname').innerText=user.name;
@@ -725,22 +848,23 @@ function renderTopics(){
     c.innerHTML='';
     let found=false;
     for(const g in db){
-        const tops=Object.entries(db[g].topics).filter(([t,obj])=>{
+        const tops=Object.entries(db[g].topics).filter(function(pair){
+            const t=pair[0],obj=pair[1];
             if(!q) return true;
-            return obj.title.toLowerCase().includes(q)||db[g].title.toLowerCase().includes(q);
+            return obj.title.toLowerCase().indexOf(q)!==-1||db[g].title.toLowerCase().indexOf(q)!==-1;
         });
         if(!tops.length) continue;
         found=true;
         const block=document.createElement('div');
         block.innerHTML='<h3 style="margin:14px 0 8px;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px">'+db[g].title+'</h3>';
         const list=document.createElement('div');list.className='grid';
-        tops.forEach(([k,o])=>{
+        tops.forEach(function(pair){
+            const k=pair[0],o=pair[1];
             const key=g+':'+k;
             const st=user.topicStats[key];
-            const fav=user.favs.includes(key);
+            const fav=user.favs.indexOf(key)!==-1;
             const btn=document.createElement('button');
-            btn.type='button';
-            btn.className='topic';
+            btn.type='button';btn.className='topic';
             btn.innerHTML='<div>'+(fav?'⭐ ':'')+o.title+'<small>'+(st?st.best+'/'+st.total+' · '+st.runs+' попыток':'Не пройдено')+'</small></div><span class="muted">→</span>';
             btn.onclick=(function(gg,kk){return function(){chooseMode(gg,kk)}})(g,k);
             list.appendChild(btn);
@@ -755,37 +879,45 @@ function chooseMode(g,t){
     const total=db[g].topics[t].qs.length;
     const html='<div class="grid" style="margin-top:12px">'+
         '<button class="btn p full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'normal\')">Обычный · 10 вопр · 30 сек</button>'+
-        '<button class="btn d full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'exam\')">Экзамен · 10 вопр · 20 сек · ×2</button>'+
+        '<button class="btn d full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'exam\')">Экзамен · ×2 XP</button>'+
         '<button class="btn a full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'marathon\')">Марафон · все вопросы</button>'+
-        '<button class="btn w full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'speed\')">Спидран · 10 сек · ×3</button>'+
+        '<button class="btn w full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'speed\')">Спидран · ×3 XP</button>'+
         '<button class="btn s full" type="button" onclick="closeM(false);startQ(\''+g+'\',\''+t+'\',\'streak\')">Серия · вся тема</button>'+
     '</div>';
     showM({t:'Выберите режим',x:title+' · вопросов: '+total,hideX:true,ok:'Закрыть',extra:html});
 }
 
-/* --- ТЕСТ --- */
 function startQ(g,t,mode,custom){
     beep('ok');
     const td=db[g].topics[t];
     let qs;
     if(custom) qs=custom;
     else if(mode==='marathon'||mode==='streak') qs=td.qs.slice();
-    else {const idx=shuffle(td.qs.map((_,i)=>i));qs=idx.slice(0,Math.min(10,td.qs.length)).map(i=>td.qs[i])}
-    const shields=1+(user.features.includes('s1')?1:0)+(user.bonusShields||0);
-    quiz={g:g,t:t,mode:mode,i:0,qs:qs,order:shuffle(qs.map((_,i)=>i)),ok:0,err:0,streak:0,maxStreak:0,shield:shields,shieldMax:shields,wrongList:[],wrongData:[],timer:null,time:30};
+    else{
+        const idx=shuffle(td.qs.map(function(_,i){return i}));
+        qs=idx.slice(0,Math.min(10,td.qs.length)).map(function(i){return td.qs[i]});
+    }
+    const shields=1+(user.features.indexOf('s1')!==-1?1:0)+(user.bonusShields||0);
+    quiz={g:g,t:t,mode:mode,i:0,qs:qs,order:shuffle(qs.map(function(_,i){return i})),ok:0,err:0,streak:0,maxStreak:0,shield:shields,shieldMax:shields,wrongList:[],wrongData:[],timer:null,time:30};
     document.getElementById('q-topic').innerText=td.title;
     document.getElementById('q-progress').innerText='1 / '+quiz.order.length;
     document.getElementById('q-ok').innerText='0';
     document.getElementById('q-err').innerText='0';
     const modes={normal:'Обычный',exam:'Экзамен',marathon:'Марафон',speed:'Спидран',streak:'Серия',retry:'Ошибки'};
     document.getElementById('q-mode').innerText=modes[mode]||'Обычный';
-    document.getElementById('q-timer').classList.toggle('hide',mode==='marathon'||mode==='streak'||user.features.includes('s5'));
+    document.getElementById('q-timer').classList.toggle('hide',mode==='marathon'||mode==='streak'||user.features.indexOf('s4')!==-1);
     renderStreak();
     show('quiz');
     loadQ();
 }
-
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function shuffle(a){
+    a=a.slice();
+    for(let i=a.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        const tmp=a[i];a[i]=a[j];a[j]=tmp;
+    }
+    return a;
+}
 
 function loadQ(){
     if(quiz.i>=quiz.order.length){finishQ();return}
@@ -797,17 +929,14 @@ function loadQ(){
     document.getElementById('hint-box').classList.add('hide');
     document.getElementById('q-exp').classList.add('hide');
     document.getElementById('q-next').classList.add('hide');
-    const idx=shuffle(q.o.map((_,i)=>i));
-    const opts=idx.map(i=>q.o[i]);
+    const idx=shuffle(q.o.map(function(_,i){return i}));
+    const opts=idx.map(function(i){return q.o[i]});
     const correctIdx=idx.indexOf(q.a);
     const c=document.getElementById('q-opts');
-    c.className='opts';
-    c.innerHTML='';
-    opts.forEach((o,i)=>{
+    c.className='opts';c.innerHTML='';
+    opts.forEach(function(o,i){
         const b=document.createElement('button');
-        b.type='button';
-        b.className='opt';
-        b.innerText=o;
+        b.type='button';b.className='opt';b.innerText=o;
         b.onclick=(function(ii,cc){return function(e){answer(ii,cc,b,e)}})(i,correctIdx);
         c.appendChild(b);
     });
@@ -822,7 +951,7 @@ function startTimer(){
     quiz.time=base;
     el.innerText='⏱️ '+base;
     el.style.color='';
-    quiz.timer=setInterval(()=>{
+    quiz.timer=setInterval(function(){
         quiz.time--;
         el.innerText='⏱️ '+quiz.time;
         if(quiz.time<=5) el.style.color='var(--danger)';
@@ -837,7 +966,7 @@ function stopTimer(){
 
 function timeout(){
     const q=quiz.qs[quiz.order[quiz.i]];
-    document.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+    document.querySelectorAll('.opt').forEach(function(b){b.disabled=true});
     quiz.err++;quiz.streak=0;beep('bad');
     const e=document.getElementById('q-exp');
     e.className='exp err';
@@ -854,7 +983,7 @@ function answer(sel,correct,btn,ev){
     stopTimer();
     const q=quiz.qs[quiz.order[quiz.i]];
     const all=document.querySelectorAll('.opt');
-    all.forEach(b=>b.disabled=true);
+    all.forEach(function(b){b.disabled=true});
     const isLast=quiz.i===quiz.order.length-1;
     const base=isLast?40:20;
     const mult=sMult(quiz.streak);
@@ -862,7 +991,7 @@ function answer(sel,correct,btn,ev){
     if(quiz.mode==='exam') reward*=2;
     if(quiz.mode==='speed') reward*=3;
     if(quiz.mode==='streak') reward=Math.round(reward*1.3);
-    if(user.features.includes('s2')||user.boosted) reward*=2;
+    if(user.features.indexOf('s2')!==-1||user.boosted) reward*=2;
     const e=document.getElementById('q-exp');
 
     if(sel===correct){
@@ -875,17 +1004,21 @@ function answer(sel,correct,btn,ev){
         xpPop(ev.clientX,ev.clientY,reward);
         const isMile=S_MILE.indexOf(quiz.streak)!==-1;
         if(isMile){
-            beep('level');user.milestones=(user.milestones||0)+1;
+            beep('level');
+            user.milestones=(user.milestones||0)+1;
             user.xp+=quiz.streak*10;
             try{confetti({particleCount:60+quiz.streak*2,spread:80,origin:{y:.5}})}catch(e2){}
             vibrate([40,30,40,30,80]);
         } else {
             const before=sLvl(quiz.streak-1),after=sLvl(quiz.streak);
-            if(after>before){beep('level');vibrate([30,20,30])}else beep('pop');
+            if(after>before){beep('level');vibrate([30,20,30])}
+            else beep('pop');
         }
         const cat=catFor(quiz.streak);
         if(user.catsOwned.indexOf(cat.id)===-1){
-            user.catsOwned.push(cat.id);user.xp+=200;save();
+            user.catsOwned.push(cat.id);
+            user.xp+=200;
+            save();
             setTimeout(function(){showNewCat(cat)},500);
         }
         e.className='exp ok';
@@ -895,14 +1028,16 @@ function answer(sel,correct,btn,ev){
         btn.classList.add('err');
         all[correct].classList.add('ok');
         if(quiz.shield>0 && quiz.streak>0){
-            quiz.shield--;beep('shield');vibrate([80,50,80]);
+            quiz.shield--;
+            beep('shield');vibrate([80,50,80]);
             e.className='exp err';
             e.innerHTML='<b>Щит спас серию из '+quiz.streak+'.</b> Правильный ответ: <b>'+q.o[q.a]+'</b><br><br>'+q.e;
             e.classList.remove('hide');
         } else {
             beep('bad');
             if(quiz.streak>=3) user.streaksLost=(user.streaksLost||0)+1;
-            quiz.streak=0;quiz.err++;
+            quiz.streak=0;
+            quiz.err++;
             quiz.wrongList.push(quiz.order[quiz.i]);
             quiz.wrongData.push({q:q.q,u:btn.innerText,a:q.o[q.a],e:q.e,topic:db[quiz.g].topics[quiz.t].title});
             let has=false;
@@ -931,7 +1066,7 @@ function renderStreak(){
     document.getElementById('sk-mult').innerText='×'+sMult(quiz.streak).toFixed(1);
     const next=nextMile(quiz.streak);
     let prev=0;
-    for(const m of S_MILE) if(m<=quiz.streak) prev=m;
+    for(let i=0;i<S_MILE.length;i++) if(S_MILE[i]<=quiz.streak) prev=S_MILE[i];
     const pct=Math.min(100,((quiz.streak-prev)/(next-prev))*100);
     document.getElementById('sk-bar').style.width=pct+'%';
 }
@@ -939,11 +1074,15 @@ function renderStreak(){
 function hint(n){
     const q=quiz.qs[quiz.order[quiz.i]];
     const box=document.getElementById('hint-box');
-    if(n===1){document.getElementById('h1b').disabled=true;box.className='exp';box.innerText='💡 '+q.h1}
-    else {document.getElementById('h2b').disabled=true;box.className='exp';box.innerText='🔑 '+q.h2}
+    if(n===1){
+        document.getElementById('h1b').disabled=true;
+        box.className='exp';box.innerText='💡 '+q.h1;
+    } else {
+        document.getElementById('h2b').disabled=true;
+        box.className='exp';box.innerText='🔑 '+q.h2;
+    }
     box.classList.remove('hide');beep('pop');
 }
-
 function nextQ(){quiz.i++;if(quiz.i>=quiz.order.length) finishQ(); else loadQ()}
 
 function finishQ(){
@@ -955,8 +1094,9 @@ function finishQ(){
     if(quiz.mode==='exam') xp*=2;
     if(quiz.mode==='speed') xp*=3;
     if(quiz.mode==='streak') xp=Math.round(xp*1.3);
-    if(user.features.includes('s2')||user.boosted) xp*=2;
-    user.xp+=xp;user.testsPassed++;
+    if(user.features.indexOf('s2')!==-1||user.boosted) xp*=2;
+    user.xp+=xp;
+    user.testsPassed++;
     const t=new Date().toDateString();
     if(user.goalDate!==t){user.goalDate=t;user.goalCount=0}
     user.goalCount++;
@@ -991,8 +1131,7 @@ function renderResult(pct,xp,total){
         '<div class="stat"><b>'+(user.bestStreak||0)+'</b><small>Рекорд</small></div>'+
         '<div class="stat"><b>'+user.catsOwned.length+'</b><small>Котов</small></div>'+
     '</div>';
-    const btns=document.getElementById('r-btns');
-    btns.innerHTML='';
+    const btns=document.getElementById('r-btns');btns.innerHTML='';
     if(quiz.wrongList.length>0 && quiz.wrongList.length<total){
         const b=document.createElement('button');
         b.type='button';b.className='btn d full';
@@ -1004,96 +1143,108 @@ function renderResult(pct,xp,total){
         const b=document.createElement('button');
         b.type='button';b.className='btn a full';b.style.marginTop='8px';
         b.innerText='🤖 Разбор от ИИ ('+quiz.wrongData.length+')';
-        b.onclick=showAIReview;
-        btns.appendChild(b);
+        b.onclick=showAIReview;btns.appendChild(b);
     }
     if(pct===100){
         const b=document.createElement('button');
         b.type='button';b.className='btn s full';b.style.marginTop='8px';
-        b.innerText='🎓 Сертификат';b.onclick=showCert;
-        btns.appendChild(b);
+        b.innerText='🎓 Сертификат';b.onclick=showCert;btns.appendChild(b);
     }
 }
 
 function showAIReview(){
-    const list=quiz.wrongData.map(function(w,i){return '<div style="padding:10px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-size:13px">'+
-        '<b>'+(i+1)+'. '+w.q+'</b><br>'+
-        '<span style="color:var(--danger)">Ваш: '+w.u+'</span><br>'+
-        '<span style="color:var(--success)">Верно: '+w.a+'</span><br>'+
-        '<span class="muted">'+w.e+'</span></div>'}).join('');
+    const list=quiz.wrongData.map(function(w,i){
+        return '<div style="padding:10px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-size:13px"><b>'+(i+1)+'. '+w.q+'</b><br><span style="color:var(--danger)">Ваш: '+w.u+'</span><br><span style="color:var(--success)">Верно: '+w.a+'</span><br><span class="muted">'+w.e+'</span></div>';
+    }).join('');
     showM({
         t:'Разбор ошибок',x:'',hideX:true,ok:'Закрыть',
-        extra:'<div style="max-height:400px;overflow-y:auto;text-align:left">'+list+
-            '<div id="ai-det" style="margin-top:12px"></div>'+
-            '<button class="btn p full" type="button" style="margin-top:12px" onclick="loadAIDetail()">Развёрнутый анализ</button>'+
-        '</div>'
+        extra:'<div style="max-height:400px;overflow-y:auto;text-align:left">'+list+'<div id="ai-det" style="margin-top:12px"></div><button class="btn p full" type="button" style="margin-top:12px" onclick="loadAIDetail()">Развёрнутый анализ</button></div>'
     });
 }
-
 function loadAIDetail(){
     const el=document.getElementById('ai-det');
     el.innerHTML='<p class="muted">ИИ готовит...</p>';
     const lines=quiz.wrongData.map(function(w,i){return (i+1)+'. "'+w.q+'" — ответ "'+w.u+'", верно "'+w.a+'"'}).join('\n');
-    askAI('Ученик ошибся в теме "'+quiz.wrongData[0].topic+'":\n'+lines+'\n\nДай краткий анализ (до 5 предложений). Какие правила путает? Что повторить?',20000).then(function(text){
+    askAI('Ученик ошибся в теме "'+quiz.wrongData[0].topic+'":\n'+lines+'\n\nДай краткий анализ (до 5 предложений). Что повторить?',20000).then(function(text){
         el.innerHTML='<div class="exp">'+text+'</div>';
     });
 }
-
 function showCert(){
     const topic=db[quiz.g].topics[quiz.t].title;
     const date=new Date().toLocaleDateString('ru-RU');
     showM({
         t:'Сертификат',x:'',hideX:true,ok:'Закрыть',
-        extra:'<div style="background:#fef3c7;padding:24px;border-radius:12px;border:2px solid #d97706;text-align:center;color:#78350f">'+
-            '<div style="font-size:11px;letter-spacing:3px;opacity:.7">СЕРТИФИКАТ</div>'+
-            '<h3 style="margin:8px 0">Об успешном прохождении</h3>'+
-            '<p style="margin:8px 0">Настоящим подтверждается, что</p>'+
-            '<div style="font-size:20px;font-weight:800;color:#7c3aed;padding:4px 0;border-bottom:2px solid #7c3aed;display:inline-block">'+user.name+'</div>'+
-            '<p style="margin:12px 0">прошёл тему <b>«'+topic+'»</b></p>'+
-            '<p style="font-size:20px;font-weight:800;color:#16a34a">100%</p>'+
-            '<p style="font-size:12px;opacity:.7">'+date+'</p>'+
-            '<div style="font-size:40px;margin-top:12px">🏆</div>'+
-        '</div>'+
-        '<p class="muted" style="text-align:center;margin-top:12px;font-size:12px">Сделайте скриншот для сохранения</p>'
+        extra:'<div style="background:#fef3c7;padding:24px;border-radius:12px;border:2px solid #d97706;text-align:center;color:#78350f"><div style="font-size:11px;letter-spacing:3px;opacity:.7">СЕРТИФИКАТ</div><h3 style="margin:8px 0">Об успешном прохождении</h3><p style="margin:8px 0">Настоящим подтверждается, что</p><div style="font-size:20px;font-weight:800;color:#7c3aed;padding:4px 0;border-bottom:2px solid #7c3aed;display:inline-block">'+user.name+'</div><p style="margin:12px 0">прошёл тему <b>«'+topic+'»</b></p><p style="font-size:20px;font-weight:800;color:#16a34a">100%</p><p style="font-size:12px;opacity:.7">'+date+'</p><div style="font-size:40px;margin-top:12px">🏆</div></div>'
     });
 }
 
-/* --- УНИВЕРСАЛЬНЫЙ ИИ ЗАПРОС --- */
+/* --- ИИ --- */
 function askAI(prompt,timeout){
     timeout = timeout || 15000;
     const fullPrompt='Ты учитель русского языка. Отвечай простым языком, до 5 предложений, с примером. Без markdown. '+prompt;
     return new Promise(function(resolve){
-        // Пробуем сначала обычный эндпоинт
-        (function tryFetch(){
-            let done=false;
-            const ctrl=new AbortController();
-            const to=setTimeout(function(){ctrl.abort()},timeout);
-            fetch('https://text.pollinations.ai/'+encodeURIComponent(fullPrompt),{signal:ctrl.signal})
-                .then(function(r){return r.text()})
-                .then(function(t){
-                    clearTimeout(to);
-                    t=(t||'').trim();
-                    if(t && t.length>5){done=true;resolve(t);}
-                    else throw new Error('empty');
-                })
-                .catch(function(e){
-                    clearTimeout(to);
-                    if(done) return;
-                    // Фоллбэк на локальные ответы
-                    resolve(localFallback(prompt));
-                });
-        })();
+        let done=false;
+        const ctrl=new AbortController();
+        const to=setTimeout(function(){ctrl.abort()},timeout);
+        fetch('https://text.pollinations.ai/'+encodeURIComponent(fullPrompt),{signal:ctrl.signal})
+            .then(function(r){return r.text()})
+            .then(function(t){
+                clearTimeout(to);
+                t=(t||'').trim();
+                if(t && t.length>5){done=true;resolve(t)}
+                else throw new Error('empty');
+            })
+            .catch(function(e){
+                clearTimeout(to);
+                if(done) return;
+                resolve(localFallback(prompt));
+            });
     });
 }
 function localFallback(prompt){
     const p=prompt.toLowerCase();
-    if(p.indexOf('падеж')!==-1) return 'В русском языке 6 падежей: именительный (кто? что?), родительный (кого? чего?), дательный (кому? чему?), винительный (кого? что?), творительный (кем? чем?), предложный (о ком? о чём?). Фраза для запоминания: «Иван Родил Девчонку Велел Тащить Пелёнку».';
-    if(p.indexOf('спряжен')!==-1) return 'I спряжение: окончания -ешь, -ем, -ут/-ют. II спряжение: -ишь, -им, -ат/-ят. Ко II спряжению относятся все глаголы на -ить, кроме «брить» и «стелить», а также 11 исключений: гнать, держать, смотреть, видеть, дышать, слышать, ненавидеть, зависеть, вертеть, обидеть, терпеть.';
-    if(p.indexOf('причаст')!==-1) return 'Причастие обозначает признак предмета по действию: какой? что делающий? Действительные — тот сам действует (читающий мальчик). Страдательные — над кем действуют (прочитанная книга).';
-    if(p.indexOf('жи-ши')!==-1||p.indexOf('жи ши')!==-1) return 'ЖИ и ШИ всегда пишутся с буквой И: жираф, машина, шишка. Это правило просто запоминается. Исключения: брошюра, жюри, парашют.';
-    if(p.indexOf('чк')!==-1||p.indexOf('чн')!==-1) return 'Сочетания ЧК, ЧН, НЧ, ЩН пишутся без мягкого знака: ручка, ночной, птенчик, помощник, пончик. Звуки Ч и Щ всегда мягкие, им знак не нужен.';
-    if(p.indexOf('привет')!==-1||p.indexOf('здравств')!==-1) return 'Здравствуйте! Я помогу с правилами русского языка. Спросите про конкретную тему: падежи, спряжения, причастия, приставки, жи-ши, чк-чн.';
-    return 'По этому вопросу рекомендую открыть раздел «Справочник правил» — там собраны основные темы с примерами. Если вопрос сложный — уточните тему, и я постараюсь помочь.';
+    if(p.indexOf('падеж')!==-1) return '6 падежей: именительный (кто? что?), родительный (кого? чего?), дательный (кому? чему?), винительный (кого? что?), творительный (кем? чем?), предложный (о ком? о чём?). Фраза: «Иван Родил Девчонку Велел Тащить Пелёнку».';
+    if(p.indexOf('спряжен')!==-1) return 'I спряжение: -ешь, -ем, -ут/-ют. II спряжение: -ишь, -им, -ат/-ят. II спряжение — все глаголы на -ить, кроме «брить» и «стелить», плюс 11 исключений: гнать, держать, смотреть, видеть, дышать, слышать, ненавидеть, зависеть, вертеть, обидеть, терпеть.';
+    if(p.indexOf('причаст')!==-1) return 'Причастие — признак по действию (какой? что делающий?). Действительные: читающий мальчик. Страдательные: прочитанная книга.';
+    if(p.indexOf('жи-ши')!==-1||p.indexOf('жи ши')!==-1) return 'ЖИ и ШИ всегда с буквой И: жираф, машина, шишка. Исключения: брошюра, жюри, парашют.';
+    if(p.indexOf('чк')!==-1||p.indexOf('чн')!==-1) return 'ЧК, ЧН, НЧ, ЩН пишутся без мягкого знака: ручка, ночной, птенчик, помощник, пончик.';
+    if(p.indexOf('привет')!==-1||p.indexOf('здравств')!==-1) return 'Здравствуйте! Спросите про конкретную тему: падежи, спряжения, причастия, приставки, жи-ши, чк-чн.';
+    return 'Откройте раздел «Справочник правил» — там собраны основные темы. Уточните вопрос, и я помогу.';
+}
+function openAI(){
+    beep('ok');show('ai');
+    const box=document.getElementById('ai-msgs');
+    if(!box.children.length) addAI('bot','Здравствуйте! Я ИИ-помощник по русскому языку.');
+    if(!box.querySelector('.mentor-tag')){
+        const t=document.createElement('p');
+        t.className='mentor-tag muted';
+        t.style.cssText='text-align:center;font-size:10px;opacity:.5;margin-top:auto';
+        t.innerHTML='Код помощника: <b>MENTOR</b>';
+        box.appendChild(t);
+    }
+}
+function addAI(role,text){
+    const box=document.getElementById('ai-msgs');
+    const d=document.createElement('div');
+    d.className='ai-msg '+role;
+    d.innerText=text;
+    box.appendChild(d);box.scrollTop=box.scrollHeight;
+}
+function sendAI(){
+    const inp=document.getElementById('ai-inp');
+    const t=inp.value.trim();
+    if(!t) return;
+    inp.value='';
+    addAI('user',t);
+    const load=document.createElement('div');
+    load.className='ai-msg bot';
+    load.innerText='ИИ думает...';
+    document.getElementById('ai-msgs').appendChild(load);
+    document.getElementById('ai-msgs').scrollTop=99999;
+    askAI(t,15000).then(function(reply){
+        load.innerText=reply;
+        document.getElementById('ai-msgs').scrollTop=99999;
+    });
 }
 
 /* --- КОТЫ --- */
@@ -1103,7 +1254,7 @@ function showNewCat(cat){
     showM({
         t:'Новый кот!',x:'',hideX:true,ok:'В питомник',
         extra:'<div style="text-align:center">'+
-            '<div style="font-size:80px;margin:16px 0">'+cat.e+'</div>'+
+            '<div class="cat-modal-photo">'+catSvg(cat.id)+'</div>'+
             '<h3 style="color:'+cat.c+'">'+cat.n+'</h3>'+
             '<div style="display:inline-block;padding:3px 10px;background:'+cat.c+';color:#fff;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:8px 0">'+cat.t+'</div>'+
             '<p class="muted" style="font-size:13px">'+cat.d+'</p>'+
@@ -1116,11 +1267,9 @@ function showNewCat(cat){
 }
 function openCats(){
     beep('ok');show('cats');
-    const owned=user.catsOwned.length;
-    const total=CATS.length;
+    const owned=user.catsOwned.length,total=CATS.length;
     const next=nextCat(user.bestStreak||0);
-    document.getElementById('cats-progress').innerHTML='<div style="margin-bottom:8px">Открыто: <b>'+owned+' / '+total+'</b></div>'+
-        '<div class="bar"><div style="width:'+((owned/total)*100)+'%"></div></div>'+
+    document.getElementById('cats-progress').innerHTML='<div style="margin-bottom:8px">Открыто: <b>'+owned+' / '+total+'</b></div><div class="bar"><div style="width:'+((owned/total)*100)+'%"></div></div>'+
         (next?'<p class="muted" style="margin-top:10px;font-size:13px">Следующий: '+next.e+' <b>'+next.n+'</b> (серия '+next.need+')</p>':'<p class="muted" style="margin-top:10px">Все коты открыты!</p>');
     const grid=document.getElementById('cats-grid');
     grid.innerHTML='';
@@ -1128,7 +1277,9 @@ function openCats(){
         const has=user.catsOwned.indexOf(c.id)!==-1;
         const el=document.createElement('div');
         el.className='cat'+(has?'':' lock');
-        el.innerHTML='<em>'+(has?c.e:'❓')+'</em><b>'+(has?c.n:'???')+'</b><small class="muted">'+(has?c.t:'Скрыт')+' · серия '+c.need+'</small>';
+        el.innerHTML='<div class="cat-photo">'+(has?catSvg(c.id):'<span class="fallback">❓</span>')+'</div>'+
+            '<b>'+(has?c.n:'???')+'</b>'+
+            '<small>'+(has?c.t:'Скрыт')+' · серия '+c.need+'</small>';
         if(has) el.onclick=function(){showCatDetail(c)};
         grid.appendChild(el);
     });
@@ -1138,12 +1289,74 @@ function showCatDetail(c){
     showM({
         t:c.n,x:'',hideX:true,ok:'Хорошо',
         extra:'<div style="text-align:center">'+
-            '<div style="font-size:80px;margin:12px 0">'+c.e+'</div>'+
+            '<div class="cat-modal-photo">'+catSvg(c.id)+'</div>'+
             '<div style="display:inline-block;padding:3px 10px;background:'+c.c+';color:#fff;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">'+c.t+'</div>'+
             '<p class="muted" style="font-size:13px;line-height:1.5">'+c.d+'</p>'+
             '<p class="muted" style="font-size:12px;margin-top:10px">Открыт за серию '+c.need+'</p>'+
         '</div>'
     });
+}
+
+/* --- КОМНАТА КОТОВ (полностью работает) --- */
+function openClicker(){
+    beep('ok');
+    show('clicker');
+    const el=document.getElementById('cl-count');
+    if(el) el.innerText=user.catsClicks||0;
+    updateClickerPhoto();
+    const fact=document.getElementById('cl-fact');
+    if(fact) fact.innerText='Нажми на кота, чтобы погладить';
+    // Авто-коты, если куплено
+    if(autoCatsId){clearInterval(autoCatsId);autoCatsId=null}
+    if(user.features.indexOf('s3')!==-1){
+        autoCatsId=setInterval(function(){
+            if(currentScreen==='clicker'){
+                user.catsClicks=(user.catsClicks||0)+1;
+                const e=document.getElementById('cl-count');
+                if(e) e.innerText=user.catsClicks;
+                save();
+            }
+        },1000);
+    }
+}
+function updateClickerPhoto(){
+    const box=document.getElementById('cl-photo');
+    if(!box) return;
+    // Случайный кот
+    const randomCat=CATS[Math.floor(Math.random()*CATS.length)];
+    box.innerHTML=catSvg(randomCat.id);
+}
+function clickCat(e){
+    user.catsClicks=(user.catsClicks||0)+1;
+    const c=document.getElementById('cl-count');
+    if(c) c.innerText=user.catsClicks;
+    beep('meow');
+    vibrate(25);
+    updateClickerPhoto();
+    // XP за каждые 10 кликов
+    if(user.catsClicks%10===0){
+        user.xp+=5;
+        toast('+5 XP за усердие!');
+    }
+    // Показываем случайный факт
+    const fact=document.getElementById('cl-fact');
+    if(fact) fact.innerText=CAT_FACTS[Math.floor(Math.random()*CAT_FACTS.length)];
+    // Всплывающее слово
+    const words=['Мяу!','Мур!','Мррр!','Ня!','Мяу-мяу!','🐾','❤️','Кис-кис!'];
+    const w=document.createElement('div');
+    w.className='click-word';
+    w.innerText=words[Math.floor(Math.random()*words.length)];
+    const parent=e.currentTarget;
+    const rect=parent.getBoundingClientRect();
+    w.style.left=(e.clientX-rect.left-20)+'px';
+    w.style.top=(e.clientY-rect.top-20)+'px';
+    parent.style.position='relative';
+    parent.appendChild(w);
+    setTimeout(function(){w.remove()},1000);
+    save();
+    // Поздравления
+    if(user.catsClicks===100) toast('🐱 100 котов! Так держать!');
+    if(user.catsClicks===1000) toast('👑 1000 котов! Ты котокороль!');
 }
 
 /* --- ДОСТИЖЕНИЯ --- */
@@ -1157,8 +1370,7 @@ function openAch(){
         const cnt=c==='all'?ACHS.length:ACHS.filter(function(a){return a.c===c}).length;
         const done=c==='all'?ACHS.filter(function(a){return user.claimed.indexOf(a.id)!==-1}).length:ACHS.filter(function(a){return a.c===c&&user.claimed.indexOf(a.id)!==-1}).length;
         const b=document.createElement('button');
-        b.type='button';
-        b.className='btn'+(achFilter===c?' p':'');
+        b.type='button';b.className='btn'+(achFilter===c?' p':'');
         b.innerHTML=(c==='all'?'Все':c)+'<br><small class="muted">'+done+'/'+cnt+'</small>';
         b.onclick=function(){achFilter=c;openAch()};
         f.appendChild(b);
@@ -1167,32 +1379,22 @@ function openAch(){
     const items=achFilter==='all'?ACHS:ACHS.filter(function(a){return a.c===achFilter});
     list.innerHTML='';
     items.forEach(function(a){
-        const cur=a.g(user);
-        const done=a.f(user);
-        const claimed=user.claimed.indexOf(a.id)!==-1;
+        const cur=a.g(user),done=a.f(user),claimed=user.claimed.indexOf(a.id)!==-1;
         const pct=Math.min(100,(cur/a.x)*100);
         const tiers={b:'🥉',s:'🥈',g:'🥇',p:'💎'};
         const el=document.createElement('div');
         el.className='card';
         el.style.opacity=claimed?'0.65':'1';
-        el.innerHTML='<div class="row between">'+
-            '<div style="flex:1">'+
-                '<div><b>'+tiers[a.t]+' '+a.n+'</b></div>'+
-                '<div class="muted" style="font-size:13px;margin:4px 0">'+a.d+'</div>'+
-                '<div class="bar" style="margin:8px 0"><div style="width:'+pct+'%"></div></div>'+
-                '<div class="muted" style="font-size:12px">'+cur+' / '+a.x+' · +'+a.r+' XP</div>'+
-            '</div>'+
-            '<div style="margin-left:12px">'+
-                (claimed?'<span style="font-size:22px">✅</span>':done?'<button class="btn s sm" type="button" onclick="claimAch(\''+a.id+'\','+a.r+')">Забрать</button>':'<span style="font-size:22px">🔒</span>')+
-            '</div>'+
-        '</div>';
+        el.innerHTML='<div class="row between"><div style="flex:1"><div><b>'+tiers[a.t]+' '+a.n+'</b></div><div class="muted" style="font-size:13px;margin:4px 0">'+a.d+'</div><div class="bar" style="margin:8px 0"><div style="width:'+pct+'%"></div></div><div class="muted" style="font-size:12px">'+cur+' / '+a.x+' · +'+a.r+' XP</div></div><div style="margin-left:12px">'+(claimed?'<span style="font-size:22px">✅</span>':done?'<button class="btn s sm" type="button" onclick="claimAch(\''+a.id+'\','+a.r+')">Забрать</button>':'<span style="font-size:22px">🔒</span>')+'</div></div>';
         list.appendChild(el);
     });
 }
 function claimAch(id,r){
     if(user.claimed.indexOf(id)!==-1) return;
-    user.claimed.push(id);user.xp+=r;
-    save();beep('level');try{confetti({particleCount:80,spread:60})}catch(e){}
+    user.claimed.push(id);
+    user.xp+=r;
+    save();beep('level');
+    try{confetti({particleCount:80,spread:60})}catch(e){}
     toast('+'+r+' XP');
     openAch();renderMenu();
 }
@@ -1208,14 +1410,7 @@ function openShop(){
         const can=user.xp>=it.p;
         const el=document.createElement('div');
         el.className='card';
-        el.innerHTML='<div class="row between">'+
-            '<div style="flex:1">'+
-                '<b>'+it.n+'</b>'+
-                '<div class="muted" style="font-size:13px;margin-top:4px">'+it.d+'</div>'+
-                '<div style="color:var(--primary);font-weight:700;margin-top:6px">'+it.p+' XP</div>'+
-            '</div>'+
-            (owned?'<span style="font-size:22px">✅</span>':'<button class="btn p sm" type="button" '+(can?'':'disabled')+' onclick="buyItem(\''+it.id+'\')">Купить</button>')+
-        '</div>';
+        el.innerHTML='<div class="row between"><div style="flex:1"><b>'+it.n+'</b><div class="muted" style="font-size:13px;margin-top:4px">'+it.d+'</div><div style="color:var(--primary);font-weight:700;margin-top:6px">'+it.p+' XP</div></div>'+(owned?'<span style="font-size:22px">✅</span>':'<button class="btn p sm" type="button" '+(can?'':'disabled')+' onclick="buyItem(\''+it.id+'\')">Купить</button>')+'</div>';
         list.appendChild(el);
     });
 }
@@ -1225,91 +1420,93 @@ function buyItem(id){
     if(!it) return;
     if(user.features.indexOf(id)!==-1){toast('Уже куплено');return}
     if(user.xp<it.p){toast('Недостаточно XP');return}
-    user.xp-=it.p;user.features.push(id);
-    save();beep('level');try{confetti({particleCount:120,spread:90})}catch(e){}
+    user.xp-=it.p;
+    user.features.push(id);
+    save();beep('level');
+    try{confetti({particleCount:120,spread:90})}catch(e){}
     toast('Куплено: '+it.n);
     openShop();renderMenu();
 }
 
 /* --- СПРАВОЧНИК --- */
 const BOOK={
-g1:{title:'1–2 класс',items:[
-    {h:'Алфавит',t:'33 буквы: 10 гласных, 21 согласная, Ь и Ъ без звука. Гласных звуков 6: [а],[о],[у],[ы],[э],[и].'},
-    {h:'ЖИ-ШИ, ЧА-ЩА, ЧУ-ЩУ',t:'ЖИ и ШИ — с И. ЧА и ЩА — с А. ЧУ и ЩУ — с У. Исключения: брошюра, жюри, парашют.'},
-    {h:'ЧК, ЧН, НЧ, ЩН',t:'Пишутся без мягкого знака: ручка, ночной, птенчик, помощник, пончик.'},
-    {h:'Парные согласные',t:'Б-П, В-Ф, Г-К, Д-Т, Ж-Ш, З-С. Проверяем гласной: дуб — дубы, снег — снега.'},
-    {h:'Безударные гласные',t:'Проверяем ударением: вода — во́ды, река — ре́ки, зима — зи́мы.'},
-    {h:'Заглавная буква',t:'Имена, фамилии, города, страны, реки, клички, планеты — с заглавной.'},
-    {h:'Перенос слов',t:'По слогам. Одну букву нельзя. Й, Ь, Ъ не отрываем. Двойные делим.'},
-    {h:'Одушевлённые/неодушевлённые',t:'Кто? — одушевлённые (кошка, мама). Что? — неодушевлённые (стол, окно).'}
-]},
-g3:{title:'3 класс',items:[
-    {h:'Непроизносимые согласные',t:'Проверяем словом, где звук слышен: солнце — солнышко, честный — честь. Исключения: праздник, чувство, лестница.'},
-    {h:'Удвоенные согласные',t:'Класс, аллея, суббота, хоккей, бассейн, пассажир, группа, теннис.'},
-    {h:'Разделительный Ь',t:'В корне перед Е, Ё, Ю, Я, И: вьюга, воробьи, деревья, семья.'},
-    {h:'Состав слова',t:'Корень — главная часть. Приставка — перед корнем. Суффикс — после. Окончание — изменяемая.'},
-    {h:'Род',t:'М.р. — он мой. Ж.р. — она моя. С.р. — оно моё.'},
-    {h:'Падежи',t:'И, Р, Д, В, Т, П. Иван Родил Девчонку Велел Тащить Пелёнку.'},
-    {h:'Времена глагола',t:'Настоящее (сейчас), прошедшее (вчера), будущее (завтра).'}
-]},
-g4:{title:'4 класс',items:[
-    {h:'Разделительный Ъ',t:'После приставок на согласную перед Е, Ё, Ю, Я: подъезд, объявление, съёмка.'},
-    {h:'Ь после шипящих',t:'Ж.р. — с Ь (рожь, мышь, ночь). М.р. — без Ь (врач, шалаш, нож).'},
-    {h:'Склонения',t:'1 скл: м. и ж. на -а/-я. 2 скл: м. без оконч. и с. на -о/-е. 3 скл: ж. с Ь.'},
-    {h:'Окончания прилагательных',t:'Задай вопрос от существительного: какой? — синий, какого? — синего.'},
-    {h:'Однородные члены',t:'Перед И — нет запятой. Перед А, НО — есть. При перечислении — запятые.'},
-    {h:'Спряжения глагола',t:'I: -ешь, -ем, -ут/-ют. II: -ишь, -им, -ат/-ят. Исключения: 11 глаголов на -ить + брить, стелить.'},
-    {h:'Прямая речь',t:'Слова автора → : → «Прямая речь». Или «Прямая речь» — слова автора.'}
-]},
-g5:{title:'5 класс',items:[
-    {h:'ТСЯ и ТЬСЯ',t:'Есть Ь в вопросе — ТЬСЯ. Нет Ь — ТСЯ.'},
-    {h:'О/Ё после шипящих',t:'Ё — если есть проверка с Е (шёпот — шептать). О — в заимствованиях и исключениях.'},
-    {h:'И/Ы после Ц',t:'В корне — И. В окончаниях/суффиксах — Ы. Исключения: цыган, цыплёнок, цыпочки, цыц.'},
-    {h:'Приставки на З/С',t:'Перед звонкой — З. Перед глухой — С. Приставки З- не существует.'},
-    {h:'РАСТ/РОС, ЛАГ/ЛОЖ',t:'Перед СТ/Щ — А. Остальное — О. Перед Г — А, перед Ж — О.'},
-    {h:'Обращение',t:'Называет того, к кому обращаются. Не член предложения. Выделяется запятыми.'}
-]},
-g6:{title:'6 класс',items:[
-    {h:'Корни с чередованием',t:'От суффикса А: бер/бир, мер/мир. От ударения: гар/гор, клан/клон.'},
-    {h:'ПРЕ и ПРИ',t:'ПРИ — близость, присоединение, неполнота. ПРЕ — =очень или =пере-.'},
-    {h:'Н/НН в прилагательных',t:'НН: -онн-, -енн-, стык. Н: -ин-, -ан-, -ян-. Исключения: стеклянный, оловянный, деревянный, ветреный.'},
-    {h:'Дефис в местоимениях',t:'кое-, -то, -либо, -нибудь — дефис. С предлогом — раздельно.'},
-    {h:'НЕ с сущ/прил',t:'Слитно: без НЕ не употребляется, можно заменить синонимом. Раздельно: с союзом А, «далеко не».'},
-    {h:'Причастие',t:'Признак по действию. Действительные (-ущ-/-ющ-), страдательные (-нн-, -енн-, -т-).'},
-    {h:'Наклонения глагола',t:'Изъявительное (реальное), повелительное (приказ), условное (с БЫ).'}
-]},
-g7:{title:'7 класс',items:[
-    {h:'Причастие',t:'Признак по действию. Отвечает: какой? что делающий?'},
-    {h:'Причастный оборот',t:'Причастие + зависимые. Если после главного — выделяется запятыми.'},
-    {h:'Деепричастие',t:'Добавочное действие. Что делая? Что сделав? Не изменяется.'},
-    {h:'Деепричастный оборот',t:'Всегда выделяется запятыми.'},
-    {h:'Наречие',t:'Признак действия. Не изменяется.'},
-    {h:'Правописание наречий',t:'ПО-+-ому/-ему/-ски — дефис. В-/на-/за-+-о/-е — слитно.'}
-]},
-g8:{title:'8 класс',items:[
-    {h:'Словосочетание',t:'Согласование — согласуются. Управление — зависимое в падеже. Примыкание — неизменяемое.'},
-    {h:'Односоставные',t:'Определённо-личное, неопределённо-личное, безличное, назывное.'},
-    {h:'Однородные члены',t:'Перед одиночным И — нет. Перед А, НО — есть.'},
-    {h:'Обособление',t:'Причастный оборот после — запятые. Деепричастный оборот — всегда.'},
-    {h:'Вводные слова',t:'Конечно, кажется, вероятно, по-моему. Выделяются запятыми.'},
-    {h:'Обращения',t:'Не член предложения. Выделяется запятыми.'}
-]},
-g9:{title:'9 класс',items:[
-    {h:'ССП',t:'Равноправные части с сочинит. союзом. Запятая всегда.'},
-    {h:'СПП',t:'Главное + придаточное. Подчит. союз. Придаточные: определительные, изъяснительные, обстоятельственные.'},
-    {h:'БСП',t:'Запятая — перечисление. Двоеточие — причина/пояснение. Тире — противопоставление/следствие.'}
-]},
-g10:{title:'10 класс',items:[
-    {h:'Орфоэпия',t:'Ударение: звонИт, каталОг, договОр, тОрты, бАнты, красИвее, щавЕль.'},
-    {h:'Лексика',t:'Синонимы, антонимы, омонимы, паронимы, неологизмы, архаизмы.'},
-    {h:'Словообразование',t:'Приставочный, суффиксальный, бессуффиксный, сложение, переход.'},
-    {h:'Тропы',t:'Эпитет, метафора, метонимия, гипербола, литота, олицетворение.'}
-]},
-g11:{title:'11 класс',items:[
-    {h:'Пунктуация',t:'Знаки во всех конструкциях: ССП, СПП, БСП, однородные, обособления.'},
-    {h:'Средства выразительности',t:'Тропы и фигуры: эпитет, метафора, антитеза, оксюморон, градация.'},
-    {h:'Анализ текста',t:'Тема, идея, тип речи, стиль.'}
-]}
+    g1:{title:'1–2 класс',items:[
+        {h:'Алфавит',t:'33 буквы: 10 гласных, 21 согласная, Ь и Ъ без звука. Гласных звуков 6: [а],[о],[у],[ы],[э],[и].'},
+        {h:'ЖИ-ШИ, ЧА-ЩА, ЧУ-ЩУ',t:'ЖИ и ШИ — с И. ЧА и ЩА — с А. ЧУ и ЩУ — с У. Исключения: брошюра, жюри, парашют.'},
+        {h:'ЧК, ЧН, НЧ, ЩН',t:'Пишутся без мягкого знака: ручка, ночной, птенчик, помощник, пончик.'},
+        {h:'Парные согласные',t:'Б-П, В-Ф, Г-К, Д-Т, Ж-Ш, З-С. Проверяем гласной: дуб — дубы, снег — снега.'},
+        {h:'Безударные гласные',t:'Проверяем ударением: вода — во́ды, река — ре́ки, зима — зи́мы.'},
+        {h:'Заглавная буква',t:'Имена, фамилии, города, страны, реки, клички, планеты — с заглавной.'},
+        {h:'Перенос слов',t:'По слогам. Одну букву нельзя. Й, Ь, Ъ не отрываем.'},
+        {h:'Одушевлённые/неодушевлённые',t:'Кто? — одушевлённые. Что? — неодушевлённые.'}
+    ]},
+    g3:{title:'3 класс',items:[
+        {h:'Непроизносимые согласные',t:'Проверяем словом, где звук слышен: солнце — солнышко, честный — честь. Исключения: праздник, чувство, лестница.'},
+        {h:'Удвоенные согласные',t:'Класс, аллея, суббота, хоккей, бассейн, пассажир, группа, теннис.'},
+        {h:'Разделительный Ь',t:'В корне перед Е, Ё, Ю, Я, И: вьюга, воробьи, деревья, семья.'},
+        {h:'Состав слова',t:'Корень, приставка, суффикс, окончание, основа.'},
+        {h:'Род',t:'М.р. — он мой. Ж.р. — она моя. С.р. — оно моё.'},
+        {h:'Падежи',t:'И, Р, Д, В, Т, П. Иван Родил Девчонку Велел Тащить Пелёнку.'},
+        {h:'Времена глагола',t:'Настоящее, прошедшее, будущее.'}
+    ]},
+    g4:{title:'4 класс',items:[
+        {h:'Разделительный Ъ',t:'После приставок на согласную перед Е, Ё, Ю, Я: подъезд, объявление, съёмка.'},
+        {h:'Ь после шипящих',t:'Ж.р. — с Ь (рожь, мышь, ночь). М.р. — без Ь (врач, шалаш, нож).'},
+        {h:'Склонения',t:'1 скл: м. и ж. на -а/-я. 2 скл: м. без оконч. и с. на -о/-е. 3 скл: ж. с Ь.'},
+        {h:'Окончания прилагательных',t:'Задай вопрос от существительного: какой? — синий, какого? — синего.'},
+        {h:'Однородные члены',t:'Перед И — нет запятой. Перед А, НО — есть.'},
+        {h:'Спряжения глагола',t:'I: -ешь, -ем, -ут/-ют. II: -ишь, -им, -ат/-ят. Исключения: 11 глаголов + брить, стелить.'},
+        {h:'Прямая речь',t:'Слова автора → : → «Прямая речь».'}
+    ]},
+    g5:{title:'5 класс',items:[
+        {h:'ТСЯ и ТЬСЯ',t:'Есть Ь в вопросе — ТЬСЯ. Нет Ь — ТСЯ.'},
+        {h:'О/Ё после шипящих',t:'Ё — если есть проверка с Е. О — в заимствованиях.'},
+        {h:'И/Ы после Ц',t:'В корне — И. В окончаниях/суффиксах — Ы. Исключения: цыган, цыплёнок, цыпочки, цыц.'},
+        {h:'Приставки на З/С',t:'Перед звонкой — З. Перед глухой — С. Приставки З- нет.'},
+        {h:'РАСТ/РОС, ЛАГ/ЛОЖ',t:'Перед СТ/Щ — А. Остальное — О. Перед Г — А, перед Ж — О.'},
+        {h:'Обращение',t:'Не член предложения. Выделяется запятыми.'}
+    ]},
+    g6:{title:'6 класс',items:[
+        {h:'Корни с чередованием',t:'От суффикса А: бер/бир, мер/мир. От ударения: гар/гор, клан/клон.'},
+        {h:'ПРЕ и ПРИ',t:'ПРИ — близость, присоединение. ПРЕ — =очень или =пере-.'},
+        {h:'Н/НН в прилагательных',t:'НН: -онн-, -енн-, стык. Н: -ин-, -ан-, -ян-. Исключения: стеклянный, оловянный, деревянный, ветреный.'},
+        {h:'Дефис в местоимениях',t:'кое-, -то, -либо, -нибудь — дефис. С предлогом — раздельно.'},
+        {h:'НЕ с сущ/прил',t:'Слитно: без НЕ не употребляется. Раздельно: с союзом А, «далеко не».'},
+        {h:'Причастие',t:'Признак по действию. Действительные и страдательные.'},
+        {h:'Наклонения глагола',t:'Изъявительное, повелительное, условное.'}
+    ]},
+    g7:{title:'7 класс',items:[
+        {h:'Причастие',t:'Признак по действию.'},
+        {h:'Причастный оборот',t:'Если после главного — выделяется запятыми.'},
+        {h:'Деепричастие',t:'Добавочное действие. Не изменяется.'},
+        {h:'Деепричастный оборот',t:'Всегда выделяется запятыми.'},
+        {h:'Наречие',t:'Признак действия. Не изменяется.'},
+        {h:'Правописание наречий',t:'ПО-+-ому/-ему/-ски — дефис.'}
+    ]},
+    g8:{title:'8 класс',items:[
+        {h:'Словосочетание',t:'Согласование, управление, примыкание.'},
+        {h:'Односоставные',t:'Определённо-личное, неопределённо-личное, безличное, назывное.'},
+        {h:'Однородные члены',t:'Перед одиночным И — нет. Перед А, НО — есть.'},
+        {h:'Обособление',t:'Причастный и деепричастный оборот.'},
+        {h:'Вводные слова',t:'Конечно, кажется, вероятно.'},
+        {h:'Обращения',t:'Не член предложения. Выделяется запятыми.'}
+    ]},
+    g9:{title:'9 класс',items:[
+        {h:'ССП',t:'Равноправные части с сочинит. союзом.'},
+        {h:'СПП',t:'Главное + придаточное. Определительные, изъяснительные, обстоятельственные.'},
+        {h:'БСП',t:'Запятая — перечисление. Двоеточие — причина. Тире — противопоставление.'}
+    ]},
+    g10:{title:'10 класс',items:[
+        {h:'Орфоэпия',t:'Ударение: звонИт, каталОг, договОр, тОрты, бАнты, красИвее, щавЕль.'},
+        {h:'Лексика',t:'Синонимы, антонимы, омонимы, паронимы, неологизмы, архаизмы.'},
+        {h:'Словообразование',t:'Приставочный, суффиксальный, бессуффиксный, сложение, переход.'},
+        {h:'Тропы',t:'Эпитет, метафора, метонимия, гипербола, литота, олицетворение.'}
+    ]},
+    g11:{title:'11 класс',items:[
+        {h:'Пунктуация',t:'Знаки во всех конструкциях: ССП, СПП, БСП, однородные, обособления.'},
+        {h:'Средства выразительности',t:'Тропы и фигуры: эпитет, метафора, антитеза, оксюморон, градация.'},
+        {h:'Анализ текста',t:'Тема, идея, тип речи, стиль.'}
+    ]}
 };
 function openBook(){
     beep('ok');show('book');
@@ -1319,9 +1516,7 @@ function openBook(){
     cls.forEach(function(g){
         if(!db[g]) return;
         const b=document.createElement('button');
-        b.type='button';
-        b.className='btn';
-        b.innerText=db[g].title;
+        b.type='button';b.className='btn';b.innerText=db[g].title;
         b.onclick=function(){showRule(g)};
         c.appendChild(b);
     });
@@ -1331,9 +1526,9 @@ function showRule(g){
     beep('ok');
     const rb=BOOK[g];
     if(!rb){document.getElementById('rb-content').innerHTML='<p class="muted">Раздел не готов</p>';return}
-    document.getElementById('rb-content').innerHTML=
-        '<h3 style="margin-bottom:12px">'+rb.title+'</h3>'+
-        rb.items.map(function(it){return '<div class="card"><h3 style="color:var(--primary);margin-bottom:6px">'+it.h+'</h3><p style="margin:0;line-height:1.5;font-size:14px">'+it.t+'</p></div>'}).join('');
+    document.getElementById('rb-content').innerHTML='<h3 style="margin-bottom:12px">'+rb.title+'</h3>'+rb.items.map(function(it){
+        return '<div class="card"><h3 style="color:var(--primary);margin-bottom:6px">'+it.h+'</h3><p style="margin:0;line-height:1.5;font-size:14px">'+it.t+'</p></div>';
+    }).join('');
 }
 
 /* --- КОЛЕСО --- */
@@ -1341,10 +1536,8 @@ let wheelRot=0;
 function openWheel(){beep('ok');show('wheel');renderWheel();updateSpinBtn()}
 function renderWheel(){
     const w=document.getElementById('wheel');
-    const total=WHEEL.length;
-    const seg=360/total;
-    const stops=WHEEL.map(function(p,i){return p.c+' '+(i*seg)+'deg '+((i+1)*seg)+'deg'});
-    w.style.background='conic-gradient('+stops.join(',')+')';
+    const total=WHEEL.length,seg=360/total;
+    w.style.background='conic-gradient('+WHEEL.map(function(p,i){return p.c+' '+(i*seg)+'deg '+((i+1)*seg)+'deg'}).join(',')+')';
 }
 function updateSpinBtn(){
     const t=new Date().toDateString();
@@ -1365,8 +1558,7 @@ function doSpin(){
     const prize=pickPrize();
     let idx=0;
     for(let i=0;i<WHEEL.length;i++) if(WHEEL[i].id===prize.id) idx=i;
-    const total=WHEEL.length;
-    const seg=360/total;
+    const total=WHEEL.length,seg=360/total;
     const target=360*5+(360-(idx*seg+seg/2));
     wheelRot+=target;
     document.getElementById('wheel').style.transform='rotate('+wheelRot+'deg)';
@@ -1386,7 +1578,8 @@ function pickPrize(){
     return WHEEL[0];
 }
 function applyPrize(p){
-    beep('level');try{confetti({particleCount:100,spread:80})}catch(e){}
+    beep('level');
+    try{confetti({particleCount:100,spread:80})}catch(e){}
     vibrate([50,30,50,30,80]);
     let msg='';
     if(p.t==='xp'){user.xp+=p.v;msg='+'+p.v+' XP'}
@@ -1394,8 +1587,11 @@ function applyPrize(p){
     else if(p.t==='boost'){user.boosted=true;setTimeout(function(){user.boosted=false;save()},3600000);msg='Двойной опыт на час'}
     else if(p.t==='cat'){
         const lock=CATS.filter(function(c){return user.catsOwned.indexOf(c.id)===-1});
-        if(lock.length){const nc=lock[Math.floor(Math.random()*lock.length)];user.catsOwned.push(nc.id);msg='Открыт: '+nc.e+' '+nc.n}
-        else {user.xp+=500;msg='+500 XP'}
+        if(lock.length){
+            const nc=lock[Math.floor(Math.random()*lock.length)];
+            user.catsOwned.push(nc.id);
+            msg='Открыт: '+nc.e+' '+nc.n;
+        } else {user.xp+=500;msg='+500 XP'}
     }
     else if(p.t==='note'){for(let i=0;i<p.v;i++)user.notes.push({question:'Награда',text:'С колеса',date:Date.now(),topic:'Бонус'});msg='+'+p.v+' заметок'}
     else if(p.t==='jackpot'){user.xp+=p.v;msg='ДЖЕКПОТ! +'+p.v+' XP';try{confetti({particleCount:400,spread:180})}catch(e){}}
@@ -1410,11 +1606,15 @@ function openPromo(){
     beep('ok');show('promo');
     const list=document.getElementById('promo-list');
     list.innerHTML='';
-    PROMOS.forEach(function(p){
+    // Секретный первым
+    const allPromos=[SECRET_PROMO].concat(PROMOS);
+    allPromos.forEach(function(p){
         const used=user.usedPromos.indexOf(p.c)!==-1;
+        const isSecret=p.c===SECRET_PROMO.c;
         const el=document.createElement('div');
         el.className='card';
-        el.innerHTML='<div class="row between"><div><b>'+(used?'✅':'🎁')+' '+(used?p.c:'Код скрыт')+'</b>'+
+        if(isSecret) el.style.border='2px solid var(--accent)';
+        el.innerHTML='<div class="row between"><div><b>'+(used?'✅':'🎁')+' '+(used?p.c:(isSecret?'??? СЕКРЕТНЫЙ':'Код скрыт'))+'</b>'+
             '<div class="muted" style="font-size:12px;margin-top:4px">Подсказка: '+p.h+'</div>'+
             '<div style="color:var(--success);font-weight:600;font-size:12px;margin-top:4px">+'+p.xp+' XP</div></div>'+
             '<div style="font-size:22px">'+(used?'✓':'🔒')+'</div></div>';
@@ -1426,17 +1626,25 @@ function usePromo(){
     const code=inp.value.trim().toUpperCase();
     if(!code) return;
     let f=null;
-    for(let i=0;i<PROMOS.length;i++) if(PROMOS[i].c===code) f=PROMOS[i];
+    // Проверяем секретный
+    if(code===SECRET_PROMO.c) f=SECRET_PROMO;
+    // Проверяем обычные
+    if(!f){
+        for(let i=0;i<PROMOS.length;i++) if(PROMOS[i].c===code) f=PROMOS[i];
+    }
     if(!f){beep('bad');toast('Промокод не найден');return}
     if(user.usedPromos.indexOf(code)!==-1){beep('bad');toast('Уже использован');return}
-    user.usedPromos.push(code);user.xp+=f.xp;
-    save();beep('level');try{confetti({particleCount:200,spread:120})}catch(e){}
+    user.usedPromos.push(code);
+    user.xp+=f.xp;
+    save();
+    beep('level');
+    try{confetti({particleCount:300,spread:160})}catch(e){}
     toast('+'+f.xp+' XP');
     inp.value='';
     openPromo();renderMenu();
 }
 
-/* --- ПРОФИЛЬ/СТАТИСТИКА/ТОП --- */
+/* --- ПРОФИЛЬ / СТАТИСТИКА / ТОП --- */
 function openProfile(){
     beep('ok');show('profile');
     const li=getLvlInfo(user.xp);
@@ -1486,10 +1694,7 @@ function openNotes(){
     const c=document.getElementById('notes-body');
     if(!user.notes.length){c.innerHTML='<p class="muted" style="text-align:center">Заметок нет</p>';return}
     c.innerHTML=user.notes.slice().reverse().map(function(n,i){
-        return '<div class="card"><b>'+n.question+'</b>'+
-            '<div class="muted" style="font-size:12px;margin:6px 0">'+(n.topic||'')+' · '+new Date(n.date).toLocaleDateString('ru-RU')+'</div>'+
-            '<div style="font-style:italic">'+n.text+'</div>'+
-            '<button class="btn d sm" type="button" style="margin-top:8px" onclick="delNote('+(user.notes.length-1-i)+')">Удалить</button></div>';
+        return '<div class="card"><b>'+n.question+'</b><div class="muted" style="font-size:12px;margin:6px 0">'+(n.topic||'')+' · '+new Date(n.date).toLocaleDateString('ru-RU')+'</div><div style="font-style:italic">'+n.text+'</div><button class="btn d sm" type="button" style="margin-top:8px" onclick="delNote('+(user.notes.length-1-i)+')">Удалить</button></div>';
     }).join('');
 }
 function delNote(i){user.notes.splice(i,1);save();openNotes()}
@@ -1511,44 +1716,6 @@ function openFav(){
         if(!db[g]||!db[g].topics[t]) return '';
         return '<button class="btn full" type="button" style="text-align:left;margin-bottom:6px" onclick="chooseMode(\''+g+'\',\''+t+'\')">⭐ '+db[g].title+' · '+db[g].topics[t].title+'</button>';
     }).join('');
-}
-
-/* --- ИИ ЧАТ --- */
-function openAI(){
-    beep('ok');show('ai');
-    const box=document.getElementById('ai-msgs');
-    if(!box.children.length) addAI('bot','Здравствуйте! Я ИИ-помощник по русскому языку. Задайте вопрос.');
-    if(!box.querySelector('.mentor-tag')){
-        const t=document.createElement('p');
-        t.className='mentor-tag muted';
-        t.style.cssText='text-align:center;font-size:10px;opacity:.5;margin-top:auto';
-        t.innerHTML='Код помощника: <b>MENTOR</b>';
-        box.appendChild(t);
-    }
-}
-function addAI(role,text){
-    const box=document.getElementById('ai-msgs');
-    const d=document.createElement('div');
-    d.className='ai-msg '+role;
-    d.innerText=text;
-    box.appendChild(d);
-    box.scrollTop=box.scrollHeight;
-}
-function sendAI(){
-    const inp=document.getElementById('ai-inp');
-    const t=inp.value.trim();
-    if(!t) return;
-    inp.value='';
-    addAI('user',t);
-    const load=document.createElement('div');
-    load.className='ai-msg bot';
-    load.innerText='ИИ думает...';
-    document.getElementById('ai-msgs').appendChild(load);
-    document.getElementById('ai-msgs').scrollTop=99999;
-    askAI(t,15000).then(function(reply){
-        load.innerText=reply;
-        document.getElementById('ai-msgs').scrollTop=99999;
-    });
 }
 
 /* --- НАСТРОЙКИ --- */
@@ -1605,21 +1772,26 @@ function openDaily(){
 function claimDaily(){
     const t=new Date().toDateString();
     if(user.lastDaily===t) return;
-    user.lastDaily=t;user.xp+=500;
-    save();beep('level');try{confetti({particleCount:120,spread:90})}catch(e){}
+    user.lastDaily=t;
+    user.xp+=500;
+    save();beep('level');
+    try{confetti({particleCount:120,spread:90})}catch(e){}
     toast('+500 XP');
     openDaily();renderMenu();
 }
 
 /* --- АВАТАРЫ --- */
 function openAvatars(){
-    const grid=AVATARS.map(function(a){return '<button class="btn" type="button" style="font-size:24px;padding:8px" onclick="setAvatar(\''+a+'\')">'+a+'</button>'}).join('');
+    const grid=AVATARS.map(function(a){
+        return '<button class="btn" type="button" style="font-size:24px;padding:8px" onclick="setAvatar(\''+a+'\')">'+a+'</button>';
+    }).join('');
     showM({t:'Аватар',x:'',hideX:true,ok:'Закрыть',extra:'<div class="grid auto" style="margin-top:12px">'+grid+'</div>'});
 }
 function setAvatar(a){
     user.avatar=a;
     document.getElementById('avatar').innerText=a;
-    save();beep('pop');closeM(false);
+    save();beep('pop');
+    closeM(false);
 }
 
 /* --- МОДАЛКА --- */
@@ -1653,7 +1825,6 @@ function closeM(confirmed){
     window._onOk=null;
     if(modalCb){modalCb(confirmed?(v||true):false);modalCb=null}
 }
-// Клик по фону модалки — закрытие
 document.getElementById('modal').addEventListener('click',function(e){
     if(e.target===this) closeM(false);
 });
@@ -1663,7 +1834,11 @@ function toast(m){
     t.className='toast';
     t.innerText=m;
     document.body.appendChild(t);
-    setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(function(){t.remove()},300)},2200);
+    setTimeout(function(){
+        t.style.opacity='0';
+        t.style.transition='opacity .3s';
+        setTimeout(function(){t.remove()},300);
+    },2200);
 }
 function xpPop(x,y,amt){
     const el=document.createElement('div');
@@ -1688,12 +1863,15 @@ function speakQ(){
 function addNote(){
     const q=quiz.qs[quiz.order[quiz.i]];
     if(!q) return;
-    showM({t:'Заметка',x:q.q,input:true,ph:'Ваша мысль',ok:'Сохранить',onOk:function(v){
-        if(v&&v.trim()){
-            user.notes.push({question:q.q,text:v.trim(),date:Date.now(),topic:db[quiz.g].topics[quiz.t].title});
-            save();toast('Сохранено');
+    showM({
+        t:'Заметка',x:q.q,input:true,ph:'Ваша мысль',ok:'Сохранить',
+        onOk:function(v){
+            if(v&&v.trim()){
+                user.notes.push({question:q.q,text:v.trim(),date:Date.now(),topic:db[quiz.g].topics[quiz.t].title});
+                save();toast('Сохранено');
+            }
         }
-    }});
+    });
 }
 function favTopic(){
     const k=quiz.g+':'+quiz.t;
@@ -1721,8 +1899,8 @@ window.addEventListener('load',function(){
         if(e.key==='Enter') doLogin();
     });
     // Стартовый экран
-    if(user.name){goMenu()}
-    else {show('login')}
+    if(user.name) goMenu();
+    else show('login');
 });
 
 function updateDayStreak(){
@@ -1736,7 +1914,9 @@ function updateDayStreak(){
                 user.dayStreak=(user.dayStreak||0)+1;
                 if(user.dayStreak===3){user.xp+=500;setTimeout(function(){toast('Серия 3 дня! +500 XP')},800)}
                 if(user.dayStreak===7){user.xp+=2000;setTimeout(function(){toast('Серия 7 дней! +2000 XP')},800)}
-            } else if(user.lastVisit!==today){user.dayStreak=1}
+            } else if(user.lastVisit!==today){
+                user.dayStreak=1;
+            }
             user.lastVisit=today;
         }
     }catch(e){}
@@ -1753,12 +1933,11 @@ function updateWordOfDay(){
     }
 }
 
-/* --- ГОРЯЧИЕ КЛАВИШИ --- */
+/* --- КЛАВИАТУРА --- */
 document.addEventListener('keydown',function(e){
-    // Escape всегда работает
     if(e.key==='Escape'){
         const m=document.getElementById('modal');
-        if(m && m.classList.contains('on')){closeM(false);return}
+        if(m&&m.classList.contains('on')){closeM(false);return}
         goBack();
         return;
     }
@@ -1788,9 +1967,7 @@ window.addEventListener('click',function(e){
     }
 });
 
-/* ============================================================
-   ГЛАВНОЕ: ЯВНО ЭКСПОРТИРУЕМ ВСЕ ФУНКЦИИ В WINDOW
-   ============================================================ */
+/* --- ЭКСПОРТ ВСЕХ ФУНКЦИЙ В WINDOW --- */
 window.doLogin=doLogin;
 window.doLogout=doLogout;
 window.goBack=goBack;
@@ -1802,7 +1979,6 @@ window.chooseMode=chooseMode;
 window.startQ=startQ;
 window.answer=answer;
 window.nextQ=nextQ;
-window.useHint=useHint;
 window.hint=hint;
 window.speakQ=speakQ;
 window.addNote=addNote;
@@ -1823,6 +1999,8 @@ window.openMistakes=openMistakes;
 window.openFav=openFav;
 window.openCats=openCats;
 window.showCatDetail=showCatDetail;
+window.openClicker=openClicker;
+window.clickCat=clickCat;
 window.openAch=openAch;
 window.claimAch=claimAch;
 window.openShop=openShop;
@@ -1848,7 +2026,7 @@ window.showAIReview=showAIReview;
 window.loadAIDetail=loadAIDetail;
 window.showCert=showCert;
 
-console.log('✅ Академия v21.1 загружена. Кнопки в window.');
+console.log('✅ Академия v22 загружена. Секретный промокод: KOT1MILLION');
 </script>
 </body>
 </html>
