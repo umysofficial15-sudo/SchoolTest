@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#4a6fa5">
-<title>Тренажёр 1-11 · Академия Знаний</title>
+<meta name="theme-color" content="#3b6ea5">
+<title>Академия Знаний · Тренажёр 1–11 класс</title>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="db.js"></script>
 <script src="db2.js"></script>
@@ -46,7 +46,7 @@ transition:background .3s,color .3s;
 }
 [data-size="small"]{font-size:14px;}
 [data-size="large"]{font-size:18px;}
-.container{max-width:920px;margin:0 auto;position:relative;}
+.container{max-width:920px;margin:0 auto;position:relative;padding-top:44px;}
 .card{
 background:var(--card);border-radius:var(--radius);
 padding:20px;box-shadow:var(--shadow);
@@ -168,7 +168,6 @@ transition:all .15s;position:relative;
 .topic-btn:hover{border-color:var(--primary);background:var(--primary-light);color:var(--primary-dark);}
 .topic-stat{display:block;font-size:11px;color:var(--muted);margin-top:4px;font-weight:500;}
 .topic-fav{position:absolute;top:8px;right:8px;font-size:12px;}
-/* Streak panel */
 .streak-panel{
 background:linear-gradient(135deg,#fff7ed 0%,#ffedd5 100%);
 border:2px solid #fb923c;border-radius:16px;
@@ -232,7 +231,6 @@ background:rgba(255,255,255,.5);padding:6px 12px;
 border-radius:20px;font-size:12px;font-weight:700;
 }
 .streak-panel.lvl-6 .streak-cat-next{background:rgba(0,0,0,.35);}
-/* Quiz */
 .quiz-header{margin-bottom:16px;}
 .live-bar{
 display:flex;justify-content:space-between;align-items:center;
@@ -285,7 +283,6 @@ font-style:italic;font-weight:600;font-size:14px;
 }
 .hint-mini{background:var(--warning-light);color:#78350f;border-left:4px solid var(--warning);}
 .hint-big{background:var(--danger-light);color:#7f1d1d;border-left:4px solid var(--danger);}
-/* Wheel */
 .wheel-wrap{position:relative;width:300px;height:300px;margin:20px auto;}
 .wheel{
 width:100%;height:100%;border-radius:50%;
@@ -315,7 +312,6 @@ background:var(--panel);border:1px solid var(--border);
 display:flex;align-items:center;gap:8px;font-weight:600;
 }
 .wheel-prize span:first-child{font-size:18px;}
-/* Modal */
 .modal-overlay{
 position:fixed;inset:0;background:rgba(15,23,42,.6);
 backdrop-filter:blur(4px);z-index:100;
@@ -325,7 +321,7 @@ padding:16px;
 .modal-overlay.active{display:flex;animation:fade .2s;}
 .modal{
 background:var(--card);border-radius:16px;padding:24px;
-max-width:440px;width:100%;max-height:90vh;overflow-y:auto;
+max-width:460px;width:100%;max-height:90vh;overflow-y:auto;
 box-shadow:var(--shadow-lg);animation:modalIn .25s ease-out;
 }
 @keyframes modalIn{from{transform:scale(.9);opacity:0;}to{transform:scale(1);opacity:1;}}
@@ -333,7 +329,6 @@ box-shadow:var(--shadow-lg);animation:modalIn .25s ease-out;
 .modal-text{font-size:15px;color:var(--muted);margin-bottom:16px;text-align:center;}
 .modal-buttons{display:flex;gap:10px;}
 .modal-buttons .btn{flex:1;}
-/* Categories grid */
 .category-grid{
 display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
 gap:10px;margin-bottom:16px;
@@ -345,19 +340,12 @@ font-weight:600;font-size:14px;color:var(--text);
 transition:all .15s;
 }
 .category-btn:hover{border-color:var(--primary);background:var(--primary-light);}
-/* Promo codes hidden in UI */
-.promo-hint{
-font-size:10px;color:var(--muted);opacity:.5;
-letter-spacing:1px;font-family:monospace;
-}
-/* Table */
 .table{width:100%;border-collapse:collapse;font-size:14px;}
 .table th,.table td{
 padding:10px;text-align:left;
 border-bottom:1px solid var(--border);
 }
 .table th{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
-/* Stats */
 .stat-grid{
 display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
 gap:12px;
@@ -371,7 +359,6 @@ font-size:28px;font-weight:800;color:var(--primary);line-height:1;
 margin-bottom:6px;
 }
 .stat-label{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;}
-/* Cat cards */
 .cats-grid{
 display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
 gap:12px;
@@ -391,7 +378,6 @@ font-size:10px;font-weight:700;color:#fff;
 text-transform:uppercase;letter-spacing:.5px;
 }
 .cat-streak{font-size:11px;color:var(--muted);margin-top:6px;font-weight:600;}
-/* Toast */
 .toast{
 position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
 background:var(--card);border:1px solid var(--border);
@@ -402,7 +388,6 @@ animation:toastIn .3s ease-out;
 max-width:90%;
 }
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,20px);}to{opacity:1;transform:translate(-50%,0);}}
-/* Misc */
 .spinner{
 display:inline-block;width:14px;height:14px;
 border:2px solid currentColor;border-top-color:transparent;
@@ -415,8 +400,15 @@ pointer-events:none;z-index:99;animation:xpUp 1s ease-out forwards;
 text-shadow:1px 1px 3px rgba(0,0,0,.3);
 }
 @keyframes xpUp{to{opacity:0;transform:translateY(-60px);}}
+.save-info{
+font-size:12px;color:var(--muted);
+background:var(--panel);padding:10px;
+border-radius:8px;text-align:center;
+border:1px dashed var(--border);
+}
 @media(max-width:600px){
 body{padding:10px;}
+.container{padding-top:44px;}
 .options{grid-template-columns:1fr;}
 h1{font-size:22px;}
 .streak-num{font-size:26px;}
@@ -432,17 +424,17 @@ h1{font-size:22px;}
 
 <div class="container">
 
-<!-- ================== LOGIN ================== -->
+<!-- ============ ЭКРАН ВХОДА ============ -->
 <div id="screen-login" class="card login-hero fade">
     <h1>Академия Знаний</h1>
     <p class="subtitle">Тренажёр по русскому языку · 1–11 класс</p>
     <input type="text" id="loginName" class="input" placeholder="Введите ваше имя" maxlength="20" onkeypress="if(event.key==='Enter')doLogin()">
     <button class="btn btn-primary btn-block" onclick="doLogin()">Начать обучение</button>
     <p style="margin-top:24px;font-size:12px;color:var(--muted);">Работает офлайн · Искусственный интеллект в конце теста</p>
-    <p class="promo-hint" style="margin-top:30px;">SIGNAL: ACADEMY</p>
+    <p style="margin-top:20px;font-size:11px;color:var(--muted);opacity:.5;letter-spacing:1px;font-family:monospace;">ACADEMY</p>
 </div>
 
-<!-- ================== MENU ================== -->
+<!-- ============ МЕНЮ ============ -->
 <div id="screen-menu" class="hidden fade">
     <div class="stats-row">
         <div class="profile-block">
@@ -477,7 +469,7 @@ h1{font-size:22px;}
         </div>
     </div>
 
-    <div class="card" id="quoteCard">
+    <div class="card">
         <div style="font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Цитата дня</div>
         <div id="quoteText" style="font-style:italic;font-size:15px;"></div>
     </div>
@@ -495,7 +487,7 @@ h1{font-size:22px;}
         <button class="btn" onclick="openSettings()">⚙️ Настройки</button>
         <button class="btn" onclick="openProfile()">👤 Профиль</button>
         <button class="btn" onclick="openStats()">📊 Статистика</button>
-        <button class="btn" onclick="openStreakStats()">🔥 Мои страйки</button>
+        <button class="btn" onclick="openStreakStats()">🔥 Мои серии</button>
         <button class="btn" onclick="openActivity()">📅 Активность</button>
         <button class="btn" onclick="toggleTheme()" id="themeBtn">🌙 Тема</button>
         <button class="btn" onclick="toggleSound()" id="soundBtn">🔊 Звук: вкл</button>
@@ -535,7 +527,7 @@ h1{font-size:22px;}
     </p>
 </div>
 
-<!-- ================== QUIZ ================== -->
+<!-- ============ ТЕСТ ============ -->
 <div id="screen-quiz" class="hidden fade">
     <div class="quiz-header">
         <h2 id="quizTopic" style="margin-bottom:8px;"></h2>
@@ -587,7 +579,7 @@ h1{font-size:22px;}
     </div>
 </div>
 
-<!-- ================== RESULT ================== -->
+<!-- ============ РЕЗУЛЬТАТ ============ -->
 <div id="screen-result" class="hidden fade">
     <div class="card" style="text-align:center;">
         <h2 id="resultTitle" style="font-size:28px;"></h2>
@@ -604,21 +596,21 @@ h1{font-size:22px;}
     </div>
 </div>
 
-<!-- ================== CAT COLONY ================== -->
+<!-- ============ ПИТОМНИК ============ -->
 <div id="screen-cats" class="hidden fade">
     <h2>🐾 Кошачий питомник</h2>
     <p style="color:var(--muted);margin-bottom:16px;">Открывайте котов, поддерживая серии правильных ответов</p>
     <div id="catsContent"></div>
 </div>
 
-<!-- ================== ACHIEVEMENTS ================== -->
+<!-- ============ ДОСТИЖЕНИЯ ============ -->
 <div id="screen-achievements" class="hidden fade">
     <h2>🏅 Достижения</h2>
     <div class="category-grid" id="achCategories"></div>
     <div id="achContent"></div>
 </div>
 
-<!-- ================== SHOP ================== -->
+<!-- ============ МАГАЗИН ============ -->
 <div id="screen-shop" class="hidden fade">
     <h2>🛒 Магазин</h2>
     <div class="card" style="text-align:center;">
@@ -628,18 +620,18 @@ h1{font-size:22px;}
     <div id="shopContent"></div>
 </div>
 
-<!-- ================== RULEBOOK ================== -->
+<!-- ============ СПРАВОЧНИК ============ -->
 <div id="screen-rulebook" class="hidden fade">
     <h2>📖 Справочник правил</h2>
     <div class="category-grid" id="rbClasses"></div>
     <div id="rbContent"></div>
 </div>
 
-<!-- ================== WHEEL ================== -->
+<!-- ============ КОЛЕСО ============ -->
 <div id="screen-wheel" class="hidden fade">
     <h2>🎡 Колесо Фортуны</h2>
     <p style="color:var(--muted);margin-bottom:8px;text-align:center;">
-        Ежедневно — 1 бесплатный вращение. Дополнительные — за 150 XP.
+        Ежедневно — 1 бесплатное вращение. Дополнительные — за 150 XP.
     </p>
     <div class="wheel-wrap">
         <div class="wheel-pointer">▼</div>
@@ -652,9 +644,10 @@ h1{font-size:22px;}
     <div id="wheelResult" style="text-align:center;font-weight:700;font-size:18px;min-height:30px;color:var(--warning);"></div>
     <h3 style="margin-top:24px;">Призы</h3>
     <div class="wheel-legend" id="wheelLegend"></div>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:20px;">Код удачи: <b>FORTUNE</b></p>
 </div>
 
-<!-- ================== PROMO ================== -->
+<!-- ============ ПРОМОКОДЫ ============ -->
 <div id="screen-promo" class="hidden fade">
     <h2>🎟️ Промокоды</h2>
     <p style="color:var(--muted);margin-bottom:16px;">
@@ -668,31 +661,27 @@ h1{font-size:22px;}
     </div>
 </div>
 
-<!-- ================== PROFILE ================== -->
+<!-- ============ ПРОФИЛЬ ============ -->
 <div id="screen-profile" class="hidden fade">
     <h2>👤 Профиль</h2>
     <div id="profileContent"></div>
-    <div style="margin-top:16px;">
-        <button class="btn btn-primary btn-block" onclick="exportData()">💾 Экспорт данных</button>
-        <button class="btn btn-block" onclick="importData()">📥 Импорт данных</button>
-    </div>
 </div>
 
-<!-- ================== STATS ================== -->
+<!-- ============ СТАТИСТИКА ============ -->
 <div id="screen-stats" class="hidden fade">
     <h2>📊 Статистика по темам</h2>
     <div id="statsContent"></div>
 </div>
 
-<!-- ================== STREAK STATS ================== -->
+<!-- ============ СЕРИИ ============ -->
 <div id="screen-streak-stats" class="hidden fade">
-    <h2>🔥 Статистика страйков</h2>
+    <h2>🔥 Статистика серий</h2>
     <div class="stat-grid" id="streakStatGrid"></div>
     <h3 style="margin-top:24px;">История серий</h3>
     <div id="streakHistory"></div>
 </div>
 
-<!-- ================== ACTIVITY ================== -->
+<!-- ============ АКТИВНОСТЬ ============ -->
 <div id="screen-activity" class="hidden fade">
     <h2>📅 Активность за 30 дней</h2>
     <div id="heatmapGrid" style="display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:16px;"></div>
@@ -701,7 +690,7 @@ h1{font-size:22px;}
     </p>
 </div>
 
-<!-- ================== AI CHAT ================== -->
+<!-- ============ ИИ-ЧАТ ============ -->
 <div id="screen-ai" class="hidden fade">
     <h2>🤖 ИИ-помощник</h2>
     <div class="card" style="display:flex;flex-direction:column;height:500px;padding:0;overflow:hidden;">
@@ -711,48 +700,48 @@ h1{font-size:22px;}
             <button class="btn btn-primary" onclick="sendAiMessage()">→</button>
         </div>
     </div>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:12px;">Код помощника: <b>MENTOR</b></p>
 </div>
 
-<!-- ================== NOTES ================== -->
+<!-- ============ ЗАМЕТКИ ============ -->
 <div id="screen-notes" class="hidden fade">
     <h2>📝 Заметки</h2>
     <div id="notesContent"></div>
 </div>
 
-<!-- ================== FAVORITES ================== -->
+<!-- ============ ИЗБРАННОЕ ============ -->
 <div id="screen-favorites" class="hidden fade">
     <h2>⭐ Избранные темы</h2>
     <div id="favoritesContent"></div>
 </div>
 
-<!-- ================== FLASHCARDS ================== -->
+<!-- ============ КАРТОЧКИ ============ -->
 <div id="screen-flashcards" class="hidden fade">
     <h2>🃏 Карточки для запоминания</h2>
     <p style="color:var(--muted);">Нажмите на карточку, чтобы увидеть ответ</p>
     <div id="flashcardsContent" style="margin-top:16px;"></div>
 </div>
 
-<!-- ================== WORD COLLECTION ================== -->
+<!-- ============ КОПИЛКА СЛОВ ============ -->
 <div id="screen-words" class="hidden fade">
     <h2>📚 Копилка слов</h2>
     <div id="wordsContent"></div>
 </div>
 
-<!-- ================== MISTAKE BOOK ================== -->
+<!-- ============ ТЕТРАДЬ ОШИБОК ============ -->
 <div id="screen-mistakes" class="hidden fade">
     <h2>📕 Тетрадь ошибок</h2>
     <p style="color:var(--muted);">Все ваши ошибки собираются здесь автоматически</p>
     <div id="mistakesContent"></div>
 </div>
 
-<!-- ================== BOSS BATTLE ================== -->
+<!-- ============ БИТВА С БОССОМ ============ -->
 <div id="screen-boss" class="hidden fade">
     <h2>👑 Битва с боссом</h2>
     <div class="card" id="bossIntro"></div>
-    <div id="bossContent"></div>
 </div>
 
-<!-- ================== CLICKER ================== -->
+<!-- ============ КЛИКЕР ============ -->
 <div id="screen-clicker" class="hidden fade">
     <h2>🐾 Комната с котами</h2>
     <div class="card" style="text-align:center;">
@@ -761,7 +750,7 @@ h1{font-size:22px;}
     </div>
 </div>
 
-<!-- ================== SETTINGS ================== -->
+<!-- ============ НАСТРОЙКИ ============ -->
 <div id="screen-settings" class="hidden fade">
     <h2>⚙️ Настройки</h2>
     <div class="card">
@@ -776,25 +765,32 @@ h1{font-size:22px;}
             <button class="btn" onclick="setSize('normal')">Обычный</button>
             <button class="btn" onclick="setSize('large')">Крупный</button>
         </div>
-        <h3 style="margin-top:20px;">Цветовая схема</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="btn" onclick="setPalette('default')">Классика</button>
-            <button class="btn" onclick="setPalette('forest')">Лес</button>
-            <button class="btn" onclick="setPalette('sunset')">Закат</button>
-            <button class="btn" onclick="setPalette('night')">Ночь</button>
-        </div>
         <h3 style="margin-top:20px;">Звук и вибрация</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <button class="btn" onclick="toggleSound();openSettings();" id="soundBtn2">🔊 Звук</button>
             <button class="btn" onclick="toggleVibration();openSettings();" id="vibBtn">📳 Вибрация</button>
         </div>
     </div>
-    <p style="text-align:center;color:var(--muted);font-size:11px;margin-top:20px;">
-        Ключ доступа: <b>STUDY-2024</b>
-    </p>
+
+    <div class="card">
+        <h3>💾 Сохранение прогресса</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">
+            Ваш прогресс сохраняется автоматически и не теряется при обновлениях сайта.
+            Дублируйте данные в файл, чтобы перенести их на другое устройство.
+        </p>
+        <button class="btn btn-primary btn-block" onclick="exportData()" style="margin-bottom:8px;">💾 Скачать резервную копию</button>
+        <button class="btn btn-block" onclick="importData()" style="margin-bottom:8px;">📥 Загрузить из файла</button>
+        <button class="btn btn-danger btn-block" onclick="confirmReset()">⚠️ Полный сброс</button>
+        <div class="save-info" style="margin-top:14px;">
+            <div>Версия сейва: <b id="saveVersionDisplay">—</b></div>
+            <div id="saveTimeDisplay" style="margin-top:4px;"></div>
+            <div id="saveSizeDisplay" style="margin-top:4px;"></div>
+        </div>
+    </div>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:20px;">Код настроек: <b>STUDY2024</b></p>
 </div>
 
-<!-- ================== DAILY ================== -->
+<!-- ============ ДЕЙЛИ ============ -->
 <div id="screen-daily" class="hidden fade">
     <h2>🎁 Ежедневная награда</h2>
     <div class="card" style="text-align:center;">
@@ -804,7 +800,7 @@ h1{font-size:22px;}
 
 </div>
 
-<!-- ================== MODAL ================== -->
+<!-- ============ МОДАЛКА ============ -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal(false)">
     <div class="modal">
         <div class="modal-title" id="modalTitle"></div>
@@ -820,10 +816,19 @@ h1{font-size:22px;}
 
 <script>
 /* ============================================================
-   АКАДЕМИЯ ЗНАНИЙ v20 — ядро приложения
+   АКАДЕМИЯ ЗНАНИЙ · ЯДРО
    ============================================================ */
 
-/* ------------- ДАННЫЕ: КОТЫ ------------- */
+/* ---------- КОНСТАНТЫ СЕЙВА ---------- */
+const SAVE_VERSION = 21;
+const SAVE_KEY = 'academy_save';
+const SAVE_BACKUP = 'academy_save_backup';
+const LEGACY_KEYS = [
+    'academy_v20','superQuizV19','superQuizV18','superQuizV17',
+    'superQuizV16','superQuizV15','superQuizV14','superQuizV13_Full'
+];
+
+/* ---------- КОТЫ-КОМПАНЬОНЫ ---------- */
 const COMPANION_CATS = [
     {id:'c1', need:3, emoji:'🐱', name:'Котёнок Барсик', tier:'Обычный', color:'#94a3b8', desc:'Первоклассник, который только учится читать. Пугается сложных слов, но очень старается.'},
     {id:'c2', need:5, emoji:'😸', name:'Улыбчивый Мурзик', tier:'Обычный', color:'#94a3b8', desc:'Всегда доволен жизнью. Даже контрольная его не расстраивает.'},
@@ -851,6 +856,7 @@ const COMPANION_CATS = [
     {id:'c24', need:10000, emoji:'🌌', name:'Кот-Вселенная', tier:'Легенда', color:'#1e1b4b', desc:'Высший разум. Знает все правила всех языков мира.'}
 ];
 
+/* ---------- УРОВНИ СЕРИЙ ---------- */
 const STREAK_LEVELS=[
     {min:0, name:'Серия не начата', icon:'💤'},
     {min:3, name:'Хорошее начало', icon:'🔥'},
@@ -860,6 +866,8 @@ const STREAK_LEVELS=[
     {min:20, name:'Выдающаяся серия', icon:'⚡'},
     {min:30, name:'Невероятно', icon:'🌋'}
 ];
+const STREAK_MILESTONES=[3,5,8,10,12,15,20,25,30,40,50,70,100];
+
 function getStreakLevel(n){let l=0;for(let i=0;i<STREAK_LEVELS.length;i++)if(n>=STREAK_LEVELS[i].min)l=i;return l;}
 function getStreakMultiplier(n){
     if(n>=30) return 3.0;
@@ -870,15 +878,14 @@ function getStreakMultiplier(n){
     if(n>=3) return 1.2;
     return 1.0;
 }
-const STREAK_MILESTONES=[3,5,8,10,12,15,20,25,30,40,50,70,100];
 function getNextMilestone(n){for(const m of STREAK_MILESTONES) if(n<m) return m; return n+1;}
 function getCatForStreak(n){let r=COMPANION_CATS[0];for(const c of COMPANION_CATS) if(n>=c.need) r=c; return r;}
 function getNextCat(n){for(const c of COMPANION_CATS) if(n<c.need) return c; return null;}
 
-/* ------------- ДАННЫЕ: АВАТАРЫ ------------- */
+/* ---------- АВАТАРЫ ---------- */
 const AVATARS=['🐱','🐶','🦊','🐯','🦁','🐻','🐼','🐨','🐸','🐵','🦉','🦄','🐲','🐧','🐰','🦔','🐢','🐙','🦋','🐝','👦','👧','🧑','👩‍🎓'];
 
-/* ------------- ДАННЫЕ: ЦИТАТЫ ------------- */
+/* ---------- ЦИТАТЫ ---------- */
 const QUOTES=[
     'Знание — самое лучшее приобретение.',
     'Повторение — мать учения.',
@@ -892,7 +899,7 @@ const QUOTES=[
     'Сделал дело — гуляй смело.'
 ];
 
-/* ------------- ДАННЫЕ: СЛОВА ДНЯ ------------- */
+/* ---------- СЛОВА ДНЯ ---------- */
 const WORDS_OF_DAY=[
     {w:'ВЕЛИКОДУШИЕ',d:'Щедрость души, умение прощать'},
     {w:'ДОСТОИНСТВО',d:'Уважение к себе и другим'},
@@ -910,31 +917,30 @@ const WORDS_OF_DAY=[
     {w:'ЯСНОСТЬ',d:'Понятность, определённость'}
 ];
 
-/* ------------- ДАННЫЕ: ПРОМОКОДЫ ------------- */
-/* Коды спрятаны по всему сайту. Примеров больше нет. */
+/* ---------- ПРОМОКОДЫ ---------- */
 const PROMO_CODES=[
-    {code:'ACADEMY', xp:500, used:false, hint:'Спрятан на экране входа'},
-    {code:'STUDY2024', xp:1000, used:false, hint:'В настройках внизу'},
-    {code:'GRAMMAR', xp:1500, used:false, hint:'В справочнике правил'},
-    {code:'KNOWLEDGE', xp:2000, used:false, hint:'В разделе достижений'},
-    {code:'VICTORY', xp:2500, used:false, hint:'В битве с боссом'},
-    {code:'FORTUNE', xp:3000, used:false, hint:'На колесе Фортуны'},
-    {code:'WISDOM', xp:4000, used:false, hint:'В цитате дня'},
-    {code:'UNIVERSE', xp:5000, used:false, hint:'В карточке Кота-Вселенной'},
-    {code:'MENTOR', xp:3000, used:false, hint:'В ИИ-помощнике'},
-    {code:'LEGEND', xp:7000, used:false, hint:'В питомнике, у самого сильного кота'}
+    {code:'ACADEMY', xp:500, hint:'На экране входа'},
+    {code:'STUDY2024', xp:1000, hint:'В настройках внизу'},
+    {code:'GRAMMAR', xp:1500, hint:'В справочнике правил'},
+    {code:'KNOWLEDGE', xp:2000, hint:'В разделе достижений'},
+    {code:'VICTORY', xp:2500, hint:'В битве с боссом'},
+    {code:'FORTUNE', xp:3000, hint:'На колесе Фортуны'},
+    {code:'WISDOM', xp:4000, hint:'В цитате дня'},
+    {code:'UNIVERSE', xp:5000, hint:'В карточке Кота-Вселенной'},
+    {code:'MENTOR', xp:3000, hint:'В ИИ-помощнике'},
+    {code:'LEGEND', xp:7000, hint:'В питомнике у сильнейшего кота'}
 ];
 
-/* ------------- ДАННЫЕ: ДОСТИЖЕНИЯ ------------- */
+/* ---------- ДОСТИЖЕНИЯ ---------- */
 const ACHIEVEMENTS=[
     {id:'a1', cat:'Тесты', tier:'bronze', name:'Первый шаг', desc:'Пройти 1 тест', reward:100, check:u=>u.testsPassed>=1, cur:u=>u.testsPassed, need:1},
     {id:'a2', cat:'Тесты', tier:'silver', name:'Постоянство', desc:'Пройти 10 тестов', reward:500, check:u=>u.testsPassed>=10, cur:u=>u.testsPassed, need:10},
     {id:'a3', cat:'Тесты', tier:'gold', name:'Мастер', desc:'Пройти 50 тестов', reward:2000, check:u=>u.testsPassed>=50, cur:u=>u.testsPassed, need:50},
     {id:'a4', cat:'Тесты', tier:'platinum', name:'Гуру', desc:'Пройти 100 тестов', reward:6000, check:u=>u.testsPassed>=100, cur:u=>u.testsPassed, need:100},
-    {id:'a5', cat:'Страйки', tier:'bronze', name:'Первая серия', desc:'Серия из 3 правильных', reward:150, check:u=>(u.bestStreak||0)>=3, cur:u=>u.bestStreak||0, need:3},
-    {id:'a6', cat:'Страйки', tier:'silver', name:'На кураже', desc:'Серия из 10 правильных', reward:600, check:u=>(u.bestStreak||0)>=10, cur:u=>u.bestStreak||0, need:10},
-    {id:'a7', cat:'Страйки', tier:'gold', name:'Неудержимый', desc:'Серия из 20 правильных', reward:2500, check:u=>(u.bestStreak||0)>=20, cur:u=>u.bestStreak||0, need:20},
-    {id:'a8', cat:'Страйки', tier:'platinum', name:'Максимум', desc:'Серия из 30 правильных', reward:7000, check:u=>(u.bestStreak||0)>=30, cur:u=>u.bestStreak||0, need:30},
+    {id:'a5', cat:'Серии', tier:'bronze', name:'Первая серия', desc:'Серия из 3 правильных', reward:150, check:u=>(u.bestStreak||0)>=3, cur:u=>u.bestStreak||0, need:3},
+    {id:'a6', cat:'Серии', tier:'silver', name:'Уверенно', desc:'Серия из 10 правильных', reward:600, check:u=>(u.bestStreak||0)>=10, cur:u=>u.bestStreak||0, need:10},
+    {id:'a7', cat:'Серии', tier:'gold', name:'Неудержимо', desc:'Серия из 20 правильных', reward:2500, check:u=>(u.bestStreak||0)>=20, cur:u=>u.bestStreak||0, need:20},
+    {id:'a8', cat:'Серии', tier:'platinum', name:'Максимум', desc:'Серия из 30 правильных', reward:7000, check:u=>(u.bestStreak||0)>=30, cur:u=>u.bestStreak||0, need:30},
     {id:'a9', cat:'Коты', tier:'bronze', name:'Первый друг', desc:'Открыть первого кота', reward:200, check:u=>u.catColony.length>=1, cur:u=>u.catColony.length, need:1},
     {id:'a10', cat:'Коты', tier:'silver', name:'Дружная компания', desc:'Открыть 10 котов', reward:800, check:u=>u.catColony.length>=10, cur:u=>u.catColony.length, need:10},
     {id:'a11', cat:'Коты', tier:'gold', name:'Полный питомник', desc:'Открыть все 24 кота', reward:10000, check:u=>u.catColony.length>=24, cur:u=>u.catColony.length, need:24},
@@ -948,12 +954,12 @@ const ACHIEVEMENTS=[
     {id:'a19', cat:'Активность', tier:'gold', name:'Непрерывность', desc:'Серия входов 7 дней', reward:1500, check:u=>(u.dayStreak||0)>=7, cur:u=>u.dayStreak||0, need:7},
     {id:'a20', cat:'Творчество', tier:'bronze', name:'Наблюдательный', desc:'Создать 5 заметок', reward:200, check:u=>u.notes.length>=5, cur:u=>u.notes.length, need:5},
     {id:'a21', cat:'Творчество', tier:'silver', name:'Летописец', desc:'Создать 20 заметок', reward:800, check:u=>u.notes.length>=20, cur:u=>u.notes.length, need:20},
-    {id:'a22', cat:'Знания', tier:'bronze', name:'Собиратель слов', desc:'Собрать 10 слов дня', reward:250, check:u=>u.wordCollection.length>=10, cur:u=>u.wordCollection.length, need:10},
+    {id:'a22', cat:'Знания', tier:'bronze', name:'Собиратель слов', desc:'Собрать 10 слов', reward:250, check:u=>u.wordCollection.length>=10, cur:u=>u.wordCollection.length, need:10},
     {id:'a23', cat:'Знания', tier:'silver', name:'Лексикон', desc:'Собрать 30 слов', reward:1000, check:u=>u.wordCollection.length>=30, cur:u=>u.wordCollection.length, need:30},
     {id:'a24', cat:'Знания', tier:'gold', name:'Словарный запас', desc:'Собрать 100 слов', reward:4000, check:u=>u.wordCollection.length>=100, cur:u=>u.wordCollection.length, need:100}
 ];
 
-/* ------------- ДАННЫЕ: МАГАЗИН ------------- */
+/* ---------- МАГАЗИН ---------- */
 const SHOP_ITEMS=[
     {id:'s1', name:'Второй щит', price:2000, type:'feature', desc:'Дополнительная защита серии в тесте'},
     {id:'s2', name:'Двойной опыт', price:5000, type:'feature', desc:'Удвоение XP за все тесты'},
@@ -961,11 +967,10 @@ const SHOP_ITEMS=[
     {id:'s4', name:'Автоматические коты', price:2500, type:'feature', desc:'+1 кот в секунду в комнате'},
     {id:'s5', name:'Отключение таймера', price:1500, type:'feature', desc:'Играть без ограничения времени'},
     {id:'s6', name:'Дополнительные подсказки', price:800, type:'feature', desc:'Бесконечные подсказки'},
-    {id:'s7', name:'Золотой сертификат', price:10000, type:'feature', desc:'Особый сертификат с подписью Кота-Императора'},
-    {id:'s8', name:'Пропуск задания', price:500, type:'consumable', desc:'Одноразовый пропуск сложного вопроса'}
+    {id:'s7', name:'Золотой сертификат', price:10000, type:'feature', desc:'Особый сертификат с подписью Кота-Императора'}
 ];
 
-/* ------------- ДАННЫЕ: КОЛЕСО ФОРТУНЫ ------------- */
+/* ---------- КОЛЕСО ---------- */
 const WHEEL_PRIZES=[
     {id:'w1', label:'50 XP', value:50, type:'xp', emoji:'💰', weight:20, color:'#94a3b8'},
     {id:'w2', label:'100 XP', value:100, type:'xp', emoji:'💰', weight:18, color:'#94a3b8'},
@@ -974,11 +979,11 @@ const WHEEL_PRIZES=[
     {id:'w5', label:'1000 XP', value:1000, type:'xp', emoji:'💎', weight:6, color:'#8b5cf6'},
     {id:'w6', label:'2000 XP', value:2000, type:'xp', emoji:'💎', weight:3, color:'#8b5cf6'},
     {id:'w7', label:'Щит серии', value:1, type:'shield', emoji:'🛡️', weight:8, color:'#0d9488'},
-    {id:'w8', label:'Двойной опыт (1 час)', value:1, type:'boost', emoji:'⚡', weight:6, color:'#f59e0b'},
+    {id:'w8', label:'Двойной опыт', value:1, type:'boost', emoji:'⚡', weight:6, color:'#f59e0b'},
     {id:'w9', label:'Случайный кот', value:1, type:'cat', emoji:'🐱', weight:5, color:'#dc2626'},
     {id:'w10', label:'5 заметок', value:5, type:'note', emoji:'📝', weight:4, color:'#0891b2'},
     {id:'w11', label:'Джекпот 10000 XP', value:10000, type:'jackpot', emoji:'👑', weight:1, color:'#fbbf24'},
-    {id:'w12', label:'Ещё спин', value:1, type:'spin', emoji:'🎡', weight:5, color:'#7c3aed'}
+    {id:'w12', label:'Ещё вращение', value:1, type:'spin', emoji:'🎡', weight:5, color:'#7c3aed'}
 ];
 function pickWheelPrize(){
     const total=WHEEL_PRIZES.reduce((s,p)=>s+p.weight,0);
@@ -987,8 +992,13 @@ function pickWheelPrize(){
     return WHEEL_PRIZES[0];
 }
 
-/* ------------- СОСТОЯНИЕ ПОЛЬЗОВАТЕЛЯ ------------- */
+/* ============================================================
+   СОСТОЯНИЕ ПОЛЬЗОВАТЕЛЯ
+   ============================================================ */
 let user={
+    saveVersion: SAVE_VERSION,
+    lastSave: 0,
+    deviceId: '',
     name:'', xp:0, avatar:'🐱',
     features:[], ownedPacks:[],
     testsPassed:0, visits:0, dayStreak:0, lastVisitDate:'',
@@ -999,46 +1009,182 @@ let user={
     dailyGoalDate:'', dailyGoalCount:0,
     lastDailyDate:'', lastSpinDate:'', freeSpins:1,
     wheelHistory:[], streakHistory:[],
-    usedPromos:[],
+    usedPromos:[], bonusShields:0,
     theme:'light', size:'normal', palette:'default',
     soundEnabled:true, vibrationEnabled:true,
     currentStreek:0, totalAnswerCount:0, totalCorrectCount:0,
-    flashcards:[],
-    mistakeBook:[],
-    boosted:false
+    flashcards:[], mistakeBook:[], boosted:false,
+    lastWordDate:''
 };
 
-/* ------------- ТЕКУЩИЙ ТЕСТ ------------- */
+/* ============================================================
+   СИСТЕМА СЕЙВОВ
+   ============================================================ */
+function save(){
+    if(!user.deviceId){
+        user.deviceId = 'dev_'+Date.now()+'_'+Math.random().toString(36).slice(2,8);
+    }
+    user.saveVersion = SAVE_VERSION;
+    user.lastSave = Date.now();
+    user.soundEnabled = soundEnabled;
+    user.vibrationEnabled = vibrationEnabled;
+    try{
+        const data = JSON.stringify(user);
+        localStorage.setItem(SAVE_KEY, data);
+        localStorage.setItem(SAVE_BACKUP, data);
+    }catch(e){
+        console.warn('Не удалось сохранить:', e);
+        try{ localStorage.setItem(SAVE_BACKUP, JSON.stringify(user)); }catch(e2){}
+    }
+}
+
+function tryLoad(key){
+    try{
+        const raw = localStorage.getItem(key);
+        if(!raw) return null;
+        const parsed = JSON.parse(raw);
+        if(!parsed || typeof parsed !== 'object') return null;
+        return parsed;
+    }catch(e){ return null; }
+}
+
+function loadSave(){
+    let data = tryLoad(SAVE_KEY);
+    let source = 'main';
+    if(!data){ data = tryLoad(SAVE_BACKUP); source = 'backup'; }
+    if(!data){
+        for(const k of LEGACY_KEYS){
+            const legacy = tryLoad(k);
+            if(legacy){ data = legacy; source = 'legacy:'+k; break; }
+        }
+    }
+    if(!data) return null;
+    const migrated = migrateSave(data);
+    if(migrated) migrated._source = source;
+    return migrated;
+}
+
+function migrateSave(old){
+    if(!old || typeof old !== 'object') return null;
+    const fresh = {};
+    for(const k in user) fresh[k] = user[k];
+    for(const k in old){
+        if(k in fresh) fresh[k] = old[k];
+    }
+    // Специальные переименования полей
+    if(old.fireStreak !== undefined && old.dayStreak === undefined){
+        fresh.dayStreak = old.fireStreak;
+    }
+    if(old.promoUsed && !Array.isArray(fresh.usedPromos)){
+        fresh.usedPromos = ['LEGACY_PROMO'];
+    }
+    // Нормализация структур
+    if(!Array.isArray(fresh.catColony)) fresh.catColony = [];
+    if(!Array.isArray(fresh.usedPromos)) fresh.usedPromos = [];
+    if(!Array.isArray(fresh.mistakeBook)) fresh.mistakeBook = [];
+    if(!Array.isArray(fresh.notes)) fresh.notes = [];
+    if(!Array.isArray(fresh.favorites)) fresh.favorites = [];
+    if(!Array.isArray(fresh.wordCollection)) fresh.wordCollection = [];
+    if(!Array.isArray(fresh.topScores)) fresh.topScores = [];
+    if(!Array.isArray(fresh.streakHistory)) fresh.streakHistory = [];
+    if(!Array.isArray(fresh.wheelHistory)) fresh.wheelHistory = [];
+    if(!Array.isArray(fresh.features)) fresh.features = [];
+    if(!Array.isArray(fresh.ownedPacks)) fresh.ownedPacks = [];
+    if(!Array.isArray(fresh.claimedAchievements)) fresh.claimedAchievements = [];
+    if(!Array.isArray(fresh.flashcards)) fresh.flashcards = [];
+    if(!fresh.topicStats || typeof fresh.topicStats !== 'object') fresh.topicStats = {};
+    if(!fresh.activity || typeof fresh.activity !== 'object') fresh.activity = {};
+    if(!fresh.xpHistory || typeof fresh.xpHistory !== 'object') fresh.xpHistory = {};
+    // Числовые поля
+    if(typeof fresh.xp !== 'number' || isNaN(fresh.xp)) fresh.xp = 0;
+    if(typeof fresh.testsPassed !== 'number') fresh.testsPassed = 0;
+    if(typeof fresh.visits !== 'number') fresh.visits = 0;
+    if(typeof fresh.bestStreak !== 'number') fresh.bestStreak = 0;
+    if(typeof fresh.catsClicked !== 'number') fresh.catsClicked = 0;
+    if(typeof fresh.bonusShields !== 'number') fresh.bonusShields = 0;
+    // Версия
+    fresh.saveVersion = SAVE_VERSION;
+    return fresh;
+}
+
+function exportData(){
+    const stamp = new Date().toISOString().slice(0,10);
+    const data = JSON.stringify(user, null, 2);
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `academy_${(user.name||'user').replace(/\s+/g,'_')}_${stamp}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('Файл сохранён');
+}
+
+function importData(){
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.accept = '.json';
+    inp.onchange = (e)=>{
+        const f = e.target.files[0]; if(!f) return;
+        const r = new FileReader();
+        r.onload = (ev)=>{
+            try{
+                const data = JSON.parse(ev.target.result);
+                const migrated = migrateSave(data);
+                if(!migrated){ toast('Неверный файл'); return; }
+                Object.assign(user, migrated);
+                save();
+                renderMenu();
+                toast('Данные загружены');
+                goMenu();
+            }catch(err){ toast('Ошибка чтения файла'); }
+        };
+        r.readAsText(f);
+    };
+    inp.click();
+}
+
+function confirmReset(){
+    showModal({
+        title:'Полный сброс?',
+        text:'Весь прогресс будет удалён. Это действие нельзя отменить. Рекомендуем сначала скачать резервную копию.',
+        okText:'Да, удалить всё',
+        cancelText:'Отмена',
+        onOk:()=>{
+            localStorage.removeItem(SAVE_KEY);
+            localStorage.removeItem(SAVE_BACKUP);
+            LEGACY_KEYS.forEach(k=>localStorage.removeItem(k));
+            location.reload();
+        }
+    });
+}
+
+/* ============================================================
+   ТЕКУЩИЙ ТЕСТ
+   ============================================================ */
 let quiz={
     gradeId:'', topicId:'', mode:'normal',
     index:0, questions:[], order:[],
     correct:0, wrong:0,
     streak:0, maxStreak:0, streakShield:1, shieldMax:1,
     wrongList:[], wrongData:[],
-    timerId:null, timeLeft:30,
-    custom:null
+    timerId:null, timeLeft:30, custom:null
 };
 
 /* ============================================================
-   ЗАГРУЗКА
+   ИНИЦИАЛИЗАЦИЯ
    ============================================================ */
 window.addEventListener('load',()=>{
-    try{
-        const saved=localStorage.getItem('academy_v20');
-        if(saved) user=Object.assign(user,JSON.parse(saved));
-    }catch(e){}
-    if(!user.ownedPacks) user.ownedPacks=[];
-    if(!user.catColony) user.catColony=[];
-    if(!user.usedPromos) user.usedPromos=[];
-    if(!user.streakHistory) user.streakHistory=[];
-    if(!user.wheelHistory) user.wheelHistory=[];
-    if(!user.mistakeBook) user.mistakeBook=[];
-    if(!user.flashcards) user.flashcards=[];
-    
+    const loaded = loadSave();
+    if(loaded){
+        user = Object.assign(user, loaded);
+        console.log('Сейв загружен. Источник:', loaded._source || 'main', 'Версия:', user.saveVersion);
+    }
+    soundEnabled = user.soundEnabled !== false;
+    vibrationEnabled = user.vibrationEnabled !== false;
     updateDayStreak();
     updateWordOfDay();
     applyTheme();
-    
+    save();
     if(user.name){
         showScreen('menu');
         renderMenu();
@@ -1047,12 +1193,9 @@ window.addEventListener('load',()=>{
     }
 });
 
-function save(){
-    user.soundEnabled=soundEnabled;
-    user.vibrationEnabled=vibrationEnabled;
-    try{localStorage.setItem('academy_v20',JSON.stringify(user));}catch(e){}
-}
-
+/* ============================================================
+   ДНЕВНАЯ СЕРИЯ И СЛОВО
+   ============================================================ */
 function updateDayStreak(){
     const today=new Date().toDateString();
     const yesterday=new Date(Date.now()-86400000).toDateString();
@@ -1061,8 +1204,8 @@ function updateDayStreak(){
         user.visits=(user.visits||0)+1;
         if(user.lastVisitDate===yesterday){
             user.dayStreak=(user.dayStreak||0)+1;
-            if(user.dayStreak===3) setTimeout(()=>toast('Серия входов 3 дня! +500 XP'),600),user.xp+=500;
-            if(user.dayStreak===7) setTimeout(()=>toast('Серия входов 7 дней! +2000 XP'),600),user.xp+=2000;
+            if(user.dayStreak===3){ user.xp+=500; setTimeout(()=>toast('Серия входов 3 дня! +500 XP'),800); }
+            if(user.dayStreak===7){ user.xp+=2000; setTimeout(()=>toast('Серия входов 7 дней! +2000 XP'),800); }
         } else if(user.lastVisitDate!==today){
             user.dayStreak=1;
         }
@@ -1086,18 +1229,27 @@ function updateWordOfDay(){
 /* ============================================================
    ЭКРАНЫ
    ============================================================ */
+let currentScreen='login';
 function showScreen(id){
+    currentScreen=id;
     document.querySelectorAll('.container > div').forEach(el=>el.classList.add('hidden'));
     const el=document.getElementById('screen-'+id);
     if(el){ el.classList.remove('hidden'); el.classList.add('fade'); }
-    document.getElementById('backBtn').classList.toggle('hidden', id==='login'||id==='menu');
+    const back=document.getElementById('backBtn');
+    back.classList.toggle('hidden', id==='login' || id==='menu');
     window.scrollTo(0,0);
 }
-function goBack(){ if(currentScreen==='quiz'){ if(confirm('Выйти из теста? Прогресс будет потерян.')) goMenu(); } else goMenu(); }
-function goMenu(){ stopTimer(); if(typeof stopAutoCats==='function') stopAutoCats(); showScreen('menu'); renderMenu(); }
-let currentScreen='login';
-const _showScreen=showScreen;
-showScreen=function(id){ currentScreen=id; _showScreen(id); };
+function goBack(){
+    if(currentScreen==='quiz'){
+        if(confirm('Выйти из теста? Прогресс будет потерян.')) goMenu();
+    } else goMenu();
+}
+function goMenu(){
+    stopTimer();
+    if(typeof stopAutoCats==='function') stopAutoCats();
+    showScreen('menu');
+    renderMenu();
+}
 
 /* ============================================================
    ВХОД / ВЫХОД
@@ -1118,9 +1270,14 @@ function doLogin(){
 function doLogout(){
     showModal({
         title:'Сменить профиль?',
-        text:'Весь прогресс будет утерян. Продолжить?',
+        text:'Весь прогресс будет утерян. Рекомендуем сначала скачать резервную копию в настройках.',
         okText:'Да, удалить',
-        onOk:()=>{ localStorage.removeItem('academy_v20'); location.reload(); }
+        onOk:()=>{
+            localStorage.removeItem(SAVE_KEY);
+            localStorage.removeItem(SAVE_BACKUP);
+            LEGACY_KEYS.forEach(k=>localStorage.removeItem(k));
+            location.reload();
+        }
     });
 }
 
@@ -1139,27 +1296,24 @@ function renderMenu(){
     document.getElementById('rankProgressLabel').innerText=`${user.xp} / ${lvlInfo.next} XP`;
     document.getElementById('dailyGoalText').innerText=`${user.dailyGoalCount||0} / 3 теста`;
     document.getElementById('dailyGoalIcon').innerText=(user.dailyGoalCount>=3)?'✅':'🎯';
-    // Цитата дня
     const q=QUOTES[Math.floor(Date.now()/86400000)%QUOTES.length];
     document.getElementById('quoteText').innerText=q;
-    // Слово дня
     const wIdx=Math.floor(Date.now()/86400000)%WORDS_OF_DAY.length;
     const w=WORDS_OF_DAY[wIdx];
     document.getElementById('wordOfDay').innerText=w.w;
     document.getElementById('wordOfDayDef').innerText=w.d;
-    // Бейдж серии дней
     const sd=document.getElementById('streakDayBadge');
     if(user.dayStreak>=3) sd.innerHTML=`<span class="profile-rank" style="background:var(--danger-light);color:var(--danger)">🔥 ${user.dayStreak} дней подряд</span>`;
-    // Лига
+    else sd.innerHTML='';
     const lg=getLeague(user.xp);
     const ld=document.getElementById('leagueDisplay');
     ld.innerHTML=lg?`<span class="profile-rank" style="background:${lg.bg};color:${lg.fg}">${lg.name}</span>`:'';
-    // Кнопка кликера
     document.getElementById('openClickerBtn').classList.toggle('hidden', !user.features.includes('s3'));
     renderTopics();
     updateThemeBtn();
     updateSoundBtn();
 }
+
 function updateThemeBtn(){
     document.getElementById('themeBtn').innerText=user.theme==='dark'?'☀️ Светлая':'🌙 Тёмная';
 }
@@ -1241,13 +1395,11 @@ function startQuiz(gradeId,topicId,mode,customQ){
         order:shuffleArray(questions.map((_,i)=>i)),
         correct:0, wrong:0,
         streak:0, maxStreak:0,
-        streakShield:1+(user.features.includes('s1')?1:0),
-        shieldMax:1+(user.features.includes('s1')?1:0),
+        streakShield:1+(user.features.includes('s1')?1:0)+(user.bonusShields||0),
+        shieldMax:1+(user.features.includes('s1')?1:0)+(user.bonusShields||0),
         wrongList:[], wrongData:[],
         timerId:null, timeLeft:30, custom:null
     };
-    currentGradeId=gradeId;
-    currentTopicId=topicId;
     document.getElementById('quizTopic').innerText=td.title;
     document.getElementById('quizTotal').innerText=quiz.order.length;
     document.getElementById('quizOk').innerText='0';
@@ -1273,7 +1425,6 @@ function loadQuestion(){
     document.getElementById('hintBigBox').classList.add('hidden');
     document.getElementById('quizExplanation').classList.add('hidden');
     document.getElementById('nextBtn').classList.add('hidden');
-    // Перемешиваем варианты
     const idxs=shuffleArray(q.o.map((_,i)=>i));
     const opts=idxs.map(i=>q.o[i]);
     const correctShuffled=idxs.indexOf(q.a);
@@ -1343,7 +1494,6 @@ function answerQuestion(selected, correct, btnEl, ev){
     const exp=document.getElementById('quizExplanation');
 
     if(selected===correct){
-        // Верно
         playSound('ok');
         btnEl.classList.add('correct');
         quiz.correct++;
@@ -1353,7 +1503,6 @@ function answerQuestion(selected, correct, btnEl, ev){
         user.totalCorrectCount=(user.totalCorrectCount||0)+1;
         xpPop(ev.clientX, ev.clientY, reward);
 
-        // Milestone
         const isMilestone=STREAK_MILESTONES.includes(quiz.streak);
         const beforeLvl=getStreakLevel(quiz.streak-1);
         const afterLvl=getStreakLevel(quiz.streak);
@@ -1370,7 +1519,6 @@ function answerQuestion(selected, correct, btnEl, ev){
             playSound('pop');
         }
 
-        // Проверка нового кота
         const cat=getCatForStreak(quiz.streak);
         if(!user.catColony.includes(cat.id)){
             user.catColony.push(cat.id);
@@ -1383,12 +1531,10 @@ function answerQuestion(selected, correct, btnEl, ev){
         exp.innerHTML=`<b>Верно.</b> +${reward} XP (множитель ×${mult.toFixed(1)})<br><br>${q.e}`;
         exp.classList.remove('hidden');
     } else {
-        // Неверно
         btnEl.classList.add('wrong');
         buttons[correct].classList.add('correct');
 
         if(quiz.streakShield>0 && quiz.streak>0){
-            // Щит спасает
             quiz.streakShield--;
             playSound('shield');
             vibrate([100,50,100,50,200]);
@@ -1399,7 +1545,6 @@ function answerQuestion(selected, correct, btnEl, ev){
             exp.innerHTML=`<b>Щит защитил вашу серию.</b> Серия из ${quiz.streak} правильных ответов сохранена.<br>Правильный ответ: <b>${q.o[q.a]}</b><br><br>${q.e}`;
             exp.classList.remove('hidden');
         } else {
-            // Серия теряется
             playSound('bad');
             if(quiz.streak>=3){
                 user.streaksLost=(user.streaksLost||0)+1;
@@ -1408,7 +1553,6 @@ function answerQuestion(selected, correct, btnEl, ev){
             quiz.wrong++;
             quiz.wrongList.push(quiz.order[quiz.index]);
             quiz.wrongData.push({q:q.q,u:btnEl.innerText,a:q.o[q.a],e:q.e,topic:db[quiz.gradeId].topics[quiz.topicId].title});
-            // Записываем в тетрадь ошибок
             if(!user.mistakeBook.find(m=>m.q===q.q)){
                 user.mistakeBook.push({q:q.q, a:q.o[q.a], topic:db[quiz.gradeId].topics[quiz.topicId].title, date:Date.now()});
             }
@@ -1505,20 +1649,17 @@ function finishQuiz(){
 
     user.xp+=xp;
     user.testsPassed++;
-    // Дневная цель
     const today=new Date().toDateString();
     if(user.dailyGoalDate!==today){ user.dailyGoalDate=today; user.dailyGoalCount=0; }
     user.dailyGoalCount++;
     if(user.dailyGoalCount===3){ user.xp+=200; setTimeout(()=>toast('Задача дня выполнена! +200 XP'),500); }
 
-    // Статистика темы
     const key=quiz.gradeId+':'+quiz.topicId;
     if(!user.topicStats[key]) user.topicStats[key]={best:0,total,runs:0};
     user.topicStats[key].runs++;
     user.topicStats[key].total=total;
     if(quiz.correct>user.topicStats[key].best) user.topicStats[key].best=quiz.correct;
 
-    // История рекордов
     user.topScores.push({
         topic:db[quiz.gradeId].topics[quiz.topicId].title,
         correct:quiz.correct, total, xp, date:Date.now(),
@@ -1527,11 +1668,9 @@ function finishQuiz(){
     user.topScores.sort((a,b)=>(b.correct/b.total)-(a.correct/a.total));
     user.topScores=user.topScores.slice(0,30);
 
-    // История страйков
     user.streakHistory.push({max:quiz.maxStreak, date:Date.now(), topic:db[quiz.gradeId].topics[quiz.topicId].title});
     user.streakHistory=user.streakHistory.slice(-50);
 
-    // Активность
     user.activity[today]=(user.activity[today]||0)+1;
     if(!user.xpHistory[today]) user.xpHistory[today]=0;
     user.xpHistory[today]+=xp;
@@ -1557,7 +1696,6 @@ function renderResult(pct,xp,total){
         </div>
     `;
 
-    // Кнопки
     const rwBox=document.getElementById('retryWrongBox');
     rwBox.innerHTML='';
     if(quiz.wrongList.length>0 && quiz.wrongList.length<total){
@@ -1601,7 +1739,6 @@ function openAiReview(){
             <div style="color:var(--muted);margin-top:6px;">${w.e}</div>
         </div>
     `).join('');
-
     showModal({
         title:'Разбор ошибок',
         text:'',
@@ -1670,7 +1807,7 @@ function shareResult(){
 }
 
 /* ============================================================
-   КОТЫ-КОМПАНЬОНЫ
+   КОТЫ
    ============================================================ */
 function showNewCatModal(cat){
     confetti({particleCount:250,spread:150,origin:{y:.5}});
@@ -1712,7 +1849,7 @@ function openCatColony(){
     let grid='<div class="cats-grid">';
     COMPANION_CATS.forEach(c=>{
         const has=user.catColony.includes(c.id);
-        grid+=`<div class="cat-card ${has?'':'locked'}" onclick="${has?`showCatDetail('${c.id}')`:'toast(\'Ещё не открыт\')'}">
+        grid+=`<div class="cat-card ${has?'':'locked'}" onclick="${has?`showCatDetail('${c.id}')`:`toast('Ещё не открыт')`}">
             <div class="cat-emoji">${has?c.emoji:'❓'}</div>
             <div class="cat-name">${has?c.name:'???'}</div>
             <div class="cat-tag" style="background:${has?c.color:'#94a3b8'};">${has?c.tier:'Скрыт'}</div>
@@ -1743,7 +1880,7 @@ function showCatDetail(id){
 }
 
 /* ============================================================
-   КОЛЕСО ФОРТУНЫ
+   КОЛЕСО
    ============================================================ */
 let wheelRotation=0;
 function openWheel(){
@@ -1762,13 +1899,6 @@ function renderWheel(){
         stops.push(`${p.color} ${i*seg}deg ${(i+1)*seg}deg`);
     });
     w.style.background=`conic-gradient(${stops.join(',')})`;
-    // Метки
-    let labels='';
-    WHEEL_PRIZES.forEach((p,i)=>{
-        const angle=i*seg+seg/2-90;
-        labels+=`<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(${angle}deg) translateY(-110px);font-size:18px;">${p.emoji}</div>`;
-    });
-    if(!w.querySelector('.labels')){ w.innerHTML=`<div class="labels" style="position:absolute;inset:0;">${labels}</div>`; }
 }
 function renderWheelLegend(){
     document.getElementById('wheelLegend').innerHTML=WHEEL_PRIZES.map(p=>`
@@ -1858,7 +1988,6 @@ function applyWheelPrize(p){
     }
     save();
     document.getElementById('wheelResult').innerText=p.emoji+' '+msg;
-    document.getElementById('wheelResult').scrollIntoView({behavior:'smooth',block:'center'});
     setTimeout(()=>{
         showModal({
             title:p.emoji+' '+p.label,
@@ -1989,7 +2118,7 @@ let achCat='all';
 function openAchievements(){
     playSound('ok');
     showScreen('achievements');
-    const cats=['all','Тесты','Страйки','Коты','Опыт','Активность','Творчество','Знания'];
+    const cats=['all','Тесты','Серии','Коты','Опыт','Активность','Творчество','Знания'];
     document.getElementById('achCategories').innerHTML=cats.map(c=>{
         const count=c==='all'?ACHIEVEMENTS.length:ACHIEVEMENTS.filter(a=>a.cat===c).length;
         const done=c==='all'?ACHIEVEMENTS.filter(a=>user.claimedAchievements.includes(a.id)).length:ACHIEVEMENTS.filter(a=>a.cat===c && user.claimedAchievements.includes(a.id)).length;
@@ -2034,7 +2163,27 @@ function claimAch(id,reward){
 /* ============================================================
    ПРОЧИЕ ЭКРАНЫ
    ============================================================ */
-function openSettings(){ playSound('ok'); showScreen('settings'); }
+function openSettings(){
+    playSound('ok');
+    showScreen('settings');
+    setTimeout(()=>{
+        const el=document.getElementById('saveVersionDisplay');
+        if(el) el.innerText='v'+(user.saveVersion||SAVE_VERSION);
+        const time=document.getElementById('saveTimeDisplay');
+        if(time) time.innerText=user.lastSave?('Последнее сохранение: '+new Date(user.lastSave).toLocaleString('ru-RU')):'Сохранение не выполнялось';
+        const size=document.getElementById('saveSizeDisplay');
+        if(size){
+            try{
+                const data=localStorage.getItem(SAVE_KEY)||'';
+                size.innerText='Размер данных: '+(data.length/1024).toFixed(1)+' КБ';
+            }catch(e){}
+        }
+        const sb=document.getElementById('soundBtn2');
+        if(sb) sb.innerText=soundEnabled?'🔊 Звук: вкл':'🔇 Звук: выкл';
+        const vb=document.getElementById('vibBtn');
+        if(vb) vb.innerText=vibrationEnabled?'📳 Вибрация: вкл':'📴 Вибрация: выкл';
+    },50);
+}
 function openProfile(){
     playSound('ok');
     showScreen('profile');
@@ -2054,6 +2203,10 @@ function openProfile(){
             <div class="stat-box"><div class="stat-num">${user.claimedAchievements.length}</div><div class="stat-label">Достижений</div></div>
             <div class="stat-box"><div class="stat-num">${user.notes.length}</div><div class="stat-label">Заметок</div></div>
             <div class="stat-box"><div class="stat-num">${user.wordCollection.length}</div><div class="stat-label">Слов</div></div>
+        </div>
+        <div class="save-info" style="margin-top:16px;">
+            <div>Версия сейва: <b>v${user.saveVersion||SAVE_VERSION}</b></div>
+            <div style="margin-top:4px;">ID устройства: <b>${user.deviceId?'…'+user.deviceId.slice(-6):'—'}</b></div>
         </div>
     `;
 }
@@ -2145,7 +2298,7 @@ function openFlashcards(){
         return;
     }
     document.getElementById('flashcardsContent').innerHTML='<div class="stat-grid">'+user.mistakeBook.slice(-20).reverse().map((m,i)=>`
-        <div class="stat-box" style="cursor:pointer;" onclick="this.innerText=this.innerText==='${m.q.replace(/'/g,"\\'")}'?'${m.a.replace(/'/g,"\\'")}':'${m.q.replace(/'/g,"\\'")}';">
+        <div class="stat-box" style="cursor:pointer;" onclick="this.innerText=this.innerText===${JSON.stringify(m.q)}?${JSON.stringify(m.a)}:${JSON.stringify(m.q)};">
             <div style="font-size:14px;line-height:1.4;">${m.q}</div>
         </div>
     `).join('')+'</div>';
@@ -2188,7 +2341,6 @@ function openBossBattle(){
     `;
 }
 function startBoss(){
-    // Собираем вопросы из разных тем
     const pool=[];
     for(const g in db){
         for(const t in db[g].topics){
@@ -2197,12 +2349,7 @@ function startBoss(){
         }
     }
     const selected=shuffleArray(pool).slice(0,15).map(x=>x.q);
-    quiz.gradeId='g6'; quiz.topicId='t1';
-    // Хак: используем прямой старт
-    const td={title:'Битва с боссом',qs:selected};
-    // Временно подсовываем
-    const origTd=db['g6'].topics['t1'];
-    db['g6'].topics['t1']={title:'👑 Битва с боссом',qs:selected};
+    db['g6'].topics['t1']={title:'👑 Битва с боссом', qs:selected};
     startQuiz('g6','t1','exam');
 }
 function openRandomTest(){
@@ -2225,7 +2372,6 @@ function openRulebook(){
         <button class="category-btn" onclick="showRule('${g}')">${db[g].title}</button>
     `).join('');
     document.getElementById('rbContent').innerHTML='<p style="color:var(--muted);text-align:center;">Выберите класс</p>';
-    // Подсказка про промокод
     setTimeout(()=>{ const p=document.createElement('p'); p.style.cssText='font-size:11px;color:var(--muted);text-align:center;margin-top:16px;'; p.innerHTML='Код доступа: <b>GRAMMAR</b>'; document.getElementById('rbContent').appendChild(p); },500);
 }
 function showRule(g){
@@ -2249,11 +2395,6 @@ function openAiChat(){
     showScreen('ai');
     const box=document.getElementById('aiMessages');
     if(!box.children.length) addAiMsg('bot','Здравствуйте! Я ИИ-помощник по русскому языку. Задайте любой вопрос о правилах.');
-    // Промокод
-    const hint=document.createElement('p');
-    hint.style.cssText='font-size:10px;color:var(--muted);text-align:center;opacity:.5;';
-    hint.innerText='Секретный код помощника: MENTOR';
-    if(!box.querySelector('.mentor-hint')){ hint.classList.add('mentor-hint'); box.appendChild(hint); }
 }
 function addAiMsg(role,text){
     const box=document.getElementById('aiMessages');
@@ -2304,14 +2445,20 @@ function showModal({title='',text='',input=false,placeholder='',okText='OK',canc
         cc.classList.toggle('hidden',hideCancel);
         cc.innerText=cancelText;
         document.getElementById('modalOk').innerText=okText;
-        if(onOk) window._modalOnOk=onOk;
+        window._modalOnOk = onOk || null;
         if(input) setTimeout(()=>inp.focus(),100);
     });
 }
 function closeModal(confirmed){
     document.getElementById('modalOverlay').classList.remove('active');
     const v=document.getElementById('modalInput').value.trim();
-    if(confirmed && window._modalOnOk){ window._modalOnOk(); window._modalOnOk=null; }
+    if(confirmed && window._modalOnOk){
+        const cb = window._modalOnOk;
+        window._modalOnOk = null;
+        try{ cb(v); }catch(e){ console.warn(e); }
+    } else {
+        window._modalOnOk = null;
+    }
     if(modalResolve){ modalResolve(confirmed?(v||true):false); modalResolve=null; }
 }
 
@@ -2345,7 +2492,8 @@ function playSound(type){
     const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
     osc.connect(g); g.connect(audioCtx.destination);
     const t=audioCtx.currentTime;
-    const S=(wave,f1,f2,dur,vol=.2)=>{
+    const S=(wave,f1,f2,dur,vol)=>{
+        vol=vol||.2;
         osc.type=wave;
         osc.frequency.setValueAtTime(f1,t);
         if(f2) osc.frequency.exponentialRampToValueAtTime(f2,t+dur);
@@ -2362,14 +2510,10 @@ function playSound(type){
 function toggleSound(){
     soundEnabled=!soundEnabled;
     updateSoundBtn();
-    document.getElementById('soundBtn2').innerText=soundEnabled?'🔊 Звук: вкл':'🔇 Звук: выкл';
-    if(soundEnabled){ initAudio(); playSound('ok'); }
     save();
 }
 function toggleVibration(){
     vibrationEnabled=!vibrationEnabled;
-    document.getElementById('vibBtn').innerText=vibrationEnabled?'📳 Вибрация: вкл':'📴 Вибрация: выкл';
-    if(vibrationEnabled) vibrate(30);
     save();
 }
 
@@ -2384,10 +2528,9 @@ function applyTheme(){
 function toggleTheme(){ user.theme=user.theme==='dark'?'light':'dark'; applyTheme(); save(); updateThemeBtn(); playSound('ok'); }
 function setTheme(t){ user.theme=t; applyTheme(); save(); playSound('ok'); }
 function setSize(s){ user.size=s; applyTheme(); save(); playSound('ok'); }
-function setPalette(p){ user.palette=p; save(); playSound('ok'); }
 
 /* ============================================================
-   СТАТУСЫ
+   УРОВНИ И РАНГИ
    ============================================================ */
 const LEVELS=Array.from({length:50},(_,i)=>({lvl:i+1,xp:i===0?0:Math.round(500*Math.pow(1.15,i-1))}));
 function getLevel(xp){ let l=1; for(const L of LEVELS) if(xp>=L.xp) l=L.lvl; return l; }
@@ -2418,39 +2561,7 @@ function getLeague(xp){
 }
 
 /* ============================================================
-   ЭКСПОРТ / ИМПОРТ
-   ============================================================ */
-function exportData(){
-    const data=JSON.stringify(user,null,2);
-    const blob=new Blob([data],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url; a.download='academy_'+user.name+'.json'; a.click();
-    URL.revokeObjectURL(url);
-    toast('Файл сохранён');
-}
-function importData(){
-    const inp=document.createElement('input');
-    inp.type='file'; inp.accept='.json';
-    inp.onchange=(e)=>{
-        const f=e.target.files[0]; if(!f) return;
-        const r=new FileReader();
-        r.onload=(ev)=>{
-            try{
-                const data=JSON.parse(ev.target.result);
-                Object.assign(user,data);
-                save(); renderMenu();
-                toast('Данные загружены');
-                goMenu();
-            }catch(e){ toast('Ошибка файла'); }
-        };
-        r.readAsText(f);
-    };
-    inp.click();
-}
-
-/* ============================================================
-   ДЕЙЛИ, ВОЗВРАТЫ
+   ДЕЙЛИ
    ============================================================ */
 function openDaily(){
     playSound('ok');
@@ -2478,83 +2589,21 @@ function claimDaily(){
 }
 
 /* ============================================================
-   СЛУЖЕБНОЕ
+   АВАТАРЫ
    ============================================================ */
-window.addEventListener('click', e=>{
-    // Искры при клике
-    if(e.target.tagName==='BUTTON' || e.target.classList.contains('btn') || e.target.classList.contains('option-btn')){
-        const s=document.createElement('div');
-        s.style.cssText=`position:fixed;width:8px;height:8px;border-radius:50%;background:var(--warning);pointer-events:none;left:${e.clientX}px;top:${e.clientY}px;transform:translate(-50%,-50%);opacity:.8;z-index:9999;`;
-        document.body.appendChild(s);
-        requestAnimationFrame(()=>{
-            s.style.transition='all .6s cubic-bezier(.2,.9,.4,1)';
-            s.style.transform=`translate(-50%,-50%) translateY(-40px) scale(.3)`;
-            s.style.opacity='0';
-        });
-        setTimeout(()=>s.remove(),700);
-    }
-});
+function openAvatars(){
+    showModal({
+        title:'Выберите аватар',
+        text:'',
+        extra:`<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px;">${AVATARS.map(a=>`<button class="btn" style="font-size:26px;padding:10px;" onclick="user.avatar='${a}';save();document.getElementById('avatarBtn').innerText='${a}';closeModal(false);">${a}</button>`).join('')}</div>`,
+        hideCancel:true,
+        okText:'Закрыть'
+    });
+}
 
 /* ============================================================
-   FALLBACK ДЛЯ ГЛОБАЛЬНЫХ ФУНКЦИЙ
+   ТЕКУЩИЕ ФУНКЦИИ ТЕСТА
    ============================================================ */
-window.openModeChooser=openModeChooser;
-window.startQuiz=startQuiz;
-window.openClicker=openClicker;
-window.openAchievements=openAchievements;
-window.openShop=openShop;
-window.openRulebook=openRulebook;
-window.openAiChat=openAiChat;
-window.openNotes=openNotes;
-window.openFavorites=openFavorites;
-window.openFlashcards=openFlashcards;
-window.openWordCollection=openWordCollection;
-window.openMistakeBook=openMistakeBook;
-window.openBossBattle=openBossBattle;
-window.openRandomTest=openRandomTest;
-window.openSettings=openSettings;
-window.openProfile=openProfile;
-window.openStats=openStats;
-window.openStreakStats=openStreakStats;
-window.openActivity=openActivity;
-window.openDaily=openDaily;
-window.openWheel=openWheel;
-window.openPromo=openPromo;
-window.showRule=showRule;
-window.spinWheel=spinWheel;
-window.activatePromo=activatePromo;
-window.buyItem=buyItem;
-window.claimAch=claimAch;
-window.deleteNote=deleteNote;
-window.showCatDetail=showCatDetail;
-window.clickCat=clickCat;
-window.claimDaily=claimDaily;
-window.loadAiDetail=loadAiDetail;
-window.closeModal=closeModal;
-window.toggleTheme=toggleTheme;
-window.toggleSound=toggleSound;
-window.toggleVibration=toggleVibration;
-window.setTheme=setTheme;
-window.setSize=setSize;
-window.setPalette=setPalette;
-window.exportData=exportData;
-window.importData=importData;
-window.doLogin=doLogin;
-window.doLogout=doLogout;
-window.goBack=goBack;
-window.goMenu=goMenu;
-window.nextQuestion=nextQuestion;
-window.answerQuestion=answerQuestion;
-window.useHint=useHint;
-window.speakQuestion=speakQuestion;
-window.addCurrentNote=addCurrentNote;
-window.favoriteCurrent=favoriteCurrent;
-window.shareResult=shareResult;
-window.showCertificate=showCertificate;
-window.sendAiMessage=sendAiMessage;
-window.startBoss=startBoss;
-
-/* Доп. функции для теста */
 function speakQuestion(){
     if(!('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
@@ -2573,13 +2622,11 @@ function addCurrentNote(){
         input:true,
         placeholder:'Ваша мысль',
         okText:'Сохранить',
-        onOk:()=>{
-            const inp=document.getElementById('modalInput');
-            const val=inp.value.trim();
-            if(val){
-                user.notes.push({question:q.q, text:val, date:Date.now(), topic:db[quiz.gradeId].topics[quiz.topicId].title});
+        onOk:(val)=>{
+            if(val && val.trim()){
+                user.notes.push({question:q.q, text:val.trim(), date:Date.now(), topic:db[quiz.gradeId].topics[quiz.topicId].title});
                 save();
-                toast('Сохранено');
+                toast('Заметка сохранена');
             }
         }
     });
@@ -2596,19 +2643,87 @@ function favoriteCurrent(){
     save();
 }
 
-/* Открытие аватаров */
-function openAvatars(){
-    showModal({
-        title:'Выберите аватар',
-        text:'',
-        extra:`<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px;">${AVATARS.map(a=>`<button class="btn" style="font-size:26px;padding:10px;" onclick="user.avatar='${a}';save();document.getElementById('avatarBtn').innerText='${a}';closeModal(false);">${a}</button>`).join('')}</div>`,
-        hideCancel:true,
-        okText:'Закрыть'
-    });
-}
-window.openAvatars=openAvatars;
+/* ============================================================
+   ИСКРЫ ПРИ КЛИКАХ
+   ============================================================ */
+window.addEventListener('click', e=>{
+    if(e.target.tagName==='BUTTON' || e.target.classList.contains('btn') || e.target.classList.contains('option-btn')){
+        const s=document.createElement('div');
+        s.style.cssText=`position:fixed;width:8px;height:8px;border-radius:50%;background:var(--warning);pointer-events:none;left:${e.clientX}px;top:${e.clientY}px;transform:translate(-50%,-50%);opacity:.8;z-index:9999;`;
+        document.body.appendChild(s);
+        requestAnimationFrame(()=>{
+            s.style.transition='all .6s cubic-bezier(.2,.9,.4,1)';
+            s.style.transform=`translate(-50%,-50%) translateY(-40px) scale(.3)`;
+            s.style.opacity='0';
+        });
+        setTimeout(()=>s.remove(),700);
+    }
+});
 
-console.log('Академия Знаний v20 · загружена');
+/* ============================================================
+   ЭКСПОРТ В ГЛОБАЛЬНУЮ ОБЛАСТЬ
+   ============================================================ */
+window.doLogin=doLogin;
+window.doLogout=doLogout;
+window.goBack=goBack;
+window.goMenu=goMenu;
+window.openModeChooser=openModeChooser;
+window.startQuiz=startQuiz;
+window.answerQuestion=answerQuestion;
+window.nextQuestion=nextQuestion;
+window.useHint=useHint;
+window.speakQuestion=speakQuestion;
+window.addCurrentNote=addCurrentNote;
+window.favoriteCurrent=favoriteCurrent;
+window.openDaily=openDaily;
+window.claimDaily=claimDaily;
+window.openWheel=openWheel;
+window.spinWheel=spinWheel;
+window.openPromo=openPromo;
+window.activatePromo=activatePromo;
+window.openSettings=openSettings;
+window.openProfile=openProfile;
+window.openStats=openStats;
+window.openStreakStats=openStreakStats;
+window.openActivity=openActivity;
+window.openCatColony=openCatColony;
+window.showCatDetail=showCatDetail;
+window.openAchievements=openAchievements;
+window.claimAch=claimAch;
+window.openShop=openShop;
+window.buyItem=buyItem;
+window.openRulebook=openRulebook;
+window.showRule=showRule;
+window.openAiChat=openAiChat;
+window.sendAiMessage=sendAiMessage;
+window.openNotes=openNotes;
+window.deleteNote=deleteNote;
+window.openFavorites=openFavorites;
+window.openFlashcards=openFlashcards;
+window.openWordCollection=openWordCollection;
+window.openMistakeBook=openMistakeBook;
+window.openBossBattle=openBossBattle;
+window.startBoss=startBoss;
+window.openRandomTest=openRandomTest;
+window.openClicker=openClicker;
+window.clickCat=clickCat;
+window.openAvatars=openAvatars;
+window.closeModal=closeModal;
+window.toggleTheme=toggleTheme;
+window.toggleSound=toggleSound;
+window.toggleVibration=toggleVibration;
+window.setTheme=setTheme;
+window.setSize=setSize;
+window.exportData=exportData;
+window.importData=importData;
+window.confirmReset=confirmReset;
+window.shareResult=shareResult;
+window.showCertificate=showCertificate;
+window.loadAiDetail=loadAiDetail;
+window.toast=toast;
+window.showModal=showModal;
+
+console.log('Академия Знаний · Версия сейва', SAVE_VERSION, '· Загружено');
 </script>
 </body>
 </html>
